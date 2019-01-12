@@ -1,9 +1,9 @@
-[Ll]ibrary/
-[Tt]emp/
-[Oo]bj/
-[Bb]uild/
-[Bb]uilds/
-Assets/AssetStoreTools*
+TrinityAccord/[Ll]ibrary/
+TrinityAccord/[Tt]emp/
+TrinityAccord/[Oo]bj/
+TrinityAccord/[Bb]uild/
+TrinityAccord/[Bb]uilds/
+TrinityAccord/Assets/AssetStoreTools*
 
 # Visual Studio cache directory
 .vs/
