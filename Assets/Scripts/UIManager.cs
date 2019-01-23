@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+enum GameMode {PickTarget,PickAction,Animation }; 
 
 public class UIManager : MonoBehaviour
 {
+    int currentMode = (int)GameMode.PickTarget;
     public const bool ENABLE_CLICK_BORDERS = true;
 
     public void clickEnemy(GameObject clicked)
