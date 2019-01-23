@@ -4,15 +4,35 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public const bool ENABLE_CLICK_BORDERS = true;
+
+    public void clickEnemy(GameObject clicked)
     {
-        
+        Debug.Log("Clicked an Enemy named: " + clicked.name);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void clickCardInHand(GameObject clicked)
     {
-        
+        Debug.Log("Clicked a Card named: " + clicked.name);
+    }
+
+    public void clickDeck(GameObject clicked)
+    {
+        Debug.Log("Clicked the Deck");
+    }
+
+    public void clickDiscard(GameObject clicked)
+    {
+        Debug.Log("Clicked the Discard Pile");
+    }
+
+    public void clickEndTurn(GameObject clicked)
+    {
+        Debug.Log("Clicked End Turn");
+    }
+
+    public void clickBoard(GameObject clicked)
+    {
+        Debug.Log("Clicked the Board");
     }
 }

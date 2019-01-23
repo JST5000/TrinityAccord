@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class DebugBorder : MonoBehaviour
 {
-	public static bool initialEnableDebugBorders = false;
-    private bool enableDebugBorders = initialEnableDebugBorders;
+    private bool tryMatching = true;
+    private int maxAttempts = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -17,24 +17,16 @@ public class DebugBorder : MonoBehaviour
 
     void MatchParentDimensions()
     {
-        Vector3 parentRect = gameObject.GetComponentInParent<Renderer>().bounds.size;
-    //TODO: Make the width and height of the image the same as the parent transform. That way it will make an outline.
-
+        RectTransform parentRect = transform.parent.transform as RectTransform;
+        (transform as RectTransform).sizeDelta = new Vector2(parentRect.sizeDelta.x, parentRect.sizeDelta.y);
+        Debug.Log("Changed to " + parentRect.sizeDelta.x + " w and " + parentRect.sizeDelta.y + " h");
+        tryMatching = ((transform as RectTransform).sizeDelta.x == 0 && (transform as RectTransform).sizeDelta.y == 0);
     }
 
-    void SetEnableDebugBorders(bool enable)
-    {
-        if (enableDebugBorders != enable)
-        {
-            enableDebugBorders = enable;
-            UpdateVisibility();
-        }
-    }
-
-
-    void UpdateVisibility() {
+    //Visibility is determined at compile time. This is a debug only functionality
+    public void UpdateVisibility() {
         Image border = gameObject.GetComponent(typeof(Image)) as Image;
-        if (enableDebugBorders) {
+        if (UIManager.ENABLE_CLICK_BORDERS) {
             //Makes it visible
             border.color = new Color(border.color.r, border.color.g, border.color.b, 1);
         }
@@ -51,6 +43,15 @@ public class DebugBorder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //Deals with race condition between parent layout formatting and child accessing of width/length
+        if (UIManager.ENABLE_CLICK_BORDERS && tryMatching)
+        {
+            MatchParentDimensions();
+            maxAttempts--;
+            if(maxAttempts <= 0)
+            {
+                tryMatching = false;
+            }
+        }
     }
 }
