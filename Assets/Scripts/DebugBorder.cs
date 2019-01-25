@@ -7,20 +7,27 @@ public class DebugBorder : MonoBehaviour
 {
     private bool tryMatching = true;
     private int maxAttempts = 10;
+    private float maxColorChangedTimer = 1;
+    private float colorChangedTimer = 0;
+    private Color defaultColor = Color.white;
 
     // Start is called before the first frame update
     void Start()
     {
-        MatchParentDimensions();
+        UpdateDimensions();
         UpdateVisibility();        
     }
 
-    void MatchParentDimensions()
+    void UpdateDimensions()
     {
-        RectTransform parentRect = transform.parent.transform as RectTransform;
-        (transform as RectTransform).sizeDelta = new Vector2(parentRect.sizeDelta.x, parentRect.sizeDelta.y);
-        Debug.Log("Changed to " + parentRect.sizeDelta.x + " w and " + parentRect.sizeDelta.y + " h");
-        tryMatching = ((transform as RectTransform).sizeDelta.x == 0 && (transform as RectTransform).sizeDelta.y == 0);
+        MatchTargetDimensions(transform.parent);
+    }
+
+    void MatchTargetDimensions(Transform obj)
+    {
+        RectTransform objRect = obj as RectTransform;
+        (transform as RectTransform).sizeDelta = new Vector2(objRect.sizeDelta.x, objRect.sizeDelta.y);
+        Debug.Log("Changed to " + objRect.sizeDelta.x + " w and " + objRect.sizeDelta.y + " h");
     }
 
     //Visibility is determined at compile time. This is a debug only functionality
@@ -36,9 +43,16 @@ public class DebugBorder : MonoBehaviour
         }
     }
 
-	void SetColor() {
-
+	public void SetRGBColorTemporarily(Color col) {
+        SetRGBColor(col);
+        colorChangedTimer = maxColorChangedTimer;
 	}
+
+    private void SetRGBColor(Color col)
+    {
+        Image border = GetComponent<Image>();
+        border.color = new Color(col.r, col.g, col.b, border.color.a);
+    }
 
     // Update is called once per frame
     void Update()
@@ -46,11 +60,19 @@ public class DebugBorder : MonoBehaviour
         //Deals with race condition between parent layout formatting and child accessing of width/length
         if (UIManager.ENABLE_CLICK_BORDERS && tryMatching)
         {
-            MatchParentDimensions();
+            UpdateDimensions();
             maxAttempts--;
             if(maxAttempts <= 0)
             {
                 tryMatching = false;
+            }
+        }
+        if(colorChangedTimer > 0)
+        {
+            colorChangedTimer -= Time.deltaTime;
+            if(colorChangedTimer < 0)
+            {
+               SetRGBColor(defaultColor);
             }
         }
     }

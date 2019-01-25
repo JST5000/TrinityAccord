@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 752194133957177510}
   - component: {fileID: 987620381934691469}
   - component: {fileID: 7593819760880040636}
-  m_Layer: 8
+  m_Layer: 19
   m_Name: DebugBorder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

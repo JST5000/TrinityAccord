@@ -13,18 +13,18 @@ TagManager:
   - UI
   - 
   - 
-  - DebugBorder
+  - 
+  - 
+  - 
+  - 
+  - Board
   - 
   - 
   - 
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - DebugBoarder
   - 
   - 
   - 
@@ -40,4 +40,28 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3550147415
+    locked: 0
+  - name: Board
+    uniqueID: 1701150031
+    locked: 0
+  - name: Enemy
+    uniqueID: 2051226307
+    locked: 0
+  - name: Enemy2
+    uniqueID: 460661985
+    locked: 0
+  - name: Enemy3
+    uniqueID: 2624203319
+    locked: 0
+  - name: EnemyUI1
+    uniqueID: 3764313237
+    locked: 0
+  - name: EnemyUI2
+    uniqueID: 3801937803
+    locked: 0
+  - name: EnemyUI3
+    uniqueID: 503985595
     locked: 0
