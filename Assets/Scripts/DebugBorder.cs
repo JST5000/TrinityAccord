@@ -27,7 +27,6 @@ public class DebugBorder : MonoBehaviour
     {
         RectTransform objRect = obj as RectTransform;
         (transform as RectTransform).sizeDelta = new Vector2(objRect.sizeDelta.x, objRect.sizeDelta.y);
-        Debug.Log("Changed to " + objRect.sizeDelta.x + " w and " + objRect.sizeDelta.y + " h");
     }
 
     //Visibility is determined at compile time. This is a debug only functionality
