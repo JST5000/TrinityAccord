@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dagger : CardData
+public class Sword : CardData
 {
     public override string CardName()
     {
-        return "Dagger";
+        return "Sword";
     }
 
     public override int Cost()
     {
-        return 1;
+        return 2;
     }
 
     public override int Target()
@@ -20,7 +20,7 @@ public class Dagger : CardData
     }
     public override void Action(EnemyManager[] enemys)
     {
-        enemys[0].Damage(1);
+        enemys[0].Damage(3);
     }
     public override void Action(CardData[] cards)
     {
@@ -33,3 +33,4 @@ public class Dagger : CardData
 
 
 }
+

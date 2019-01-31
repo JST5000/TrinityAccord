@@ -8,12 +8,18 @@ public class CardManager : MonoBehaviour
     string cardName;
     int cost;
     CardData cardData;
+    public bool empty;
     public void Init(CardData cardData)
     {
-        this.target = cardData.target;
-        this.cardName = cardData.cardName;
-        this.cost = cardData.cost;
+        this.target = cardData.Target();
+        this.cardName = cardData.CardName();
+        this.cost = cardData.Cost();
         this.cardData = cardData;
+        this.empty = false;
+    }
+    public void SetEmpty()
+    {
+        empty = true;
     }
     public int GetTargets()
     {
