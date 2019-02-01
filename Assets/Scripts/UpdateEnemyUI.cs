@@ -16,11 +16,11 @@ public class UpdateEnemyUI : MonoBehaviour
     void Start()
     {
         //Test data
-        EnemyData testEnemy = new EnemyData("Test Enemy", 7, 3, 2, 2, "Deal 2 damage.");
+        UIEnemyData testEnemy = new UIEnemyData("Test Enemy", 7, 3, 2, 2, "Deal 2 damage.");
         populateUI(testEnemy);
     }
 
-    public void populateUI(EnemyData data)
+    public void populateUI(UIEnemyData data)
     {
         nameDisplay.text = data.enemyName;
         hpDisplay.text = data.HP + "/" + data.HP;
