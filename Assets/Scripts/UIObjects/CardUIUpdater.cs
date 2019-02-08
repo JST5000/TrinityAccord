@@ -10,6 +10,8 @@ public class CardUIUpdater : MonoBehaviour
     public Text cardEffect;
     public Image background;
 
+    public CanvasGroup cardCG;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +32,20 @@ public class CardUIUpdater : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void disableCard()
+    {
+        cardCG.alpha = 0;
+        cardCG.blocksRaycasts = false;
+        cardCG.interactable = false;
+    }
+
+    public void enableCard()
+    {
+        cardCG.alpha = 1;
+        cardCG.blocksRaycasts = true;
+        cardCG.interactable = true;
     }
 
     public void updateUI(UICardData data)

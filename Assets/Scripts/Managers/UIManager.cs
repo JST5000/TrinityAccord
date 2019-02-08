@@ -41,7 +41,8 @@ public class UIManager : MonoBehaviour
     public void clickCardInHand(GameObject clicked)
     {
         Debug.Log("Clicked a Card named: " + clicked.name);
-        updateHitboxWithStatus(Status.UNUSED, clicked);
+        clicked.GetComponent<CardUIUpdater>().disableCard(); //Disables the visuals
+        updateHitboxWithStatus(Status.USED, clicked);
     }
 
     public void clickDeck(GameObject clicked)
