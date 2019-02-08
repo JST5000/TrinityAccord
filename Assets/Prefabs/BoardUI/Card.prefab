@@ -132,8 +132,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 35.86, y: -12.66}
-  m_SizeDelta: {x: 61.71, y: 18.91}
+  m_AnchoredPosition: {x: 35.16, y: -12.66}
+  m_SizeDelta: {x: 60.31, y: 18.91}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5128007986184437691
 MonoBehaviour:
@@ -191,6 +191,7 @@ GameObject:
   - component: {fileID: 355574507242479886}
   - component: {fileID: 3798728853564019179}
   - component: {fileID: 5590479601520416684}
+  - component: {fileID: 81097937311832452}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -334,6 +335,22 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
+--- !u!114 &81097937311832452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5084933794933947284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2211d3edebedec548ab1885584dfc52e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  costText: {fileID: 6566665505066866985}
+  displayName: {fileID: 3785891321241257618}
+  cardEffect: {fileID: 2728787771625102654}
+  background: {fileID: 355574507242479886}
 --- !u!114 &4025692723964966365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,7 +522,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -548,7 +565,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 37, y: 20.2}
+  m_SizeDelta: {x: 47.04, y: 15.76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5719445217976043101
 CanvasRenderer:
@@ -580,10 +597,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 12
+    m_FontSize: 10
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 1
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0

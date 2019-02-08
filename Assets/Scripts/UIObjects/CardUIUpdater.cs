@@ -14,12 +14,16 @@ public class CardUIUpdater : MonoBehaviour
     void Start()
     {
         //TODO attach this to the cards
-        UICardData sample = new UICardData();
-        sample.cardName = "Test Attack";
-        sample.cardType = UICardData.CardType.ATTACK;
-        sample.cost = 3;
-        sample.effectText = "Deal 3 damage to 3 random targets.";
-        updateUI(sample);
+        int r = Random.Range(0, 2);
+        if (r == 1)
+        {
+            UICardData sampleAttack = new UICardData("Lightning", 3, "Deal 3 damage to 3 random enemies.", UICardData.CardType.ATTACK);
+            updateUI(sampleAttack);
+        } else
+        {
+            UICardData sampleSpell = new UICardData("Backpack", 0, "Draw 2, then Discard 2.", UICardData.CardType.SPELL);
+            updateUI(sampleSpell);
+        }
     }
 
     // Update is called once per frame
