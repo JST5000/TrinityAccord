@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UICardData : MonoBehaviour
+public class UICardData
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string cardName;
+    public int cost;
+    public string effectText;
+    public enum CardType { SPELL, ATTACK };
+    public CardType cardType;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
