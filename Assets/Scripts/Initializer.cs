@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Initializer : MonoBehaviour
 {
+    public DeckManager deckManager;
     // Start is called before the first frame update
     ArrayList deck;
     void Start()
@@ -15,7 +16,8 @@ public class Initializer : MonoBehaviour
     void initializeDeck()
     {
         //GameObject.Find("Canvas/Deck").GetComponent<DeckManager>().Init(deck);
-        GetComponentInChildren<DeckManager>().Init((ArrayList)deck.Clone());
+        //GetComponentInChildren<DeckManager>().Init((ArrayList)deck.Clone());
+        deckManager.Init((ArrayList)deck.Clone());
     }
     void generateTest()
     {
@@ -26,6 +28,7 @@ public class Initializer : MonoBehaviour
         deck.Add(new Dagger());
         deck.Add(new Sword());
         deck.Add(new Sword());
+        deck.Add(new Lightning()); //Added to see variety, should replace with Energize + class card - Jackson
     }
 
 }

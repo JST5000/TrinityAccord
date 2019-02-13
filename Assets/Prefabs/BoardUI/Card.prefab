@@ -193,6 +193,7 @@ GameObject:
   - component: {fileID: 5590479601520416684}
   - component: {fileID: 81097937311832452}
   - component: {fileID: 557272752686652720}
+  - component: {fileID: 5572561016489849894}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -365,6 +366,19 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &5572561016489849894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5084933794933947284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea6028f5c39892a4d94c66b94f74c058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  empty: 1
 --- !u!114 &4025692723964966365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -762,15 +776,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c26cab342a2eca74cb3b5d385dabfa36, type: 3}
---- !u!1 &5850337500883708829 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4509666606742033052, guid: c26cab342a2eca74cb3b5d385dabfa36,
-    type: 3}
-  m_PrefabInstance: {fileID: 8044870494523832577}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &4617468649394389080 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3436691074506750297, guid: c26cab342a2eca74cb3b5d385dabfa36,
+    type: 3}
+  m_PrefabInstance: {fileID: 8044870494523832577}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5850337500883708829 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4509666606742033052, guid: c26cab342a2eca74cb3b5d385dabfa36,
     type: 3}
   m_PrefabInstance: {fileID: 8044870494523832577}
   m_PrefabAsset: {fileID: 0}

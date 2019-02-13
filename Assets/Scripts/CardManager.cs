@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CardManager : MonoBehaviour
 {
-    int target;
+    Target target;
     string cardName;
     int cost;
     CardData cardData;
@@ -21,7 +21,7 @@ public class CardManager : MonoBehaviour
     {
         empty = true;
     }
-    public int GetTargets()
+    public Target GetTargets()
     {
         return target;
     }
@@ -34,8 +34,20 @@ public class CardManager : MonoBehaviour
     {
         cardData.Action(cards);
     }
-    public void Action(CardData[] cards,EnemyManager[] enemys)
+    public void Action(CardData[] cards, EnemyManager[] enemys)
     {
-        cardData.Action(cards,enemys);
+        cardData.Action(cards, enemys);
+    }
+
+    //Exposing data to UI
+    public UICardData getUICardData()
+    {
+        if (cardData != null)
+        {
+            return cardData.GetUICardData();
+        } else
+        {
+            return null;
+        }
     }
 }

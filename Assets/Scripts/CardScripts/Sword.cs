@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Sword : CardData
 {
+    public Sword()
+    {
+        cardData = new UICardData("Sword", cost: 2, "Deal 3 damage.", UICardData.CardType.ATTACK);
+    }
+
     public override string CardName()
     {
         return "Sword";
@@ -14,9 +19,9 @@ public class Sword : CardData
         return 2;
     }
 
-    public override int Target()
+    public override Target Target()
     {
-        return (int)Targets.Enemies;
+        return global::Target.ENEMY;//(int)global::Target.Enemies;
     }
     public override void Action(EnemyManager[] enemys)
     {

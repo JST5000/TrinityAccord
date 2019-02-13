@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Dagger : CardData
 {
+    public Dagger()
+    {
+        cardData = new UICardData("Dagger", cost: 1, "Deal 1 damage.", UICardData.CardType.ATTACK);
+    }
+
     public override string CardName()
     {
         return "Dagger";
@@ -14,9 +19,9 @@ public class Dagger : CardData
         return 1;
     }
 
-    public override int Target()
+    public override Target Target()
     {
-        return (int)Targets.Enemies;
+        return global::Target.ENEMY;
     }
     public override void Action(EnemyManager[] enemys)
     {

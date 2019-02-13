@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-enum GameMode {PickTarget,PickAction,Animation }; 
+enum GameMode {SelectCard, PickTarget, PickAction, Animation }; 
 
 public class UIManager : MonoBehaviour
 {
-    int currentMode = (int)GameMode.PickTarget;
+    GameMode currentMode = GameMode.SelectCard;
     public const bool ENABLE_CLICK_BORDERS = false;
     private enum Status { USED, UNUSED };
 
@@ -40,8 +40,17 @@ public class UIManager : MonoBehaviour
 
     public void clickCardInHand(GameObject clicked)
     {
+        if(currentMode.Equals(GameMode.SelectCard))
+        {
+            //TODO
+            //If (cardManager attached to clicked isPlayable) {
+            //  put card into selected;
+            //  Change currentMode to PickTarget;
+            //  Log the card selected
+            //} else { Log that card was not playable. }
+        }
         Debug.Log("Clicked a Card named: " + clicked.name);
-        clicked.GetComponent<CardUIUpdater>().disableCard(); //Disables the visuals
+        clicked.GetComponent<CardUIUpdater>().DisableCard(); //Disables the visuals
         updateHitboxWithStatus(Status.USED, clicked);
     }
 
