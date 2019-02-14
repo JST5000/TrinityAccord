@@ -64,6 +64,10 @@ public class UIManager : MonoBehaviour
         Debug.Log("Clicked a Card named: " + clicked.name);
         updateHitboxWithStatus(Status.USED, clicked);
     }
+    public void clickCardOnStack(GameObject clicked)
+    {
+
+    }
 
     public void clickDeck(GameObject clicked)
     {

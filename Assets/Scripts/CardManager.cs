@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+enum CardLocation { Hand, Stack}
 public class CardManager : MonoBehaviour
 {
+
     Target target;
     string cardName;
     int cost;
@@ -32,15 +33,15 @@ public class CardManager : MonoBehaviour
         return target;
     }
 
-    public void Action(EnemyManager[] enemys)
+    public void Action(ref EnemyManager[] enemys)
     {
         cardData.Action(enemys);
     }
-    public void Action(CardData[] cards)
+    public void Action(ref CardData[] cards)
     {
         cardData.Action(cards);
     }
-    public void Action(CardData[] cards, EnemyManager[] enemys)
+    public void Action(ref CardData[] cards, ref EnemyManager[] enemys)
     {
         cardData.Action(cards, enemys);
     }
