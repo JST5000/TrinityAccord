@@ -6,6 +6,11 @@ enum GameMode {SelectCard, PickTarget, PickAction, Animation };
 public class UIManager : MonoBehaviour
 {
     GameMode currentMode = GameMode.SelectCard;
+
+    //Finding user input to cast card
+    Target requiredInput = Target.NONE;
+    CardManager selectedCard = null;
+
     public const bool ENABLE_CLICK_BORDERS = false;
     private enum Status { USED, UNUSED };
 
@@ -48,9 +53,15 @@ public class UIManager : MonoBehaviour
             //  Change currentMode to PickTarget;
             //  Log the card selected
             //} else { Log that card was not playable. }
+            CardManager cardMan = clicked.GetComponent<CardManager>();
+            Target requiredInput = cardMan.GetTargets();
+            StackManager playStack = GameObject.Find("StackHolder").GetComponent<StackManager>();
+            playStack.Push(cardMan);
+            cardMan.SetEmpty();
+            
+
         }
         Debug.Log("Clicked a Card named: " + clicked.name);
-        clicked.GetComponent<CardUIUpdater>().DisableCard(); //Disables the visuals
         updateHitboxWithStatus(Status.USED, clicked);
     }
 

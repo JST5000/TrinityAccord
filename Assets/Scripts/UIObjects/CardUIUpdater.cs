@@ -14,7 +14,8 @@ public class CardUIUpdater : MonoBehaviour
 
     public CanvasGroup cardCG;
 
-    private bool isDisabled = true;
+    //Current status variable, used to save time in updating
+    private bool isDisabled = false;
 
     // Start is called before the first frame update
     void Start()
@@ -38,33 +39,39 @@ public class CardUIUpdater : MonoBehaviour
     void Update()
     {
         //TODO replace with a notify method
-        UICardData data = cardHolder.getUICardData();
-        if (data != null) { 
-            UpdateUI(data);
-        }
-        if(isDisabled && data != null)
+        if (!cardHolder.IsEmpty())
         {
+            UpdateUI(cardHolder.GetUICardData());
             EnableCard();
-            isDisabled = false;
-        } else if(!isDisabled && data == null)
+        } else
         {
             DisableCard();
+        }
+
+    }
+
+    //Checks if change is needed, then updates
+    public void DisableCard()
+    {
+        if (!isDisabled)
+        {
+            cardCG.alpha = 0;
+            cardCG.blocksRaycasts = false;
+            cardCG.interactable = false;
             isDisabled = true;
         }
     }
 
-    public void DisableCard()
-    {
-        cardCG.alpha = 0;
-        cardCG.blocksRaycasts = false;
-        cardCG.interactable = false;
-    }
-
+    //Checks if change is needed, then updates
     public void EnableCard()
     {
-        cardCG.alpha = 1;
-        cardCG.blocksRaycasts = true;
-        cardCG.interactable = true;
+        if (isDisabled)
+        {
+            cardCG.alpha = 1;
+            cardCG.blocksRaycasts = true;
+            cardCG.interactable = true;
+            isDisabled = false;
+        }
     }
 
     public void UpdateUI(UICardData data)

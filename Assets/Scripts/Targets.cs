@@ -8,5 +8,6 @@ public enum Target
     ALL_ENEMIES,
     ENEMY,
     CARD,
-    CHOOSE3
+    CHOOSE3,
+    NONE
 }

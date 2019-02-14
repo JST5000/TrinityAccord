@@ -16,6 +16,18 @@ public abstract class CardData
     public abstract void Action(CardData[] cards);
     public abstract void Action(CardData[] cards, EnemyManager[] enemys);
 
+    //Does basic check of mana cost/availability. Extra requirements must be implemented separately.
+    public bool IsPlayable()
+    {
+        return false; //TODO add basic check and attach IsPlayableAdditionalRequirements
+    }
+
+    //Default implementation. For cards that need further checks, override this function.
+    public bool IsPlayableAdditionalRequirements()
+    {
+        return true;
+    }
+
     public UICardData GetUICardData()
     {
         return cardData;

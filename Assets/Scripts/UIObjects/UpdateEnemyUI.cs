@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UpdateEnemyUI : MonoBehaviour
 {
     public Text nameDisplay;
-    public Text hpDisplay;
+    public HealthManager hpManager;
     public LifeManager livesHolder;
     public Image enemyPicture;
     public Text timerDisplay;
@@ -23,7 +23,8 @@ public class UpdateEnemyUI : MonoBehaviour
     public void PopulateUI(UIEnemyData data)
     {
         nameDisplay.text = data.enemyName;
-        hpDisplay.text = data.HP + "/" + data.HP;
+        hpManager.SetMaxHealth(data.HP);
+        hpManager.SetCurrHealth(data.HP);
         livesHolder.SetLives(data.staggers);
         timerDisplay.text = data.timer + "/" + data.timer;
         effectDisplay.text = data.effect;

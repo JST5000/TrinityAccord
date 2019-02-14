@@ -21,6 +21,12 @@ public class CardManager : MonoBehaviour
     {
         empty = true;
     }
+
+    public bool IsEmpty()
+    {
+        return empty;
+    }
+
     public Target GetTargets()
     {
         return target;
@@ -39,8 +45,14 @@ public class CardManager : MonoBehaviour
         cardData.Action(cards, enemys);
     }
 
+    //Exposing CardData to clone the one card to another
+    public CardData GetCardData()
+    {
+        return cardData;
+    }
+
     //Exposing data to UI
-    public UICardData getUICardData()
+    public UICardData GetUICardData()
     {
         if (cardData != null)
         {
