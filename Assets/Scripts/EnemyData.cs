@@ -4,21 +4,41 @@ using UnityEngine;
 
 public class EnemyData
 {
-    public string enemyName;
-    public int HP;
-    public int staggers;
-    public int damage;
-    public int timer;
-    public string effect;
+    private string enemyName;
+    private int maxHP;
+    private int currHP;
+    private int staggers;
+    private int damage;
+    private int maxTimer;
+    private int currTimer;
+    private string effect;
 
-    public EnemyData(string name, int HP, int staggers, int damage, int timer, string effect)
+    public string EnemyName { get => enemyName; set => enemyName = value; }
+    public int MaxHP { get => maxHP; set => maxHP = value; }
+    public int CurrHP { get => currHP; set => currHP = value; }
+    public int Staggers { get => staggers; set => staggers = value; }
+    public int Damage { get => damage; set => damage = value; }
+    public int MaxTimer { get => maxTimer; set => maxTimer = value; }
+    public int CurrTimer { get => currTimer; set => currTimer = value; }
+    public string Effect { get => effect; set => effect = value; }
+
+    public EnemyData(string name, int maxHP, int staggers, int damage, int timer, string effect)
     {
         this.enemyName = name;
-        this.HP = HP;
+        this.maxHP = maxHP;
+        this.currHP = maxHP;
         this.staggers = staggers;
         this.damage = damage;
-        this.timer = timer;
+        this.maxTimer = timer;
+        currTimer = maxTimer;
         this.effect = effect;
     }
+
+    public UIEnemyData GetUIData()
+    {
+        return new UIEnemyData(enemyName, currHP: currHP, maxHP: maxHP, staggers, damage, maxTimer, currTimer, effect);
+    }
+
+   
 
 }

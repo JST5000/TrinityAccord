@@ -573,7 +573,9 @@ GameObject:
   - component: {fileID: 6886005204271006850}
   - component: {fileID: 7544055789320241069}
   - component: {fileID: 900159634020014506}
-  - component: {fileID: 5357615274669985981}
+  - component: {fileID: 6683361689800135411}
+  - component: {fileID: 3648329561333771786}
+  - component: {fileID: 4754648793935962146}
   m_Layer: 5
   m_Name: Enemy
   m_TagString: Untagged
@@ -710,7 +712,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8592884469ca4ff4fa22b89e6a6ad325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5357615274669985981
+--- !u!114 &6683361689800135411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8260390675079304805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be2fc41da02d0e948b72f87423aecfb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3648329561333771786
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -728,6 +742,19 @@ MonoBehaviour:
   enemyPicture: {fileID: 7993956009784197273}
   timerDisplay: {fileID: 287454038708889485}
   effectDisplay: {fileID: 2151924075951172339}
+  enemyCG: {fileID: 4754648793935962146}
+--- !u!225 &4754648793935962146
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8260390675079304805}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &1540657000605060457
 PrefabInstance:
   m_ObjectHideFlags: 0

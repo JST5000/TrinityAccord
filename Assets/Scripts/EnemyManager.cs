@@ -4,37 +4,26 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    string enemyName;
-    int maxHP;
-    int maxStagger;
-    int maxTimer;
-    int currentHP;
-    int currentStagger;
-    int currentTimer;   
+    private EnemyData data;
+    private bool isEmpty = true;
 
     public void Init(EnemyData enemyData)
     {
-        this.enemyName = enemyData.enemyName;
-        this.maxHP = enemyData.HP;
-        this.maxStagger = enemyData.staggers;
-        this.maxTimer = enemyData.timer;
-        this.currentHP = maxHP;
-        this.currentStagger = maxStagger;
-        this.currentTimer = maxTimer;
-
+        data = enemyData;
+        isEmpty = false;
     }
     public void Damage(int damage)
     {
-        while (currentHP > 0 && damage>0)
+        while (data.CurrHP > 0 && damage>0)
         {
             damage--;
-            currentHP--;
+            data.CurrHP--;
         }
-        if (currentHP == 0)
+        if (data.CurrHP == 0)
         {
-            currentTimer = maxTimer;
-            currentStagger--;
-            if (currentStagger != 0)
+            data.CurrTimer = data.MaxTimer;
+            data.Staggers--;
+            if (data.Staggers != 0)
             {
                 Damage(damage);
             }
@@ -49,13 +38,14 @@ public class EnemyManager : MonoBehaviour
     }
     public void EndTurn()
     {
-        currentTimer--;
-        if (currentTimer == 0)
+        data.CurrTimer--;
+        if (data.CurrTimer == 0)
         {
-            currentTimer = maxTimer;
+            data.CurrTimer = data.MaxTimer;
             Attack();
         }
     }
+
     private void Attack()
     {
 
@@ -65,6 +55,21 @@ public class EnemyManager : MonoBehaviour
     private void Die()
     {
 
+    }
+
+    public void SetEmpty()
+    {
+        isEmpty = true;
+    }
+
+    public bool IsEmpty()
+    {
+        return isEmpty;
+    }
+
+    public UIEnemyData GetUIData()
+    {
+        return data.GetUIData();
     }
 }
 
