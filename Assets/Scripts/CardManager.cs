@@ -33,15 +33,16 @@ public class CardManager : MonoBehaviour
         return target;
     }
 
-    public void Action(ref EnemyManager[] enemys)
+    public void Action(EnemyManager[] enemys)
     {
         cardData.Action(enemys);
     }
-    public void Action(ref CardData[] cards)
+    public void Action(CardData[] cards)
     {
         cardData.Action(cards);
     }
-    public void Action(ref CardData[] cards, ref EnemyManager[] enemys)
+
+    public void Action(CardData[] cards, ref EnemyManager[] enemys)
     {
         cardData.Action(cards, enemys);
     }
@@ -50,6 +51,11 @@ public class CardManager : MonoBehaviour
     public CardData GetCardData()
     {
         return cardData;
+    }
+
+    public ref CardData GetCardDataRef()
+    {
+        return ref cardData;
     }
 
     //Exposing data to UI
@@ -62,5 +68,10 @@ public class CardManager : MonoBehaviour
         {
             return null;
         }
+    }
+
+    public bool IsPlayable()
+    {
+        return cardData.IsPlayable();
     }
 }

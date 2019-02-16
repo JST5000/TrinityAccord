@@ -19,7 +19,8 @@ public abstract class CardData
     //Does basic check of mana cost/availability. Extra requirements must be implemented separately.
     public bool IsPlayable()
     {
-        return false; //TODO add basic check and attach IsPlayableAdditionalRequirements
+        bool playerHasEnoughEnergy = GameObject.Find("Player").GetComponent<Player>().GetEnergy() >= Cost();
+        return playerHasEnoughEnergy && IsPlayableAdditionalRequirements();
     }
 
     //Default implementation. For cards that need further checks, override this function.

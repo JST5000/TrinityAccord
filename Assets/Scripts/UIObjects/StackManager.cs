@@ -7,6 +7,8 @@ public class StackManager : MonoBehaviour
     private Stack<CardManager> playedCards = new Stack<CardManager>();
     private CardManager displayedCardData;
     private CardUIUpdater displayedCard;
+    private float currTime = 0;
+    private float timePerCard = .5f;
 
     void Start()
     {
@@ -14,8 +16,27 @@ public class StackManager : MonoBehaviour
         displayedCard = GetComponentInChildren<CardUIUpdater>();
     }
 
+    private void Update()
+    {
+        if(playedCards.Count != 0)
+        {
+            currTime += Time.deltaTime;
+            if(currTime >= timePerCard)
+            {
+                currTime = 0;
+                Pop();
+            }
+        }
+    }
+
+    public bool IsEmpty()
+    {
+        return playedCards.Count == 0;
+    }
+
     public void Push(CardManager justPlayed)
     {
+        currTime = 0;
         playedCards.Push(justPlayed);
         UpdateUI();
     }
@@ -23,6 +44,7 @@ public class StackManager : MonoBehaviour
     public CardManager Pop()
     {
         CardManager top = playedCards.Pop();
+        GameObject.Find("Deck").GetComponent<DeckManager>().AddToDiscard(top.GetCardData());
         UpdateUI();
         return top;
     }

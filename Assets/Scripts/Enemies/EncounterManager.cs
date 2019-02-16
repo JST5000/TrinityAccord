@@ -12,6 +12,10 @@ public class EncounterManager : MonoBehaviour
     public void Init(EnemyData[] encounter)
     {
         originalEncounter = encounter;
+        if(allEnemyManagers == null)
+        {
+            InitEnemyManagers();
+        }
         for(int i = 0; i < originalEncounter.Length && i < allEnemyManagers.Length; ++i)
         {
             allEnemyManagers[i].Init(originalEncounter[i]);
@@ -29,10 +33,15 @@ public class EncounterManager : MonoBehaviour
         }
     }
 
+    void InitEnemyManagers()
+    {
+        allEnemyManagers = GetComponentsInChildren<EnemyManager>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        allEnemyManagers = GetComponentsInChildren<EnemyManager>();
+        InitEnemyManagers();
     }
 
     // Update is called once per frame

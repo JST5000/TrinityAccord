@@ -22,6 +22,11 @@ public class Player : MonoBehaviour
         SetCurrentHealth(defaultHealth);
     }
 
+    public void EndTurn()
+    {
+        ResetEnergy();
+    }
+
     public void ResetEnergy()
     {
         currEnergy = defaultEnergy;

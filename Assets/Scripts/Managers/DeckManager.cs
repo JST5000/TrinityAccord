@@ -50,9 +50,7 @@ public class DeckManager : MonoBehaviour
         {
             if (cardManager.empty)
             {
-                Debug.Log("First card in deck is: " + deck[0]);
                 cardManager.Init(deck[0]);
-                Debug.Log(deck[0].CardName());
                 deck.RemoveAt(0);
                 return;
             }
@@ -61,7 +59,6 @@ public class DeckManager : MonoBehaviour
 
     public void ShuffleDiscardIntoDeck()
     {
-        Debug.Log("Deck Size: " + deck.Count + " Discard: " + discard.Count);
         deck.AddRange(discard);
         discard.RemoveRange(0, discard.Count);
         Shuffle(deck);
@@ -93,6 +90,11 @@ public class DeckManager : MonoBehaviour
         {
             toShuffle.Add(card);
         }
+    }
+
+    public void AddToDiscard(CardData card)
+    {
+        discard.Add(card);
     }
 
     public void PrintDeck()
