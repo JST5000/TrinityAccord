@@ -7,10 +7,8 @@ public class Initializer : MonoBehaviour
     public DeckManager deckManager;
     public EncounterManager encounterManager;
     // Start is called before the first frame update
-    ArrayList deck;
     void Start()
     {
-        GenerateTest();
         InitializeDeck();
         InitializeEncounter();
     }
@@ -19,11 +17,12 @@ public class Initializer : MonoBehaviour
     {
         //GameObject.Find("Canvas/Deck").GetComponent<DeckManager>().Init(deck);
         //GetComponentInChildren<DeckManager>().Init((ArrayList)deck.Clone());
-        deckManager.Init((ArrayList)deck.Clone());
+        deckManager.Init(GetBaseDeck());
     } 
-    private void GenerateTest()
+
+    private List<CardData> GetBaseDeck()
     {
-        deck = new ArrayList();
+        List<CardData> deck = new List<CardData>();
         deck.Add(new Dagger());
         deck.Add(new Dagger());
         deck.Add(new Dagger());
@@ -31,6 +30,7 @@ public class Initializer : MonoBehaviour
         deck.Add(new Sword());
         deck.Add(new Sword());
         deck.Add(new Lightning()); //Added to see variety, should replace with Energize + class card - Jackson
+        return deck;
     }
 
     private void InitializeEncounter()

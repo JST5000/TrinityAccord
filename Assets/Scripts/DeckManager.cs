@@ -1,19 +1,19 @@
-﻿using System.Collections;
+﻿using System.Collections.Generic;
 using System;
 using UnityEngine;
 
 
 public class DeckManager : MonoBehaviour
 {
-    public ArrayList deck;
-    public ArrayList discard;
+    public List<CardData> deck;
+    public List<CardData> discard;
     public CardManager[] hand;
 
-    public void Init(ArrayList initDeck)
+    public void Init(List<CardData> initDeck)
     {
         
         deck = initDeck;
-        discard = new ArrayList();
+        discard = new List<CardData>();
         GameObject handObject = GameObject.Find("Hand");
         hand=handObject.GetComponentsInChildren<CardManager>();
         foreach (CardManager cardManager in hand)
@@ -26,6 +26,7 @@ public class DeckManager : MonoBehaviour
 
 
     }
+
     public void StartTurn()
     {
         for(int i = 0; i < 4; i++)
@@ -33,23 +34,54 @@ public class DeckManager : MonoBehaviour
             DrawCard();
         }
     }
+
+    public void EndTurn()
+    {
+        DiscardHand();
+    }
+
     public void DrawCard()
     {
+        if(deck.Count == 0)
+        {
+            ShuffleDiscardIntoDeck();
+        }
         foreach (CardManager cardManager in hand)
         {
             if (cardManager.empty)
             {
-                cardManager.Init((CardData)deck[0]);
-                Debug.Log(((CardData)deck[0]).CardName());
+                Debug.Log("First card in deck is: " + deck[0]);
+                cardManager.Init(deck[0]);
+                Debug.Log(deck[0].CardName());
                 deck.RemoveAt(0);
                 return;
             }
         }
     }
-    void Shuffle(ArrayList toShuffle)
+
+    public void ShuffleDiscardIntoDeck()
+    {
+        Debug.Log("Deck Size: " + deck.Count + " Discard: " + discard.Count);
+        deck.AddRange(discard);
+        discard.RemoveRange(0, discard.Count);
+        Shuffle(deck);
+    }
+
+    public void DiscardHand() {
+        foreach(CardManager cardMan in hand)
+        {
+            if (!cardMan.IsEmpty())
+            {
+                discard.Add(cardMan.GetCardData());
+                cardMan.SetEmpty();
+            }
+        }
+    }
+
+    void Shuffle(List<CardData> toShuffle)
     {
         System.Random r = new System.Random();
-        ArrayList toReturn = new ArrayList();
+        List<CardData> toReturn = new List<CardData>();
         int randomIndex = 0;
         while (toShuffle.Count > 0)
         {
@@ -57,10 +89,34 @@ public class DeckManager : MonoBehaviour
             toReturn.Add(toShuffle[randomIndex]); //add it to the new, random list
             toShuffle.RemoveAt(randomIndex); //remove to avoid duplicates
         }
-        foreach (System.Object o in toReturn)
+        foreach (CardData card in toReturn)
         {
-            toShuffle.Add(o);
+            toShuffle.Add(card);
         }
     }
+
+    public void PrintDeck()
+    {
+        Debug.Log("Deck Contains:");
+        Print(deck);
+        Debug.Log("---- End of List ----");
+    }
+
+    public void PrintDiscard()
+    {
+        Debug.Log("Discard Contains:");
+        Print(discard);
+        Debug.Log("---- End of List ----");
+    }
+
+    void Print(List<CardData> pile)
+    {
+        foreach(CardData card in pile)
+        {
+            Debug.Log(card.CardName());
+        }
+    }
+
+    
 
 }

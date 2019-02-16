@@ -72,12 +72,14 @@ public class UIManager : MonoBehaviour
     public void clickDeck(GameObject clicked)
     {
         Debug.Log("Clicked the Deck");
+        GameObject.Find("Deck").GetComponent<DeckManager>().PrintDeck();
         updateHitboxWithStatus(Status.UNUSED, clicked);
     }
 
     public void clickDiscard(GameObject clicked)
     {
         Debug.Log("Clicked the Discard Pile");
+        GameObject.Find("Deck").GetComponent<DeckManager>().PrintDiscard();
         updateHitboxWithStatus(Status.UNUSED, clicked);
     }
 
@@ -85,6 +87,9 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("Clicked End Turn");
         GameObject.Find("Board").GetComponent<EncounterManager>().EndTurn();
+        DeckManager decks = GameObject.Find("Deck").GetComponent<DeckManager>();
+        decks.EndTurn(); //Discards hand
+        decks.StartTurn(); //Draws hand
         updateHitboxWithStatus(Status.UNUSED, clicked);
     }
 
