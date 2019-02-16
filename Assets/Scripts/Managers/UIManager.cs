@@ -84,6 +84,7 @@ public class UIManager : MonoBehaviour
     public void clickEndTurn(GameObject clicked)
     {
         Debug.Log("Clicked End Turn");
+        GameObject.Find("Board").GetComponent<EncounterManager>().EndTurn();
         updateHitboxWithStatus(Status.UNUSED, clicked);
     }
 

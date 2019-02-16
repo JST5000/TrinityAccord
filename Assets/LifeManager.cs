@@ -20,7 +20,9 @@ public class LifeManager : MonoBehaviour
         {
             for (int i = 0; i < -deltaLives; ++i)
             { 
-                Destroy(transform.GetChild(0));
+                Debug.Log("Removing a life.");
+                Debug.Log(transform.GetChild(0).name);
+                Destroy(transform.GetChild(0).gameObject);
             }
         }
     }
@@ -35,7 +37,7 @@ public class LifeManager : MonoBehaviour
         int lives = GetLives();
         if (lives > 0)
         {
-            SetLives(GetLives() - 1);
+            SetLives(lives - 1);
         }
     }
 }

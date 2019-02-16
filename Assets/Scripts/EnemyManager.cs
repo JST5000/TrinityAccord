@@ -14,35 +14,42 @@ public class EnemyManager : MonoBehaviour
     }
     public void Damage(int damage)
     {
-        while (data.CurrHP > 0 && damage>0)
+        //AOEs may hit all without checking, so this prevents nulls
+        if (!isEmpty)
         {
-            damage--;
-            data.CurrHP--;
-        }
-        if (data.CurrHP == 0)
-        {
-            data.CurrTimer = data.MaxTimer;
-            data.Staggers--;
-            if (data.Staggers != 0)
+            int currDamage = damage;
+            while (data.CurrHP > 0 && currDamage > 0)
             {
-                Damage(damage);
+                currDamage--;
+                data.CurrHP--;
             }
-            else
+            if (data.CurrHP == 0)
             {
-                Die();
-
+                data.CurrTimer = data.MaxTimer;
+                data.CurrHP = data.MaxHP;
+                data.Staggers--;
+                if (data.Staggers != 0)
+                {
+                    Damage(currDamage);
+                }
+                else
+                {
+                    Debug.Log(data.EnemyName + " was killed.");
+                    Die();
+                }
             }
         }
-
-
     }
     public void EndTurn()
     {
-        data.CurrTimer--;
-        if (data.CurrTimer == 0)
+        if (!isEmpty)
         {
-            data.CurrTimer = data.MaxTimer;
-            Attack();
+            data.CurrTimer--;
+            if (data.CurrTimer == 0)
+            {
+                data.CurrTimer = data.MaxTimer;
+                Attack();
+            }
         }
     }
 
@@ -54,7 +61,7 @@ public class EnemyManager : MonoBehaviour
     }
     private void Die()
     {
-
+        SetEmpty(); //Removes UI element
     }
 
     public void SetEmpty()
@@ -70,6 +77,18 @@ public class EnemyManager : MonoBehaviour
     public UIEnemyData GetUIData()
     {
         return data.GetUIData();
+    }
+
+    float currTime = 0;
+    private void Update()
+    {
+        //Testing, remove with real implementation
+        currTime += Time.deltaTime;
+        if(currTime >= 1f)
+        {
+            currTime = 0;
+            Damage(1);
+        }
     }
 }
 
