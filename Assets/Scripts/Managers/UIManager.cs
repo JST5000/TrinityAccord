@@ -96,19 +96,7 @@ public class UIManager : MonoBehaviour
         Debug.Log(GetCurrentMode());
         if(GetCurrentMode().Equals(GameMode.SelectCard))
         {
-            CardManager cardMan = clicked.GetComponent<CardManager>();
-            if (cardMan.IsPlayable())
-            {
-                selectedCard = cardMan;
-                Debug.Log("Selected Card = " + selectedCard);
-                requiredInput = selectedCard.GetTargets();
-                SetCurrentMode(GameMode.PickTarget);
-
-                updateHitboxWithStatus(Status.USED, clicked);
-            } else
-            {
-                Debug.Log("The card: " + cardMan.GetCardData().CardName() + " was unplayable (Likely due to cost).");
-            }
+            SelectCard(clicked);
         } else if(currentMode.Equals(GameMode.PickTarget))
         {
             if(requiredInput.Equals(Target.CARD))
@@ -116,9 +104,28 @@ public class UIManager : MonoBehaviour
                 PlayCard();
                 CardData[] card = { clicked.GetComponent<CardManager>().GetCardData() };
                 selectedCard.Action(card);
+            } else
+            {
+                SelectCard(clicked); 
             }
         }
         Debug.Log("Clicked a Card named: " + clicked.name);
+    }
+
+    private void SelectCard(GameObject clicked) {
+        CardManager cardMan = clicked.GetComponent<CardManager>();
+        if (cardMan.IsPlayable())
+        {
+            selectedCard = cardMan;
+            Debug.Log("Selected Card = " + selectedCard);
+            requiredInput = selectedCard.GetTargets();
+            SetCurrentMode(GameMode.PickTarget);
+
+            updateHitboxWithStatus(Status.USED, clicked);
+        } else
+        {
+            Debug.Log("The card: " + cardMan.GetCardData().CardName() + " was unplayable (Likely due to cost).");
+        }
     }
 
     public void PlayCard()
