@@ -92,8 +92,6 @@ public class UIManager : MonoBehaviour
 
     public void clickCardInHand(GameObject clicked)
     {
-        Debug.Log(currentMode);
-        Debug.Log(GetCurrentMode());
         if(GetCurrentMode().Equals(GameMode.SelectCard))
         {
             SelectCard(clicked);

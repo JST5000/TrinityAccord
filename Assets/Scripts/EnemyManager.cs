@@ -55,9 +55,7 @@ public class EnemyManager : MonoBehaviour
 
     private void Attack()
     {
-
-
-
+        data.Attack();      
     }
     private void Die()
     {

@@ -36,7 +36,14 @@ public class HealthManager : MonoBehaviour
         float scale = 1;
         if (maxHealth != 0)
         {
-            scale = (1f * currHealth) / maxHealth;
+            if (currHealth <= 0)
+            {
+                scale = 0;
+            }
+            else
+            {
+                scale = (1f * currHealth) / maxHealth;
+            }
         }
         topLayer.transform.localScale = new Vector3(scale, topLayer.transform.localScale.y, topLayer.transform.localScale.z);
     }

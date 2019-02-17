@@ -16,7 +16,7 @@ public class EnemyData
     public string EnemyName { get => enemyName; set => enemyName = value; }
     public int MaxHP { get => maxHP; set => maxHP = value; }
     public int CurrHP { get => currHP; set => currHP = value; }
-    public int Staggers { get => staggers; set => staggers = value; }
+    public int Staggers { get => staggers; set => SetStaggers(value); }
     public int Damage { get => damage; set => damage = value; }
     public int MaxTimer { get => maxTimer; set => maxTimer = value; }
     public int CurrTimer { get => currTimer; set => currTimer = value; }
@@ -38,6 +38,26 @@ public class EnemyData
     {
         return new UIEnemyData(enemyName, currHP: currHP, maxHP: maxHP, staggers, damage, maxTimer, currTimer, effect);
     }
+
+    public void Attack() {
+        //Default damage effect
+        GameObject.Find("Player").GetComponent<Player>().Damage(damage);
+        AttackUniqueEffect();
+    }
+
+    //Override for individual enemies if the effect needs to be triggered
+    protected virtual void AttackUniqueEffect() { }
+
+    public void SetStaggers(int value)
+    {
+        if (value < staggers && value == 1)
+        {
+            //For last stand effects like in Rhino and Boar
+            OnLastLife();
+        }
+        staggers = value;
+    }
+    protected virtual void OnLastLife() { }
 
    
 

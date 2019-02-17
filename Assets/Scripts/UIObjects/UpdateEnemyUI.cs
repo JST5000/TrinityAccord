@@ -9,6 +9,7 @@ public class UpdateEnemyUI : MonoBehaviour
     public HealthManager hpManager;
     public LifeManager livesHolder;
     public Image enemyPicture;
+    public Image timerBackground;
     public Text timerDisplay;
     public Text effectDisplay;
 
@@ -84,10 +85,27 @@ public class UpdateEnemyUI : MonoBehaviour
 
         livesHolder.SetLives(data.Staggers);
 
-        //Image is unchanged
+        //Enemy Background Image is unchanged
 
+        SetTimerColor(data);
         timerDisplay.text = data.CurrTimer + " / " + data.MaxTimer;
 
         effectDisplay.text = data.Effect;
+    }
+
+    public void SetTimerColor(UIEnemyData data)
+    {
+        if (data.CurrTimer >= data.MaxTimer)
+        {
+            timerBackground.color = Color.green;
+        }
+        else if (data.CurrTimer > 1)
+        {
+            timerBackground.color = Color.yellow;
+        }
+        else
+        {
+            timerBackground.color = Color.red;
+        }
     }
 }
