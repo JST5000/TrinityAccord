@@ -82,13 +82,14 @@ public class EnemyManager : MonoBehaviour
     float currTime = 0;
     private void Update()
     {
-        //Testing, remove with real implementation
-        currTime += Time.deltaTime;
-        if(currTime >= 1f)
-        {
-            currTime = 0;
-            Damage(1);
-        }
+        /*    //Testing, remove with real implementation
+            currTime += Time.deltaTime;
+            if(currTime >= 1f)
+            {
+                currTime = 0;
+                Damage(1);
+            }
+        } */
     }
 }
 

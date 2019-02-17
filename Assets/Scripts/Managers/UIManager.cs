@@ -75,8 +75,12 @@ public class UIManager : MonoBehaviour
         Debug.Log("Clicked an Enemy named: " + clicked.name);
         if (GetCurrentMode().Equals(GameMode.PickTarget) && requiredInput.Equals(Target.ENEMY))
         {
+            
             PlayCard();
-            //TODO add the effect to this call
+            //Triggers effect
+            EnemyManager[] enemyMans = { clicked.GetComponent<EnemyManager>() };
+            selectedCard.Action(enemyMans);
+
             updateHitboxWithStatus(Status.USED, clicked);
         }
         else
@@ -92,12 +96,6 @@ public class UIManager : MonoBehaviour
         Debug.Log(GetCurrentMode());
         if(GetCurrentMode().Equals(GameMode.SelectCard))
         {
-            //TODO
-            //If (cardManager attached to clicked isPlayable) {
-            //  put card into selected;
-            //  Change currentMode to PickTarget;
-            //  Log the card selected
-            //} else { Log that card was not playable. }
             CardManager cardMan = clicked.GetComponent<CardManager>();
             if (cardMan.IsPlayable())
             {
@@ -121,7 +119,6 @@ public class UIManager : MonoBehaviour
             }
         }
         Debug.Log("Clicked a Card named: " + clicked.name);
-        Debug.Log(currentMode);
     }
 
     public void PlayCard()
@@ -185,7 +182,9 @@ public class UIManager : MonoBehaviour
         if(GetCurrentMode().Equals(GameMode.PickTarget) && requiredInput.Equals(Target.ALL_ENEMIES))
         {
             PlayCard();
-            //TODO add effect call to card
+            //Triggers the card effect
+            EnemyManager[] allEnemies = clicked.GetComponentsInChildren<EnemyManager>();
+            selectedCard.Action(allEnemies);
         }
         updateHitboxWithStatus(Status.UNUSED, clicked);
     }
