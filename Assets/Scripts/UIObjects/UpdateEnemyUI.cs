@@ -22,9 +22,6 @@ public class UpdateEnemyUI : MonoBehaviour
     void Start()
     {
         enemyHolder = GetComponent<EnemyManager>();
-        //Test data
-        UIEnemyData testEnemy = new UIEnemyData("Test Enemy", currHP: 7, maxHP: 7, staggers: 3, damage: 2, maxTimer: 2, currTimer: 2, effect: "Deal 2 damage.");
-        PopulateUI(testEnemy);
     }
 
     public void PopulateUI(UIEnemyData data)
@@ -85,7 +82,7 @@ public class UpdateEnemyUI : MonoBehaviour
 
         livesHolder.SetLives(data.Staggers);
 
-        //Enemy Background Image is unchanged
+        enemyPicture.sprite = data.Picture;
 
         SetTimerColor(data);
         timerDisplay.text = data.CurrTimer + " / " + data.MaxTimer;

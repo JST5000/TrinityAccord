@@ -15,14 +15,27 @@ public class UIManager : MonoBehaviour
     public const bool ENABLE_CLICK_BORDERS = false;
     private enum Status { USED, UNUSED };
 
-    private GameMode GetCurrentMode()
+    private static GameMode GetCurrentMode()
     {
         return currentMode;
     }
 
-    private void SetCurrentMode(GameMode mode)
+    private static void SetCurrentMode(GameMode mode)
     {
         currentMode = mode;
+    }
+
+    private static void SetAndHighlightSelectedCard(CardManager newSelection)
+    {
+        if (selectedCard != null)
+        {
+            selectedCard.GetComponent<CardUIUpdater>().ResetHighlight();
+        }
+        selectedCard = newSelection;
+        if (newSelection != null)
+        {
+            selectedCard.GetComponent<CardUIUpdater>().Highlight();
+        }
     }
 
     private void Start()
@@ -114,7 +127,7 @@ public class UIManager : MonoBehaviour
         CardManager cardMan = clicked.GetComponent<CardManager>();
         if (cardMan.IsPlayable())
         {
-            selectedCard = cardMan;
+            SetAndHighlightSelectedCard(cardMan);
             Debug.Log("Selected Card = " + selectedCard);
             requiredInput = selectedCard.GetTargets();
             SetCurrentMode(GameMode.PickTarget);
@@ -169,6 +182,8 @@ public class UIManager : MonoBehaviour
         //During animation you should not be able to end turn
         if (!GetCurrentMode().Equals(GameMode.Animation))
         {
+            SetAndHighlightSelectedCard(null); //Resets selection
+
             GameObject.Find("Board").GetComponent<EncounterManager>().EndTurn();
 
             DeckManager decks = GameObject.Find("Deck").GetComponent<DeckManager>();

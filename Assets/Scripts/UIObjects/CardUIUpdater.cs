@@ -9,6 +9,12 @@ public class CardUIUpdater : MonoBehaviour
     public Text displayName;
     public Text cardEffect;
     public Image background;
+    private bool colorNotSet = true;
+    private Color prevBGColor;
+    public Image outline;
+
+    private Button primaryButton;
+    private Color normalTint;
 
     private CardManager cardHolder;
 
@@ -22,6 +28,8 @@ public class CardUIUpdater : MonoBehaviour
     {
         DisableCard();
         cardHolder = GetComponentInChildren<CardManager>();
+        primaryButton = GetComponent<Button>();
+        normalTint = primaryButton.colors.normalColor;
         //TODO attach this to the cards
         /*     int r = Random.Range(0, 2);
              if (r == 1)
@@ -79,7 +87,11 @@ public class CardUIUpdater : MonoBehaviour
         costText.text = "" + data.cost;
         displayName.text = data.cardName;
         cardEffect.text = data.effectText;
-        UpdateBGColor(data.cardType);
+        if (colorNotSet)
+        {
+            UpdateBGColor(data.cardType);
+            colorNotSet = false;
+        }
     }
 
     private void UpdateBGColor(UICardData.CardType type)
@@ -91,5 +103,38 @@ public class CardUIUpdater : MonoBehaviour
         {
             background.color = Color.cyan;
         }
+    }
+
+    public void Highlight()
+    {
+        var color = background.color;
+        prevBGColor = new Color(color.r, color.g, color.b, color.a);
+        color = Color.yellow;// new Color(1f, 0.952f, 0.180f);
+        background.color = color;
+        /*
+        var colors = primaryButton.colors;
+        colors.normalColor = Color.yellow;
+        primaryButton.colors = colors;
+        */
+        /*
+        var color = outline.color;
+        color.a = 1f;
+        outline.color = color;
+        */
+    }
+
+    public void ResetHighlight()
+    {
+        background.color = prevBGColor;
+        /*
+        var colors = primaryButton.colors;
+        colors.normalColor = normalTint;
+        primaryButton.colors = colors;
+  */
+        /*
+              var color = outline.color;
+              color.a = 0f;
+              outline.color = color;
+              */
     }
 }

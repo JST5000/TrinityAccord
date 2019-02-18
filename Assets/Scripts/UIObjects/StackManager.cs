@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StackManager : MonoBehaviour
 {
+    public Text label;
+
     private Stack<CardManager> playedCards = new Stack<CardManager>();
     private CardManager displayedCardData;
     private CardUIUpdater displayedCard;
@@ -18,7 +21,15 @@ public class StackManager : MonoBehaviour
 
     private void Update()
     {
-        if(playedCards.Count != 0)
+        if(!IsEmpty() && label.color.a != 0)
+        {
+            SetAlphaColor(label, 0);
+        } else if(IsEmpty() && label.color.a == 0)
+        {
+            SetAlphaColor(label, 1);
+        }
+
+        if (playedCards.Count != 0)
         {
             currTime += Time.deltaTime;
             if(currTime >= timePerCard)
@@ -27,6 +38,13 @@ public class StackManager : MonoBehaviour
                 Pop();
             }
         }
+    }
+
+    private void SetAlphaColor(Text label, float a)
+    {
+        var color = label.color;
+        color.a = a;
+        label.color = color;
     }
 
     public bool IsEmpty()

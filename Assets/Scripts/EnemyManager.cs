@@ -25,7 +25,7 @@ public class EnemyManager : MonoBehaviour
             }
             if (data.CurrHP == 0)
             {
-                data.CurrTimer = data.MaxTimer;
+                data.CurrTimer = data.MaxTimer + 1;
                 data.CurrHP = data.MaxHP;
                 data.Staggers--;
                 if (data.Staggers != 0)

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Rhino : EnemyData
 {
-    public Rhino() : base(name: "Rhino", maxHP: 8, staggers: 2, damage: 5, timer: 3, effect: GetRhinoEffect(false))
+    public Rhino() : base(name: "Rhino", maxHP: 8, staggers: 2, damage: 5, timer: 3, effect: GetRhinoEffect(false), spriteName: "Charging Rhino")
     { }
 
     override

@@ -12,6 +12,7 @@ public class EnemyData
     private int maxTimer;
     private int currTimer;
     private string effect;
+    private Sprite picture;
 
     public string EnemyName { get => enemyName; set => enemyName = value; }
     public int MaxHP { get => maxHP; set => maxHP = value; }
@@ -21,8 +22,9 @@ public class EnemyData
     public int MaxTimer { get => maxTimer; set => maxTimer = value; }
     public int CurrTimer { get => currTimer; set => currTimer = value; }
     public string Effect { get => effect; set => effect = value; }
+    public Sprite Picture { get => picture; set => picture = value; }
 
-    public EnemyData(string name, int maxHP, int staggers, int damage, int timer, string effect)
+    public EnemyData(string name, int maxHP, int staggers, int damage, int timer, string effect, string spriteName)
     {
         this.enemyName = name;
         this.maxHP = maxHP;
@@ -32,11 +34,13 @@ public class EnemyData
         this.maxTimer = timer;
         currTimer = maxTimer;
         this.effect = effect;
+        string folderName = "Enemy_Sprites/";
+        this.picture = Resources.Load<Sprite>(folderName + spriteName);
     }
 
     public UIEnemyData GetUIData()
     {
-        return new UIEnemyData(enemyName, currHP: currHP, maxHP: maxHP, staggers, damage, maxTimer, currTimer, effect);
+        return new UIEnemyData(enemyName, currHP: currHP, maxHP: maxHP, staggers, damage, maxTimer, currTimer, effect, picture);
     }
 
     public void Attack() {

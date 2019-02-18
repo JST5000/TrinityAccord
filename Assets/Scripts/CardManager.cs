@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 enum CardLocation { Hand, Stack}
 public class CardManager : MonoBehaviour
 {
