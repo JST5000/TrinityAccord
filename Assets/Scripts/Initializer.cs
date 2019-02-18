@@ -35,7 +35,7 @@ public class Initializer : MonoBehaviour
 
     private void InitializeEncounter()
     {
-        encounterManager.Init(GenerateEncounter.GetEncounter(Level.TUTORIAL));
+        encounterManager.Init(GenerateEncounter.GetEncounter(Level.ONE));
     }
 
 }

@@ -11,7 +11,6 @@ public class CardUIUpdater : MonoBehaviour
     public Image background;
     private bool colorNotSet = true;
     private Color prevBGColor;
-    public Image outline;
 
     private Button primaryButton;
     private Color normalTint;

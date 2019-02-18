@@ -13,6 +13,10 @@ public static class GenerateEncounter
         {
             EnemyData[] encounter = { new Swordman(), new Rhino(), new Axe() };
             return encounter;
+        } else if(level == Level.ONE)
+        {
+            EnemyData[] encounter = { new Swordman(), new Boar(), new Axe() };
+            return encounter;
         }
         throw new System.Exception("Unable to generate an encounter for this level " + level);
     }
