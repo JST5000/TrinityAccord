@@ -9,6 +9,14 @@ public class EncounterManager : MonoBehaviour
     EnemyData[] originalEncounter;
     EnemyManager[] allEnemyManagers;
 
+    //Allows static access to the Spawn functionality for enemies to call in their attacks
+    //Abstracts knowledge of what object has the EncounterManager script
+    public static void SpawnEnemyInDefaultManager(EnemyData newEnemy)
+    {
+        string ownerOfEncounterManager = "Board";
+        GameObject.Find(ownerOfEncounterManager).GetComponent<EncounterManager>().SpawnEnemy(newEnemy);
+    }
+
     public void Init(EnemyData[] encounter)
     {
         originalEncounter = encounter;
@@ -36,6 +44,24 @@ public class EncounterManager : MonoBehaviour
     void InitEnemyManagers()
     {
         allEnemyManagers = GetComponentsInChildren<EnemyManager>();
+    }
+
+    public void SpawnEnemy(EnemyData newEnemy)
+    {
+        bool didNotSpawn = true;
+        foreach(EnemyManager manager in allEnemyManagers)
+        {
+            if(manager.IsEmpty())
+            {
+                manager.Init(newEnemy);
+                didNotSpawn = false;
+                break;
+            }
+        }
+        if(didNotSpawn)
+        {
+            Debug.Log("Tried to spawn " + newEnemy + " but there was no space.");
+        }
     }
 
     // Start is called before the first frame update
