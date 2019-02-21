@@ -15,7 +15,7 @@ public static class GenerateEncounter
             return encounter;
         } else if(level == Level.ONE)
         {
-            EnemyData[] encounter = { new Swordman(), new Boar(), new Doombringer() };
+            EnemyData[] encounter = { new Swordman(), new Boar(), new Doombringer()};
             return encounter;
         }
         throw new System.Exception("Unable to generate an encounter for this level " + level);
