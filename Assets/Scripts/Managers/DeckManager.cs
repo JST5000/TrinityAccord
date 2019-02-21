@@ -115,7 +115,7 @@ public class DeckManager : MonoBehaviour
     {
         foreach(CardData card in pile)
         {
-            Debug.Log(card.CardName());
+            Debug.Log(card.getName());
         }
     }
 

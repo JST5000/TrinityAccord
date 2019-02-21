@@ -7,15 +7,15 @@ public class CardManager : MonoBehaviour
 {
 
     Target target;
-    string cardName;
+    //string cardName;
     int cost;
     CardData cardData;
     public bool empty;
     public void Init(CardData cardData)
     {
-        this.target = cardData.Target();
-        this.cardName = cardData.CardName();
-        this.cost = cardData.Cost();
+        this.target = cardData.getTarget();
+        //this.cardName = cardData.getName();
+        this.cost = cardData.getCost();
         this.cardData = cardData;
         this.empty = false;
     }

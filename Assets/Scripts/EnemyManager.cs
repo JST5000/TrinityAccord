@@ -12,7 +12,7 @@ public class EnemyManager : MonoBehaviour
         data = enemyData;
         isEmpty = false;
     }
-    public void Damage(int damage)
+    public bool Damage(int damage)
     {
         //AOEs may hit all without checking, so this prevents nulls
         if (!isEmpty)
@@ -38,6 +38,11 @@ public class EnemyManager : MonoBehaviour
                     Die();
                 }
             }
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
     public void EndTurn()

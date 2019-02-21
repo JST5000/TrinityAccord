@@ -9,9 +9,9 @@ public abstract class CardData
     protected UICardData cardData = new UICardData("Uninitialized", cost: 4, "Uninitialized", UICardData.CardType.ATTACK);
 
     //Target are for determining which user input is required. Ex. Tell the card which enemy is targeted.
-    public abstract Target Target();
-    public abstract string CardName();
-    public abstract int Cost();
+    public  Target target;
+    public string cardName;
+    public int cost;
     public abstract void Action(EnemyManager[] enemys);
     public abstract void Action(CardData[] cards);
     public abstract void Action(CardData[] cards, EnemyManager[] enemys);
@@ -19,7 +19,7 @@ public abstract class CardData
     //Does basic check of mana cost/availability. Extra requirements must be implemented separately.
     public bool IsPlayable()
     {
-        bool playerHasEnoughEnergy = GameObject.Find("Player").GetComponent<Player>().GetEnergy() >= Cost();
+        bool playerHasEnoughEnergy = GameObject.Find("Player").GetComponent<Player>().GetEnergy() >= cost;
         return playerHasEnoughEnergy && IsPlayableAdditionalRequirements();
     }
 
@@ -32,5 +32,17 @@ public abstract class CardData
     public UICardData GetUICardData()
     {
         return cardData;
+    }
+    public string getName()
+    {
+        return cardName;
+    }
+    public Target getTarget()
+    {
+        return target;
+    }
+    public int getCost()
+    {
+        return cost;
     }
 }

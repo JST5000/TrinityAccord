@@ -135,7 +135,7 @@ public class UIManager : MonoBehaviour
             updateHitboxWithStatus(Status.USED, clicked);
         } else
         {
-            Debug.Log("The card: " + cardMan.GetCardData().CardName() + " was unplayable (Likely due to cost).");
+            Debug.Log("The card: " + cardMan.GetCardData().getName() + " was unplayable (Likely due to cost).");
         }
     }
 
@@ -143,7 +143,7 @@ public class UIManager : MonoBehaviour
     {
         //Pay Cost
         Debug.Log(selectedCard);
-        GameObject.Find("Player").GetComponent<Player>().PayEnergy(selectedCard.GetCardData().Cost());
+        GameObject.Find("Player").GetComponent<Player>().PayEnergy(selectedCard.GetCardData().getCost());
         
         //Put the card on the stack
         StackManager playStack = GameObject.Find("StackHolder").GetComponent<StackManager>();
