@@ -43,6 +43,11 @@ public class Player : MonoBehaviour
         currEnergy -= cost;
         UpdateEnergyUI();
     }
+    public void AddEnergy(int amount)
+    {
+        currEnergy += amount;
+        UpdateEnergyUI();
+    }
 
     public void Damage(int dmg)
     {

@@ -45,4 +45,24 @@ public abstract class CardData
     {
         return cost;
     }
+    protected CardData draw()
+    {
+        DeckManager deck = GameObject.Find("Deck").GetComponent<DeckManager>();
+        return deck.DrawCard();
+    }
+    protected bool encounterActive()
+    {
+        if (GameObject.Find("Board").GetComponent<EncounterManager>().enemyCount == 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    protected void addEnergy(int amount)
+    {
+        GameObject.Find("Player").GetComponent<Player>().AddEnergy(amount);
+    }
 }

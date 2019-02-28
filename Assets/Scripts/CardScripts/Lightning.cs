@@ -8,7 +8,7 @@ public class Lightning : CardData
     public Lightning()
     {
         //Using state since a card may be modified (Ex. Feather Blade changing cost)
-        cardData = new UICardData("Lightning", cost: 3, "Deal 3 damage to 3 random enemies.", UICardData.CardType.ATTACK);
+        cardData = new UICardData("Lightning", cost: 3, "Deal 3 damage to 3 random enemies.", UICardData.CardType.SPELL);
         cost = 3;
         target = Target.ALL_ENEMIES;
     }
@@ -23,6 +23,11 @@ public class Lightning : CardData
             {
                 i++;
             }
+            if (!encounterActive())
+            {
+                return;
+            }
+            
             
 
         }

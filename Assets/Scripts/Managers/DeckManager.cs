@@ -43,7 +43,7 @@ public class DeckManager : MonoBehaviour
         DiscardHand();
     }
 
-    public void DrawCard()
+    public CardData DrawCard()
     {
         if(deck.Count == 0)
         {
@@ -53,11 +53,14 @@ public class DeckManager : MonoBehaviour
         {
             if (cardManager.empty)
             {
+                CardData toAdd = deck[0];
                 cardManager.Init(deck[0]);
                 deck.RemoveAt(0);
-                return;
+                return toAdd;
             }
         }
+        return null;
+
     }
 
     public void ShuffleDiscardIntoDeck()

@@ -47,7 +47,9 @@ public class PermanentState : MonoBehaviour
         deck.Add(new Dagger());
         deck.Add(new Sword());
         deck.Add(new Sword());
-        deck.Add(new Lightning()); //Added to see variety, should replace with Energize + class card - Jackson
+        deck.Add(new Shock());
+        deck.Add(new Energize());
+        //Added to see variety, should replace with Energize + class card - Jackson
         return deck;
     }
 

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-enum GameMode {SelectCard, PickTarget, Animation  }; 
+enum GameMode {SelectCard, PickTarget, Animation,PickCardInHand  }; 
 
 public class UIManager : MonoBehaviour
 {
@@ -105,21 +105,24 @@ public class UIManager : MonoBehaviour
 
     public void clickCardInHand(GameObject clicked)
     {
-        if(GetCurrentMode().Equals(GameMode.SelectCard))
+        if (GetCurrentMode().Equals(GameMode.SelectCard))
         {
             SelectCard(clicked);
-        } else if(currentMode.Equals(GameMode.PickTarget))
+        }
+        else if (currentMode.Equals(GameMode.PickTarget))
         {
-            if(requiredInput.Equals(Target.CARD))
+            if (requiredInput.Equals(Target.CARD))
             {
                 PlayCard();
                 CardData[] card = { clicked.GetComponent<CardManager>().GetCardData() };
                 selectedCard.Action(card);
-            } else
+            }
+            else
             {
-                SelectCard(clicked); 
+                SelectCard(clicked);
             }
         }
+        
         Debug.Log("Clicked a Card named: " + clicked.name);
     }
 
@@ -199,7 +202,7 @@ public class UIManager : MonoBehaviour
     public void clickBoard(GameObject clicked)
     { 
         Debug.Log("Clicked the Board");
-        if(GetCurrentMode().Equals(GameMode.PickTarget) && requiredInput.Equals(Target.ALL_ENEMIES))
+        if(GetCurrentMode().Equals(GameMode.PickTarget) && (requiredInput.Equals(Target.ALL_ENEMIES)|| requiredInput.Equals(Target.BOARD)))
         {
             PlayCard();
             //Triggers the card effect

@@ -45,6 +45,14 @@ public class EnemyManager : MonoBehaviour
             return false;
         }
     }
+    public bool Stagger()
+    {
+        if (!isEmpty)
+        {
+            data.CurrTimer = data.MaxTimer+1;
+        }
+        return false;
+    }
     public void EndTurn()
     {
         if (!isEmpty)

@@ -6,7 +6,7 @@ public class EncounterManager : MonoBehaviour
 {
     EnemyData[] originalEncounter;
     EnemyManager[] allEnemyManagers;
-    int enemyCount = 0;
+    public int enemyCount = 0;
 
     public Transform Choose3Menu;
 
