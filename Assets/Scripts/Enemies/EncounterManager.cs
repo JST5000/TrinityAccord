@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class EncounterManager : MonoBehaviour
 {
-    //TODO
-    //ArrayList<EnemyManager> enemies;
     EnemyData[] originalEncounter;
     EnemyManager[] allEnemyManagers;
+    int enemyCount = 0;
+
+    public Transform Choose3Menu;
+
 
     //Allows static access to the Spawn functionality for enemies to call in their attacks
     //Abstracts knowledge of what object has the EncounterManager script
@@ -26,6 +28,7 @@ public class EncounterManager : MonoBehaviour
         }
         for(int i = 0; i < originalEncounter.Length && i < allEnemyManagers.Length; ++i)
         {
+            enemyCount++;
             allEnemyManagers[i].Init(originalEncounter[i]);
         }
         if(originalEncounter.Length > allEnemyManagers.Length)
@@ -55,6 +58,7 @@ public class EncounterManager : MonoBehaviour
             {
                 manager.Init(newEnemy);
                 didNotSpawn = false;
+                enemyCount++;
                 break;
             }
         }
@@ -64,11 +68,27 @@ public class EncounterManager : MonoBehaviour
         }
     }
 
+    public void OnEnemyDeath()
+    {
+        enemyCount--;
+        if(enemyCount == 0)
+        {
+            Instantiate(Choose3Menu, GameObject.Find("Canvas").transform, false);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         InitEnemyManagers();
+        InitializeEncounter();
     }
+
+    private void InitializeEncounter()
+    {
+        Init(GenerateEncounter.GetEncounter(Level.ONE));
+    }
+
 
     // Update is called once per frame
     void Update()

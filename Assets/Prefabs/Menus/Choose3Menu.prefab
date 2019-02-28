@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d775ec459147241a561148c702b9ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  confirm: {fileID: 5029615843886041348}
 --- !u!1 &6791021214811478423
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,7 +229,7 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
 --- !u!1 &7114667114941853783
@@ -496,11 +497,22 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 138370564711508317}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 736324426453887255}
+        m_MethodName: ConfirmSelectedCard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1001 &1390661430121694821
@@ -623,12 +635,12 @@ PrefabInstance:
     - target: {fileID: 1470747416606658517, guid: 3ed85d87458018b4fa02d1857953810e,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1470747416606658517, guid: 3ed85d87458018b4fa02d1857953810e,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6760759625218688821, guid: 3ed85d87458018b4fa02d1857953810e,
         type: 3}
@@ -720,6 +732,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 6780496393714577987}
+    - target: {fileID: 3798728853564019179, guid: 3ed85d87458018b4fa02d1857953810e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5572561016489849894, guid: 3ed85d87458018b4fa02d1857953810e,
         type: 3}
       propertyPath: empty
@@ -727,12 +744,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ed85d87458018b4fa02d1857953810e, type: 3}
---- !u!224 &515024201280932272 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1470747416606658517, guid: 3ed85d87458018b4fa02d1857953810e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1390661430121694821}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6780496393714577987 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5572561016489849894, guid: 3ed85d87458018b4fa02d1857953810e,
@@ -745,6 +756,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6028f5c39892a4d94c66b94f74c058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &515024201280932272 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1470747416606658517, guid: 3ed85d87458018b4fa02d1857953810e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1390661430121694821}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3650865160654543899
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -865,12 +882,12 @@ PrefabInstance:
     - target: {fileID: 1470747416606658517, guid: 3ed85d87458018b4fa02d1857953810e,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1470747416606658517, guid: 3ed85d87458018b4fa02d1857953810e,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6760759625218688821, guid: 3ed85d87458018b4fa02d1857953810e,
         type: 3}
@@ -942,8 +959,45 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3798728853564019179, guid: 3ed85d87458018b4fa02d1857953810e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 736324426453887255}
+    - target: {fileID: 3798728853564019179, guid: 3ed85d87458018b4fa02d1857953810e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetAndHighlightSelectedCard
+      objectReference: {fileID: 0}
+    - target: {fileID: 3798728853564019179, guid: 3ed85d87458018b4fa02d1857953810e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3798728853564019179, guid: 3ed85d87458018b4fa02d1857953810e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: CardManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3798728853564019179, guid: 3ed85d87458018b4fa02d1857953810e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 9223315126302074941}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ed85d87458018b4fa02d1857953810e, type: 3}
+--- !u!114 &9223315126302074941 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5572561016489849894, guid: 3ed85d87458018b4fa02d1857953810e,
+    type: 3}
+  m_PrefabInstance: {fileID: 3650865160654543899}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea6028f5c39892a4d94c66b94f74c058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2793180091683705806 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1470747416606658517, guid: 3ed85d87458018b4fa02d1857953810e,
@@ -1070,12 +1124,12 @@ PrefabInstance:
     - target: {fileID: 1470747416606658517, guid: 3ed85d87458018b4fa02d1857953810e,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1470747416606658517, guid: 3ed85d87458018b4fa02d1857953810e,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6760759625218688821, guid: 3ed85d87458018b4fa02d1857953810e,
         type: 3}
@@ -1147,8 +1201,45 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3798728853564019179, guid: 3ed85d87458018b4fa02d1857953810e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 736324426453887255}
+    - target: {fileID: 3798728853564019179, guid: 3ed85d87458018b4fa02d1857953810e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetAndHighlightSelectedCard
+      objectReference: {fileID: 0}
+    - target: {fileID: 3798728853564019179, guid: 3ed85d87458018b4fa02d1857953810e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: CardManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3798728853564019179, guid: 3ed85d87458018b4fa02d1857953810e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1131388782721492010}
+    - target: {fileID: 2728787771625102654, guid: 3ed85d87458018b4fa02d1857953810e,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ed85d87458018b4fa02d1857953810e, type: 3}
+--- !u!114 &1131388782721492010 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5572561016489849894, guid: 3ed85d87458018b4fa02d1857953810e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4820600523879665676}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea6028f5c39892a4d94c66b94f74c058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &6237224184217411545 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1470747416606658517, guid: 3ed85d87458018b4fa02d1857953810e,

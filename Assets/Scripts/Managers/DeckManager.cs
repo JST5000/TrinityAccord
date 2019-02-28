@@ -9,6 +9,12 @@ public class DeckManager : MonoBehaviour
     public List<CardData> discard;
     public CardManager[] hand;
 
+    //Initializes the player's deck
+    void Start()
+    {
+        Init(PermanentState.playerDeck);  
+    }
+
     public void Init(List<CardData> initDeck)
     {
         
@@ -22,9 +28,6 @@ public class DeckManager : MonoBehaviour
         }
         Shuffle(deck);
         StartTurn();
-        
-
-
     }
 
     public void StartTurn()
@@ -115,7 +118,7 @@ public class DeckManager : MonoBehaviour
     {
         foreach(CardData card in pile)
         {
-            Debug.Log(card.getName());
+            Debug.Log(card);
         }
     }
 

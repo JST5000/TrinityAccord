@@ -1,23 +1,43 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Choose3Manager : MonoBehaviour
 {
-    private static CardManager selectedCard = null;
+    public static CardManager selectedCard = null;
+    public Button confirm;
     private CardManager[] options;
 
-    //TODO
-    public static void SetAndHighlightSelectedCard(CardManager newSelection)
+    public void SetAndHighlightSelectedCard(CardManager newSelection)
     {
         if (selectedCard != null)
         {
             selectedCard.GetComponent<CardUIUpdater>().ResetHighlight();
         }
         selectedCard = newSelection;
+        Debug.Log(newSelection);
         if (newSelection != null)
         {
+            confirm.interactable = true;
             selectedCard.GetComponent<CardUIUpdater>().Highlight();
+        }
+    }
+
+    public void Init(CardData[] givenOptions) 
+    {
+        selectedCard = null;
+        for(int i = 0; i < options.Length; ++i) { 
+            options[i].Init(givenOptions[i]);
+        }
+    }
+
+    public void ConfirmSelectedCard()
+    {
+        if(selectedCard != null)
+        {
+            PermanentState.AddCardToPlayerDeckList(selectedCard.GetCardData());
+            Destroy(gameObject);
         }
     }
 
@@ -25,10 +45,8 @@ public class Choose3Manager : MonoBehaviour
     void Start()
     {
         options = GetComponentsInChildren<CardManager>();
-        foreach(CardManager man in options)
-        {
-            man.Init(new Sword());
-        }
+        CardData[] cards = { new Sword(), new Sword(), new Sword() };
+        Init(cards);
     }
 
     // Update is called once per frame
