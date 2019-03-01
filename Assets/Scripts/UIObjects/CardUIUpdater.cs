@@ -11,6 +11,7 @@ public class CardUIUpdater : MonoBehaviour
     public Image background;
     private bool colorNotSet = true;
     private Color prevBGColor;
+    private bool highlighted = false;
 
     private Button primaryButton;
     private Color normalTint;
@@ -45,7 +46,7 @@ public class CardUIUpdater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //TODO replace with a notify method
+        //Potentially replace with a notify method if performance becomes an issue
         if (!cardHolder.IsEmpty())
         {
             UpdateUI(cardHolder.GetUICardData());
@@ -86,26 +87,27 @@ public class CardUIUpdater : MonoBehaviour
         costText.text = "" + data.cost;
         displayName.text = data.cardName;
         cardEffect.text = data.effectText;
-        if (colorNotSet)
-        {
-            UpdateBGColor(data.cardType);
-            colorNotSet = false;
-        }
+        UpdateBGColor(data.cardType);
     }
 
     private void UpdateBGColor(UICardData.CardType type)
     {
-        if(type.Equals(UICardData.CardType.ATTACK))
+        if (!highlighted)
         {
-            background.color = Color.red;
-        } else if(type.Equals(UICardData.CardType.SPELL))
-        {
-            background.color = Color.cyan;
+            if (type.Equals(UICardData.CardType.ATTACK))
+            {
+                background.color = Color.red;
+            }
+            else if (type.Equals(UICardData.CardType.SPELL))
+            {
+                background.color = Color.cyan;
+            }
         }
     }
 
     public void Highlight()
     {
+        highlighted = true;
         var color = background.color;
         prevBGColor = new Color(color.r, color.g, color.b, color.a);
         color = Color.yellow;// new Color(1f, 0.952f, 0.180f);
@@ -124,6 +126,7 @@ public class CardUIUpdater : MonoBehaviour
 
     public void ResetHighlight()
     {
+        highlighted = false;
         background.color = prevBGColor;
         /*
         var colors = primaryButton.colors;

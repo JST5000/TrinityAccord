@@ -155,6 +155,9 @@ public class UIManager : MonoBehaviour
         //Remove the card from the hand 
         selectedCard.SetEmpty();
 
+        //Removes highlight for the next card to appear
+        selectedCard.GetComponent<CardUIUpdater>().ResetHighlight();
+
         currentMode = GameMode.Animation;
         requiredInput = Target.NONE;
     }
