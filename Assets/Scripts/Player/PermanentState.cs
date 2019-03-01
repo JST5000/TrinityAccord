@@ -8,6 +8,9 @@ public class PermanentState : MonoBehaviour
     //Player deck - State should hold for multiple encounters
     public static List<CardData> playerDeck;
 
+    private static EnemyData[] nextEncounter;
+    private static bool nextEncounterUsed = false;
+
     public static void AddCardToPlayerDeckList(CardData card)
     {
         playerDeck.Add(card);
@@ -17,6 +20,7 @@ public class PermanentState : MonoBehaviour
     {
         CreateSingleton();
         InitializeBaseDeck();
+        InitializeDefaultEncounter();
     }
 
     private void CreateSingleton()
@@ -51,6 +55,31 @@ public class PermanentState : MonoBehaviour
         deck.Add(new Energize());
         //Added to see variety, should replace with Energize + class card - Jackson
         return deck;
+    }
+
+
+    private void InitializeDefaultEncounter()
+    {
+        SetNextEncounter(GenerateEncounter.GetEncounter(Level.ONE));
+    }
+
+
+    //Returns the encounter and sets it to null
+    public static EnemyData[] GetNextEncounter()
+    {
+        if(nextEncounterUsed)
+        {
+            Debug.LogError("The same encounter was multiple times! Each encounter should only be used for one fight after being set.");
+        }
+        //Should only be done once
+        nextEncounterUsed = true;
+        return nextEncounter;
+    }
+
+    public static void SetNextEncounter(EnemyData[] next)
+    {
+        nextEncounter = next;
+        nextEncounterUsed = false;
     }
 
     // Start is called before the first frame update

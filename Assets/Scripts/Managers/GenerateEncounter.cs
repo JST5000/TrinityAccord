@@ -17,6 +17,22 @@ public static class GenerateEncounter
         {
             EnemyData[] encounter = { new Swordman(), new Boar(), new Doombringer()};
             return encounter;
+        } else if(level == Level.TWO)
+        {
+            EnemyData[] encounter = { new Swordman(), new Rhino(), new Doombringer() };
+            return encounter;
+        } else if(level == Level.THREE)
+        {
+            EnemyData[] encounter = { new Doombringer(), new Rhino(), new Doombringer() };
+            return encounter;
+        } else if(level == Level.FOUR)
+        {
+            EnemyData[] encounter = { new Doombringer(), new Doombringer(), new Doombringer() };
+            return encounter;
+        } else if(level == Level.BOSS)
+        {
+            EnemyData[] encounter = { new Doombringer(), new Doombringer(), new Doombringer(), new Doombringer() };
+            return encounter;
         }
         throw new System.Exception("Unable to generate an encounter for this level " + level);
     }

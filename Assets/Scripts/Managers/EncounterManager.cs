@@ -86,7 +86,14 @@ public class EncounterManager : MonoBehaviour
 
     private void InitializeEncounter()
     {
-        Init(GenerateEncounter.GetEncounter(Level.ONE));
+        EnemyData[] nextEncounter = PermanentState.GetNextEncounter();
+        if (nextEncounter != null)
+        {
+            Init(nextEncounter);
+        } else
+        {
+            Debug.LogError("No encounter stored in PermanentState.nextEncounter! Unable to create encounter.");
+        }
     }
 
 

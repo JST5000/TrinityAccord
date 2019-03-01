@@ -7,6 +7,7 @@ public class Choose3Manager : MonoBehaviour
 {
     public static CardManager selectedCard = null;
     public Button confirm;
+    public Transform ChooseEncounterMenu;
     private CardManager[] options;
 
     public void SetAndHighlightSelectedCard(CardManager newSelection)
@@ -37,6 +38,7 @@ public class Choose3Manager : MonoBehaviour
         if(selectedCard != null)
         {
             PermanentState.AddCardToPlayerDeckList(selectedCard.GetCardData());
+            Instantiate(ChooseEncounterMenu, GameObject.Find("Canvas").transform, false);
             Destroy(gameObject);
         }
     }

@@ -131,6 +131,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   confirm: {fileID: 5029615843886041348}
+  ChooseEncounterMenu: {fileID: 3385944392895627964, guid: 520e7cc380d95f645ac5f9916399c7eb,
+    type: 3}
 --- !u!1 &6791021214811478423
 GameObject:
   m_ObjectHideFlags: 0
