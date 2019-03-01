@@ -7,7 +7,7 @@ public class StackManager : MonoBehaviour
 {
     public Text label;
 
-    private Stack<CardManager> playedCards = new Stack<CardManager>();
+    private Stack<CardData> playedCards = new Stack<CardData>();
     private CardManager displayedCardData;
     private CardUIUpdater displayedCard;
     private float currTime = 0;
@@ -55,14 +55,14 @@ public class StackManager : MonoBehaviour
     public void Push(CardManager justPlayed)
     {
         currTime = 0;
-        playedCards.Push(justPlayed);
+        playedCards.Push(justPlayed.GetCardData());
         UpdateUI();
     }
 
-    public CardManager Pop()
+    public CardData Pop()
     {
-        CardManager top = playedCards.Pop();
-        GameObject.Find("Deck").GetComponent<DeckManager>().AddToDiscard(top.GetCardData());
+        CardData top = playedCards.Pop();
+        GameObject.Find("Deck").GetComponent<DeckManager>().AddToDiscard(top);
         UpdateUI();
         return top;
     }
@@ -74,7 +74,7 @@ public class StackManager : MonoBehaviour
             displayedCardData.SetEmpty();
         } else
         {
-            displayedCardData.Init(playedCards.Peek().GetCardData());
+            displayedCardData.Init(playedCards.Peek());
             displayedCard.UpdateUI(playedCards.Peek().GetUICardData());
         }
     }
