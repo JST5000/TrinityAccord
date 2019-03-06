@@ -93,17 +93,15 @@ public class UpdateEnemyUI : MonoBehaviour
 
     public void SetTimerColor(UIEnemyData data)
     {
-        if (data.CurrTimer >= data.MaxTimer)
-        {
-            timerBackground.color = Color.green;
-        }
-        else if (data.CurrTimer > 1)
-        {
-            timerBackground.color = Color.yellow;
-        }
-        else
+        if(data.CurrTimer == 1)
         {
             timerBackground.color = Color.red;
+        } else if (data.CurrTimer == 2 || data.CurrTimer < data.MaxTimer )
+        {
+            timerBackground.color = Color.yellow;
+        } else if (data.CurrTimer >= data.MaxTimer)
+        {
+            timerBackground.color = Color.green;
         }
     }
 }
