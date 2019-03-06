@@ -23,11 +23,11 @@ public class Boar : EnemyData
     {
         if (lastLife)
         {
-            return "Deal 4 damage.";
+            return InLineIcon.DAMAGE + ": 4";
         }
         else
         {
-            return "Deal 2 damage. Last Stand: Deal 2x Damage.";
+            return InLineIcon.DAMAGE + ": 2 Last Stand: " + InLineIcon.DAMAGE + ": 4";
         }
     }
 

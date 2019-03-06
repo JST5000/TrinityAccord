@@ -11,7 +11,7 @@ public static class GenerateEncounter
     {
         if (level == Level.TUTORIAL)
         {
-            EnemyData[] encounter = { new Boar() };
+            EnemyData[] encounter = { new Squirrel() };
             return encounter;
         } else if(level == Level.ONE)
         {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UpdateEnemyUI : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class UpdateEnemyUI : MonoBehaviour
     public Image enemyPicture;
     public Image timerBackground;
     public Text timerDisplay;
-    public Text effectDisplay;
+    public TextMeshProUGUI effectDisplay;
 
     private EnemyManager enemyHolder;
 

@@ -23,9 +23,9 @@ public class Rhino : EnemyData
     {
         if (lastLife)
         {
-            return "Deal 2 damage.";
+            return InLineIcon.DAMAGE + ": 2";
         } else {
-            return "Deal 5 damage.Last Stand: Deal 2 damage instead of 5.";
+            return InLineIcon.DAMAGE + ": 5 Last Stand: " + InLineIcon.DAMAGE + " 2";
         }
     }
 }

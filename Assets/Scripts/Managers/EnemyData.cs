@@ -54,13 +54,18 @@ public class EnemyData
 
     public void SetStaggers(int value)
     {
-        if (value < staggers && value == 1)
+        if (value < staggers)
         {
-            //For last stand effects like in Rhino and Boar
-            OnLastLife();
+            OnLossOfLife();
+            if (value == 1)
+            {
+                //For last stand effects like in Rhino and Boar
+                OnLastLife();
+            }
         }
         staggers = value;
     }
+    protected virtual void OnLossOfLife() { }
     protected virtual void OnLastLife() { }
 
    

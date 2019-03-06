@@ -9,6 +9,9 @@ public class DeckManager : MonoBehaviour
     public List<CardData> discard;
     public CardManager[] hand;
 
+    //Used by Squirrel and Trick
+    private int extraDrawsOnTurnStart = 0;
+
     //Initializes the player's deck
     void Start()
     {
@@ -32,10 +35,11 @@ public class DeckManager : MonoBehaviour
 
     public void StartTurn()
     {
-        for(int i = 0; i < 4; i++)
+        for(int i = 0; i < 4 + extraDrawsOnTurnStart; i++)
         {
             DrawCard();
         }
+        extraDrawsOnTurnStart = 0;
     }
 
     public void EndTurn()
@@ -61,6 +65,11 @@ public class DeckManager : MonoBehaviour
         }
         return null;
 
+    }
+
+    public void AddDrawNextTurn()
+    {
+        extraDrawsOnTurnStart++;
     }
 
     public void ShuffleDiscardIntoDeck()
