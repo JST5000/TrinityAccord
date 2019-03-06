@@ -11,15 +11,15 @@ public static class GenerateEncounter
     {
         if (level == Level.TUTORIAL)
         {
-            EnemyData[] encounter = { new Swordman(), new Rhino(), new Axe() };
+            EnemyData[] encounter = { new Boar() };
             return encounter;
         } else if(level == Level.ONE)
         {
-            EnemyData[] encounter = { new Swordman(), new Boar(), new Doombringer()};
+            EnemyData[] encounter = { new Swordman(), new Doombringer()};
             return encounter;
         } else if(level == Level.TWO)
         {
-            EnemyData[] encounter = { new Swordman(), new Rhino(), new Doombringer() };
+            EnemyData[] encounter = { new Boar(), new Rhino() };
             return encounter;
         } else if(level == Level.THREE)
         {

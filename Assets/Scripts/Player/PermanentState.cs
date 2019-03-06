@@ -9,7 +9,6 @@ public class PermanentState : MonoBehaviour
     public static List<CardData> playerDeck;
 
     private static EnemyData[] nextEncounter;
-    private static bool nextEncounterUsed = false;
 
     public static void AddCardToPlayerDeckList(CardData card)
     {
@@ -19,8 +18,13 @@ public class PermanentState : MonoBehaviour
     void Awake()
     {
         CreateSingleton();
-        InitializeBaseDeck();
-        InitializeDefaultEncounter();
+        if (playerDeck == null)
+        {
+            InitializeBaseDeck();
+        }
+        if(GetNextEncounter() == null) { 
+            InitializeDefaultEncounter();
+        }
     }
 
     private void CreateSingleton()
@@ -60,26 +64,20 @@ public class PermanentState : MonoBehaviour
 
     private void InitializeDefaultEncounter()
     {
-        SetNextEncounter(GenerateEncounter.GetEncounter(Level.ONE));
+        SetNextEncounter(GenerateEncounter.GetEncounter(Level.TUTORIAL));
     }
 
 
     //Returns the encounter and sets it to null
     public static EnemyData[] GetNextEncounter()
-    {
-        if(nextEncounterUsed)
-        {
-            Debug.LogError("The same encounter was multiple times! Each encounter should only be used for one fight after being set.");
-        }
-        //Should only be done once
-        nextEncounterUsed = true;
+    {       
         return nextEncounter;
     }
 
     public static void SetNextEncounter(EnemyData[] next)
     {
+        Debug.Log(next[0]);
         nextEncounter = next;
-        nextEncounterUsed = false;
     }
 
     // Start is called before the first frame update

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ChooseEncounterManager : MonoBehaviour
 {
@@ -50,8 +51,11 @@ public class ChooseEncounterManager : MonoBehaviour
     {
         if (selectedEncounter != null)
         {
-            PermanentState.SetNextEncounter(GenerateEncounter.GetEncounter(Level.TUTORIAL));
-            Destroy(gameObject);
+            PermanentState.SetNextEncounter(selectedEncounter);
+            selectedEncounter = null;
+            //Reloads the scene, hopefully with the newly selected encounter.
+            SceneManager.LoadScene("Encounter");
+            //      Destroy(gameObject);
         }
     }
 }

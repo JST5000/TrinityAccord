@@ -18,7 +18,7 @@ public class DeckManager : MonoBehaviour
     public void Init(List<CardData> initDeck)
     {
         
-        deck = initDeck;
+        deck = new List<CardData>(initDeck);
         discard = new List<CardData>();
         GameObject handObject = GameObject.Find("Hand");
         hand=handObject.GetComponentsInChildren<CardManager>();

@@ -47,7 +47,7 @@ public class Choose3Manager : MonoBehaviour
     void Start()
     {
         options = GetComponentsInChildren<CardManager>();
-        CardData[] cards = { new Sword(), new Sword(), new Sword() };
+        CardData[] cards = { new Lightning(), new Rally(), new Shock() };
         Init(cards);
     }
 
