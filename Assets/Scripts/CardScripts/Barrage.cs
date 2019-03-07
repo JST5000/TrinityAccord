@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shock : CardData
+public class Barrage : CardData
 {
-    public Shock()
+    public Barrage()
     {
-        cardData = new UICardData("Shock", cost: 2, "Stagger target", UICardData.CardType.SPELL);
-        cost = 2;
+        cardData = new UICardData("Barrage", cost: 1, "Deal 1 damage for each other attack played this turn", UICardData.CardType.ATTACK);
+        cost = 0;
         target = Target.ENEMY;
     }
 
     public override void Action(EnemyManager[] enemys)
     {
-        enemys[0].Stagger();
+        enemys[0].Damage(getNumberOfAttacksPlayed()-1);
     }
     public override void Action(CardData[] cards)
     {
@@ -29,4 +29,3 @@ public class Shock : CardData
         throw new System.NotImplementedException();
     }
 }
-

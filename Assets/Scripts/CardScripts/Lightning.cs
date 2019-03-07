@@ -44,6 +44,9 @@ public class Lightning : CardData
     {
         throw new System.NotImplementedException("Lightning does not target cards and enemies at the same time.");
     }
-    
 
+    public override int SecondAction(CardManager card)
+    {
+        throw new System.NotImplementedException();
+    }
 }

@@ -66,6 +66,28 @@ public class DeckManager : MonoBehaviour
         return null;
 
     }
+    public CardData getTop()
+    {
+        return deck[0];
+    }
+    public void discardTop()
+    {
+        discard.Add(deck[0]);
+        deck.RemoveAt(0);
+       
+    }
+    public int getNumberOfCardsInHand()
+    {
+        int toReturn = 0;
+        foreach(CardManager cardManager in hand)
+        {
+            if (!cardManager.IsEmpty())
+            {
+                toReturn++;
+            }
+        }
+        return toReturn;
+    }
 
     public void AddDrawNextTurn()
     {

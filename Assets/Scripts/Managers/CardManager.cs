@@ -28,6 +28,12 @@ public class CardManager : MonoBehaviour
     {
         return empty;
     }
+    public void discard()
+    {
+        GameObject.Find("Deck").GetComponent<DeckManager>().AddToDiscard(cardData);
+        SetEmpty();
+
+    }
 
     public Target GetTargets()
     {

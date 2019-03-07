@@ -12,6 +12,8 @@ public class StackManager : MonoBehaviour
     private CardUIUpdater displayedCard;
     private float currTime = 0;
     private float timePerCard = .5f;
+    public int cardsPlayed = 0;
+    public int attacksPlayed = 0;
 
     void Start()
     {
@@ -26,7 +28,7 @@ public class StackManager : MonoBehaviour
             SetAlphaColor(label, 0);
         } else if(IsEmpty() && label.color.a == 0)
         {
-            SetAlphaColor(label, 1);
+            SetAlphaColor(label, 1);  
         }
 
         if (playedCards.Count != 0)
@@ -54,6 +56,7 @@ public class StackManager : MonoBehaviour
 
     public void Push(CardManager justPlayed)
     {
+        UpdateCounts(justPlayed.GetCardData());
         currTime = 0;
         playedCards.Push(justPlayed.GetCardData());
         UpdateUI();
@@ -62,7 +65,10 @@ public class StackManager : MonoBehaviour
     public CardData Pop()
     {
         CardData top = playedCards.Pop();
-        GameObject.Find("Deck").GetComponent<DeckManager>().AddToDiscard(top);
+        if (!top.fragile)
+        {
+            GameObject.Find("Deck").GetComponent<DeckManager>().AddToDiscard(top);
+        }
         UpdateUI();
         return top;
     }
@@ -77,5 +83,18 @@ public class StackManager : MonoBehaviour
             displayedCardData.Init(playedCards.Peek());
             displayedCard.UpdateUI(playedCards.Peek().GetUICardData());
         }
+    }
+    private void UpdateCounts(CardData card)
+    {
+        cardsPlayed++;
+        if (card.GetUICardData().cardType.Equals(UICardData.CardType.ATTACK))
+        {
+            attacksPlayed++;
+        }
+    }
+    public void ResetCounts()
+    {
+        cardsPlayed = 0;
+        attacksPlayed = 0;
     }
 }

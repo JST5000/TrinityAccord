@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shock : CardData
+public class Wand : CardData
 {
-    public Shock()
+    public Wand()
     {
-        cardData = new UICardData("Shock", cost: 2, "Stagger target", UICardData.CardType.SPELL);
-        cost = 2;
+        cardData = new UICardData("Wand", cost: 1, "Deal 2 damage. Wand top card of deck", UICardData.CardType.ATTACK);
+        cost = 1;
         target = Target.ENEMY;
     }
 
     public override void Action(EnemyManager[] enemys)
     {
-        enemys[0].Stagger();
+        enemys[0].Damage(2);
     }
     public override void Action(CardData[] cards)
     {
@@ -29,4 +29,5 @@ public class Shock : CardData
         throw new System.NotImplementedException();
     }
 }
+
 

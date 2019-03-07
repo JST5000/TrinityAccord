@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
     static Target requiredInput = Target.NONE;
     static CardManager selectedCard = null;
     static StackManager cardStack;
+    static CardData actionCard;
+    static int actionsNeeded;//Used to discard multiple cards for backpack
 
     public const bool ENABLE_CLICK_BORDERS = false;
     private enum Status { USED, UNUSED };
@@ -23,6 +25,20 @@ public class UIManager : MonoBehaviour
     private static void SetCurrentMode(GameMode mode)
     {
         currentMode = mode;
+    }
+    public static void selectCardInHand(CardData card,int count)
+    {
+        SetCurrentMode(GameMode.PickCardInHand);
+        actionCard = card;
+        actionsNeeded = count;
+    }
+    public static void cardInHandClicked(CardManager card)
+    {
+        actionsNeeded -= actionCard.SecondAction(card);
+        if (actionsNeeded <= 0)
+        {
+            SetCurrentMode(GameMode.SelectCard);
+        }
     }
 
     private static void SetAndHighlightSelectedCard(CardManager newSelection)
@@ -113,14 +129,21 @@ public class UIManager : MonoBehaviour
         {
             if (requiredInput.Equals(Target.CARD))
             {
-                PlayCard();
+              
                 CardData[] card = { clicked.GetComponent<CardManager>().GetCardData() };
-                selectedCard.Action(card);
+                if (!card[0].Equals(selectedCard.GetCardData()))
+                {
+                    PlayCard();
+                    selectedCard.Action(card);
+                }
             }
             else
             {
                 SelectCard(clicked);
             }
+        }else if (currentMode.Equals(GameMode.PickCardInHand))
+        {
+            cardInHandClicked(clicked.GetComponent<CardManager>());
         }
         
         Debug.Log("Clicked a Card named: " + clicked.name);
@@ -186,7 +209,7 @@ public class UIManager : MonoBehaviour
         Debug.Log("Clicked End Turn");
 
         //During animation you should not be able to end turn
-        if (!GetCurrentMode().Equals(GameMode.Animation))
+        if (!GetCurrentMode().Equals(GameMode.Animation)||GetCurrentMode().Equals(GameMode.PickCardInHand))
         {
             SetAndHighlightSelectedCard(null); //Resets selection
 
@@ -195,7 +218,7 @@ public class UIManager : MonoBehaviour
             DeckManager decks = GameObject.Find("Deck").GetComponent<DeckManager>();
             decks.EndTurn(); //Discards hand
             decks.StartTurn(); //Draws hand
-
+            cardStack.ResetCounts();
             GameObject.Find("Player").GetComponent<Player>().EndTurn(); //Resets energy
 
             updateHitboxWithStatus(Status.USED, clicked);

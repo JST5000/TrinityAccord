@@ -2,21 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shock : CardData
+public class Clone : CardData
 {
-    public Shock()
+    public Clone()
     {
-        cardData = new UICardData("Shock", cost: 2, "Stagger target", UICardData.CardType.SPELL);
-        cost = 2;
-        target = Target.ENEMY;
+        cardData = new UICardData("Clone", cost: 0, "Becomes copy of target until end of game", UICardData.CardType.SPELL);
+        cost = 0;
+        target = Target.CARD;
+        fragile = true;
     }
 
     public override void Action(EnemyManager[] enemys)
     {
-        enemys[0].Stagger();
+
     }
     public override void Action(CardData[] cards)
     {
+        getMyCardManager().Init(cards[0]);
 
     }
     public override void Action(CardData[] cards, EnemyManager[] enemys)
@@ -29,4 +31,3 @@ public class Shock : CardData
         throw new System.NotImplementedException();
     }
 }
-

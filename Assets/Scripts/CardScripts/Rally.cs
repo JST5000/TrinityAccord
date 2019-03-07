@@ -27,5 +27,8 @@ public class Rally : CardData
 
         }
 
-
+    public override int SecondAction(CardManager card)
+    {
+        throw new System.NotImplementedException();
+    }
 }

@@ -24,6 +24,9 @@ public class Sword : CardData
 
     }
 
-
+    public override int SecondAction(CardManager card)
+    {
+        throw new System.NotImplementedException();
+    }
 }
 

@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shock : CardData
+public class Knockout : CardData
 {
-    public Shock()
+    public Knockout()
     {
-        cardData = new UICardData("Shock", cost: 2, "Stagger target", UICardData.CardType.SPELL);
+        cardData = new UICardData("Knockout", cost: 2, "Deal 3 damage Stun", UICardData.CardType.ATTACK);
         cost = 2;
         target = Target.ENEMY;
     }
 
     public override void Action(EnemyManager[] enemys)
     {
-        enemys[0].Stagger();
+        enemys[0].Damage(3);
+        enemys[0].Stun();
     }
     public override void Action(CardData[] cards)
     {
@@ -29,4 +30,3 @@ public class Shock : CardData
         throw new System.NotImplementedException();
     }
 }
-

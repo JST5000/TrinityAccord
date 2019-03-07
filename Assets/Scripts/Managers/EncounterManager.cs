@@ -5,7 +5,7 @@ using UnityEngine;
 public class EncounterManager : MonoBehaviour
 {
     EnemyData[] originalEncounter;
-    EnemyManager[] allEnemyManagers;
+    public EnemyManager[] allEnemyManagers;
     public int enemyCount = 0;
 
     public Transform Choose3Menu;

@@ -50,6 +50,16 @@ public class EnemyManager : MonoBehaviour
         if (!isEmpty)
         {
             data.CurrTimer = data.MaxTimer+1;
+            return true;
+        }
+        return false;
+    }
+    public bool Stun()
+    {
+        if (!isEmpty)
+        {
+            data.CurrTimer++;
+            return true;
         }
         return false;
     }

@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shock : CardData
+public class Quickdraw : CardData
 {
-    public Shock()
+    public Quickdraw()
     {
-        cardData = new UICardData("Shock", cost: 2, "Stagger target", UICardData.CardType.SPELL);
-        cost = 2;
-        target = Target.ENEMY;
+        cardData = new UICardData("Quickdraw", cost: 1, "Discard hand, draw 3", UICardData.CardType.SPELL);
+        cost = 1;
+        target = Target.BOARD;
     }
 
     public override void Action(EnemyManager[] enemys)
     {
-        enemys[0].Stagger();
+        GameObject.Find("Deck").GetComponent<DeckManager>().DiscardHand();
+        draw();
+        draw();
+        draw();
     }
     public override void Action(CardData[] cards)
     {
@@ -29,4 +32,3 @@ public class Shock : CardData
         throw new System.NotImplementedException();
     }
 }
-

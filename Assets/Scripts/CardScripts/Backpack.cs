@@ -2,22 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Energize : CardData
+public class Backpack : CardData
 {
-    public Energize()
+    public Backpack()
     {
-        cardData = new UICardData("Energize", cost: 0, "Gain 1 Energy", UICardData.CardType.SPELL);
+        cardData = new UICardData("Backpack", cost: 0, "Draw 2 Discard 2", UICardData.CardType.SPELL);
         cost = 0;
         target = Target.BOARD;
     }
 
     public override void Action(EnemyManager[] enemys)
     {
-        addEnergy(1);
+        draw();
+        draw();
+        selectCard(2);
     }
     public override void Action(CardData[] cards)
     {
 
+      
     }
     public override void Action(CardData[] cards, EnemyManager[] enemys)
     {
@@ -26,6 +29,11 @@ public class Energize : CardData
 
     public override int SecondAction(CardManager card)
     {
-        throw new System.NotImplementedException();
+        card.discard();
+        if (checkNumberOfCardsInHand() == 0)
+        {
+            return 10;
+        }
+        return 1;
     }
 }
