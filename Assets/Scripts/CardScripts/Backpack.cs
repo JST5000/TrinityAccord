@@ -32,8 +32,8 @@ public class Backpack : CardData
         card.discard();
         if (checkNumberOfCardsInHand() == 0)
         {
-            return 10;
+            return 10;//Exits card select mode if there arent enough cards in hand
         }
-        return 1;
+        return 1;//Standard decrement is one if there are still cards to select
     }
 }
