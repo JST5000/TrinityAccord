@@ -2343,6 +2343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e798e10a6aefa9842bf8022ef7da7171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allEnemyManagers: []
   enemyCount: 0
   Choose3Menu: {fileID: 3385944392895627964, guid: 888d9bb2de2652942ac9037279264ab5,
     type: 3}
@@ -3741,6 +3742,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   label: {fileID: 1537162089}
+  cardsPlayed: 0
+  attacksPlayed: 0
 --- !u!114 &1766028719
 MonoBehaviour:
   m_ObjectHideFlags: 0

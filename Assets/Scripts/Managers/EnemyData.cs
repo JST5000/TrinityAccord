@@ -13,6 +13,7 @@ public class EnemyData
     private int currTimer;
     private string effect;
     private Sprite picture;
+    private string spriteName;
 
     public string EnemyName { get => enemyName; set => enemyName = value; }
     public int MaxHP { get => maxHP; set => maxHP = value; }
@@ -23,6 +24,7 @@ public class EnemyData
     public int CurrTimer { get => currTimer; set => currTimer = value; }
     public string Effect { get => effect; set => effect = value; }
     public Sprite Picture { get => picture; set => picture = value; }
+    public string SpriteName { get => spriteName; set => spriteName = value; }
 
     public EnemyData(string name, int maxHP, int staggers, int damage, int timer, string effect, string spriteName)
     {
@@ -36,6 +38,12 @@ public class EnemyData
         this.effect = effect;
         string folderName = "Enemy_Sprites/";
         this.picture = Resources.Load<Sprite>(folderName + spriteName);
+        this.spriteName = spriteName;
+    }
+
+    public static EnemyData Copy(EnemyData data)
+    {
+        return new EnemyData(name: data.EnemyName, maxHP: data.MaxHP, staggers: data.Staggers, damage: data.Damage, timer: data.MaxTimer, effect: data.Effect, spriteName: data.SpriteName);
     }
 
     public UIEnemyData GetUIData()
