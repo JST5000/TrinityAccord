@@ -39,7 +39,7 @@ public class EncounterInterpreter : MonoBehaviour
         return enemies.ToArray();
     }
 
-    public static EnemyData Interpret(string enemyName)
+    public static EnemyData InterpretWord(string enemyName)
     {
         if (nameToEnemy == null)
         {
@@ -56,7 +56,7 @@ public class EncounterInterpreter : MonoBehaviour
         {
             try
             {
-                Debug.Log(Interpret(name).EnemyName);
+                Debug.Log(InterpretWord(name).EnemyName);
 
             }
             catch (KeyNotFoundException e)
@@ -64,6 +64,27 @@ public class EncounterInterpreter : MonoBehaviour
                 Debug.Log("Did not find Key '" + name + "'");
             }
         }
+    }
+    
+    //Throws KeyNotFoundException if input is invalid. 
+    public static EnemyData[] InterpretText(string input)
+    {
+        Debug.Log("Text being interpretted: " + input);
+        string[] separator = { ", " };
+        string[] split = input.Split(separator, System.StringSplitOptions.RemoveEmptyEntries);
+        List<EnemyData> encounter = new List<EnemyData>();
+        foreach (string enemyName in split)
+        {
+            for(int i = 0; i < enemyName.Length; ++i)
+            {
+                Debug.Log(enemyName[i]);
+            }
+            Debug.Log("Split Text: " + enemyName);
+            EnemyData result = InterpretWord(enemyName.Trim());
+            Debug.Log("Enemy Interpretted: " + result.EnemyName);
+            encounter.Add(result);
+        }
+        return encounter.ToArray();
     }
 
     // Start is called before the first frame update

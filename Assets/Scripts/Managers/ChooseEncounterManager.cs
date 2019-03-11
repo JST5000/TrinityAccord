@@ -31,20 +31,18 @@ public class ChooseEncounterManager : MonoBehaviour
 
     public void EnterCustomFight(TextMeshProUGUI inputField)
     {
-        string input = inputField.text;
-        if (Validate(input))
+        string input = inputField.text.Substring(0, inputField.text.Length - 1);
+        try
         {
+            selectedEncounter = EncounterInterpreter.InterpretText(input);
             confirm.interactable = true;
-        } else
+            errorMessage.text = "";
+        }
+        catch (KeyNotFoundException)            
         {
+            confirm.interactable = false;
             errorMessage.text = "Error: Given text does not form a valid encounter";
         }
-    }
-
-    //TODO validate the input is a valid encounter string.
-    private bool Validate(string input)
-    {
-        return false;
     }
 
     public void ConfirmSelectedEncounter()
