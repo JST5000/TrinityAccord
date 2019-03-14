@@ -76,7 +76,6 @@ public class PermanentState : MonoBehaviour
 
     public static void SetNextEncounter(EnemyData[] next)
     {
-        Debug.Log(next[0]);
         nextEncounter = next;
     }
 

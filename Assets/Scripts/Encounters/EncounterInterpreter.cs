@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 //using CsvHelper;
 using System.IO;
+using System.Text.RegularExpressions;
 
-public class EncounterInterpreter : MonoBehaviour
+public class EncounterInterpreter
 {
 
     public static string[] AllNames;
@@ -78,11 +79,12 @@ public class EncounterInterpreter : MonoBehaviour
         List<EnemyData> encounter = new List<EnemyData>();
         foreach (string enemyName in split)
         {
-            for(int i = 0; i < enemyName.Length; ++i)
+            /* Useful debug info
+             * for(int i = 0; i < enemyName.Length; ++i)
             {
                 Debug.Log(enemyName[i]);
-            }
-            Debug.Log("Split Text: " + enemyName);
+            } */
+            //Debug.Log("Split Text: " + enemyName);
             EnemyData result = InterpretWord(enemyName.Trim());
             Debug.Log("Enemy Interpretted: " + result.EnemyName);
             encounter.Add(result);
@@ -90,24 +92,56 @@ public class EncounterInterpreter : MonoBehaviour
         return encounter.ToArray();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public static List<EncounterData> ReadInEncounters()
     {
-       /* string csvFilePath = "Assets\\Resources\\Data\\Encounters.csv";
-        using (var textReader = new StreamReader(csvFilePath))
-        using (var reader = new CsvReader(textReader))
+        string csvFilePath = "Data\\Encounters";
+        TextAsset encounterData = Resources.Load<TextAsset>(csvFilePath);
+
+        string[] data = encounterData.text.Split(new char[] { '\n' });
+
+        List<EncounterData> encounters = new List<EncounterData>();
+
+        //Starts from 1 since the first row is headers which are not used in this implementation
+        for (int i = 1; i < data.Length; ++i)
         {
-            var data = reader.GetRecords<EncounterData>();
-            foreach( var item in data )
+            string[] row = Regex.Split(data[i], "," + "(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))");// data[i].Split(new char[] { });
+            if (row.Length <= 1) { continue; } //No data, empty newline
+            EncounterData encounter = new EncounterData();
+            if (row.Length != encounter.GetType().GetProperties().Length)
             {
-                Debug.Log(item.Encounter);
+                Debug.LogError("Some data is missing on load in " + csvFilePath + ". This likely means a new column was added that is not being interpreted!");
             }
-        } */
+
+            int intData = 0;
+            int.TryParse(row[0], out intData);
+            encounter.Level = intData;
+
+            int difficulty = 0;
+            int.TryParse(row[1], out difficulty);
+            encounter.Difficulty = difficulty;
+
+            encounter.Damage = TrimQuotes(row[2].Trim());
+            encounter.Encounter = TrimQuotes(row[3].Trim());
+
+
+            encounters.Add(encounter);
+        }
+        return encounters;
     }
 
-    // Update is called once per frame
-    void Update()
+    public static string TrimQuotes(string input)
     {
-        
+        int start = 0;
+        int length = input.Length;
+        if (input.Length != 0 && input[0] == '"')
+        {
+            start++;
+            length--;
+        }
+        if(input.Length >= 2 && input[input.Length - 1] == '"')
+        {
+            length--;
+        }
+        return input.Substring(start, length);
     }
 }

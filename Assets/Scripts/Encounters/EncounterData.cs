@@ -16,4 +16,12 @@ public class EncounterData
     public int Difficulty { get => difficulty; set => difficulty = value; }
     public string Damage { get => damage; set => damage = value; }
     public string Encounter { get => encounter; set => encounter = value; }
+
+    public void DebugAll()
+    {
+        Debug.Log(Level);
+        Debug.Log(Difficulty);
+        Debug.Log(Damage);
+        Debug.Log(Encounter);
+    }
 }

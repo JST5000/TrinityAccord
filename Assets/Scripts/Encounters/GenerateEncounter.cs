@@ -1,0 +1,108 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public enum Level { TUTORIAL, ONE, TWO, THREE, FOUR, BOSS };
+
+public static class GenerateEncounter
+{
+    private static bool initialized = false;
+    private static List<EncounterData> tutorial = new List<EncounterData>();
+    private static List<EncounterData> one = new List<EncounterData>();
+    private static List<EncounterData> two = new List<EncounterData>();
+    private static List<EncounterData> three = new List<EncounterData>();
+    private static List<EncounterData> four = new List<EncounterData>();
+    private static List<EncounterData> boss = new List<EncounterData>();
+
+    public static void InitEncounterLists()
+    {
+        if (!initialized)
+        {
+            List<EncounterData> encounters = EncounterInterpreter.ReadInEncounters();
+            foreach (EncounterData enc in encounters)
+            {
+                switch (enc.Level)
+                {
+                    case 0:
+                        tutorial.Add(enc);
+                        break;
+                    case 1:
+                        one.Add(enc);
+                        break;
+                    case 2:
+                        two.Add(enc);
+                        break;
+                    case 3:
+                        three.Add(enc);
+                        break;
+                    case 4:
+                        four.Add(enc);
+                        break;
+                    case 5:
+                        boss.Add(enc);
+                        break;
+                    default:
+                        Debug.LogError("No encounter list for level: " + enc.Level);
+                        break;
+                }
+            }
+            initialized = true;
+        }
+    }
+
+    private static T GetRandom<T>(List<T> list)
+    {
+        return list[Random.Range(0, list.Count)];
+    }
+
+
+    public static EnemyData[] RerollUntilValid(List<EncounterData> pool)
+    {
+        int max = 100;
+        for (int i = 0; i < max; ++i) {
+            try
+            {
+                EnemyData[] chosenEncounter = EncounterInterpreter.InterpretText(GetRandom(pool).Encounter);
+                return chosenEncounter;
+            } catch(KeyNotFoundException e)
+            {
+                //Invalid encounter, try again
+            }
+        }
+        throw new KeyNotFoundException("Unable to find a valid encounter in " + max + " attempts.");
+    }
+
+    public static EnemyData[] GetEncounter(Level level)
+    {
+        if (!initialized)
+        {
+            InitEncounterLists();
+        }
+        if (level == Level.TUTORIAL)
+        {
+            return RerollUntilValid(tutorial);
+        }
+        else if (level == Level.ONE)
+        {
+            return RerollUntilValid(one);
+        }
+        else if (level == Level.TWO)
+        {
+            return RerollUntilValid(two);
+        }
+        else if (level == Level.THREE)
+        {
+            return RerollUntilValid(three);
+        }
+        else if (level == Level.FOUR)
+        {
+            return RerollUntilValid(four);
+        }
+        else if (level == Level.BOSS)
+        {
+            return RerollUntilValid(boss);
+        }
+
+        throw new System.Exception("Unable to generate an encounter for this level " + level);
+    }
+}
