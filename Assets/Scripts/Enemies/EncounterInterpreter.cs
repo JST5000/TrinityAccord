@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using CsvHelper;
+using System.IO;
 
 public class EncounterInterpreter : MonoBehaviour
 {
@@ -69,6 +71,7 @@ public class EncounterInterpreter : MonoBehaviour
     //Throws KeyNotFoundException if input is invalid. 
     public static EnemyData[] InterpretText(string input)
     {
+        
         Debug.Log("Text being interpretted: " + input);
         string[] separator = { ", " };
         string[] split = input.Split(separator, System.StringSplitOptions.RemoveEmptyEntries);
@@ -90,7 +93,16 @@ public class EncounterInterpreter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+       /* string csvFilePath = "Assets\\Resources\\Data\\Encounters.csv";
+        using (var textReader = new StreamReader(csvFilePath))
+        using (var reader = new CsvReader(textReader))
+        {
+            var data = reader.GetRecords<EncounterData>();
+            foreach( var item in data )
+            {
+                Debug.Log(item.Encounter);
+            }
+        } */
     }
 
     // Update is called once per frame
