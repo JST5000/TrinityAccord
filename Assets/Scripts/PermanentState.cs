@@ -50,12 +50,12 @@ public class PermanentState : MonoBehaviour
     {
         List<CardData> deck = new List<CardData>();
         deck.Add(new Dagger());
+        deck.Add(new Clone());
+        deck.Add(new Wand());
         deck.Add(new Dagger());
-        deck.Add(new Dagger());
-        deck.Add(new Dagger());
+        deck.Add(new Clone());
+        deck.Add(new Duplicate());
         deck.Add(new Sword());
-        deck.Add(new Sword());
-        deck.Add(new Tide());
         deck.Add(new Energize());
         //Added to see variety, should replace with Energize + class card - Jackson
         return deck;

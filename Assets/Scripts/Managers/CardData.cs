@@ -10,9 +10,11 @@ public abstract class CardData
 
     //Target are for determining which user input is required. Ex. Tell the card which enemy is targeted.
     public  Target target;
+    public GameObject selectedTarget;
     public string cardName;
     public int cost;
     public bool fragile = false;
+    public bool duplicated = false;
     public abstract void Action(EnemyManager[] enemys);
     public abstract void Action(CardData[] cards);
     public abstract void Action(CardData[] cards, EnemyManager[] enemys);
@@ -37,7 +39,7 @@ public abstract class CardData
     }
     public string getName()
     {
-        return cardName;
+        return cardData.cardName;
     }
     public Target getTarget()
     {
@@ -47,11 +49,20 @@ public abstract class CardData
     {
         return cost;
     }
+    public UICardData.CardType getType()
+    {
+        return cardData.cardType;
+    }
 
     protected CardData draw()
     {
         DeckManager deck = GameObject.Find("Deck").GetComponent<DeckManager>();
         return deck.DrawCard();
+    }
+    protected CardData grabTop()
+    {
+        DeckManager deck = GameObject.Find("Deck").GetComponent<DeckManager>();
+        return deck.grabTop();
     }
     protected bool encounterActive()
     {
@@ -100,4 +111,30 @@ public abstract class CardData
     {
         return GameObject.Find("Board").GetComponent<EncounterManager>().allEnemyManagers;
     }
+    protected void playCardSameTarget(CardData card)
+    {
+        if (card.target.Equals(Target.ENEMY))
+        {
+            card.selectedTarget = this.selectedTarget;
+        }
+        else if (card.target.Equals(Target.CARD))
+        {
+            card.selectedTarget=GameObject.Find("Deck").GetComponent<DeckManager>().getRandomCardTarget();
+        }
+        else
+        {
+            card.selectedTarget = GameObject.Find("Board");
+        }
+        GameObject.Find("StackHolder").GetComponent<StackManager>().Push(card);
+    }
+    protected void addCardToDiscard(CardData card)
+    {
+        GameObject.Find("Deck").GetComponent<DeckManager>().AddToDiscard(card);
+    }
+    /*
+    protected Choose3Manager GetChoose3Manager()
+    {
+        return GameObject.Find
+    }
+    */
 }

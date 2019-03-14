@@ -104,12 +104,8 @@ public class UIManager : MonoBehaviour
         Debug.Log("Clicked an Enemy named: " + clicked.name);
         if (GetCurrentMode().Equals(GameMode.PickTarget) && requiredInput.Equals(Target.ENEMY))
         {
-            
+            selectedCard.GetCardData().selectedTarget = clicked;
             PlayCard();
-            //Triggers effect
-            EnemyManager[] enemyMans = { clicked.GetComponent<EnemyManager>() };
-            selectedCard.Action(enemyMans);
-
             updateHitboxWithStatus(Status.USED, clicked);
         }
         else
@@ -117,6 +113,18 @@ public class UIManager : MonoBehaviour
             updateHitboxWithStatus(Status.UNUSED, clicked);
 
         }
+    }
+    public void clickBoard(GameObject clicked)
+    {
+        Debug.Log("Clicked the Board");
+        if (GetCurrentMode().Equals(GameMode.PickTarget) && (requiredInput.Equals(Target.ALL_ENEMIES) || requiredInput.Equals(Target.BOARD)))
+        {
+            selectedCard.GetCardData().selectedTarget = clicked;
+            PlayCard();
+            //Triggers the card effect
+            
+        }
+        updateHitboxWithStatus(Status.UNUSED, clicked);
     }
 
     public void clickCardInHand(GameObject clicked)
@@ -133,8 +141,8 @@ public class UIManager : MonoBehaviour
                 CardData[] card = { clicked.GetComponent<CardManager>().GetCardData() };
                 if (!card[0].Equals(selectedCard.GetCardData()))
                 {
+                    selectedCard.GetCardData().selectedTarget = clicked;
                     PlayCard();
-                    selectedCard.Action(card);
                 }
             }
             else
@@ -173,7 +181,7 @@ public class UIManager : MonoBehaviour
         
         //Put the card on the stack
         StackManager playStack = GameObject.Find("StackHolder").GetComponent<StackManager>();
-        playStack.Push(selectedCard);
+        playStack.Push(selectedCard.GetCardData());
         
         //Remove the card from the hand 
         selectedCard.SetEmpty();
@@ -225,16 +233,5 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void clickBoard(GameObject clicked)
-    { 
-        Debug.Log("Clicked the Board");
-        if(GetCurrentMode().Equals(GameMode.PickTarget) && (requiredInput.Equals(Target.ALL_ENEMIES)|| requiredInput.Equals(Target.BOARD)))
-        {
-            PlayCard();
-            //Triggers the card effect
-            EnemyManager[] allEnemies = clicked.GetComponentsInChildren<EnemyManager>();
-            selectedCard.Action(allEnemies);
-        }
-        updateHitboxWithStatus(Status.UNUSED, clicked);
-    }
+
 }

@@ -68,7 +68,29 @@ public class DeckManager : MonoBehaviour
     }
     public CardData getTop()
     {
-        return deck[0];
+        if (deck.Count == 0)
+        {
+            ShuffleDiscardIntoDeck();
+        }
+        if (deck.Count != 0)
+        {
+            return deck[0];
+        }
+        return null;
+    }
+    public CardData grabTop()
+    {
+        if (deck.Count == 0)
+        {
+            ShuffleDiscardIntoDeck();
+        }
+        if (deck.Count != 0)
+        {
+            CardData toReturn = deck[0];
+            deck.RemoveAt(0);
+            return toReturn;
+        }
+        return null;
     }
     public void discardTop()
     {
@@ -154,6 +176,13 @@ public class DeckManager : MonoBehaviour
         {
             Debug.Log(card);
         }
+    }
+    public GameObject getRandomCardTarget()
+    {
+        System.Random r = new System.Random();
+        return hand[r.Next(0, hand.Length)].transform.gameObject;
+
+
     }
 
     

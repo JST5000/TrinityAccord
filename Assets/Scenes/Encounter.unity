@@ -3744,6 +3744,7 @@ MonoBehaviour:
   label: {fileID: 1537162089}
   cardsPlayed: 0
   attacksPlayed: 0
+  duplicate: 0
 --- !u!114 &1766028719
 MonoBehaviour:
   m_ObjectHideFlags: 0

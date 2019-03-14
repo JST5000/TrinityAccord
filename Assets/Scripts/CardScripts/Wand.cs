@@ -14,6 +14,17 @@ public class Wand : CardData
     public override void Action(EnemyManager[] enemys)
     {
         enemys[0].Damage(2);
+        CardData top=grabTop();
+        
+        if (top.getType().Equals(UICardData.CardType.SPELL))
+        {
+            Debug.Log("Name of wanded card is: " + top.getName());
+            playCardSameTarget(top);
+        }
+        else
+        {
+            addCardToDiscard(top);
+        }
     }
     public override void Action(CardData[] cards)
     {

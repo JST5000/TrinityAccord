@@ -11,9 +11,10 @@ public class StackManager : MonoBehaviour
     private CardManager displayedCardData;
     private CardUIUpdater displayedCard;
     private float currTime = 0;
-    private float timePerCard = .5f;
+    private float timePerCard = 1f;
     public int cardsPlayed = 0;
     public int attacksPlayed = 0;
+    public int duplicate = 0;
 
     void Start()
     {
@@ -54,17 +55,39 @@ public class StackManager : MonoBehaviour
         return playedCards.Count == 0;
     }
 
-    public void Push(CardManager justPlayed)
+    public void Push(CardData justPlayed)
     {
-        UpdateCounts(justPlayed.GetCardData());
+        UpdateCounts(justPlayed);
         currTime = 0;
-        playedCards.Push(justPlayed.GetCardData());
+        playedCards.Push(justPlayed);
         UpdateUI();
     }
 
     public CardData Pop()
     {
         CardData top = playedCards.Pop();
+        if (duplicate > 0&&!top.duplicated) //&& top.GetType().Equals(UICardData.CardType.SPELL))
+        {
+            Debug.Log("Duplicate active");
+            top.fragile = true;
+            top.duplicated = true;
+            Push(top);
+            duplicate--;
+        }
+        top.duplicated = false;
+        if (top.getTarget().Equals(Target.CARD))
+        {
+            CardData[] targetCard = { top.selectedTarget.GetComponent<CardManager>().GetCardData() };
+            top.Action(targetCard);
+        }else if (top.getTarget().Equals(Target.ENEMY))
+        {
+            EnemyManager[] targetEnemy = { top.selectedTarget.GetComponent<EnemyManager>() };
+            top.Action(targetEnemy);
+        }else if(top.getTarget().Equals(Target.BOARD)|| top.getTarget().Equals(Target.ALL_ENEMIES))
+        {
+            EnemyManager[] allEnemies = top.selectedTarget.GetComponentsInChildren<EnemyManager>();
+            top.Action(allEnemies);
+        }
         if (!top.fragile)
         {
             GameObject.Find("Deck").GetComponent<DeckManager>().AddToDiscard(top);
@@ -96,5 +119,6 @@ public class StackManager : MonoBehaviour
     {
         cardsPlayed = 0;
         attacksPlayed = 0;
+        duplicate = 0;
     }
 }
