@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyData
+public abstract class EnemyData
 {
     private string enemyName;
     private int maxHP;
@@ -41,10 +41,8 @@ public class EnemyData
         this.spriteName = spriteName;
     }
 
-    public static EnemyData Copy(EnemyData data)
-    {
-        return new EnemyData(name: data.EnemyName, maxHP: data.MaxHP, staggers: data.Staggers, damage: data.Damage, timer: data.MaxTimer, effect: data.Effect, spriteName: data.SpriteName);
-    }
+    //Creates a new EnemyData of the same type (Does NOT copy fields)
+    public abstract EnemyData Copy();
 
     public UIEnemyData GetUIData()
     {

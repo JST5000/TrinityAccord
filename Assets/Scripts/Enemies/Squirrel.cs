@@ -13,8 +13,8 @@ public class Squirrel : EnemyData
         GameObject.Find("Deck").GetComponent<DeckManager>().AddDrawNextTurn();
     }
 
-    override
-    protected void AttackUniqueEffect()
+    public override EnemyData Copy()
     {
+        return new Squirrel();
     }
 }

@@ -28,4 +28,9 @@ public class Rhino : EnemyData
             return InLineIcon.DAMAGE + ": 5 Last Stand: " + InLineIcon.DAMAGE + " 2";
         }
     }
+
+    public override EnemyData Copy()
+    {
+        return new Rhino();
+    }
 }

@@ -7,11 +7,6 @@ public class Boar : EnemyData
     public Boar() : base(name: "Boar", maxHP: 6, staggers: 2, damage: 2, timer: 2, effect: GetBoarEffect(false), spriteName: "Boar")
     { }
 
-    override
-    protected void AttackUniqueEffect()
-    {
-    }
-
     protected override void OnLastLife()
     {
         //Double damage
@@ -29,6 +24,11 @@ public class Boar : EnemyData
         {
             return InLineIcon.DAMAGE + ": 2 Last Stand: " + InLineIcon.DAMAGE + ": 4";
         }
+    }
+
+    public override EnemyData Copy()
+    {
+        return new Boar();
     }
 
 }

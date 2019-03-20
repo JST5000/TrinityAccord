@@ -13,4 +13,9 @@ public class Squid : EnemyData
         Player player = GameObject.Find("Player").GetComponent<Player>();
         player.Blind(1);
     }
+
+    public override EnemyData Copy()
+    {
+        return new Squid();
+    }
 }

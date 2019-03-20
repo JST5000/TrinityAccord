@@ -34,6 +34,7 @@ public class EncounterInterpreter
         enemies.Add(new Squirrel());
         enemies.Add(new Swordman());
         enemies.Add(new Squid());
+        enemies.Add(new Turtle());
         return enemies.ToArray();
     }
 
@@ -43,7 +44,8 @@ public class EncounterInterpreter
         {
             nameToEnemy = GetNameDictionary(GetAllEnemies());
         }
-        return EnemyData.Copy(nameToEnemy[enemyName]);
+       
+        return nameToEnemy[enemyName].Copy();
     }
 
     private static void TestInterpret()
