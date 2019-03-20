@@ -10,9 +10,12 @@ public class Player : MonoBehaviour
     public int defaultEnergy = 3;
     public int defaultHealth = 10;
 
+    private int blindDuration = 0;
+
     private int currEnergy;
     private int maxHealth;
     private int currHealth;
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +28,10 @@ public class Player : MonoBehaviour
     public void EndTurn()
     {
         ResetEnergy();
+        if (blindDuration > 0)
+        {
+            blindDuration--;
+        }
     }
 
     public void ResetEnergy()
@@ -76,6 +83,16 @@ public class Player : MonoBehaviour
     {
         maxHealth = max;
         UpdateHealthUI();
+    }
+
+    public void Blind(int duration)
+    {
+        blindDuration = Mathf.Max(blindDuration, duration);
+    }
+
+    public bool IsBlind()
+    {
+        return blindDuration > 0;
     }
 
     private void UpdateHealthUI()

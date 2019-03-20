@@ -33,12 +33,7 @@ public class EncounterInterpreter
         enemies.Add(new Spirit());
         enemies.Add(new Squirrel());
         enemies.Add(new Swordman());
-        /*enemies.Add(new Axe());
-        enemies.Add(new Axe());
-        enemies.Add(new Axe());
-        enemies.Add(new Axe());
-        enemies.Add(new Axe());
-        enemies.Add(new Axe()); */
+        enemies.Add(new Squid());
         return enemies.ToArray();
     }
 
