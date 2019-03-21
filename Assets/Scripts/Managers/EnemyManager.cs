@@ -12,39 +12,23 @@ public class EnemyManager : MonoBehaviour
         data = enemyData;
         isEmpty = false;
     }
+
+    //Returns true if successfully dealt damage, false if it did not damage anything
     public bool Damage(int damage)
     {
         //AOEs may hit all without checking, so this prevents nulls
         if (!isEmpty)
         {
-            int currDamage = damage;
-            while (data.CurrHP > 0 && currDamage > 0)
+            bool isDead = data.DealDamage(damage);
+            if (isDead)
             {
-                currDamage--;
-                data.CurrHP--;
-            }
-            if (data.CurrHP == 0)
-            {
-                data.CurrTimer = data.MaxTimer + 1;
-                data.CurrHP = data.MaxHP;
-                data.Staggers--;
-                if (data.Staggers != 0)
-                {
-                    Damage(currDamage);
-                }
-                else
-                {
-                    Debug.Log(data.EnemyName + " was killed.");
-                    Die();
-                }
+                Die();
             }
             return true;
         }
-        else
-        {
-            return false;
-        }
+        return false;
     }
+
     public bool Stagger()
     {
         if (!isEmpty)
@@ -78,7 +62,12 @@ public class EnemyManager : MonoBehaviour
 
     private void Attack()
     {
-        data.Attack();      
+        data.Attack();
+        //Returns true if dead
+        if(data.SelfHarm())
+        {
+            Die();
+        }
     }
     private void Die()
     {

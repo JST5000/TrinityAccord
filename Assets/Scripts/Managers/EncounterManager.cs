@@ -39,8 +39,17 @@ public class EncounterManager : MonoBehaviour
 
     public void EndTurn()
     {
-        foreach(EnemyManager enemyMan in allEnemyManagers) {
-            enemyMan.EndTurn();
+        List<EnemyManager> validEnemies = new List<EnemyManager>();
+        //Only end turn for legitimate enemies (Prevents spawns from getting a "Free" turn on spawn)
+        foreach (EnemyManager enemyMan in allEnemyManagers) {
+            if (!enemyMan.IsEmpty())
+            {
+                validEnemies.Add(enemyMan);
+            }
+        }
+        foreach (EnemyManager validEnemy in validEnemies)
+        {
+            validEnemy.EndTurn();
         }
     }
 

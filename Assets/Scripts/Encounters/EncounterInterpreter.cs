@@ -35,6 +35,10 @@ public class EncounterInterpreter
         enemies.Add(new Swordman());
         enemies.Add(new Squid());
         enemies.Add(new Turtle());
+        enemies.Add(new Knight());
+        enemies.Add(new Hive());
+        enemies.Add(new Wasp());
+        enemies.Add(new Tiger());
         return enemies.ToArray();
     }
 

@@ -19,7 +19,7 @@ public abstract class EnemyData
     public int MaxHP { get => maxHP; set => maxHP = value; }
     public int CurrHP { get => currHP; set => currHP = value; }
     public int Staggers { get => staggers; set => SetStaggers(value); }
-    public int Damage { get => damage; set => damage = value; }
+    protected int Damage { get => damage; set => damage = value; }
     public int MaxTimer { get => maxTimer; set => maxTimer = value; }
     public int CurrTimer { get => currTimer; set => currTimer = value; }
     public string Effect { get => effect; set => effect = value; }
@@ -71,6 +71,52 @@ public abstract class EnemyData
         }
         staggers = value;
     }
+
+    public virtual int GetModifiedDamageOnEachHit(int damage)
+    {
+        return damage; //By default no change
+    }
+
+    //Wrapper for body to allow for damage reduction effects
+    //Returns true if the enemy has died
+    public bool DealDamage(int damage)
+    {
+        int modifiedDamage = GetModifiedDamageOnEachHit(damage);
+        return DamageRecursive(modifiedDamage);
+    }
+
+    //Returns true 
+    public bool DamageRecursive(int damage)
+    {
+        int currDamage = damage;
+        while (CurrHP > 0 && currDamage > 0)
+        {
+            currDamage--;
+            CurrHP--;
+        }
+        if (CurrHP == 0)
+        {
+            //Must drop staggers first for onStagger effects to activate (Ex. Tiger -> Timer increase)
+            Staggers--;
+
+            CurrTimer = MaxTimer + 1;
+            CurrHP = MaxHP;
+            if (Staggers != 0)
+            {
+                DamageRecursive(currDamage);
+            }
+            else
+            {
+                Debug.Log(EnemyName + " was killed.");
+                return true;
+            }
+        }
+        //Did not die
+        return false;
+        
+    }
+
+    public virtual bool SelfHarm() { return false; }
     protected virtual void OnLossOfLife() { }
     protected virtual void OnLastLife() { }
 

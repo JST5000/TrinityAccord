@@ -46,7 +46,8 @@ public class PermanentState : MonoBehaviour
         }
     }
 
-    private List<CardData> GetBaseDeck()
+    //For experimental builds
+    private List<CardData> GetExperimentalDeck()
     {
         List<CardData> deck = new List<CardData>();
         deck.Add(new Clone());
@@ -55,7 +56,20 @@ public class PermanentState : MonoBehaviour
         deck.Add(new Duplicate());
         deck.Add(new Wand());
         deck.Add(new Clone());
-        //Added to see variety, should replace with Energize + class card - Jackson
+        return deck;
+    }
+
+    private List<CardData> GetBaseDeck()
+    {
+        List<CardData> deck = new List<CardData>();
+        deck.Add(new Sword());
+        deck.Add(new Sword());
+        deck.Add(new Dagger());
+        deck.Add(new Dagger());
+        deck.Add(new Dagger());
+        deck.Add(new Dagger());
+        deck.Add(new Energize());
+        deck.Add(new Lightning());
         return deck;
     }
 
