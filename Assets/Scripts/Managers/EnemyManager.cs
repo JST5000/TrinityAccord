@@ -25,7 +25,7 @@ public class EnemyManager : MonoBehaviour
                 Die();
             }
             return true;
-        }
+        }  
         return false;
     }
 

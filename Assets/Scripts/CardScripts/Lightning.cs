@@ -19,17 +19,7 @@ public class Lightning : CardData
     {
         for (int i = 0; i < 3;)
         {
-            if(enemies[Random.Range(0, enemies.Length)].Damage(3))
-            {
-                i++;
-            }
-            if (!encounterActive())
-            {
-                return;
-            }
-            
-            
-
+            damageRandom(3);
         }
         //TODO requery for enemies after each hit, incase someone dies and you need to recalculate.
         //A new enemy may be spawned/removed based on a non-lightning effect so we cannot deduce from our set the new set of targets.

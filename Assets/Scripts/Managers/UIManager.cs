@@ -104,6 +104,7 @@ public class UIManager : MonoBehaviour
         Debug.Log("Clicked an Enemy named: " + clicked.name);
         if (GetCurrentMode().Equals(GameMode.PickTarget) && requiredInput.Equals(Target.ENEMY))
         {
+     
             selectedCard.GetCardData().selectedTarget = clicked;
             PlayCard();
             updateHitboxWithStatus(Status.USED, clicked);

@@ -69,7 +69,7 @@ public class PermanentState : MonoBehaviour
         deck.Add(new Dagger());
         deck.Add(new Dagger());
         deck.Add(new Energize());
-        deck.Add(new Lightning());
+        deck.Add(new Claws());
         return deck;
     }
 

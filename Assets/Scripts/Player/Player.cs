@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     private int currEnergy;
     private int maxHealth;
     private int currHealth;
+    private int bonusEnergy;
 
 
     // Start is called before the first frame update
@@ -36,10 +37,14 @@ public class Player : MonoBehaviour
 
     public void ResetEnergy()
     {
-        currEnergy = defaultEnergy;
+        currEnergy = defaultEnergy+bonusEnergy;
+        bonusEnergy = 0;
         UpdateEnergyUI();
     }
-
+    public void addBonusEnergy(int amount)
+    {
+        bonusEnergy += amount;
+    }
     public int GetEnergy()
     {
         return currEnergy;

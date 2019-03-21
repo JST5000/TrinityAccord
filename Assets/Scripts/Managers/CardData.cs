@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
@@ -31,7 +30,7 @@ public abstract class CardData
     }
 
     //Default implementation. For cards that need further checks, override this function.
-    public bool IsPlayableAdditionalRequirements()
+    public virtual bool IsPlayableAdditionalRequirements()
     {
         return true;
     }
@@ -61,7 +60,17 @@ public abstract class CardData
     {
         return cardData.cardType;
     }
-
+    protected void damageRandom(int amount)
+    {
+        EnemyManager[] enemies = GameObject.Find("Board").GetComponent<EncounterManager>().allEnemyManagers;
+        while (!enemies[Random.Range(0, enemies.Length)].Damage(amount))
+        {
+            if (!encounterActive())
+            {
+                return;
+            }
+        }
+    }
     protected CardData draw()
     {
         DeckManager deck = GameObject.Find("Deck").GetComponent<DeckManager>();
@@ -86,6 +95,10 @@ public abstract class CardData
     protected void addEnergy(int amount)
     {
         GameObject.Find("Player").GetComponent<Player>().AddEnergy(amount);
+    }
+    protected void addEnergyNextTurn(int amount)
+    {
+        GameObject.Find("Player").GetComponent<Player>().addBonusEnergy(amount);
     }
     protected void selectCard(int amount)
     {
@@ -114,6 +127,14 @@ public abstract class CardData
             }
         }
         return null;
+    }
+    protected CardManager[] getHand()
+    {
+        return GameObject.Find("Deck").GetComponent<DeckManager>().hand;
+    }
+    protected DeckManager getDeckManager()
+    {
+        return GameObject.Find("Deck").GetComponent<DeckManager>();
     }
     protected EnemyManager[] getEnemyManagers()
     {
