@@ -69,9 +69,11 @@ public class StackManager : MonoBehaviour
         if (duplicate > 0&&!top.duplicated) //&& top.GetType().Equals(UICardData.CardType.SPELL))
         {
             Debug.Log("Duplicate active");
+            DeckManager deck = GameObject.Find("Deck").GetComponent<DeckManager>();
+            CardData copy = deck.Clone(top);
             top.fragile = true;
             top.duplicated = true;
-            Push(top);
+            Push(copy);
             duplicate--;
         }
         top.duplicated = false;

@@ -15,7 +15,10 @@ public class Wand : CardData
     {
         enemys[0].Damage(2);
         CardData top=grabTop();
-        
+        if (top.Equals(null))
+        {
+            return;
+        }
         if (top.getType().Equals(UICardData.CardType.SPELL))
         {
             Debug.Log("Name of wanded card is: " + top.getName());

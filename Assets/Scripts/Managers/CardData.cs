@@ -1,5 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
+using System.Reflection;
+using System.Text;
 using UnityEngine;
 //public enum Target {Enemies,board}
 //REPLACED with Target enum
@@ -36,6 +39,11 @@ public abstract class CardData
     public UICardData GetUICardData()
     {
         return cardData;
+    }
+    public CardData Clone(CardData card)
+    {
+        DeckManager deck = GameObject.Find("Deck").GetComponent<DeckManager>();
+        return deck.Clone(card);
     }
     public string getName()
     {
