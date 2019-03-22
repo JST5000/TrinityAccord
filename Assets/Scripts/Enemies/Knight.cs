@@ -13,8 +13,4 @@ public class Knight : EnemyData
         return Mathf.Min(1, damage);
     }
 
-    public override EnemyData Copy()
-    {
-        return new Knight();
-    }
 }

@@ -49,7 +49,7 @@ public class EncounterInterpreter
             nameToEnemy = GetNameDictionary(GetAllEnemies());
         }
        
-        return nameToEnemy[enemyName].Copy();
+        return nameToEnemy[enemyName].Clone();
     }
 
     private static void TestInterpret()

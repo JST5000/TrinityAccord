@@ -70,7 +70,7 @@ public class StackManager : MonoBehaviour
         {
             Debug.Log("Duplicate active");
             DeckManager deck = GameObject.Find("Deck").GetComponent<DeckManager>();
-            CardData copy = deck.Clone(top);
+            CardData copy = top.Clone();//deck.Clone();
             top.fragile = true;
             top.duplicated = true;
             Push(copy);

@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResetManager : MonoBehaviour
+public class AdminUIManager : MonoBehaviour
 {
     public Transform ChooseEncounterMenu;
+    public Transform DraftCardMenu;
     private bool isDisabled;
 
     // Start is called before the first frame update
@@ -17,6 +18,13 @@ public class ResetManager : MonoBehaviour
     public void ChooseEncounter()
     {
         Instantiate(ChooseEncounterMenu, GameObject.Find("Canvas").transform, false);
+    }
+
+    public void DraftCard()
+    {
+        Transform instance = Instantiate(DraftCardMenu, GameObject.Find("Canvas").transform, false);
+        //Causes the encounter to reset after drafting the card
+        instance.GetComponent<Choose3Manager>().reloadEncounterOnDraft = true;
     }
 
     // Update is called once per frame

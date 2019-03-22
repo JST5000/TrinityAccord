@@ -185,11 +185,7 @@ public class DeckManager : MonoBehaviour
 
     }
 
-    public CardData Clone(CardData card)
-    {
-        Type type = card.GetType();
-        return (CardData)Activator.CreateInstance(type);
-    }
+
 
 
 

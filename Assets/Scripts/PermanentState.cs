@@ -25,6 +25,17 @@ public class PermanentState : MonoBehaviour
         if(GetNextEncounter() == null) { 
             InitializeDefaultEncounter();
         }
+        playerDeck = CreateFreshCopiesOf(playerDeck); //Removes any buffs/debuffs
+    }
+
+    private List<CardData> CreateFreshCopiesOf(List<CardData> deck)
+    {
+        List<CardData> fresh = new List<CardData>();
+        foreach(CardData card in deck)
+        {
+            fresh.Add(card.Clone());
+        }
+        return fresh;
     }
 
     private void CreateSingleton()
@@ -80,10 +91,22 @@ public class PermanentState : MonoBehaviour
     }
 
 
-    //Returns the encounter and sets it to null
+    //Returns the encounter
     public static EnemyData[] GetNextEncounter()
-    {       
-        return nextEncounter;
+    {
+        if(nextEncounter == null) { return null; }
+        List<EnemyData> toCopy = new List<EnemyData>(nextEncounter);
+        return Clone(toCopy).ToArray();
+    }
+
+    public static List<EnemyData> Clone(List<EnemyData> data)
+    {
+        List<EnemyData> copy = new List<EnemyData>();
+        foreach(EnemyData enemy in data)
+        {
+            copy.Add(enemy.Clone());
+        }
+        return copy;
     }
 
     public static void SetNextEncounter(EnemyData[] next)

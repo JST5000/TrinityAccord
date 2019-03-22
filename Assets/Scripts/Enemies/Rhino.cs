@@ -29,8 +29,4 @@ public class Rhino : EnemyData
         }
     }
 
-    public override EnemyData Copy()
-    {
-        return new Rhino();
-    }
 }

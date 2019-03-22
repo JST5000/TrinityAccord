@@ -18,7 +18,7 @@ public class Clone : CardData
     }
     public override void Action(CardData[] cards)
     {
-        getMyCardManager().Init(Clone(cards[0]));
+        getMyCardManager().Init(cards[0].Clone());
 
     }
     public override void Action(CardData[] cards, EnemyManager[] enemys)

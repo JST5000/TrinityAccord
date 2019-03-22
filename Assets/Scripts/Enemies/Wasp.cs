@@ -8,9 +8,4 @@ public class Wasp : EnemyData
         : base(name: "Wasp", maxHP: 5, staggers: 1, damage: 2, timer: 1, effect: InLineIcon.DAMAGE + ": 2", spriteName: "Wasp")
     { }
 
-
-    public override EnemyData Copy()
-    {
-        return new Wasp();
-    }
 }

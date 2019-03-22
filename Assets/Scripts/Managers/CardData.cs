@@ -1,11 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
-//public enum Target {Enemies,board}
-//REPLACED with Target enum
-//DELETE THESE COMMENTS WHEN YOU READ THIS AJ
+
 public abstract class CardData
 {
     protected UICardData cardData = new UICardData("Uninitialized", cost: 4, "Uninitialized", UICardData.CardType.ATTACK);
@@ -21,6 +20,13 @@ public abstract class CardData
     public abstract void Action(CardData[] cards);
     public abstract void Action(CardData[] cards, EnemyManager[] enemys);
     public abstract int SecondAction(CardManager card);
+
+    public CardData Clone()
+    {
+        Type type = this.GetType();
+        CardData copy = (CardData)Activator.CreateInstance(type);
+        return copy;
+    }
 
     //Does basic check of mana cost/availability. Extra requirements must be implemented separately.
     public bool IsPlayable()
@@ -39,11 +45,11 @@ public abstract class CardData
     {
         return cardData;
     }
-    public CardData Clone(CardData card)
+/*    public CardData Clone(CardData card)
     {
         DeckManager deck = GameObject.Find("Deck").GetComponent<DeckManager>();
         return deck.Clone(card);
-    }
+    } */
     public string getName()
     {
         return cardData.cardName;
@@ -63,7 +69,7 @@ public abstract class CardData
     protected void damageRandom(int amount)
     {
         EnemyManager[] enemies = GameObject.Find("Board").GetComponent<EncounterManager>().allEnemyManagers;
-        while (!enemies[Random.Range(0, enemies.Length)].Damage(amount))
+        while (!enemies[UnityEngine.Random.Range(0, enemies.Length)].Damage(amount))
         {
             if (!encounterActive())
             {

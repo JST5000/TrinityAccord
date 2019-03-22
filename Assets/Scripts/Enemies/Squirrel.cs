@@ -12,9 +12,4 @@ public class Squirrel : EnemyData
     {
         GameObject.Find("Deck").GetComponent<DeckManager>().AddDrawNextTurn();
     }
-
-    public override EnemyData Copy()
-    {
-        return new Squirrel();
-    }
 }

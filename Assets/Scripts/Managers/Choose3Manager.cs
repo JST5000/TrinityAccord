@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Choose3Manager : MonoBehaviour
@@ -8,6 +9,7 @@ public class Choose3Manager : MonoBehaviour
     public static CardManager selectedCard = null;
     public Button confirm;
     public Transform ChooseEncounterMenu;
+    public bool reloadEncounterOnDraft = false;
     private CardManager[] options;
 
     public void SetAndHighlightSelectedCard(CardManager newSelection)
@@ -38,8 +40,15 @@ public class Choose3Manager : MonoBehaviour
         if(selectedCard != null)
         {
             PermanentState.AddCardToPlayerDeckList(selectedCard.GetCardData());
-            Instantiate(ChooseEncounterMenu, GameObject.Find("Canvas").transform, false);
-            Destroy(gameObject);
+            if (reloadEncounterOnDraft)
+            {
+                SceneManager.LoadScene("Encounter");
+            }
+            else
+            {
+                Instantiate(ChooseEncounterMenu, GameObject.Find("Canvas").transform, false);
+                Destroy(gameObject);
+            }
         }
     }
 

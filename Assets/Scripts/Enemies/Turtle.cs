@@ -12,9 +12,4 @@ public class Turtle : EnemyData
         Player player = GameObject.Find("Player").GetComponent<Player>();
         player.AddEnergy(1);
     }
-
-    public override EnemyData Copy()
-    {
-        return new Turtle();
-    }
 }

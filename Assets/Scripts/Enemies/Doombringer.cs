@@ -14,8 +14,4 @@ public class Doombringer : EnemyData
         EncounterManager.SpawnEnemyInDefaultManager(new Spirit());
     }
 
-    public override EnemyData Copy()
-    {
-        return new Doombringer();
-    }
 }

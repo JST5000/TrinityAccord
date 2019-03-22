@@ -26,8 +26,4 @@ public class Tiger : EnemyData
         }
     }
 
-    public override EnemyData Copy()
-    {
-        return new Tiger();
-    }
 }

@@ -10,6 +10,7 @@ public class ChooseEncounterManager : MonoBehaviour
     private EnemyData[] selectedEncounter;
     public Button confirm;
     public Text errorMessage;
+    public bool reloadSceneOnExit = true;
 
     public void SelectEasy()
     {
@@ -52,8 +53,15 @@ public class ChooseEncounterManager : MonoBehaviour
             PermanentState.SetNextEncounter(selectedEncounter);
             selectedEncounter = null;
             //Reloads the scene, hopefully with the newly selected encounter.
-            SceneManager.LoadScene("Encounter");
-            //      Destroy(gameObject);
+            if (reloadSceneOnExit)
+            {
+                SceneManager.LoadScene("Encounter");
+            }
+            else
+            {
+                //If the scene does not load, get rid of this menu.
+                Destroy(gameObject);
+            }
         }
     }
 }

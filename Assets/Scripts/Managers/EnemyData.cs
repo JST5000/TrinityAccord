@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -42,7 +43,12 @@ public abstract class EnemyData
     }
 
     //Creates a new EnemyData of the same type (Does NOT copy fields)
-    public abstract EnemyData Copy();
+    public EnemyData Clone()
+    {
+        Type type = this.GetType();
+        EnemyData copy = (EnemyData)Activator.CreateInstance(type);
+        return copy;
+    }
 
     public UIEnemyData GetUIData()
     {

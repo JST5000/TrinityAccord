@@ -19,8 +19,4 @@ public class Hive : EnemyData
         return DealDamage(3);
     }
 
-    public override EnemyData Copy()
-    {
-        return new Hive();
-    }
 }

@@ -14,8 +14,4 @@ public class Squid : EnemyData
         player.Blind(1);
     }
 
-    public override EnemyData Copy()
-    {
-        return new Squid();
-    }
 }

@@ -26,9 +26,4 @@ public class Boar : EnemyData
         }
     }
 
-    public override EnemyData Copy()
-    {
-        return new Boar();
-    }
-
 }
