@@ -56,7 +56,7 @@ public class Choose3Manager : MonoBehaviour
     void Start()
     {
         options = GetComponentsInChildren<CardManager>();
-        CardData[] cards = { new Lightning(), new Rally(), new Shock() };
+        CardData[] cards = CardDataUtil.ChooseNWithoutReplacement(CardPools.GetAllCards(), 3).ToArray();
         Init(cards);
     }
 

@@ -18,6 +18,10 @@ public class EncounterInterpreter
         for(int i = 0; i < allEnemies.Length; ++i)
         {
             nToE[allEnemies[i].EnemyName] = allEnemies[i];
+            foreach(string altName in allEnemies[i].AlternateNames)
+            {
+                nToE[altName] = allEnemies[i];
+            }
         }
         return nToE;
     }
@@ -39,6 +43,8 @@ public class EncounterInterpreter
         enemies.Add(new Hive());
         enemies.Add(new Wasp());
         enemies.Add(new Tiger());
+        enemies.Add(new Berserker());
+        enemies.Add(new Shark());
         return enemies.ToArray();
     }
 

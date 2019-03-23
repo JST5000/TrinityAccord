@@ -69,13 +69,23 @@ public abstract class CardData
     protected void damageRandom(int amount)
     {
         EnemyManager[] enemies = GameObject.Find("Board").GetComponent<EncounterManager>().allEnemyManagers;
-        while (!enemies[UnityEngine.Random.Range(0, enemies.Length)].Damage(amount))
+        List<int> validEnemies = new List<int>();
+        for(int i = 0; i < enemies.Length; ++i)
+        {
+            if(!enemies[i].IsEmpty())
+            {
+                validEnemies.Add(i);
+            }
+        }
+        int randomIndex = UnityEngine.Random.Range(0, validEnemies.Count);
+        for (int i = 0; i < 100 && !enemies[validEnemies[randomIndex]].Damage(amount); ++i) //Used instead of while to avoid infinite loop on error
         {
             if (!encounterActive())
             {
                 return;
             }
-        }
+            randomIndex = UnityEngine.Random.Range(0, enemies.Length);
+        } 
     }
     protected CardData draw()
     {
@@ -89,7 +99,7 @@ public abstract class CardData
     }
     protected bool encounterActive()
     {
-        if (GameObject.Find("Board").GetComponent<EncounterManager>().enemyCount == 0)
+        if (GameObject.Find("Board").GetComponent<EncounterManager>().enemyCount <= 0)
         {
             return false;
         }

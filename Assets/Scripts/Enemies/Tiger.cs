@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tiger : EnemyData
 {
-    public Tiger() : base(name: "Cowardly Tiger", maxHP: 7, staggers: 2, damage: 3, timer: 2, effect: GetEffect(false), spriteName: "Tiger")
+    public Tiger() : base(name: "Tiger", maxHP: 7, staggers: 2, damage: 3, timer: 2, effect: GetEffect(false), spriteName: "Tiger", alternateNames: "Cowardly Tiger")
     { }
 
     protected override void OnLastLife()
@@ -22,7 +22,7 @@ public class Tiger : EnemyData
             return front;
         } else
         {
-            return front + ", " + InLineIcon.ON_STAGGER + ": Slow attack by 1 turn.";
+            return front + ", " + InLineIcon.ON_STAGGER + ": Slow timer by 1.";
         }
     }
 

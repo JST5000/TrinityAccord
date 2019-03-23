@@ -15,6 +15,7 @@ public abstract class EnemyData
     private string effect;
     private Sprite picture;
     private string spriteName;
+    private string[] alternateNames;
 
     public string EnemyName { get => enemyName; set => enemyName = value; }
     public int MaxHP { get => maxHP; set => maxHP = value; }
@@ -26,8 +27,9 @@ public abstract class EnemyData
     public string Effect { get => effect; set => effect = value; }
     public Sprite Picture { get => picture; set => picture = value; }
     public string SpriteName { get => spriteName; set => spriteName = value; }
+    public string[] AlternateNames { get => alternateNames; set => alternateNames = value; }
 
-    public EnemyData(string name, int maxHP, int staggers, int damage, int timer, string effect, string spriteName)
+    public EnemyData(string name, int maxHP, int staggers, int damage, int timer, string effect, string spriteName, params string[] alternateNames)
     {
         this.enemyName = name;
         this.maxHP = maxHP;
@@ -40,6 +42,7 @@ public abstract class EnemyData
         string folderName = "Enemy_Sprites/";
         this.picture = Resources.Load<Sprite>(folderName + spriteName);
         this.spriteName = spriteName;
+        this.alternateNames = alternateNames;
     }
 
     //Creates a new EnemyData of the same type (Does NOT copy fields)

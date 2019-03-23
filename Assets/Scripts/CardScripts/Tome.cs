@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tomb : CardData
+public class Tome : CardData
 {
-    public Tomb()
+    public Tome()
     {
-        cardData = new UICardData("Tomb", cost: 1, "Draw 2, Gain 1 energy for each spell drawn", UICardData.CardType.SPELL);
+        cardData = new UICardData("Tome", cost: 1, "Draw 2, Gain 1 energy for each spell drawn", UICardData.CardType.SPELL);
         cost = 1;
         target = Target.BOARD;
     }

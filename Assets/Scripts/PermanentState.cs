@@ -25,17 +25,7 @@ public class PermanentState : MonoBehaviour
         if(GetNextEncounter() == null) { 
             InitializeDefaultEncounter();
         }
-        playerDeck = CreateFreshCopiesOf(playerDeck); //Removes any buffs/debuffs
-    }
-
-    private List<CardData> CreateFreshCopiesOf(List<CardData> deck)
-    {
-        List<CardData> fresh = new List<CardData>();
-        foreach(CardData card in deck)
-        {
-            fresh.Add(card.Clone());
-        }
-        return fresh;
+        playerDeck = CardDataUtil.CreateFreshCopiesOf(playerDeck); //Removes any buffs/debuffs
     }
 
     private void CreateSingleton()

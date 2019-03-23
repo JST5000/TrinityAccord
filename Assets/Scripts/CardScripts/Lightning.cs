@@ -17,7 +17,7 @@ public class Lightning : CardData
     //Needs all enemies
     public override void Action(EnemyManager[] enemies)
     {
-        for (int i = 0; i < 3;)
+        for (int i = 0; i < 3; ++i)
         {
             damageRandom(3);
         }
