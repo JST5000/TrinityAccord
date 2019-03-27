@@ -41,10 +41,10 @@ public class GangLeader : EnemyData
     {
         if(summonText)
         {
-            return "Summon 2 Gang Wimps";
+            return "Summon 2 Gang Wimps, Flip";
         } else
         {
-            return InLineIcon.DAMAGE + ": 3";
+            return InLineIcon.DAMAGE + ": 3, Flip";
         }
     }
 
