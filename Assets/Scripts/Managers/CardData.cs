@@ -7,6 +7,11 @@ using UnityEngine;
 
 public abstract class CardData
 {
+    //For giving each card created a unique identifier
+    protected static int nextId = 0;
+    protected static object IdLock = new object();
+    private int id;
+
     protected UICardData cardData = new UICardData("Uninitialized", cost: 4, "Uninitialized", UICardData.CardType.ATTACK);
 
     //Target are for determining which user input is required. Ex. Tell the card which enemy is targeted.
@@ -20,6 +25,19 @@ public abstract class CardData
     public abstract void Action(CardData[] cards);
     public abstract void Action(CardData[] cards, EnemyManager[] enemys);
     public abstract int SecondAction(CardManager card);
+
+    protected CardData()
+    {
+        lock (IdLock) {
+            id = nextId;
+            ++nextId;
+        }
+    }
+
+    public int GetId()
+    {
+        return id;
+    }
 
     public CardData Clone()
     {

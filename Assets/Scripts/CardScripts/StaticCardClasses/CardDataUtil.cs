@@ -34,4 +34,29 @@ public static class CardDataUtil
         }
         return chosen;
     }
+
+    //Returns -1 if card is not found
+    public static int FindCard(List<CardManager> mans, CardData data)
+    {
+        for(int i = 0; i < mans.Count; ++i)
+        {
+            if(!mans[i].IsEmpty() && mans[i].GetCardData().GetId() == data.GetId())
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static int FindCard(List<CardData> cards, CardData key)
+    {
+        for(int i = 0; i < cards.Count; ++i)
+        {
+            if(cards[i].GetId() == key.GetId())
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
 }

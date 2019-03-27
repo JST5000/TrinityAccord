@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class StackManager : MonoBehaviour
 {
     public Text label;
-
+    private List<CardData> playedCardsThisTurn = new List<CardData>();
     private Stack<CardData> playedCards = new Stack<CardData>();
     private CardManager displayedCardData;
     private CardUIUpdater displayedCard;
@@ -66,7 +66,7 @@ public class StackManager : MonoBehaviour
     public CardData Pop()
     {
         CardData top = playedCards.Pop();
-        if (duplicate > 0&&!top.duplicated) //&& top.GetType().Equals(UICardData.CardType.SPELL))
+        if (duplicate > 0 && !top.duplicated) //&& top.GetType().Equals(UICardData.CardType.SPELL))
         {
             Debug.Log("Duplicate active");
             DeckManager deck = GameObject.Find("Deck").GetComponent<DeckManager>();
@@ -112,6 +112,11 @@ public class StackManager : MonoBehaviour
     private void UpdateCounts(CardData card)
     {
         cardsPlayed++;
+        //Avoids multiple uses of a card causing nulls later
+        if (!playedCardsThisTurn.Contains(card))
+        {
+            playedCardsThisTurn.Add(card);
+        }
         if (card.GetUICardData().cardType.Equals(UICardData.CardType.ATTACK))
         {
             attacksPlayed++;
@@ -120,7 +125,31 @@ public class StackManager : MonoBehaviour
     public void ResetCounts()
     {
         cardsPlayed = 0;
+        playedCardsThisTurn.Clear();
         attacksPlayed = 0;
         duplicate = 0;
+    }
+
+    //Returns one of the cards played this turn.
+    //Returns null if no cards were played this turn
+    public CardData GetRandomCardPlayedThisTurn()
+    {
+        if (playedCardsThisTurn.Count == 0)
+        {
+            return null;
+        } else { 
+            return CardDataUtil.ChooseNWithoutReplacement(playedCardsThisTurn, 1)[0];
+        }
+    }
+
+    public void RemoveCardFromPlayedThisTurn(CardData card)
+    {
+        if(playedCardsThisTurn.Contains(card))
+        {
+            playedCardsThisTurn.Remove(card);
+        } else
+        {
+            Debug.LogError("Unable to find the reference to a card: " + card.cardName + " in the cards played this turn list!");
+        }
     }
 }

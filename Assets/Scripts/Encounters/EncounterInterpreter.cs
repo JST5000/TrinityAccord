@@ -45,6 +45,9 @@ public class EncounterInterpreter
         enemies.Add(new Tiger());
         enemies.Add(new Berserker());
         enemies.Add(new Shark());
+        enemies.Add(new GangLeader());
+        enemies.Add(new GangWimp());
+        enemies.Add(new ScytheSoldier());
         return enemies.ToArray();
     }
 
