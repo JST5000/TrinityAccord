@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CardUIUpdater : MonoBehaviour
 {
     public Text costText;
     public Text displayName;
-    public Text cardEffect;
+    public TextMeshProUGUI cardEffect;
     public Image background;
     private bool colorNotSet = true;
     private Color prevBGColor;

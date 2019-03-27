@@ -13,13 +13,14 @@ public static class GenerateEncounter
     private static List<EncounterData> three = new List<EncounterData>();
     private static List<EncounterData> four = new List<EncounterData>();
     private static List<EncounterData> boss = new List<EncounterData>();
+    private static List<EncounterData> allEncounters;
 
     public static void InitEncounterLists()
     {
         if (!initialized)
         {
-            List<EncounterData> encounters = EncounterInterpreter.ReadInEncounters();
-            foreach (EncounterData enc in encounters)
+            allEncounters = EncounterInterpreter.ReadInEncounters();
+            foreach (EncounterData enc in allEncounters)
             {
                 switch (enc.Level)
                 {
@@ -55,6 +56,11 @@ public static class GenerateEncounter
         return list[Random.Range(0, list.Count)];
     }
 
+
+    public static void WriteEncounterData()
+    {
+        EncounterInterpreter.WriteEncounterData(allEncounters);
+    }
 
     public static EnemyData[] RerollUntilValid(List<EncounterData> pool)
     {

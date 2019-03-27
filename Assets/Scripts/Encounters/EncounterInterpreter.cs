@@ -104,7 +104,7 @@ public class EncounterInterpreter
 
     public static List<EncounterData> ReadInEncounters()
     {
-        string csvFilePath = "Data\\Encounters";
+        string csvFilePath = "Data\\EncountersGenerated";
         TextAsset encounterData = Resources.Load<TextAsset>(csvFilePath);
 
         string[] data = encounterData.text.Split(new char[] { '\n' });
@@ -123,11 +123,11 @@ public class EncounterInterpreter
             }
 
             int intData = 0;
-            int.TryParse(row[0], out intData);
+            int.TryParse(TrimQuotes(row[0].Trim()), out intData);
             encounter.Level = intData;
 
             int difficulty = 0;
-            int.TryParse(row[1], out difficulty);
+            int.TryParse(TrimQuotes(row[1].Trim()), out difficulty);
             encounter.Difficulty = difficulty;
 
             encounter.Damage = TrimQuotes(row[2].Trim());
@@ -137,6 +137,22 @@ public class EncounterInterpreter
             encounters.Add(encounter);
         }
         return encounters;
+    }
+
+    public static void WriteEncounterData(List<EncounterData> allData)
+    {
+        string csvFilePath = "Assets\\Resources\\Data\\EncountersGenerated.csv";
+        using (StreamWriter writable = new StreamWriter(csvFilePath, false))
+        {
+            writable.WriteLine(EncounterData.GetCSVFieldNames());
+            for(int i = 0; i < allData.Count; ++i) 
+            {
+                EncounterData data = allData[i];
+                string line = data.WriteCSVLine();
+                writable.WriteLine(line);               
+            }
+        }
+
     }
 
     public static string TrimQuotes(string input)

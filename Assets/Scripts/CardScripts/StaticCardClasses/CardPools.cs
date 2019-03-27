@@ -26,7 +26,6 @@ public static class CardPools
         all.Add(new Clone());
         all.Add(new Dagger());
         all.Add(new Duplicate());
-        all.Add(new Energize());
         all.Add(new Flail());
         all.Add(new Hammer());
         all.Add(new Juggle());
