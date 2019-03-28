@@ -39,9 +39,8 @@ public abstract class EnemyData
         this.maxTimer = timer;
         currTimer = maxTimer;
         this.effect = effect;
-        string folderName = "Enemy_Sprites/";
-        this.picture = Resources.Load<Sprite>(folderName + spriteName);
         this.spriteName = spriteName;
+        LoadPicture(spriteName);
         this.alternateNames = alternateNames;
     }
 
@@ -123,6 +122,12 @@ public abstract class EnemyData
         //Did not die
         return false;
         
+    }
+
+    protected void LoadPicture(string givenSpriteName)
+    {
+        string folderName = "Enemy_Sprites/";
+        this.picture = Resources.Load<Sprite>(folderName + givenSpriteName);
     }
 
     public virtual bool SelfHarm() { return false; }
