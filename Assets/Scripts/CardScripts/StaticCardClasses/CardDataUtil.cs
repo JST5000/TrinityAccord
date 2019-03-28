@@ -45,7 +45,7 @@ public static class CardDataUtil
             if (CardName != null)
             {
                 CardData result = InterpretWord(CardName.Trim());
-                Debug.Log("Card Interpretted: " + result.cardName);
+                Debug.Log("Card Interpretted: " + result.getName());
                 cards.Add(result);
             }
         }

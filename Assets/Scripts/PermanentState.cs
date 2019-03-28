@@ -7,6 +7,7 @@ public class PermanentState : MonoBehaviour
 
     //Player deck - State should hold for multiple encounters
     public static List<CardData> playerDeck;
+    public static Level expectedLevel;
 
     private static EnemyData[] nextEncounter;
 
@@ -15,15 +16,19 @@ public class PermanentState : MonoBehaviour
         playerDeck.Add(card);
     }
 
+    public static void ResetStatics()
+    {
+        InitializeBaseDeck();
+        expectedLevel = Level.TUTORIAL;
+        InitializeDefaultEncounter();
+    }
+
     void Awake()
     {
         CreateSingleton();
-        if (playerDeck == null)
+        if(playerDeck == null)
         {
-            InitializeBaseDeck();
-        }
-        if(GetNextEncounter() == null) { 
-            InitializeDefaultEncounter();
+            ResetStatics();
         }
         playerDeck = CardDataUtil.CreateFreshCopiesOf(playerDeck); //Removes any buffs/debuffs
     }
@@ -39,16 +44,13 @@ public class PermanentState : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void InitializeBaseDeck()
+    private static void InitializeBaseDeck()
     {
-        if (playerDeck == null)
-        {
-            playerDeck = new List<CardData>(GetBaseDeck());
-        }
+        playerDeck = new List<CardData>(GetBaseDeck());
     }
 
     //For experimental builds
-    private List<CardData> GetExperimentalDeck()
+    private static List<CardData> GetExperimentalDeck()
     {
         List<CardData> deck = new List<CardData>();
         deck.Add(new Clone());
@@ -60,7 +62,7 @@ public class PermanentState : MonoBehaviour
         return deck;
     }
 
-    private List<CardData> GetBaseDeck()
+    private static List<CardData> GetBaseDeck()
     {
         List<CardData> deck = new List<CardData>();
         deck.Add(new Sword());
@@ -75,9 +77,9 @@ public class PermanentState : MonoBehaviour
     }
 
 
-    private void InitializeDefaultEncounter()
+    private static void InitializeDefaultEncounter()
     {
-        SetNextEncounter(GenerateEncounter.GetEncounter(Level.TUTORIAL));
+        SetNextEncounter(GenerateEncounter.GetEncounter(expectedLevel));
     }
 
 

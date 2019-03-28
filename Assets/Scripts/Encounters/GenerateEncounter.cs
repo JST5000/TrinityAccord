@@ -4,6 +4,8 @@ using UnityEngine;
 
 public enum Level { TUTORIAL, ONE, TWO, THREE, FOUR, BOSS };
 
+
+
 public static class GenerateEncounter
 {
     private static bool initialized = false;
@@ -14,6 +16,37 @@ public static class GenerateEncounter
     private static List<EncounterData> four = new List<EncounterData>();
     private static List<EncounterData> boss = new List<EncounterData>();
     private static List<EncounterData> allEncounters;
+
+    private static int LevelToInt(Level lvl)
+    {
+        switch(lvl)
+        {
+            case Level.TUTORIAL:
+                return 0;
+            case Level.ONE:
+                return 1;
+            case Level.TWO:
+                return 2;
+            case Level.THREE:
+                return 3;
+            case Level.FOUR:
+                return 4;
+            case Level.BOSS:
+                return 5;
+            default:
+                return -1;
+        }
+    }
+
+    public static Level GetEasier(Level lvl)
+    {
+        return (Level)((int)Mathf.Max(LevelToInt(Level.TUTORIAL), LevelToInt(lvl) - 1));
+    }
+
+    public static Level GetHarder(Level lvl)
+    {
+        return (Level)Mathf.Min(LevelToInt(Level.BOSS), LevelToInt(lvl) + 1);
+    }
 
     public static void InitEncounterLists()
     {

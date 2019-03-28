@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Player : MonoBehaviour
 {
@@ -9,6 +11,8 @@ public class Player : MonoBehaviour
 
     public int defaultEnergy = 3;
     public int defaultHealth = 10;
+
+    public bool CanDie = false;
 
     private int blindDuration = 0;
 
@@ -64,11 +68,19 @@ public class Player : MonoBehaviour
     public void Damage(int dmg)
     {
         currHealth -= dmg;
-        if(currHealth <= 0)
-        {
-            //TODO on death
-        }
         UpdateHealthUI();
+        if (currHealth <= 0)
+        {
+            OnDeath();
+        }
+    }
+
+    private void OnDeath()
+    {
+        if(CanDie)
+        {
+            SceneManager.LoadScene("LoseScreen");
+        }
     }
 
     public void Heal(int heal)
