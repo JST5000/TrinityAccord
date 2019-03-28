@@ -8,8 +8,6 @@ using System.Text.RegularExpressions;
 public class EncounterInterpreter
 {
 
-    public static string[] AllNames;
-    public static EnemyData[] AllEnemies;
     public static Dictionary<string, EnemyData> nameToEnemy;
 
     public static Dictionary<string, EnemyData> GetNameDictionary(EnemyData[] allEnemies)
@@ -72,7 +70,7 @@ public class EncounterInterpreter
                 Debug.Log(InterpretWord(name).EnemyName);
 
             }
-            catch (KeyNotFoundException e)
+            catch (KeyNotFoundException)
             {
                 Debug.Log("Did not find Key '" + name + "'");
             }

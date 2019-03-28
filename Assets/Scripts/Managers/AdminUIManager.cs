@@ -6,14 +6,6 @@ public class AdminUIManager : MonoBehaviour
 {
     public Transform ChooseEncounterMenu;
     public Transform DraftCardMenu;
-    private bool isDisabled;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        isDisabled = false;
-        DisableButton();
-    }
 
     public void ChooseEncounter()
     {
@@ -27,42 +19,4 @@ public class AdminUIManager : MonoBehaviour
         instance.GetComponent<Choose3Manager>().reloadEncounterOnDraft = true;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKey(KeyCode.BackQuote) || Input.GetKey(KeyCode.Tilde))
-        {
-            EnableButton();
-        } else
-        {
-            DisableButton();
-        }
-
-    }
-
-    //Checks if change is needed, then updates
-    public void DisableButton()
-    {
-        CanvasGroup reset = GetComponent<CanvasGroup>();
-        if (!isDisabled)
-        {
-            reset.alpha = 0;
-            reset.blocksRaycasts = false;
-            reset.interactable = false;
-            isDisabled = true;
-        }
-    }
-
-    //Checks if change is needed, then updates
-    public void EnableButton()
-    {
-        CanvasGroup reset = GetComponent<CanvasGroup>();
-        if (isDisabled)
-        {
-            reset.alpha = 1;
-            reset.blocksRaycasts = true;
-            reset.interactable = true;
-            isDisabled = false;
-        }
-    }
 }

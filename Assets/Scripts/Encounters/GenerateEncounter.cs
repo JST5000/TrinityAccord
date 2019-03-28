@@ -70,7 +70,7 @@ public static class GenerateEncounter
             {
                 EnemyData[] chosenEncounter = EncounterInterpreter.InterpretText(GetRandom(pool).Encounter);
                 return chosenEncounter;
-            } catch(KeyNotFoundException e)
+            } catch(KeyNotFoundException)
             {
                 //Invalid encounter, try again
             }

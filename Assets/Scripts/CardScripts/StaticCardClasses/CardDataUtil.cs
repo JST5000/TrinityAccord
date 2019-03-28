@@ -4,6 +4,55 @@ using UnityEngine;
 
 public static class CardDataUtil 
 {
+    public static Dictionary<string, CardData> nameToCard;
+
+    public static Dictionary<string, CardData> GetNameDictionary(CardData[] allCards)
+    {
+        Dictionary<string, CardData> nToC = new Dictionary<string, CardData>();
+        for (int i = 0; i < allCards.Length; ++i)
+        {
+            nToC[allCards[i].getName()] = allCards[i];
+        }
+        return nToC;
+    }
+
+    public static CardData InterpretWord(string CardName)
+    {
+        if (nameToCard == null)
+        {
+            nameToCard = GetNameDictionary(CreateFreshCopiesOf(CardPools.GetAllCardsIncludingDefaults()).ToArray());
+        }
+
+        return nameToCard[CardName].Clone();
+    }
+
+    //Throws KeyNotFoundException if input is invalid. 
+    public static CardData[] InterpretText(string input)
+    {
+
+        Debug.Log("Text being interpretted: " + input);
+        string[] separator = { ", " };
+        string[] split = input.Split(separator, System.StringSplitOptions.RemoveEmptyEntries);
+        List<CardData> cards = new List<CardData>();
+        foreach (string CardName in split)
+        {
+            /* Useful debug info
+             * for(int i = 0; i < CardName.Length; ++i)
+            {
+                Debug.Log(CardName[i]);
+            } */
+            //Debug.Log("Split Text: " + CardName);
+            if (CardName != null)
+            {
+                CardData result = InterpretWord(CardName.Trim());
+                Debug.Log("Card Interpretted: " + result.cardName);
+                cards.Add(result);
+            }
+        }
+        return cards.ToArray();
+    }
+
+
     public static List<CardData> CreateFreshCopiesOf(List<CardData> deck)
     {
         List<CardData> fresh = new List<CardData>();
@@ -59,4 +108,5 @@ public static class CardDataUtil
         }
         return -1;
     }
+
 }

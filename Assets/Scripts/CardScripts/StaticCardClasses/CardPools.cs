@@ -5,18 +5,20 @@ using UnityEngine;
 public static class CardPools
 {
 
-    private static List<CardData> allCards;
+    private static List<CardData> allDraftableCards;
+    private static List<CardData> allCardsIncludingDefaults;
 
-    public static List<CardData> GetAllCards()
+
+    public static List<CardData> GetAllDraftableCards()
     {
-        if(allCards == null)
+        if(allDraftableCards == null)
         {
-            InitAllCards();
+            InitAllDraftableCards();
         }
-        return CardDataUtil.CreateFreshCopiesOf(allCards);
+        return CardDataUtil.CreateFreshCopiesOf(allDraftableCards);
     }
 
-    private static void InitAllCards()
+    private static void InitAllDraftableCards()
     {
         List<CardData> all = new List<CardData>();
         all.Add(new Backpack());
@@ -24,7 +26,6 @@ public static class CardPools
         all.Add(new Cannon());
         all.Add(new Claws());
         all.Add(new Clone());
-        all.Add(new Dagger());
         all.Add(new Duplicate());
         all.Add(new Flail());
         all.Add(new Hammer());
@@ -42,7 +43,19 @@ public static class CardPools
         all.Add(new Tome());
         all.Add(new Trick());
         all.Add(new Wand());
-        allCards = all;
+        allDraftableCards = all;
+    }
+
+    public static List<CardData> GetAllCardsIncludingDefaults()
+    {
+        if (allCardsIncludingDefaults == null)
+        {
+            allCardsIncludingDefaults = CardDataUtil.CreateFreshCopiesOf(GetAllDraftableCards());
+            allCardsIncludingDefaults.Add(new Energize());
+            allCardsIncludingDefaults.Add(new Sword());
+            allCardsIncludingDefaults.Add(new Dagger());
+        }
+        return allCardsIncludingDefaults;
     }
 
 }
