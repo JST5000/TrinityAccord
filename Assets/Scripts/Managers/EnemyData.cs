@@ -107,7 +107,7 @@ public abstract class EnemyData
             //Must drop staggers first for onStagger effects to activate (Ex. Tiger -> Timer increase)
             Staggers--;
 
-            CurrTimer = MaxTimer + 1;
+            StaggerEnemy();
             CurrHP = MaxHP;
             if (Staggers != 0)
             {
@@ -122,6 +122,16 @@ public abstract class EnemyData
         //Did not die
         return false;
         
+    }
+
+    public virtual void StaggerEnemy()
+    {
+        CurrTimer = MaxTimer + 1;
+    }
+
+    public virtual void Stun()
+    {
+        CurrTimer++;
     }
 
     protected void LoadPicture(string givenSpriteName)

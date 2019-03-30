@@ -33,7 +33,7 @@ public class EnemyManager : MonoBehaviour
     {
         if (!isEmpty)
         {
-            data.CurrTimer = data.MaxTimer+1;
+            data.StaggerEnemy();
             return true;
         }
         return false;
@@ -42,7 +42,7 @@ public class EnemyManager : MonoBehaviour
     {
         if (!isEmpty)
         {
-            data.CurrTimer++;
+            data.Stun();
             return true;
         }
         return false;

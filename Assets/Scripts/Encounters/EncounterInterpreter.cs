@@ -47,6 +47,7 @@ public class EncounterInterpreter
         enemies.Add(new GangWimp());
         enemies.Add(new ScytheSoldier());
         enemies.Add(new Mole());
+        enemies.Add(new Executioner());
         return enemies.ToArray();
     }
 
