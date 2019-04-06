@@ -26,7 +26,8 @@ public static class CardPools
         all.Add(new Cannon());
         all.Add(new Claws());
         all.Add(new Clone());
-        all.Add(new Duplicate());
+        //Duplicate is currently removed from the game
+        //all.Add(new Duplicate());
         all.Add(new Flail());
         all.Add(new Hammer());
         all.Add(new Juggle());

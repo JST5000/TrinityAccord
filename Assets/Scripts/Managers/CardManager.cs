@@ -60,11 +60,6 @@ public class CardManager : MonoBehaviour
         return cardData;
     }
 
-    public ref CardData GetCardDataRef()
-    {
-        return ref cardData;
-    }
-
     //Exposing data to UI
     public UICardData GetUICardData()
     {

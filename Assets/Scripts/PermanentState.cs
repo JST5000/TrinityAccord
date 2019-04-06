@@ -21,6 +21,7 @@ public class PermanentState : MonoBehaviour
         InitializeBaseDeck();
         expectedLevel = Level.TUTORIAL;
         InitializeDefaultEncounter();
+        expectedLevel = Level.ONE;
     }
 
     void Awake()
@@ -56,7 +57,8 @@ public class PermanentState : MonoBehaviour
         deck.Add(new Clone());
         deck.Add(new Wand());
         deck.Add(new Wand());
-        deck.Add(new Duplicate());
+        //Duplicate is currently removed from the game
+        //deck.Add(new Duplicate());
         deck.Add(new Wand());
         deck.Add(new Clone());
         return deck;

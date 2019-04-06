@@ -21,16 +21,20 @@ public class CardUIUpdater : MonoBehaviour
 
     public CanvasGroup cardCG;
 
+    private Player player;
     //Current status variable, used to save time in updating
-    private bool isDisabled = false;
+    private bool IsOff = false;
+    private bool IsDisabled = false;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        DisableCard();
+        TurnOffCard();
         cardHolder = GetComponentInChildren<CardManager>();
         primaryButton = GetComponent<Button>();
         normalTint = primaryButton.colors.normalColor;
+        player = GameObject.Find("Player").GetComponent<Player>();
         //TODO attach this to the cards
         /*     int r = Random.Range(0, 2);
              if (r == 1)
@@ -51,35 +55,67 @@ public class CardUIUpdater : MonoBehaviour
         if (!cardHolder.IsEmpty())
         {
             UpdateUI(cardHolder.GetUICardData());
-            EnableCard();
+            TurnOnCard();
         } else
         {
-            DisableCard();
+            TurnOffCard();
+            EnableCard();
         }
+   /*     if (!cardHolder.IsEmpty())
+        {
+            int.TryParse(costText.text, out int cost);
+            if(player.GetEnergy() < cost)
+            {
+                DisableCard();
+            } else
+            {
+                EnableCard();
+            }
+        } */
 
     }
 
     //Checks if change is needed, then updates
-    public void DisableCard()
+    public void TurnOffCard()
     {
-        if (!isDisabled)
+        if (!IsOff)
         {
             cardCG.alpha = 0;
             cardCG.blocksRaycasts = false;
             cardCG.interactable = false;
-            isDisabled = true;
+            IsOff = true;
         }
     }
 
     //Checks if change is needed, then updates
-    public void EnableCard()
+    public void TurnOnCard()
     {
-        if (isDisabled)
+        if (IsOff)
         {
             cardCG.alpha = 1;
             cardCG.blocksRaycasts = true;
             cardCG.interactable = true;
-            isDisabled = false;
+            IsOff = false;
+        }
+    }
+
+    public void DisableCard()
+    {
+        if (!IsDisabled)
+        {
+            Button button = GetComponent<Button>();
+            button.interactable = false;
+            IsDisabled = true;
+        }
+    }
+
+    public void EnableCard()
+    {
+        if (IsDisabled)
+        {
+            Button button = GetComponent<Button>();
+            button.interactable = true;
+            IsDisabled = false;
         }
     }
 
