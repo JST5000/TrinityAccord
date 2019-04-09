@@ -14,7 +14,6 @@ public class CardUIUpdater : MonoBehaviour
     private Color prevBGColor;
     private bool highlighted = false;
 
-    private Button primaryButton;
     private Color normalTint;
 
     private CardManager cardHolder;
@@ -32,8 +31,11 @@ public class CardUIUpdater : MonoBehaviour
     {
         TurnOffCard();
         cardHolder = GetComponentInChildren<CardManager>();
-        primaryButton = GetComponent<Button>();
-        normalTint = primaryButton.colors.normalColor;
+        Button primaryButton = GetComponent<Button>();
+        if (primaryButton != null)
+        {
+            normalTint = primaryButton.colors.normalColor;
+        }
         player = GameObject.Find("Player").GetComponent<Player>();
         //TODO attach this to the cards
         /*     int r = Random.Range(0, 2);
@@ -147,33 +149,13 @@ public class CardUIUpdater : MonoBehaviour
         highlighted = true;
         var color = background.color;
         prevBGColor = new Color(color.r, color.g, color.b, color.a);
-        color = Color.yellow;// new Color(1f, 0.952f, 0.180f);
+        color = Color.yellow;
         background.color = color;
-        /*
-        var colors = primaryButton.colors;
-        colors.normalColor = Color.yellow;
-        primaryButton.colors = colors;
-        */
-        /*
-        var color = outline.color;
-        color.a = 1f;
-        outline.color = color;
-        */
     }
 
     public void ResetHighlight()
     {
         highlighted = false;
         background.color = prevBGColor;
-        /*
-        var colors = primaryButton.colors;
-        colors.normalColor = normalTint;
-        primaryButton.colors = colors;
-  */
-        /*
-              var color = outline.color;
-              color.a = 0f;
-              outline.color = color;
-              */
     }
 }

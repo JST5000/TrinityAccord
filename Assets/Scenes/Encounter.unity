@@ -2769,7 +2769,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Stack
+  m_Text: 
 --- !u!222 &1537162090
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3220,7 +3220,33 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 557272752686652720, guid: 3ed85d87458018b4fa02d1857953810e,
+        type: 3}
+      propertyPath: m_BlocksRaycasts
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 355574507242479886, guid: 3ed85d87458018b4fa02d1857953810e,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 626371744891895398, guid: 3ed85d87458018b4fa02d1857953810e,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 626371744891895398, guid: 3ed85d87458018b4fa02d1857953810e,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 626371744891895398, guid: 3ed85d87458018b4fa02d1857953810e,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3798728853564019179, guid: 3ed85d87458018b4fa02d1857953810e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3ed85d87458018b4fa02d1857953810e, type: 3}
 --- !u!224 &1634762515 stripped
 RectTransform:
@@ -3942,8 +3968,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
