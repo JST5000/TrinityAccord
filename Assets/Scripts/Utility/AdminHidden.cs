@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class AdminHidden : MonoBehaviour
 {
-    public bool permanentReveal = false;
+
+    public enum Reveal { PERMANENT, TOGGLE, WHILE_HELD };
+    public Reveal revealType = Reveal.PERMANENT;
     private bool revealed = false;
     private bool isDisabled;
 
@@ -18,17 +20,32 @@ public class AdminHidden : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.BackQuote) || Input.GetKey(KeyCode.Tilde))
+        if(revealType == Reveal.TOGGLE && (Input.GetKeyDown(KeyCode.BackQuote) || Input.GetKeyDown(KeyCode.Tilde))) {
+            if (isDisabled)
+            {
+                EnableButton();
+            }
+            else
+            {
+                DisableButton();
+            }
+        } else if (Input.GetKey(KeyCode.BackQuote) || Input.GetKey(KeyCode.Tilde))
         {
-            EnableButton();
-            if (permanentReveal)
+            if(revealType == Reveal.TOGGLE)
+            {
+                //Do nothing
+            } else if (revealType == Reveal.PERMANENT)
             {
                 revealed = true;
+                EnableButton();
+            } else
+            {
+                EnableButton();
             }
         }
         else
         {
-            if (!revealed)
+            if (!revealed && (revealType != Reveal.TOGGLE))
             {
                 DisableButton();
             }

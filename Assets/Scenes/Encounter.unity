@@ -619,6 +619,38 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1252213651}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &826413074 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5084933794933947284, guid: 3ed85d87458018b4fa02d1857953810e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2003765350}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &826413075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826413074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 13
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 14
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &831523790
 GameObject:
   m_ObjectHideFlags: 0
@@ -4105,7 +4137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5072921474a4d3840b4c664ebfcff3ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  permanentReveal: 0
+  revealType: 1
 --- !u!224 &1948290381 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1470747416606658517, guid: 3ed85d87458018b4fa02d1857953810e,
@@ -5168,7 +5200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5072921474a4d3840b4c664ebfcff3ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  permanentReveal: 0
+  revealType: 1
 --- !u!224 &2452180655871694504
 RectTransform:
   m_ObjectHideFlags: 0

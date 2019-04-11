@@ -11,7 +11,7 @@ public class StackManager : MonoBehaviour
     private CardManager displayedCardData;
     private CardUIUpdater displayedCard;
     private float currTime = 0;
-    private float timePerCard = 1f;
+    private float timePerCard = .7f;
     public int cardsPlayed = 0;
     public int attacksPlayed = 0;
     public int duplicate = 0;
