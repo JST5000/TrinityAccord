@@ -90,18 +90,5 @@ public class EnemyManager : MonoBehaviour
     {
         return data.GetUIData();
     }
-
-    float currTime = 0;
-    private void Update()
-    {
-        /*    //Testing, remove with real implementation
-            currTime += Time.deltaTime;
-            if(currTime >= 1f)
-            {
-                currTime = 0;
-                Damage(1);
-            }
-        } */
-    }
 }
 

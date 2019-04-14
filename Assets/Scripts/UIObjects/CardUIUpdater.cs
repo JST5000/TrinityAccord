@@ -10,7 +10,6 @@ public class CardUIUpdater : MonoBehaviour
     public Text displayName;
     public TextMeshProUGUI cardEffect;
     public Image background;
-    private bool colorNotSet = true;
     private Color prevBGColor;
     private bool highlighted = false;
 
@@ -20,7 +19,6 @@ public class CardUIUpdater : MonoBehaviour
 
     public CanvasGroup cardCG;
 
-    private Player player;
     //Current status variable, used to save time in updating
     private bool IsOff = false;
     private bool IsDisabled = false;
@@ -36,18 +34,6 @@ public class CardUIUpdater : MonoBehaviour
         {
             normalTint = primaryButton.colors.normalColor;
         }
-        player = GameObject.Find("Player").GetComponent<Player>();
-        //TODO attach this to the cards
-        /*     int r = Random.Range(0, 2);
-             if (r == 1)
-             {
-                 UICardData sampleAttack = new UICardData("Lightning", 3, "Deal 3 damage to 3 random enemies.", UICardData.CardType.ATTACK);
-                 UpdateUI(sampleAttack);
-             } else
-             {
-                 UICardData sampleSpell = new UICardData("Backpack", 0, "Draw 2, then Discard 2.", UICardData.CardType.SPELL);
-                 UpdateUI(sampleSpell);
-             } */
     }
 
     // Update is called once per frame
@@ -63,17 +49,6 @@ public class CardUIUpdater : MonoBehaviour
             TurnOffCard();
             EnableCard();
         }
-   /*     if (!cardHolder.IsEmpty())
-        {
-            int.TryParse(costText.text, out int cost);
-            if(player.GetEnergy() < cost)
-            {
-                DisableCard();
-            } else
-            {
-                EnableCard();
-            }
-        } */
 
     }
 

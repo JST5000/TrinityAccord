@@ -23,6 +23,7 @@ public class UpdateEnemyUI : MonoBehaviour
     void Start()
     {
         enemyHolder = GetComponent<EnemyManager>();
+        DisableEnemy();
     }
 
     public void PopulateUI(UIEnemyData data)
@@ -42,16 +43,16 @@ public class UpdateEnemyUI : MonoBehaviour
         if (!enemyHolder.IsEmpty())
         {
             UpdateUI(enemyHolder.GetUIData());
-            EnableCard();
+            EnableEnemy();
         }
         else
         {
-            DisableCard();
+            DisableEnemy();
         }
     }
 
     //Checks if change is needed, then updates
-    public void DisableCard()
+    public void DisableEnemy()
     {
         if (!isDisabled)
         {
@@ -63,7 +64,7 @@ public class UpdateEnemyUI : MonoBehaviour
     }
 
     //Checks if change is needed, then updates
-    public void EnableCard()
+    public void EnableEnemy()
     {
         if (isDisabled)
         {

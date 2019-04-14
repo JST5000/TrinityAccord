@@ -201,8 +201,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.7775, y: -5.2}
-  m_SizeDelta: {x: 518.45, y: 425.6}
+  m_AnchoredPosition: {x: 0, y: 0.000005722}
+  m_SizeDelta: {x: 810, y: 458.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4426670230531952723
 CanvasRenderer:
@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.68073237, b: 0, a: 1}
+  m_Color: {r: 0.18867922, g: 0.18867922, b: 0.18867922, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -253,6 +253,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 544cc8fa261aaf34c91a402f38edc034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  title: {fileID: 4426670231034426584}
+  textContent: {fileID: 4426670230889924459}
+  left: {fileID: 932622762856023576}
+  right: {fileID: 6447320887728436293}
+  pageCounter: {fileID: 4426670230913349006}
+  CardWithLabels: {fileID: 7517808726025619732, guid: 1b314d8472a33dd4b9a03f9a4e79e4c7,
+    type: 3}
+  EnemyWithLabels: {fileID: 185338972165436799, guid: 37b37d62c433f2f489cd575c9d1e8898,
+    type: 3}
 --- !u!1 &4426670230674439590
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,8 +336,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -346,8 +355,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -447,8 +456,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.8, y: 1.2}
-  m_SizeDelta: {x: 436.5, y: 267.2}
+  m_AnchoredPosition: {x: 3.7375, y: 1.2}
+  m_SizeDelta: {x: 748.42, y: 267.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4426670230889924458
 CanvasRenderer:
@@ -478,10 +487,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 'This is a card game where you build you get a new card after each battle.
-
-
-    Taking an enemy''s life will cause them to be "Staggered", resetting their attack.'
+  m_text: Main Text (Filled dynamically)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -509,8 +515,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 26
+  m_fontSizeBase: 26
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -550,12 +556,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 4426670230889924459}
-    characterCount: 156
+    characterCount: 30
     spriteCount: 0
-    spaceCount: 29
-    wordCount: 29
+    spaceCount: 3
+    wordCount: 4
     linkCount: 0
-    lineCount: 7
+    lineCount: 1
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -610,7 +616,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.5, y: -179.1}
+  m_AnchoredPosition: {x: 0.000012159, y: -192}
   m_SizeDelta: {x: 124.9, y: 54.965}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4426670230913349001
@@ -773,7 +779,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 219.52, y: -179.1}
+  m_AnchoredPosition: {x: 349.43, y: -185}
   m_SizeDelta: {x: 57.05, y: 54.97}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4426670230956316429
@@ -852,7 +858,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4426670230956316418}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8453779072427362473}
+        m_MethodName: ClickRight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!225 &6447320887728436293
@@ -901,8 +918,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 174.19997}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -0.000011444, y: 188}
+  m_SizeDelta: {x: 518, y: 52.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4426670231034426587
 CanvasRenderer:
@@ -932,7 +949,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Help
+  m_text: Help Title (Dynamic)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -960,13 +977,13 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_textAlignment: 514
   m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
@@ -1001,10 +1018,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 4426670231034426584}
-    characterCount: 4
+    characterCount: 20
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
+    spaceCount: 2
+    wordCount: 3
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -1223,7 +1240,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 223.1, y: 173}
+  m_AnchoredPosition: {x: 353, y: 188}
   m_SizeDelta: {x: 49.9, y: 52.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4426670232292330226
@@ -1353,7 +1370,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -214, y: -179.1}
+  m_AnchoredPosition: {x: -341.95, y: -185}
   m_SizeDelta: {x: 57.05, y: 54.97}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6797510729683898247
@@ -1432,7 +1449,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2273446942004383246}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8453779072427362473}
+        m_MethodName: ClickLeft
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!225 &932622762856023576
