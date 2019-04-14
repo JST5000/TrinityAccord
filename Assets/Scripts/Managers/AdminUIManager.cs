@@ -9,6 +9,7 @@ public class AdminUIManager : MonoBehaviour
 
     public void ChooseEncounter()
     {
+        PermanentState.wins++;
         Instantiate(ChooseEncounterMenu, GameObject.Find("Canvas").transform, false);
     }
 

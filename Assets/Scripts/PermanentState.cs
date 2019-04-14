@@ -8,6 +8,7 @@ public class PermanentState : MonoBehaviour
     //Player deck - State should hold for multiple encounters
     public static List<CardData> playerDeck;
     public static Level expectedLevel;
+    public static int wins = 0;
 
     private static EnemyData[] nextEncounter;
 
@@ -18,6 +19,7 @@ public class PermanentState : MonoBehaviour
 
     public static void ResetStatics()
     {
+        wins = 0;
         InitializeBaseDeck();
         expectedLevel = Level.TUTORIAL;
         InitializeDefaultEncounter();

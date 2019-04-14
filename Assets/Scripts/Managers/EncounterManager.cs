@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EncounterManager : MonoBehaviour
 {
@@ -22,16 +23,16 @@ public class EncounterManager : MonoBehaviour
     public void Init(EnemyData[] encounter)
     {
         originalEncounter = encounter;
-        if(allEnemyManagers == null)
+        if (allEnemyManagers == null)
         {
             InitEnemyManagers();
         }
-        for(int i = 0; i < originalEncounter.Length && i < allEnemyManagers.Length; ++i)
+        for (int i = 0; i < originalEncounter.Length && i < allEnemyManagers.Length; ++i)
         {
             enemyCount++;
             allEnemyManagers[i].Init(originalEncounter[i]);
         }
-        if(originalEncounter.Length > allEnemyManagers.Length)
+        if (originalEncounter.Length > allEnemyManagers.Length)
         {
             Debug.Log("There were more enemies in this encounter than EnemyManagers. Please implement how this feature should be.");
         }
@@ -61,9 +62,9 @@ public class EncounterManager : MonoBehaviour
     public void SpawnEnemy(EnemyData newEnemy)
     {
         bool didNotSpawn = true;
-        foreach(EnemyManager manager in allEnemyManagers)
+        foreach (EnemyManager manager in allEnemyManagers)
         {
-            if(manager.IsEmpty())
+            if (manager.IsEmpty())
             {
                 manager.Init(newEnemy);
                 didNotSpawn = false;
@@ -71,7 +72,7 @@ public class EncounterManager : MonoBehaviour
                 break;
             }
         }
-        if(didNotSpawn)
+        if (didNotSpawn)
         {
             Debug.Log("Tried to spawn " + newEnemy + " but there was no space.");
         }
@@ -80,10 +81,19 @@ public class EncounterManager : MonoBehaviour
     public void OnEnemyDeath()
     {
         enemyCount--;
-        if(enemyCount == 0)
+        if (enemyCount == 0)
         {
+            OnEncounterWin();
             Instantiate(Choose3Menu, GameObject.Find("Canvas").transform, false);
         }
+    }
+
+    public void OnEncounterWin()
+    {
+        PermanentState.wins++;
+        if (PermanentState.wins >= 6) { 
+            SceneManager.LoadScene("WinScreen");
+        } 
     }
 
     // Start is called before the first frame update

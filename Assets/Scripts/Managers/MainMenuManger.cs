@@ -2,11 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuManger : MonoBehaviour
 {
 
     public GameObject Help;
+    public CanvasGroup Star;
+
+    public void Awake()
+    {
+        //Shows star if player has completed the game!
+        GameObject perm = GameObject.Find("HasWon");
+        if (perm == null)
+        {
+            CanvasGroupManip.Disable(Star);
+        }
+    }
 
     public void StartNewGame()
     { 

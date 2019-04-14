@@ -6,6 +6,7 @@ TagManager:
   tags:
   - permanentState
   - MonoBehaviorUtil
+  - HasWon
   layers:
   - Default
   - TransparentFX
