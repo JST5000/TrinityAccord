@@ -40,9 +40,13 @@ public class CardUIUpdater : MonoBehaviour
     void Update()
     {
         //Potentially replace with a notify method if performance becomes an issue
+        //Currentmode as select card from hand means that all are selectable, even if they are not usable
         if (!cardHolder.IsEmpty())
         {
-            UpdateUI(cardHolder.GetUICardData());
+            if (cardHolder.GetUICardData() != null)
+            {
+                UpdateUI(cardHolder.GetUICardData());
+            }
             TurnOnCard();
         } else
         {

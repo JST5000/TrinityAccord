@@ -7,6 +7,8 @@ public class AdminHidden : MonoBehaviour
 
     public enum Reveal { PERMANENT, TOGGLE, WHILE_HELD };
     public Reveal revealType = Reveal.PERMANENT;
+    public KeyCode opt1 = KeyCode.Tilde;
+    public KeyCode opt2 = KeyCode.BackQuote;
     private bool revealed = false;
     private bool isDisabled;
 
@@ -17,10 +19,25 @@ public class AdminHidden : MonoBehaviour
         DisableButton();
     }
 
+    public void ExternalDisable()
+    {
+        if(revealType == Reveal.TOGGLE)
+        {
+            DisableButton();
+        } else if(revealType == Reveal.PERMANENT)
+        {
+            revealed = false;
+            DisableButton();
+        } else
+        {
+            DisableButton();
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if(revealType == Reveal.TOGGLE && (Input.GetKeyDown(KeyCode.BackQuote) || Input.GetKeyDown(KeyCode.Tilde))) {
+        if(revealType == Reveal.TOGGLE && (Input.GetKeyDown(opt1) || Input.GetKeyDown(opt2))) {
             if (isDisabled)
             {
                 EnableButton();
@@ -29,7 +46,7 @@ public class AdminHidden : MonoBehaviour
             {
                 DisableButton();
             }
-        } else if (Input.GetKey(KeyCode.BackQuote) || Input.GetKey(KeyCode.Tilde))
+        } else if (Input.GetKey(opt1) || Input.GetKey(opt2))
         {
             if(revealType == Reveal.TOGGLE)
             {
@@ -38,7 +55,7 @@ public class AdminHidden : MonoBehaviour
             {
                 revealed = true;
                 EnableButton();
-            } else
+            } else //RevealType == WHILE_HELD
             {
                 EnableButton();
             }

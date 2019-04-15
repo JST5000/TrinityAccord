@@ -15,7 +15,8 @@ public class HandManager : MonoBehaviour
             if (!man.IsEmpty())
             {
                 CardUIUpdater manUI = man.transform.GetComponent<CardUIUpdater>();
-                if (availableEnergy < man.GetCardData().cost)
+                //If we are selecting cards in hand, their playability does not matter (Likely a discard effect)
+                if(!man.IsPlayable() && !(UIManager.currentMode == GameMode.PickCardInHand))
                 {
                     manUI.DisableCard();
                 }

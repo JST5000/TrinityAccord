@@ -12,13 +12,18 @@ public class HelpManager : MonoBehaviour
     public CanvasGroup right;
     public TextMeshProUGUI pageCounter;
 
+    public Vector3 RelativeScale = new Vector3(1, 1, 1);
+
     private List<HelpPage> pages;
     public Transform CardWithLabels;
     public Transform EnemyWithLabels;
 
+    public static int GlossaryPage = 5;
 
     private int currPage = 0;
     private Transform currentPagePrefab;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +38,15 @@ public class HelpManager : MonoBehaviour
             CanvasGroupManip.Disable(right);
         }
         LoadPage(pages[currPage]);
+    }
+
+    public void SetPage(int page)
+    {
+        currPage = page;
+        if (pages != null && pages.Count > page)
+        {
+            LoadPage(pages[currPage]);
+        }
     }
 
     // Update is called once per frame
@@ -58,6 +72,17 @@ public class HelpManager : MonoBehaviour
         pages.Add(new HelpPage("Progression", "After every encounter, you get to add a new card to your deck." +
             "\n\nIf you lose, your deck loses all cards you added." +
             "\n\nGood Luck!", null));
+        pages.Add(new HelpPage("Glossary 1", InLineIcon.DAMAGE + ": X - Deal X damage to the the player." +
+            "\n\n" + InLineIcon.ON_STAGGER + ": Y - When a life is lost, change this effect to Y." +
+            "\n\nAttack - Red cards. Usually do damage." +
+            "\n\nBlind: X - All attacks have random targets for X turns." +
+            "\n\nFlip - Transform this into a new card or new effect."
+            , null));
+        pages.Add(new HelpPage("Glossary 2", "Grow X - Every time this card is played, increase its attack by X." +
+            "\n\nSpell - Blue cards. Usually are utility." +
+            "\n\nStagger - Reset the enemie's attack timer to max + 1." +
+            "\n\nStun - Slow the enemie's timer by 1 turn."
+            , null));
     }
 
     private void ClearPrevPrefab()
@@ -80,6 +105,7 @@ public class HelpManager : MonoBehaviour
         if(page.Prefab != null)
         {
             currentPagePrefab = Instantiate(page.Prefab, GameObject.Find("Canvas").transform, false);
+            currentPagePrefab.localScale = RelativeScale;
         }
         UpdatePageCounter();
     }

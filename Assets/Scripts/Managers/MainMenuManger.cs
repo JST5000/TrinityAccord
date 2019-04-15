@@ -28,6 +28,7 @@ public class MainMenuManger : MonoBehaviour
         {
             Destroy(permanentState);
         }
+        PermanentState.ResetStatics();
         SceneManager.LoadScene("Encounter");
     }
 

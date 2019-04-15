@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-enum GameMode {SelectCard, PickTarget, Animation,PickCardInHand  }; 
+public enum GameMode {SelectCard, PickTarget, Animation,PickCardInHand  }; 
 
 public class UIManager : MonoBehaviour
 {
-    private static GameMode currentMode = GameMode.SelectCard;
+    public static GameMode currentMode = GameMode.SelectCard;
 
     //Finding user input to cast card
     static Target requiredInput = Target.NONE;
@@ -29,6 +29,7 @@ public class UIManager : MonoBehaviour
     public static void selectCardInHand(CardData card,int count)
     {
         SetCurrentMode(GameMode.PickCardInHand);
+        GameObject.Find("Hand").GetComponent<HandManager>().UpdateAllCardsInHand();
         actionCard = card;
         actionsNeeded = count;
     }
@@ -189,6 +190,9 @@ public class UIManager : MonoBehaviour
 
         //Removes highlight for the next card to appear
         selectedCard.GetComponent<CardUIUpdater>().ResetHighlight();
+
+        //Recheck if any conditions are not met
+        GameObject.Find("Hand").GetComponent<HandManager>().UpdateAllCardsInHand();
 
         currentMode = GameMode.Animation;
         requiredInput = Target.NONE;

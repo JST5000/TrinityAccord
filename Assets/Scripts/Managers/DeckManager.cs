@@ -40,6 +40,7 @@ public class DeckManager : MonoBehaviour
             DrawCard();
         }
         extraDrawsOnTurnStart = 0;
+        GameObject.Find("Hand").GetComponent<HandManager>().UpdateAllCardsInHand();
     }
 
     public void EndTurn()

@@ -6,8 +6,8 @@ public class Barrage : CardData
 {
     public Barrage()
     {
-        cardData = new UICardData("Barrage", cost: 1, "Deal 1 damage for each other attack played this turn", UICardData.CardType.ATTACK);
         cost = 0;
+        cardData = new UICardData("Barrage", cost: cost, "Deal 1 damage for each other attack played this turn", UICardData.CardType.ATTACK);
         target = Target.ENEMY;
     }
 

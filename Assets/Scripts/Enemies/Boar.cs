@@ -22,7 +22,7 @@ public class Boar : EnemyData
         }
         else
         {
-            return InLineIcon.DAMAGE + ": 2 Last Stand: " + InLineIcon.DAMAGE + ": 4";
+            return InLineIcon.DAMAGE + ": 2, " + InLineIcon.ON_STAGGER + ": " + InLineIcon.DAMAGE + ": 4";
         }
     }
 

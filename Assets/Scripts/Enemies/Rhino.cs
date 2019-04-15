@@ -25,7 +25,7 @@ public class Rhino : EnemyData
         {
             return InLineIcon.DAMAGE + ": 2";
         } else {
-            return InLineIcon.DAMAGE + ": 5 " + InLineIcon.ON_STAGGER + ": " + InLineIcon.DAMAGE + " = 2";
+            return InLineIcon.DAMAGE + ": 5, " + InLineIcon.ON_STAGGER + ": " + InLineIcon.DAMAGE + ": 2";
         }
     }
 

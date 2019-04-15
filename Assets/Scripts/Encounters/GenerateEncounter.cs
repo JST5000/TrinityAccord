@@ -139,7 +139,9 @@ public static class GenerateEncounter
         }
         else if (level == Level.BOSS)
         {
-            return RerollUntilValid(boss);
+            //TODO, change as we get more "Boss" battles or move the boss battle zone. This is currently the fight I want as "Final Battle" - Jackson
+            return EncounterInterpreter.InterpretText("Gang Leader, Scythe, Scythe");
+            //return RerollUntilValid(boss);
         }
 
         throw new System.Exception("Unable to generate an encounter for this level " + level);

@@ -7,7 +7,7 @@ public class Juggle : CardData
     public Juggle()
     {
         cardData = new UICardData("Juggle", cost: 1, "If there is spell in hand, deal 3 damage and stun an enemy", UICardData.CardType.ATTACK);
-        cost = 2;
+        cost = 1;
         target = Target.ENEMY;
     }
 
@@ -34,7 +34,7 @@ public class Juggle : CardData
 
         foreach (CardManager cardManager in getHand())
         {
-                if (cardManager.GetCardData()!=null&&cardManager.GetCardData().getType().Equals(UICardData.CardType.SPELL))
+                if (!cardManager.IsEmpty() && cardManager.GetCardData()!=null&&cardManager.GetCardData().getType().Equals(UICardData.CardType.SPELL))
                     return true;
         }
         return false;

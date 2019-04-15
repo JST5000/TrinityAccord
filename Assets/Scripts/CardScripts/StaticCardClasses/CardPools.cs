@@ -35,7 +35,7 @@ public static class CardPools
         all.Add(new Lightning());
         all.Add(new Mug());
         all.Add(new Pebble());
-        all.Add(new Peer());
+        //all.Add(new Peer());
         all.Add(new Quickdraw());
         all.Add(new Rally());
         all.Add(new Shock());
