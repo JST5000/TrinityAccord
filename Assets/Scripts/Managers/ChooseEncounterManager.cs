@@ -56,7 +56,8 @@ public class ChooseEncounterManager : MonoBehaviour
             //Reloads the scene, hopefully with the newly selected encounter.
             if (reloadSceneOnExit)
             {
-                GenerateEncounter.WriteEncounterData();
+                //Writing is not done yet
+                //GenerateEncounter.WriteEncounterData();
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
             else

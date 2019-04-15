@@ -104,7 +104,7 @@ public class EncounterInterpreter
 
     public static List<EncounterData> ReadInEncounters()
     {
-        string csvFilePath = "Data\\EncountersGenerated";
+        string csvFilePath = "EncountersGenerated";
         TextAsset encounterData = Resources.Load<TextAsset>(csvFilePath);
 
         string[] data = encounterData.text.Split(new char[] { '\n' });
@@ -141,7 +141,7 @@ public class EncounterInterpreter
 
     public static void WriteEncounterData(List<EncounterData> allData)
     {
-        string csvFilePath = "Assets\\Resources\\Data\\EncountersGenerated.csv";
+        string csvFilePath = "Assets\\Resources\\EncountersGenerated.csv";
         using (StreamWriter writable = new StreamWriter(csvFilePath, false))
         {
             writable.WriteLine(EncounterData.GetCSVFieldNames());
