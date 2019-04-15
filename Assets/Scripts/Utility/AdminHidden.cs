@@ -89,6 +89,7 @@ public class AdminHidden : MonoBehaviour
         CanvasGroup reset = GetComponent<CanvasGroup>();
         if (isDisabled)
         {
+            reset.transform.SetAsLastSibling();
             reset.alpha = 1;
             reset.blocksRaycasts = true;
             reset.interactable = true;

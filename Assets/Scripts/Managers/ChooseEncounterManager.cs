@@ -57,7 +57,7 @@ public class ChooseEncounterManager : MonoBehaviour
             if (reloadSceneOnExit)
             {
                 GenerateEncounter.WriteEncounterData();
-                SceneManager.LoadScene("Encounter");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
             else
             {
