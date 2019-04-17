@@ -55,6 +55,11 @@ public class StackManager : MonoBehaviour
         return playedCards.Count == 0;
     }
 
+    public bool IsDisplayEmpty()
+    {
+        return displayedCardData.IsEmpty();
+    }
+
     public void Push(CardData justPlayed)
     {
         UpdateCounts(justPlayed);

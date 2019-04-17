@@ -196,6 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aacfca122f19e584ca0653d22245ceff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableHand: 0
 --- !u!224 &421165628 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6310337783397403885, guid: 74f27ccd8ecda334abc8413b58f742e3,
@@ -618,7 +619,7 @@ MonoBehaviour:
   healthUI: {fileID: 1395858390}
   defaultEnergy: 3
   defaultHealth: 10
-  CanDie: 1
+  CanDie: 0
 --- !u!1 &688938026
 GameObject:
   m_ObjectHideFlags: 0
@@ -2954,6 +2955,7 @@ RectTransform:
   - {fileID: 933861432}
   - {fileID: 1724817996}
   - {fileID: 743143571}
+  - {fileID: 2005034320}
   m_Father: {fileID: 1389801124}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2976,6 +2978,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allEnemyManagers: []
   enemyCount: 0
+  VictorySplash: {fileID: 2005034321}
   Choose3Menu: {fileID: 3385944392895627964, guid: 888d9bb2de2652942ac9037279264ab5,
     type: 3}
 --- !u!1 &1389801123
@@ -4700,6 +4703,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8592884469ca4ff4fa22b89e6a6ad325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1964309715 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4077812113045243023, guid: 4736db31c3f1d5a44b707220138c189f,
+    type: 3}
+  m_PrefabInstance: {fileID: 4077812111287285310}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1964309719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964309715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e10f9c4cdbc2e134e818cf9eadced578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2003765350
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4964,6 +4985,114 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 0
+--- !u!1 &2005034319
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2005034320}
+  - component: {fileID: 2005034322}
+  - component: {fileID: 2005034321}
+  - component: {fileID: 2005034324}
+  - component: {fileID: 2005034323}
+  m_Layer: 5
+  m_Name: VictorySplash
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2005034320
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005034319}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1371781648}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 277.99, y: -82.1}
+  m_SizeDelta: {x: 438.9446, y: 137.65}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2005034321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005034319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 727be39da070d1546bb80463ce689a35, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &2005034322
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005034319}
+  m_CullTransparentMesh: 0
+--- !u!114 &2005034323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005034319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1679637790, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 1
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
+--- !u!225 &2005034324
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005034319}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1001 &2048664033
 PrefabInstance:
   m_ObjectHideFlags: 0

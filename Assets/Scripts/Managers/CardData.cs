@@ -95,6 +95,11 @@ public abstract class CardData
                 validEnemies.Add(i);
             }
         }
+        //Nothing to damage
+        if(validEnemies.Count == 0)
+        {
+            return;
+        }
         int randomIndex = UnityEngine.Random.Range(0, validEnemies.Count);
         for (int i = 0; i < 100 && !enemies[validEnemies[randomIndex]].Damage(amount); ++i) //Used instead of while to avoid infinite loop on error
         {

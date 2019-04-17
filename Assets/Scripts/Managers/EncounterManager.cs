@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class EncounterManager : MonoBehaviour
@@ -8,9 +9,11 @@ public class EncounterManager : MonoBehaviour
     EnemyData[] originalEncounter;
     public EnemyManager[] allEnemyManagers;
     public int enemyCount = 0;
+    public Image VictorySplash;
 
     public Transform Choose3Menu;
 
+    float timeUntilVictory = 0;
 
     //Allows static access to the Spawn functionality for enemies to call in their attacks
     //Abstracts knowledge of what object has the EncounterManager script
@@ -84,16 +87,21 @@ public class EncounterManager : MonoBehaviour
         if (enemyCount == 0)
         {
             OnEncounterWin();
-            Instantiate(Choose3Menu, GameObject.Find("Canvas").transform, false);
         }
+    }
+
+    IEnumerator WaitForNSeconds(float n)
+    {
+        yield return new WaitForSeconds(n);
     }
 
     public void OnEncounterWin()
     {
         PermanentState.wins++;
-        if (PermanentState.wins >= 6) { 
-            SceneManager.LoadScene("WinScreen");
-        } 
+        HandManager hand = GameObject.Find("Hand").GetComponent<HandManager>();
+        hand.DisableHandInteractions();
+        CanvasGroupManip.Enable(VictorySplash.GetComponent<CanvasGroup>());
+        timeUntilVictory = 1.5f;
     }
 
     // Start is called before the first frame update
@@ -119,6 +127,25 @@ public class EncounterManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(timeUntilVictory > 0)
+        {
+            timeUntilVictory -= Time.deltaTime;
+            if(timeUntilVictory <= 0)
+            {
+                OnVictory();
+            }
+        }
+    }
+
+    private void OnVictory()
+    {
+        CanvasGroupManip.Disable(VictorySplash.GetComponent<CanvasGroup>());
+        HandManager hand = GameObject.Find("Hand").GetComponent<HandManager>();
+        hand.EnableHandInteraction();
+        if (PermanentState.wins >= 6)
+        {
+            SceneManager.LoadScene("WinScreen");
+        }
+        Instantiate(Choose3Menu, GameObject.Find("Canvas").transform, false);
     }
 }
