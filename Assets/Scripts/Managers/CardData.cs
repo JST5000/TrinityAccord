@@ -19,6 +19,7 @@ public abstract class CardData
     public GameObject selectedTarget;
     public string cardName;
     public int cost;
+    public int changedCost=-1;
     public bool fragile = false;
     public bool duplicated = false;
     public abstract void Action(EnemyManager[] enemys);
@@ -32,6 +33,15 @@ public abstract class CardData
             id = nextId;
             ++nextId;
         }
+    }
+    public void setCost(int cost)
+    {
+        this.cost = cost;
+        cardData.cost = cost;
+    }
+    public void setChangedCost(int cost)
+    {
+        changedCost = cost;
     }
 
     public int GetId()
@@ -58,9 +68,18 @@ public abstract class CardData
     {
         return true;
     }
+    public virtual void onDiscard()
+    {
+
+    }
 
     public UICardData GetUICardData()
     {
+        if (changedCost != -1)
+        {
+            cardData.cost = changedCost;
+            cost = changedCost;
+        }
         return cardData;
     }
 /*    public CardData Clone(CardData card)
@@ -114,6 +133,15 @@ public abstract class CardData
     {
         DeckManager deck = GameObject.Find("Deck").GetComponent<DeckManager>();
         return deck.DrawCard();
+    }
+    protected void drawFromDiscard()
+    {
+        DeckManager deck = GameObject.Find("Deck").GetComponent<DeckManager>();
+        CardData toAdd= deck.grabDiscard();
+        if (toAdd != null) {
+            deck.addCardToHand(toAdd);
+        }
+
     }
     protected CardData grabTop()
     {
@@ -188,6 +216,39 @@ public abstract class CardData
         else if (card.target.Equals(Target.CARD))
         {
             card.selectedTarget=GameObject.Find("Deck").GetComponent<DeckManager>().getRandomCardTarget();
+        }
+        else
+        {
+            card.selectedTarget = GameObject.Find("Board");
+        }
+        GameObject.Find("StackHolder").GetComponent<StackManager>().Push(card);
+    }
+    protected void playCardRandomTarget(CardData card)
+    {
+        if (card.target.Equals(Target.ENEMY))
+        {
+            GameObject[] enemies = GameObject.Find("Board").GetComponent<EncounterManager>().enemyGameObjects;
+
+            List<int> validEnemies = new List<int>();
+            for (int i = 0; i < enemies.Length; ++i)
+            {
+                if (!enemies[i].GetComponent<EnemyManager>().IsEmpty())
+                {
+                    validEnemies.Add(i);
+                }
+            }
+            //Nothing to damage
+            if (validEnemies.Count == 0)
+            {
+
+                return;
+            }
+            int randomIndex = UnityEngine.Random.Range(0, validEnemies.Count);
+            card.selectedTarget = (GameObject)enemies[validEnemies[randomIndex]];
+        }
+        else if (card.target.Equals(Target.CARD))
+        {
+            card.selectedTarget = GameObject.Find("Deck").GetComponent<DeckManager>().getRandomCardTarget();
         }
         else
         {

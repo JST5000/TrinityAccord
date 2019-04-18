@@ -8,6 +8,7 @@ public class EncounterManager : MonoBehaviour
 {
     EnemyData[] originalEncounter;
     public EnemyManager[] allEnemyManagers;
+    public GameObject[] enemyGameObjects;
     public int enemyCount = 0;
     public Image VictorySplash;
 
@@ -25,6 +26,14 @@ public class EncounterManager : MonoBehaviour
 
     public void Init(EnemyData[] encounter)
     {
+
+        enemyGameObjects = new GameObject[5];
+        enemyGameObjects[0] = (GameObject.Find("Enemy 1"));
+        enemyGameObjects[1] = (GameObject.Find("Enemy 2"));
+        enemyGameObjects[2] = (GameObject.Find("Enemy 3"));
+        enemyGameObjects[3] = (GameObject.Find("Enemy 4"));
+        enemyGameObjects[4] = (GameObject.Find("Enemy 5"));
+
         originalEncounter = encounter;
         if (allEnemyManagers == null)
         {
@@ -110,6 +119,7 @@ public class EncounterManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         InitEnemyManagers();
         InitializeEncounter();
     }

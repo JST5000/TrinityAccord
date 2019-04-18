@@ -67,6 +67,18 @@ public class DeckManager : MonoBehaviour
         return null;
 
     }
+    public void addCardToHand(CardData card)
+    {
+        foreach (CardManager cardManager in hand)
+        {
+            if (cardManager.empty)
+            {
+                cardManager.Init(card);
+                GameObject.Find("Hand").GetComponent<HandManager>().UpdateAllCardsInHand();
+                return;
+            }
+        }
+    }
     public CardData getTop()
     {
         if (deck.Count == 0)
@@ -92,6 +104,19 @@ public class DeckManager : MonoBehaviour
             return toReturn;
         }
         return null;
+    }
+    public CardData grabDiscard()
+    {
+        if (discard.Count == 0)
+        {
+            return null;
+        }
+        int randomIndex = UnityEngine.Random.Range(0, discard.Count);
+        CardData toReturn = discard[randomIndex];
+        discard.RemoveAt(randomIndex);
+        return toReturn;
+
+
     }
     public void discardTop()
     {
@@ -129,6 +154,7 @@ public class DeckManager : MonoBehaviour
         {
             if (!cardMan.IsEmpty())
             {
+                cardMan.GetCardData().onDiscard();
                 discard.Add(cardMan.GetCardData());
                 cardMan.SetEmpty();
             }
