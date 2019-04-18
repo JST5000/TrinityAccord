@@ -13,6 +13,7 @@ public class UIEnemyData
     private int currTimer;
     private string effect;
     private Sprite picture;
+    private bool stunned;
 
     public string EnemyName { get => enemyName;}
     public int CurrHP { get => currHP;}
@@ -23,8 +24,9 @@ public class UIEnemyData
     public int CurrTimer { get => currTimer;}
     public string Effect { get => effect;}
     public Sprite Picture { get => picture; }
+    public bool Stunned { get => stunned; }
 
-    public UIEnemyData(string name, int currHP, int maxHP, int staggers, int damage, int maxTimer, int currTimer, string effect, Sprite picture)
+    public UIEnemyData(string name, int currHP, int maxHP, int staggers, int damage, int maxTimer, int currTimer, string effect, Sprite picture, bool stunned)
     {
         this.enemyName = name;
         this.currHP = currHP;
@@ -35,5 +37,6 @@ public class UIEnemyData
         this.currTimer = currTimer;
         this.effect = effect;
         this.picture = picture;
+        this.stunned = stunned;
     }
 }

@@ -51,7 +51,14 @@ public class EnemyManager : MonoBehaviour
     {
         if (!isEmpty)
         {
-            data.CurrTimer--;
+            if (data.Stunned)
+            {
+                data.Stunned = false;
+            }
+            else
+            {
+                data.CurrTimer--;
+            }
             if (data.CurrTimer == 0)
             {
                 data.CurrTimer = data.MaxTimer;
@@ -84,6 +91,11 @@ public class EnemyManager : MonoBehaviour
     public bool IsEmpty()
     {
         return isEmpty;
+    }
+
+    public bool IsStunned()
+    {
+        return data.Stunned;
     }
 
     public UIEnemyData GetUIData()

@@ -16,6 +16,7 @@ public abstract class EnemyData
     private Sprite picture;
     private string spriteName;
     private string[] alternateNames;
+    private bool stunned;
 
     public string EnemyName { get => enemyName; set => enemyName = value; }
     public int MaxHP { get => maxHP; set => maxHP = value; }
@@ -28,6 +29,7 @@ public abstract class EnemyData
     public Sprite Picture { get => picture; set => picture = value; }
     public string SpriteName { get => spriteName; set => spriteName = value; }
     public string[] AlternateNames { get => alternateNames; set => alternateNames = value; }
+    public bool Stunned { get => stunned; set => stunned = value; }
 
     public EnemyData(string name, int maxHP, int staggers, int damage, int timer, string effect, string spriteName, params string[] alternateNames)
     {
@@ -54,7 +56,7 @@ public abstract class EnemyData
 
     public UIEnemyData GetUIData()
     {
-        return new UIEnemyData(enemyName, currHP: currHP, maxHP: maxHP, staggers, damage, maxTimer, currTimer, effect, picture);
+        return new UIEnemyData(enemyName, currHP: currHP, maxHP: maxHP, staggers, damage, maxTimer, currTimer, effect, picture, stunned: stunned);
     }
 
     public void Attack() {
@@ -126,12 +128,15 @@ public abstract class EnemyData
 
     public virtual void StaggerEnemy()
     {
-        CurrTimer = MaxTimer + 1;
+        //CurrTimer = MaxTimer + 1;
+        CurrTimer = MaxTimer;
+        Stun();
     }
 
     public virtual void Stun()
     {
-        CurrTimer++;
+     //   CurrTimer++;
+        Stunned = true;
     }
 
     protected void LoadPicture(string givenSpriteName)

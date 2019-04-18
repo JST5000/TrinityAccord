@@ -13,6 +13,7 @@ public class UpdateEnemyUI : MonoBehaviour
     public Image timerBackground;
     public Text timerDisplay;
     public TextMeshProUGUI effectDisplay;
+    public TextMeshProUGUI stunnedText;
 
     private EnemyManager enemyHolder;
 
@@ -89,6 +90,8 @@ public class UpdateEnemyUI : MonoBehaviour
         SetTimerColor(data);
         timerDisplay.text = data.CurrTimer + " / " + data.MaxTimer;
 
+        SetStunnedText(data);
+
         effectDisplay.text = data.Effect;
     }
 
@@ -103,6 +106,24 @@ public class UpdateEnemyUI : MonoBehaviour
         } else if (data.CurrTimer >= data.MaxTimer)
         {
             timerBackground.color = Color.green;
+        }
+
+        if(data.Stunned)
+        {
+            Color c = timerBackground.color;
+            float dim = .6f;
+            timerBackground.color = new Color(c.r * dim, c.g * dim, c.b * dim, c.a);
+        }
+    }
+
+    public void SetStunnedText(UIEnemyData data)
+    {
+        if(data.Stunned)
+        {
+            stunnedText.text = "Stunned!";
+        } else
+        {
+            stunnedText.text = "";
         }
     }
 }

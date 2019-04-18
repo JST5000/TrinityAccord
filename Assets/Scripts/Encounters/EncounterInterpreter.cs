@@ -96,7 +96,7 @@ public class EncounterInterpreter
             } */
             //Debug.Log("Split Text: " + enemyName);
             EnemyData result = InterpretWord(enemyName.Trim());
-            Debug.Log("Enemy Interpretted: " + result.EnemyName);
+    
             encounter.Add(result);
         }
         return encounter.ToArray();

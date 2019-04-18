@@ -40,7 +40,6 @@ public class DeckManager : MonoBehaviour
             DrawCard();
         }
         extraDrawsOnTurnStart = 0;
-        GameObject.Find("Hand").GetComponent<HandManager>().UpdateAllCardsInHand();
     }
 
     public void EndTurn()
@@ -61,6 +60,7 @@ public class DeckManager : MonoBehaviour
                 CardData toAdd = deck[0];
                 cardManager.Init(deck[0]);
                 deck.RemoveAt(0);
+                GameObject.Find("Hand").GetComponent<HandManager>().UpdateAllCardsInHand();
                 return toAdd;
             }
         }

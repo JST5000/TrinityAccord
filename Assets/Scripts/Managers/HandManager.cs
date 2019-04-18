@@ -18,7 +18,7 @@ public class HandManager : MonoBehaviour
             {
                 CardUIUpdater manUI = man.transform.GetComponent<CardUIUpdater>();
                 //If we are selecting cards in hand, their playability does not matter (Likely a discard effect)
-                if (!man.IsPlayable() && !(UIManager.currentMode == GameMode.PickCardInHand))
+                if (disableHand || (!man.IsPlayable() && !(UIManager.currentMode == GameMode.PickCardInHand)))
                 {
                     manUI.DisableCard();
                 }
@@ -46,10 +46,12 @@ public class HandManager : MonoBehaviour
     public void DisableHandInteractions()
     {
         disableHand = true;
+        UpdateAllCardsInHand();
     }
 
     public void EnableHandInteraction()
     {
         disableHand = false;
+        UpdateAllCardsInHand();
     }
 }

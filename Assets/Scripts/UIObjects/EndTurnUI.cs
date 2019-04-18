@@ -41,7 +41,7 @@ public class EndTurnUI : MonoBehaviour
 
     private void SetColorToNotDone()
     {
-        Color targetColor = new Color(.9f, .9f, .9f, 1);
+        Color targetColor = new Color(1, 1, 1, 1);
         SetColors(targetColor);
     }
 

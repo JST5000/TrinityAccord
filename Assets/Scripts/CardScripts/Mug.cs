@@ -15,6 +15,11 @@ public class Mug : CardData
     {
 
         enemys[0].Damage(2);
+        if (enemys[0].IsEmpty() || enemys[0].IsStunned())
+        {
+            addEnergy(2);
+            draw();
+        }
     }
     public override void Action(CardData[] cards)
     {

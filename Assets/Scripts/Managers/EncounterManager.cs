@@ -100,6 +100,9 @@ public class EncounterManager : MonoBehaviour
         PermanentState.wins++;
         HandManager hand = GameObject.Find("Hand").GetComponent<HandManager>();
         hand.DisableHandInteractions();
+        //No more turns, so disallow ending turn
+        GameObject.Find("EndTurnButton").GetComponent<Button>().interactable = false;
+
         CanvasGroupManip.Enable(VictorySplash.GetComponent<CanvasGroup>());
         timeUntilVictory = 1.5f;
     }
@@ -140,8 +143,9 @@ public class EncounterManager : MonoBehaviour
     private void OnVictory()
     {
         CanvasGroupManip.Disable(VictorySplash.GetComponent<CanvasGroup>());
-        HandManager hand = GameObject.Find("Hand").GetComponent<HandManager>();
-        hand.EnableHandInteraction();
+
+        //Hand does not get turned back on, reset of scene will restore it.
+
         if (PermanentState.wins >= 6)
         {
             SceneManager.LoadScene("WinScreen");
