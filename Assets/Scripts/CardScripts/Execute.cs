@@ -2,31 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wand : CardData
+public class Execute : CardData
 {
-    public Wand()
+    public Execute()
     {
-        cardData = new UICardData("Wand", cost: 1, "Deal 2 damage. Play the top card of deck if it is a spell", UICardData.CardType.ATTACK);
-        cost = 1;
+        cardData = new UICardData("Execute", cost: 2, "Deal 2 damage. If the enemy is staggered, deal 5 more", UICardData.CardType.ATTACK);
+        cost = 2;
         target = Target.ENEMY;
     }
 
     public override void Action(EnemyManager[] enemys)
     {
+
         enemys[0].Damage(2);
-        CardData top=grabTop();
-        if (top==null)
+        if (enemys[0].IsEmpty())
         {
             return;
         }
-        if (top.getType().Equals(UICardData.CardType.SPELL))
+        if(enemys[0].IsStunned())
         {
-            Debug.Log("Name of wanded card is: " + top.getName());
-            playCardSameTarget(top);
-        }
-        else
-        {
-            addCardToDiscard(top);
+            enemys[0].Damage(5);
+
         }
     }
     public override void Action(CardData[] cards)
@@ -43,5 +39,3 @@ public class Wand : CardData
         throw new System.NotImplementedException();
     }
 }
-
-
