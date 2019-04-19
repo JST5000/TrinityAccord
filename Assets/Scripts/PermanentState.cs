@@ -76,7 +76,7 @@ public class PermanentState : MonoBehaviour
         deck.Add(new Dagger());
         deck.Add(new Dagger());
         deck.Add(new Energize());
-        deck.Add(new Crossbow());
+        deck.Add(new Peer());
         return deck;
     }
 

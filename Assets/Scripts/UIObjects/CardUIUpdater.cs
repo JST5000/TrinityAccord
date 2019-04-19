@@ -7,7 +7,7 @@ using TMPro;
 public class CardUIUpdater : MonoBehaviour
 {
     public Text costText;
-    public Text displayName;
+    public TextMeshProUGUI displayName;
     public TextMeshProUGUI cardEffect;
     public Image background;
     private Color prevBGColor;

@@ -12,7 +12,10 @@ public class Choose3Manager : MonoBehaviour
     public Button confirm;
     public Transform ChooseEncounterMenu;
     public bool reloadEncounterOnDraft = false;
+
     private CardManager[] options;
+
+    private CardData listener;
 
     public Text errorMessage;
     public void SetAndHighlightSelectedCard(CardManager newSelection)
@@ -33,9 +36,20 @@ public class Choose3Manager : MonoBehaviour
     public void Init(CardData[] givenOptions) 
     {
         selectedCardMan = null;
-        for(int i = 0; i < options.Length; ++i) { 
+        for(int i = 0; i < givenOptions.Length; ++i) {
+           // options[i].GetComponent<LayoutElement>().ignoreLayout = false;
             options[i].Init(givenOptions[i]);
         }
+        for(int i = givenOptions.Length; i < options.Length; ++i)
+        {
+            options[i].SetEmpty();
+            options[i].GetComponent<LayoutElement>().ignoreLayout = true;
+        }
+    }
+
+    public void SendDecisionTo(CardData card)
+    {
+        listener = card;
     }
 
     public void ConfirmSelectedCard()
@@ -44,10 +58,10 @@ public class Choose3Manager : MonoBehaviour
         {
             if (selectedCardMan != null)
             {
-                PermanentState.AddCardToPlayerDeckList(selectedCardMan.GetCardData());
+                SendOutput(selectedCardMan.GetCardData());
             } else if(selectedCard != null)
             {
-                PermanentState.AddCardToPlayerDeckList(selectedCard);
+                SendOutput(selectedCard);
             }
             if (reloadEncounterOnDraft)
             {
@@ -55,9 +69,24 @@ public class Choose3Manager : MonoBehaviour
             }
             else
             {
-                Instantiate(ChooseEncounterMenu, GameObject.Find("Canvas").transform, false);
+                if (listener == null)
+                {
+                    Instantiate(ChooseEncounterMenu, GameObject.Find("Canvas").transform, false);
+                }
                 Destroy(gameObject);
             }
+        }
+    }
+
+    private void SendOutput(CardData output)
+    {
+        if (listener != null)
+        {
+            CardData[] outputArr = { selectedCardMan.GetCardData() };
+            listener.Action(outputArr);
+        } else
+        {
+            PermanentState.AddCardToPlayerDeckList(output);
         }
     }
 
@@ -83,7 +112,7 @@ public class Choose3Manager : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         options = GetComponentsInChildren<CardManager>();
         CardData[] cards = CardDataUtil.ChooseNWithoutReplacement(CardPools.GetAllDraftableCards(), 3).ToArray();

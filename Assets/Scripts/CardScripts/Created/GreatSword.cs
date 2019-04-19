@@ -6,7 +6,7 @@ public class GreatSword : CardData
 {
     public GreatSword()
     {
-        cardData = new UICardData("GreatSword", cost: 2, "Deal 6 damage", UICardData.CardType.ATTACK);
+        cardData = new UICardData("Great Sword", cost: 2, "Deal 6 damage", UICardData.CardType.ATTACK);
         cost = 2;
         target = Target.ENEMY;
     }

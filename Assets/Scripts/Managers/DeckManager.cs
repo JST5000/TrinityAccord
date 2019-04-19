@@ -49,7 +49,12 @@ public class DeckManager : MonoBehaviour
 
     public CardData DrawCard()
     {
-        if(deck.Count == 0)
+        return DrawAtIndex(0);
+    }
+
+    public CardData DrawAtIndex(int i)
+    {
+        if (deck.Count < i + 1)
         {
             ShuffleDiscardIntoDeck();
         }
@@ -57,9 +62,9 @@ public class DeckManager : MonoBehaviour
         {
             if (cardManager.empty)
             {
-                CardData toAdd = deck[0];
-                cardManager.Init(deck[0]);
-                deck.RemoveAt(0);
+                CardData toAdd = deck[i];
+                cardManager.Init(deck[i]);
+                deck.RemoveAt(i);
                 GameObject.Find("Hand").GetComponent<HandManager>().UpdateAllCardsInHand();
                 return toAdd;
             }
@@ -67,6 +72,7 @@ public class DeckManager : MonoBehaviour
         return null;
 
     }
+
     public void addCardToHand(CardData card)
     {
         foreach (CardManager cardManager in hand)
@@ -81,16 +87,23 @@ public class DeckManager : MonoBehaviour
     }
     public CardData getTop()
     {
-        if (deck.Count == 0)
+        return GetAtIndex(0);
+    }
+
+    public CardData GetAtIndex(int i)
+    {
+        if (deck.Count < i + 1)
         {
             ShuffleDiscardIntoDeck();
         }
-        if (deck.Count != 0)
+        Debug.Log("Deck Count: " + deck.Count + " i = " + i);
+        if (deck.Count >= i + 1)
         {
-            return deck[0];
+            return deck[i];
         }
         return null;
     }
+
     public CardData grabTop()
     {
         if (deck.Count == 0)

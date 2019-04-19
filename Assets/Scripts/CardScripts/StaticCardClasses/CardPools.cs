@@ -35,7 +35,6 @@ public static class CardPools
         all.Add(new Lightning());
         all.Add(new Mug());
         all.Add(new Pebble());
-        //all.Add(new Peer());
         all.Add(new Quickdraw());
         all.Add(new Rally());
         all.Add(new Shock());
@@ -44,6 +43,25 @@ public static class CardPools
         all.Add(new Tome());
         all.Add(new Trick());
         all.Add(new Wand());
+        all.Add(new Peer());
+        all.Add(new Bash());
+        all.Add(new Berserk());
+        all.Add(new Chaos());
+        all.Add(new Contaminate());
+        all.Add(new Shuriken());
+        all.Add(new Crossbow());
+        all.Add(new DualWeild());
+        all.Add(new EvolvingContagion());
+        all.Add(new Execute());
+        all.Add(new Foil());
+        all.Add(new Forge());
+        all.Add(new Kunai());
+        all.Add(new Multishot());
+        all.Add(new OneTonHammer());
+        all.Add(new Storm());
+        all.Add(new Throw());
+        all.Add(new Wisdom());
+        all.Add(new Unearth());
         allDraftableCards = all;
     }
 
