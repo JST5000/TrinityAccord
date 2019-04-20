@@ -17,6 +17,7 @@ public abstract class EnemyData
     private string spriteName;
     private string[] alternateNames;
     private bool stunned;
+    private int sleepTimer;
 
     public string EnemyName { get => enemyName; set => enemyName = value; }
     public int MaxHP { get => maxHP; set => maxHP = value; }
@@ -30,6 +31,9 @@ public abstract class EnemyData
     public string SpriteName { get => spriteName; set => spriteName = value; }
     public string[] AlternateNames { get => alternateNames; set => alternateNames = value; }
     public bool Stunned { get => stunned; set => stunned = value; }
+    public int SleepTimer { get => sleepTimer; set => sleepTimer = value; }
+
+    public static int MaxSleepTimer = 3;
 
     public EnemyData(string name, int maxHP, int staggers, int damage, int timer, string effect, string spriteName, params string[] alternateNames)
     {
@@ -44,6 +48,7 @@ public abstract class EnemyData
         this.spriteName = spriteName;
         LoadPicture(spriteName);
         this.alternateNames = alternateNames;
+        this.sleepTimer = MaxSleepTimer;
     }
 
     //Creates a new EnemyData of the same type (Does NOT copy fields)
@@ -56,7 +61,7 @@ public abstract class EnemyData
 
     public UIEnemyData GetUIData()
     {
-        return new UIEnemyData(enemyName, currHP: currHP, maxHP: maxHP, staggers, damage, maxTimer, currTimer, effect, picture, stunned: stunned);
+        return new UIEnemyData(enemyName, currHP: currHP, maxHP: maxHP, staggers, damage, maxTimer, currTimer, effect, picture, stunned: stunned, sleepTimer: sleepTimer);
     }
 
     public void Attack() {
@@ -98,6 +103,10 @@ public abstract class EnemyData
     //Returns true 
     public bool DamageRecursive(int damage)
     {
+        if (sleepTimer > 0)
+        {
+            sleepTimer = 0;
+        }
         int currDamage = damage;
         while (CurrHP > 0 && currDamage > 0)
         {
@@ -128,15 +137,18 @@ public abstract class EnemyData
 
     public virtual void StaggerEnemy()
     {
-        //CurrTimer = MaxTimer + 1;
         CurrTimer = MaxTimer;
         Stun();
     }
 
     public virtual void Stun()
     {
-     //   CurrTimer++;
         Stunned = true;
+    }
+
+    public virtual void Drowsy()
+    {
+        sleepTimer = MaxSleepTimer;
     }
 
     protected void LoadPicture(string givenSpriteName)

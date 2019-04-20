@@ -14,6 +14,7 @@ public class UIEnemyData
     private string effect;
     private Sprite picture;
     private bool stunned;
+    private int sleepTimer;
 
     public string EnemyName { get => enemyName;}
     public int CurrHP { get => currHP;}
@@ -25,8 +26,9 @@ public class UIEnemyData
     public string Effect { get => effect;}
     public Sprite Picture { get => picture; }
     public bool Stunned { get => stunned; }
+    public int SleepTimer { get => sleepTimer; }
 
-    public UIEnemyData(string name, int currHP, int maxHP, int staggers, int damage, int maxTimer, int currTimer, string effect, Sprite picture, bool stunned)
+    public UIEnemyData(string name, int currHP, int maxHP, int staggers, int damage, int maxTimer, int currTimer, string effect, Sprite picture, bool stunned, int sleepTimer)
     {
         this.enemyName = name;
         this.currHP = currHP;
@@ -38,5 +40,6 @@ public class UIEnemyData
         this.effect = effect;
         this.picture = picture;
         this.stunned = stunned;
+        this.sleepTimer = sleepTimer;
     }
 }

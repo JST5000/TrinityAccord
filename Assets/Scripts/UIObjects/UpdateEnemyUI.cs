@@ -13,7 +13,7 @@ public class UpdateEnemyUI : MonoBehaviour
     public Image timerBackground;
     public Text timerDisplay;
     public TextMeshProUGUI effectDisplay;
-    public TextMeshProUGUI stunnedText;
+    public TextMeshProUGUI debuffText;
 
     private EnemyManager enemyHolder;
 
@@ -90,7 +90,7 @@ public class UpdateEnemyUI : MonoBehaviour
         SetTimerColor(data);
         timerDisplay.text = data.CurrTimer + " / " + data.MaxTimer;
 
-        SetStunnedText(data);
+        SetDebuffText(data);
 
         effectDisplay.text = data.Effect;
     }
@@ -108,7 +108,7 @@ public class UpdateEnemyUI : MonoBehaviour
             timerBackground.color = Color.green;
         }
 
-        if(data.Stunned)
+        if(data.Stunned || (data.SleepTimer > 0 && data.SleepTimer < EnemyData.MaxSleepTimer))
         {
             Color c = timerBackground.color;
             float dim = .6f;
@@ -116,14 +116,26 @@ public class UpdateEnemyUI : MonoBehaviour
         }
     }
 
-    public void SetStunnedText(UIEnemyData data)
+    public void SetDebuffText(UIEnemyData data)
     {
-        if(data.Stunned)
+        if (data.Stunned)
         {
-            stunnedText.text = "Stunned!";
-        } else
+            debuffText.text = "Stunned!";
+        }
+        else if (data.SleepTimer == EnemyData.MaxSleepTimer)
         {
-            stunnedText.text = "";
+            debuffText.text = "Drowsy...";
+        }
+        else if (data.SleepTimer > 1 && data.SleepTimer < EnemyData.MaxSleepTimer)
+        {
+            debuffText.text = "Asleep...";
+        }
+        else if(data.SleepTimer == 1) {
+            debuffText.text = "Waking...";
+        }
+        else
+        {
+            debuffText.text = "";
         }
     }
 }

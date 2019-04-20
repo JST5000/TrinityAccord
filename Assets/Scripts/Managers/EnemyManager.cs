@@ -51,12 +51,9 @@ public class EnemyManager : MonoBehaviour
     {
         if (!isEmpty)
         {
-            if (data.Stunned)
-            {
-                data.Stunned = false;
-            }
-            else
-            {
+            
+            bool skipTimerDecrease = HandleCrowdControl(data);
+            if(!skipTimerDecrease) {
                 data.CurrTimer--;
             }
             if (data.CurrTimer == 0)
@@ -65,6 +62,26 @@ public class EnemyManager : MonoBehaviour
                 Attack();
             }
         }
+    }
+
+    //Returns true if the timer is stopped this turn
+    private bool HandleCrowdControl(EnemyData data)
+    {
+        bool skipTimerDecrease = false;
+        if (data.Stunned)
+        {
+            data.Stunned = false;
+            skipTimerDecrease = true;
+        }
+        if (data.SleepTimer > 0)
+        {
+            if (data.SleepTimer < EnemyData.MaxSleepTimer)
+            {
+                skipTimerDecrease = true;
+            }
+            data.SleepTimer--;
+        }
+        return skipTimerDecrease;
     }
 
     private void Attack()

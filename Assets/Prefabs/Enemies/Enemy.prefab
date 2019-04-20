@@ -1011,7 +1011,7 @@ MonoBehaviour:
   timerBackground: {fileID: 5280147178329159983}
   timerDisplay: {fileID: 287454038708889485}
   effectDisplay: {fileID: 2376062537836821847}
-  stunnedText: {fileID: 4428781781846558448}
+  debuffText: {fileID: 4428781781846558448}
   enemyCG: {fileID: 4754648793935962146}
 --- !u!225 &4754648793935962146
 CanvasGroup:
