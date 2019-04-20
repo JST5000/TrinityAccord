@@ -48,7 +48,7 @@ public abstract class EnemyData
         this.spriteName = spriteName;
         LoadPicture(spriteName);
         this.alternateNames = alternateNames;
-        this.sleepTimer = MaxSleepTimer;
+        this.sleepTimer = 0;
     }
 
     //Creates a new EnemyData of the same type (Does NOT copy fields)
