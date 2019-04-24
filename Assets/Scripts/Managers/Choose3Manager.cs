@@ -13,6 +13,10 @@ public class Choose3Manager : MonoBehaviour
     public Transform ChooseEncounterMenu;
     public bool reloadEncounterOnDraft = false;
 
+    public Button showAndHide;
+    private bool menuHidden = false;
+    private bool allowHide = false;
+
     private CardManager[] options;
 
     private CardData listener;
@@ -50,6 +54,12 @@ public class Choose3Manager : MonoBehaviour
     public void SendDecisionTo(CardData card)
     {
         listener = card;
+    }
+
+    public void AllowHide()
+    {
+        allowHide = true;
+        CanvasGroupManip.Enable(showAndHide.GetComponent<CanvasGroup>());
     }
 
     public void ConfirmSelectedCard()
@@ -111,9 +121,28 @@ public class Choose3Manager : MonoBehaviour
         }
     }
 
+    public void ToggleVisibility()
+    {
+        CanvasGroup overallCG = GetComponent<CanvasGroup>();
+        Text buttonText = showAndHide.GetComponentInChildren<Text>();
+        if (menuHidden)
+        {
+            CanvasGroupManip.Enable(overallCG);
+            buttonText.text = "Hide";
+        } else
+        {
+            CanvasGroupManip.Disable(overallCG);
+            buttonText.text = "Show";
+        }
+        menuHidden = !menuHidden;
+    }
+
     // Start is called before the first frame update
     void Awake()
     {
+        if (!allowHide) {
+            CanvasGroupManip.Disable(showAndHide.GetComponent<CanvasGroup>());
+        }
         options = GetComponentsInChildren<CardManager>();
         CardData[] cards = CardDataUtil.ChooseNWithoutReplacement(CardPools.GetAllDraftableCards(), 3).ToArray();
         Init(cards);

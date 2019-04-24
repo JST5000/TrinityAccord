@@ -53,6 +53,7 @@ public abstract class CardData
     {
         Type type = this.GetType();
         CardData copy = (CardData)Activator.CreateInstance(type);
+        copy.id = this.id;
         return copy;
     }
 

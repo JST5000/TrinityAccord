@@ -28,6 +28,8 @@ public class Peer : CardData
         //VERY IMPORTANT! 
         //This tells the choose 3 to send the decision to this card by caling the Action(CardData[] cards) function!
         choose3.SendDecisionTo(this);
+        //Allows the menu to be hidden so the players can look at their cards when deciding.
+        choose3.AllowHide();
     }
 
     //Will be called by the Choose3Manager when a choice has been made

@@ -230,11 +230,12 @@ public class UIManager : MonoBehaviour
 
             DeckManager decks = GameObject.Find("Deck").GetComponent<DeckManager>();
             decks.EndTurn(); //Discards hand
-            decks.StartTurn(); //Draws hand
 
             //VERY IMPORTANT, ResetCounts must happen AFTER the EncounterManager EndTurn, otherwise the "Recently Played" set will be cleared!
             cardStack.ResetCounts();
             GameObject.Find("Player").GetComponent<Player>().EndTurn(); //Resets energy
+
+            decks.StartTurn(); //Draws hand
 
             updateHitboxWithStatus(Status.USED, clicked);
         }
