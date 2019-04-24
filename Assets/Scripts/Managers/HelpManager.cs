@@ -60,29 +60,65 @@ public class HelpManager : MonoBehaviour
         pages = new List<HelpPage>();
         pages.Add(new HelpPage("General Help", "This is a battle for survival."
             + "\n\nIn each fight you must disarm your opponents before they attack you by using your deck of tools."
-            + "\n\nTo win, defeat 6 encounters of increasing difficulty. ", null));
+            + "\n\nTo win, defeat 6 encounters of increasing difficulty. "));
         pages.Add(new HelpPage("Cards", "", CardWithLabels));
         pages.Add(new HelpPage("Enemies", "", EnemyWithLabels));
         pages.Add(new HelpPage("Deck and Hand", "Your deck starts with 8 cards." +
-            "\n\nEvery turn you draw 4 cards." +
+            "\n\nEvery turn you draw 4 cards and get 3 energy." +
             " At the end of each turn, all your cards are discarded." +
             "\n\nIf your deck runs out of cards, your discard is shuffled in." +
             "\n\nPlay cards by clicking on them, then on their target."
-            , null));
+            ));
         pages.Add(new HelpPage("Progression", "After every encounter, you get to add a new card to your deck." +
             "\n\nIf you lose, your deck loses all cards you added." +
-            "\n\nGood Luck!", null));
-        pages.Add(new HelpPage("Glossary 1", InLineIcon.DAMAGE + ": X - Deal X damage to the the player." +
-            "\n\n" + InLineIcon.ON_STAGGER + ": Y - When a life is lost, change this effect to Y." +
-            "\n\nAttack - Red cards. Usually do damage." +
-            "\n\nBlind: X - All attacks have random targets for X turns." +
-            "\n\nFlip - Transform this into a new card or new effect."
-            , null));
-        pages.Add(new HelpPage("Glossary 2", "Grow X - Every time this card is played, increase its attack by X." +
-            "\n\nSpell - Blue cards. Usually are utility." +
-            "\n\nStagger - Reset the enemie's attack timer to max + 1." +
-            "\n\nStun - Slow the enemie's timer by 1 turn."
-            , null));
+            "\n\nGood Luck!"));
+        string[] glossary =
+        {
+            InLineIcon.DAMAGE + ": X - Deal X damage to the the player." ,
+            InLineIcon.ON_STAGGER + ": Y - When a life is lost, change this effect to Y." ,
+            "Attack - Red cards. Usually do damage." ,
+            "Blind X - All attacks have random targets for X turns." ,
+            "Charge X - Every time this card is discarded, increase its attack by x. Resets on use.",
+            "Drowsy - Put the enemy to Sleep in 1 turn. Damage wakes them up!",
+            "Flip - Transform this into a new card or new effect.",
+            "Grow X - Every time this card is played, increase its attack by X." ,
+            "Spell - Blue cards. Usually are utility." ,
+            "Sleep - Stop the enemy's timer for up to 2 turns. Damage wakes them up!",
+            "Stagger - Reset the enemie's attack timer to max and Stun them." ,
+            "Stun - Stop the enemy's timer for 1 turn."
+        };
+        pages.AddRange(GetGlossaryPages(new List<string>(glossary)));
+    }
+
+    private List<HelpPage> GetGlossaryPages(List<string> entries)
+    {
+        int entriesPerPage = 4;
+        int expectedPages = (int)Mathf.Ceil((float)(entries.Count) / entriesPerPage);
+        List <HelpPage> output = new List<HelpPage>();
+        string helpText = entries[0];
+        int currPage = 1;
+        for (int i = 1; i < entries.Count; ++i)
+        {
+            //Add empty lines to lines after the first
+            if (i % entriesPerPage == 0)
+            {
+                output.Add(new HelpPage("Glossary " + currPage, helpText));
+                currPage++;
+                helpText = "";
+                helpText += entries[i];
+            }
+            else
+            {
+                helpText += "\n\n" + entries[i];
+            }
+
+            //Expecting another page, must not have added the last one
+            if(i == entries.Count - 1 && output.Count < expectedPages)
+            {
+                output.Add(new HelpPage("Glossary " + currPage, helpText));
+            }
+        }
+        return output;
     }
 
     private void ClearPrevPrefab()

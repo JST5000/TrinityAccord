@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum GameMode {SelectCard, PickTarget, Animation,PickCardInHand  }; 
+public enum GameMode {SelectCard, PickTarget, Animation,PickCardInHand, SelectingOption  }; 
 
 public class UIManager : MonoBehaviour
 {
     public static GameMode currentMode = GameMode.SelectCard;
+    private static GameMode prevMode = currentMode;
 
     //Finding user input to cast card
     static Target requiredInput = Target.NONE;
@@ -24,6 +25,7 @@ public class UIManager : MonoBehaviour
 
     private static void SetCurrentMode(GameMode mode)
     {
+        prevMode = currentMode;
         currentMode = mode;
     }
     public static void selectCardInHand(CardData card,int count)
@@ -40,6 +42,16 @@ public class UIManager : MonoBehaviour
         {
             SetCurrentMode(GameMode.SelectCard);
         }
+    }
+
+    public static void StartSelectingOption()
+    {
+        SetCurrentMode(GameMode.SelectingOption);
+    }
+
+    public static void DoneSelectingOption()
+    {
+        SetCurrentMode(prevMode);
     }
 
     private static void SetAndHighlightSelectedCard(CardManager newSelection)

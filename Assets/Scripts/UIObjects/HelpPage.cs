@@ -8,10 +8,17 @@ public class HelpPage
     public string TextContent;
     public Transform Prefab;
 
+
     public HelpPage(string Title, string TextContent, Transform Prefab)
     {
         this.Title = Title;
         this.TextContent = TextContent;
         this.Prefab = Prefab;
+    }
+
+    public HelpPage(string Title, string TextContent)
+    {
+        this.Title = Title;
+        this.TextContent = TextContent;
     }
 }

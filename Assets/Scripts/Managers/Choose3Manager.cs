@@ -53,6 +53,7 @@ public class Choose3Manager : MonoBehaviour
 
     public void SendDecisionTo(CardData card)
     {
+        UIManager.StartSelectingOption(); //Stops player from playing cards while effect resolves
         listener = card;
     }
 
@@ -89,7 +90,7 @@ public class Choose3Manager : MonoBehaviour
     }
 
     private void SendOutput(CardData output)
-    {
+    { 
         if (listener != null)
         {
             CardData[] outputArr = { selectedCardMan.GetCardData() };
@@ -98,6 +99,7 @@ public class Choose3Manager : MonoBehaviour
         {
             PermanentState.AddCardToPlayerDeckList(output);
         }
+        UIManager.DoneSelectingOption(); //Restores ability to play cards
     }
 
     public void EnterCustomFight(TextMeshProUGUI inputField)
