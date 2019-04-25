@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class EncounterManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class EncounterManager : MonoBehaviour
     public GameObject[] enemyGameObjects;
     public int enemyCount = 0;
     public Image VictorySplash;
+    public TextMeshProUGUI IncomeStatement;
 
     public Transform Choose3Menu;
 
@@ -112,8 +114,24 @@ public class EncounterManager : MonoBehaviour
         //No more turns, so disallow ending turn
         GameObject.Find("EndTurnButton").GetComponent<Button>().interactable = false;
 
+        AddIncomeAndUpdateUI();
         CanvasGroupManip.Enable(VictorySplash.GetComponent<CanvasGroup>());
         timeUntilVictory = 1.5f;
+    }
+
+    private void AddIncomeAndUpdateUI()
+    {
+        int income;
+        if (PermanentState.wins <= 3)
+        {
+            income = 2;
+        }
+        else
+        {
+            income = 3;
+        }
+        PermanentState.money += income;
+        IncomeStatement.text = "+" + income + " Coins!";
     }
 
     // Start is called before the first frame update
@@ -145,12 +163,12 @@ public class EncounterManager : MonoBehaviour
             timeUntilVictory -= Time.deltaTime;
             if(timeUntilVictory <= 0)
             {
-                OnVictory();
+                OnVictoryScreenFinished();
             }
         }
     }
 
-    private void OnVictory()
+    private void OnVictoryScreenFinished()
     {
         CanvasGroupManip.Disable(VictorySplash.GetComponent<CanvasGroup>());
 
@@ -159,6 +177,9 @@ public class EncounterManager : MonoBehaviour
         if (PermanentState.wins >= 6)
         {
             SceneManager.LoadScene("WinScreen");
+        } else
+        {
+
         }
         Instantiate(Choose3Menu, GameObject.Find("Canvas").transform, false);
     }

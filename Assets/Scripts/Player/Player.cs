@@ -10,9 +10,9 @@ public class Player : MonoBehaviour
     public HealthManager healthUI;
 
     public int defaultEnergy = 3;
-    public int defaultHealth = 10;
 
     public bool CanDie = false;
+    public bool resetHealthBetweenEncounters = false;
 
     private int blindDuration = 0;
 
@@ -26,8 +26,20 @@ public class Player : MonoBehaviour
     void Start()
     {
         ResetEnergy();
-        SetMaxHealth(defaultHealth);
-        SetCurrentHealth(defaultHealth);
+        if (resetHealthBetweenEncounters)
+        {
+            InitHealth(PermanentState.defaultHealth, PermanentState.defaultHealth);
+        }
+        else
+        {
+            InitHealth(PermanentState.defaultHealth, PermanentState.health);
+        }
+    }
+
+    public void InitHealth(int max, int curr)
+    {
+        SetMaxHealth(max);
+        SetCurrentHealth(curr);
     }
 
     public void EndTurn()
@@ -70,7 +82,7 @@ public class Player : MonoBehaviour
 
     public void Damage(int dmg)
     {
-        currHealth -= dmg;
+        SetCurrentHealth(currHealth - dmg);
         UpdateHealthUI();
         if (currHealth <= 0)
         {
@@ -89,19 +101,21 @@ public class Player : MonoBehaviour
     public void Heal(int heal)
     {
         //Cannot exceed max health
-        currHealth = Mathf.Min(heal + currHealth, maxHealth);
+        SetCurrentHealth(Mathf.Min(heal + currHealth, maxHealth));
         UpdateHealthUI();
     }
 
     public void SetCurrentHealth(int curr)
     {
         currHealth = curr;
+        PermanentState.health = curr;
         UpdateHealthUI();
     }
 
     public void SetMaxHealth(int max)
     {
         maxHealth = max;
+        PermanentState.defaultHealth = max;
         UpdateHealthUI();
     }
 

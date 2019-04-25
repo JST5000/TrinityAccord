@@ -9,7 +9,10 @@ public class PermanentState : MonoBehaviour
     public static List<CardData> playerDeck;
     public static Level expectedLevel;
     public static int wins = 0;
-
+    public static int money = 0;
+    public static int defaultHealth = 10;
+    public static int health = defaultHealth;
+    
     private static EnemyData[] nextEncounter;
 
     public static void AddCardToPlayerDeckList(CardData card)
@@ -24,6 +27,8 @@ public class PermanentState : MonoBehaviour
         expectedLevel = Level.TUTORIAL;
         InitializeDefaultEncounter();
         expectedLevel = Level.ONE;
+        money = 0;
+        health = defaultHealth;
     }
 
     void Awake()
@@ -32,6 +37,7 @@ public class PermanentState : MonoBehaviour
         if(playerDeck == null)
         {
             ResetStatics();
+            health = defaultHealth;
         }
         playerDeck = CardDataUtil.CreateFreshCopiesOf(playerDeck); //Removes any buffs/debuffs
     }
@@ -59,8 +65,6 @@ public class PermanentState : MonoBehaviour
         deck.Add(new Clone());
         deck.Add(new Wand());
         deck.Add(new Wand());
-        //Duplicate is currently removed from the game
-        //deck.Add(new Duplicate());
         deck.Add(new Wand());
         deck.Add(new Clone());
         return deck;
@@ -76,7 +80,7 @@ public class PermanentState : MonoBehaviour
         deck.Add(new Dagger());
         deck.Add(new Dagger());
         deck.Add(new Energize());
-        deck.Add(new Peer());
+        deck.Add(new Berserk());
         return deck;
     }
 

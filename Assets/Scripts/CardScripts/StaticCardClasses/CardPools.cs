@@ -48,7 +48,6 @@ public static class CardPools
         all.Add(new Berserk());
         all.Add(new Chaos());
         all.Add(new Contaminate());
-        all.Add(new Shuriken());
         all.Add(new Crossbow());
         all.Add(new DualWeild());
         all.Add(new EvolvingContagion());

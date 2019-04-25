@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class TownManager : MonoBehaviour
 {
     public TextMeshProUGUI response;
+    public TextMeshProUGUI moneyCounter;
 
     public void OpenAttackShop()
     {
@@ -39,6 +40,16 @@ public class TownManager : MonoBehaviour
             response.text = "Are you sure you want to leave?";
             exit.text = "Yes";
         }
+    }
+
+    private void Start()
+    {
+        int money = 0;
+        if (GameObject.Find("PermanentState") != null)
+        {
+            money = PermanentState.money;
+        }
+        moneyCounter.text = "Coins: " + money;
     }
 
     private void Enter(string name)
