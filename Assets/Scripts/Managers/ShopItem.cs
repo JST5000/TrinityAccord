@@ -18,7 +18,7 @@ public abstract class ShopItem
 
     public static GameObject CreateShopItemUI(Transform parent)
     {
-        return GameObject.Instantiate(Resources.Load<GameObject>("Choose3Menu"), parent, false)
+        return GameObject.Instantiate(Resources.Load<GameObject>("Choose3Menu"), parent, false);
     }
 
     //Ex. Health will add health to permanentState or the card shop will open a pack
