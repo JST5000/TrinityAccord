@@ -55,5 +55,8 @@ public class TownManager : MonoBehaviour
     private void Enter(string name)
     {
         response.text = "You entered the " + name + "!";
+        GameObject instance = Instantiate<GameObject>(Resources.Load<GameObject>("Prefabs/ShopUI"));
+        instance.transform.SetParent(GameObject.Find("Canvas").transform, false);
+        instance.transform.position = new Vector3(0, 0, 0);
     }
 }
