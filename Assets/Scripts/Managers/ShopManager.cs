@@ -10,31 +10,30 @@ public class ShopManager : MonoBehaviour
     public Transform ShopItemParent;
     public TextMeshProUGUI Title;
     public Image ShopKeeper;
+    public TextMeshProUGUI MoneyDisplay;
+    public TextMeshProUGUI HealthDisplay;
+    public TextMeshProUGUI FeedbackDisplay;
 
+    private bool showHealth = false;
     private List<ShopItemManager> ShopItems;
 
-    // Start is called before the first frame update
-    void Awake()
-    {
-        List<ShopItem> items = new List<ShopItem>();
-        items.Add(new HealthItem(1));
-        items.Add(new HealthItem(3));
-        items.Add(new HealthItem(7));
-        Init(Resources.Load<Sprite>("People/ShopkeeperJames"), "DEFAULT Shop!", items);
-        UpdateUI();
-    }
-
-    public void Init(Sprite ShopKeeper, string Name, List<ShopItem> items)
+    public void Init(Sprite ShopKeeper, string Name, List<ShopItem> Items)
     {
         this.ShopKeeper.sprite = ShopKeeper;
         this.Title.text = Name;
         ShopItems = new List<ShopItemManager>();
-        foreach(ShopItem item in items)
+        foreach(ShopItem item in Items)
         {
             
             ShopItems.Add(ShopItem.CreateShopItemUI(ShopItemParent, item).GetComponent<ShopItemManager>());
         }
         UpdateUI();
+    }
+
+    public void Init(Sprite ShopKeeper, string Name, List<ShopItem> Items, bool ShowHealth)
+    {
+        this.showHealth = ShowHealth;
+        Init(ShopKeeper, Name, Items);
     }
 
     public void Exit()
@@ -51,6 +50,36 @@ public class ShopManager : MonoBehaviour
         else
         {
             CanvasGroupManip.Enable(GetComponent<CanvasGroup>());
+        }
+        UpdateMoneyDisplay();
+        UpdateHealthDisplay();
+        UpdateFeedbackDisplay();
+    }
+
+    private void UpdateFeedbackDisplay()
+    {
+        if (ShopItems.Count == 0)
+        {
+            FeedbackDisplay.text = "Out of stock for now, sorry!";
+        } else
+        {
+            FeedbackDisplay.text = "Welcome!";
+        }
+    }
+
+    private void UpdateMoneyDisplay()
+    {
+        MoneyDisplay.text = PermanentState.money + " Coins";
+    }
+
+    private void UpdateHealthDisplay()
+    {
+        if(showHealth)
+        {
+            HealthDisplay.text = PermanentState.health + "/" + PermanentState.defaultHealth + " HP";
+        } else
+        {
+            HealthDisplay.text = "";
         }
     }
 

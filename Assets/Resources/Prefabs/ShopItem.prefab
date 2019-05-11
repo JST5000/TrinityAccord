@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -83}
-  m_SizeDelta: {x: 71.9, y: -51.9}
+  m_AnchoredPosition: {x: 0, y: -79.7}
+  m_SizeDelta: {x: 71.9, y: -61.86}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5997952842993158915
 CanvasRenderer:
@@ -196,7 +196,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.37, y: 76.31}
+  m_AnchoredPosition: {x: 1.37, y: 70.5}
   m_SizeDelta: {x: 72.98, y: -66.19}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7942791022049709743
@@ -356,7 +356,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.37, y: -129.46}
+  m_AnchoredPosition: {x: 0.0000048876, y: -121.18}
   m_SizeDelta: {x: 74.64, y: -60.38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7166242240726821222
@@ -555,7 +555,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 0f06b6ad7c77efe4499bb0a787f09876, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1

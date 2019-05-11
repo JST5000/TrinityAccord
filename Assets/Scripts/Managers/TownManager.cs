@@ -11,22 +11,28 @@ public class TownManager : MonoBehaviour
 
     public void OpenAttackShop()
     {
-        Enter("Attack Shop");
+        List<ShopItem> inventory = new List<ShopItem>();
+        inventory.Add(new PackItem());
+        Enter("Attack Shop", "Jenny", inventory);
     }
 
     public void OpenQuestStand()
     {
-        Enter("Quest Stand");
+        Enter("Quest Stand", "Dave", new List<ShopItem>());
     }
 
     public void OpenHealthShop()
     {
-        Enter("Health Shop");
+        List<ShopItem> inventory = new List<ShopItem>();
+        inventory.Add(new HealthItem(1));
+        inventory.Add(new HealthItem(3));
+        inventory.Add(new HealthItem(7));
+        Enter("Health Shop", "James", inventory, true);
     }
 
     public void OpenCardRemovalStand()
     {
-        Enter("Card Removal Stand");
+        Enter("Card Removal Stand", "Jenny", new List<ShopItem>());
     }
 
     public void LeaveTown(Text exit)
@@ -52,11 +58,18 @@ public class TownManager : MonoBehaviour
         moneyCounter.text = "Coins: " + money;
     }
 
-    private void Enter(string name)
+    private void Enter(string name, string shopKeeperName, List<ShopItem> items)
+    {
+        Enter(name, shopKeeperName, items, false);
+    }
+
+    private void Enter(string name, string shopKeeperName, List<ShopItem> items, bool showHealth)
     {
         response.text = "You entered the " + name + "!";
         GameObject instance = Instantiate<GameObject>(Resources.Load<GameObject>("Prefabs/ShopUI"));
         instance.transform.SetParent(GameObject.Find("Canvas").transform, false);
         instance.transform.position = new Vector3(0, 0, 0);
+        Sprite shopKeeper = Resources.Load<Sprite>("People/" + shopKeeperName);
+        instance.GetComponent<ShopManager>().Init(shopKeeper, name, items, showHealth);
     }
 }
