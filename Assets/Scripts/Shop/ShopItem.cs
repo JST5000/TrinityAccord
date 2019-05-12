@@ -36,6 +36,11 @@ public abstract class ShopItem
     //Ex. Health will add health to permanentState or the card shop will open a pack
     public abstract void Effect();
 
+    public virtual bool OtherRequirementsMet()
+    {
+        return true;
+    }
+
     protected void LoadPicture(string givenSpriteName)
     {
         string folderName = "Shop_Icons/";

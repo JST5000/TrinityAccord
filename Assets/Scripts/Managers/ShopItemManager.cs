@@ -14,6 +14,8 @@ public class ShopItemManager : MonoBehaviour
     private ShopItem Data;
     private bool SoldOut;
 
+    private bool IsDisabled = false;
+
     public void Init(ShopItem data)
     {
         Title.text = data.name;
@@ -27,6 +29,11 @@ public class ShopItemManager : MonoBehaviour
         UpdateUI();
     }
 
+    public void Start()
+    {
+        UpdateUI();
+    }
+
     public void Purchase()
     {
         if (CanPurchase()) {
@@ -36,12 +43,13 @@ public class ShopItemManager : MonoBehaviour
             }
             PermanentState.money -= Data.cost;
             Data.Effect();
+            GetComponentInParent<ShopManager>().UpdateUI();
         }
     }
 
     private bool CanPurchase()
     {
-        return PermanentState.money >= Data.cost && !SoldOut;
+        return PermanentState.money >= Data.cost && !SoldOut && Data.OtherRequirementsMet();
     }
 
     public ShopItem GetItem()
@@ -49,7 +57,7 @@ public class ShopItemManager : MonoBehaviour
         return Data;
     }
 
-    private void UpdateUI()
+    public void UpdateUI()
     {
         if (Data == null)
         {
@@ -58,10 +66,36 @@ public class ShopItemManager : MonoBehaviour
         else
         {
             CanvasGroupManip.Enable(ItemImg.GetComponent<CanvasGroup>());
-
+            if(CanPurchase())
+            {
+                Enable();
+            } else
+            {
+                Disable();
+            }
             ItemImg.sprite = Data.picture;
             Cost.text = "Cost: " + Data.cost;
             Quantity.text = GetQuantityText();
+        }
+    }
+
+    public void Disable()
+    {
+        if (!IsDisabled)
+        {
+            Button button = GetComponent<Button>();
+            button.interactable = false;
+            IsDisabled = true;
+        }
+    }
+
+    public void Enable()
+    {
+        if (IsDisabled)
+        {
+            Button button = GetComponent<Button>();
+            button.interactable = true;
+            IsDisabled = false;
         }
     }
 

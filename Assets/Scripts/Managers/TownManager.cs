@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TownManager : MonoBehaviour
 {
@@ -37,25 +38,15 @@ public class TownManager : MonoBehaviour
 
     public void LeaveTown(Text exit)
     {
-        if (exit.text == "Yes")
-        {
-            response.text = "You have left the town.";
-        }
-        else
-        {
-            response.text = "Are you sure you want to leave?";
-            exit.text = "Yes";
-        }
+        ChooseNextFight();
+        SceneManager.LoadScene("Encounter");
     }
 
-    private void Start()
+    private void ChooseNextFight()
     {
-        int money = 0;
-        if (GameObject.Find("PermanentState") != null)
-        {
-            money = PermanentState.money;
-        }
-        moneyCounter.text = "Coins: " + money;
+        EnemyData[] selectedEncounter = GenerateEncounter.GetEncounter(PermanentState.expectedLevel);
+        PermanentState.SetNextEncounter(selectedEncounter);
+        PermanentState.expectedLevel = GenerateEncounter.GetHarder(PermanentState.expectedLevel);
     }
 
     private void Enter(string name, string shopKeeperName, List<ShopItem> items)
@@ -71,5 +62,10 @@ public class TownManager : MonoBehaviour
         instance.transform.position = new Vector3(0, 0, 0);
         Sprite shopKeeper = Resources.Load<Sprite>("People/" + shopKeeperName);
         instance.GetComponent<ShopManager>().Init(shopKeeper, name, items, showHealth);
+    }
+
+    private void Update()
+    {
+        moneyCounter.text = "Coins: " + PermanentState.money;
     }
 }

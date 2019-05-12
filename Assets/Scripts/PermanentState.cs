@@ -7,17 +7,28 @@ public class PermanentState : MonoBehaviour
 
     //Player deck - State should hold for multiple encounters
     public static List<CardData> playerDeck;
+    public static List<CardData> queuedCards = new List<CardData>();
     public static Level expectedLevel;
     public static int wins = 0;
-    public static int money = 0;
-    public static int defaultHealth = 10;
-    public static int health = defaultHealth;
+    public static int money = 10;
+    public static int maxHealth = 10;
+    public static int health = maxHealth;
     
     private static EnemyData[] nextEncounter;
 
     public static void AddCardToPlayerDeckList(CardData card)
     {
-        playerDeck.Add(card);
+        queuedCards.Add(card);
+        ConsumeQueue();
+    }
+
+    private static void ConsumeQueue()
+    {
+        if(playerDeck != null)
+        {
+            playerDeck.AddRange(queuedCards);
+            queuedCards.Clear();
+        }
     }
 
     public static void ResetStatics()
@@ -28,7 +39,7 @@ public class PermanentState : MonoBehaviour
         InitializeDefaultEncounter();
         expectedLevel = Level.ONE;
         money = 0;
-        health = defaultHealth;
+        health = maxHealth;
     }
 
     void Awake()
@@ -37,7 +48,7 @@ public class PermanentState : MonoBehaviour
         if(playerDeck == null)
         {
             ResetStatics();
-            health = defaultHealth;
+            health = maxHealth;
         }
         playerDeck = CardDataUtil.CreateFreshCopiesOf(playerDeck); //Removes any buffs/debuffs
     }
@@ -56,6 +67,7 @@ public class PermanentState : MonoBehaviour
     private static void InitializeBaseDeck()
     {
         playerDeck = new List<CardData>(GetBaseDeck());
+        ConsumeQueue();
     }
 
     //For experimental builds

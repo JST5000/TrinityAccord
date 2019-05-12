@@ -17,6 +17,8 @@ public class Choose3Manager : MonoBehaviour
     private bool menuHidden = false;
     private bool allowHide = false;
 
+    private bool DoNotLoadAnotherSceneFlag = false;
+
     private CardManager[] options;
 
     private CardData listener;
@@ -63,6 +65,11 @@ public class Choose3Manager : MonoBehaviour
         CanvasGroupManip.Enable(showAndHide.GetComponent<CanvasGroup>());
     }
 
+    public void DoNotLoadAnotherScene()
+    {
+        DoNotLoadAnotherSceneFlag = true;
+    }
+
     public void ConfirmSelectedCard()
     {
         if(selectedCardMan != null || selectedCard != null)
@@ -74,15 +81,15 @@ public class Choose3Manager : MonoBehaviour
             {
                 SendOutput(selectedCard);
             }
-            if (reloadEncounterOnDraft)
+            if (reloadEncounterOnDraft && !DoNotLoadAnotherSceneFlag)
             {
                 SceneManager.LoadScene("Encounter");
             }
             else
             {
-                if (listener == null)
+                if (listener == null && !DoNotLoadAnotherSceneFlag)
                 {
-                    Instantiate(ChooseEncounterMenu, GameObject.Find("Canvas").transform, false);
+                    SceneManager.LoadScene("Town1");
                 }
                 Destroy(gameObject);
             }

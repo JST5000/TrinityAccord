@@ -28,11 +28,11 @@ public class Player : MonoBehaviour
         ResetEnergy();
         if (resetHealthBetweenEncounters)
         {
-            InitHealth(PermanentState.defaultHealth, PermanentState.defaultHealth);
+            InitHealth(PermanentState.maxHealth, PermanentState.maxHealth);
         }
         else
         {
-            InitHealth(PermanentState.defaultHealth, PermanentState.health);
+            InitHealth(PermanentState.maxHealth, PermanentState.health);
         }
     }
 
@@ -115,7 +115,7 @@ public class Player : MonoBehaviour
     public void SetMaxHealth(int max)
     {
         maxHealth = max;
-        PermanentState.defaultHealth = max;
+        PermanentState.maxHealth = max;
         UpdateHealthUI();
     }
 

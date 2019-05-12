@@ -41,7 +41,7 @@ public class ShopManager : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void UpdateUI()
+    public void UpdateUI()
     {
         if (ShopItems == null)
         {
@@ -50,6 +50,11 @@ public class ShopManager : MonoBehaviour
         else
         {
             CanvasGroupManip.Enable(GetComponent<CanvasGroup>());
+        }
+        ShopItemManager[] items = GetComponentsInChildren<ShopItemManager>();
+        foreach(ShopItemManager item in items)
+        {
+            item.UpdateUI();
         }
         UpdateMoneyDisplay();
         UpdateHealthDisplay();
@@ -76,7 +81,7 @@ public class ShopManager : MonoBehaviour
     {
         if(showHealth)
         {
-            HealthDisplay.text = PermanentState.health + "/" + PermanentState.defaultHealth + " HP";
+            HealthDisplay.text = PermanentState.health + "/" + PermanentState.maxHealth + " HP";
         } else
         {
             HealthDisplay.text = "";
