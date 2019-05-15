@@ -13,7 +13,7 @@ public class Forge : CardData
 
     public override void Action(EnemyManager[] enemys)
     {
-        enemys[0].Damage(4);
+        enemys[0].Damage(4+sharpened);
         addCardToDiscard(new GreatSword());
 
     }
@@ -29,5 +29,10 @@ public class Forge : CardData
     public override int SecondAction(CardManager card)
     {
         throw new System.NotImplementedException();
+    }
+    public override void sharpen()
+    {
+        sharpened++;
+        cardData = new UICardData("Forge", cost: 1, "Deal " + (4 + sharpened) + " damage, add a Great Sword to discard", UICardData.CardType.ATTACK);
     }
 }

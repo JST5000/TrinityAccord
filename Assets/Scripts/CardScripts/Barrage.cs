@@ -13,7 +13,7 @@ public class Barrage : CardData
 
     public override void Action(EnemyManager[] enemys)
     {
-        enemys[0].Damage(getNumberOfAttacksPlayed()-1);
+        enemys[0].Damage(getNumberOfAttacksPlayed()-1+sharpened);
     }
     public override void Action(CardData[] cards)
     {
@@ -27,5 +27,11 @@ public class Barrage : CardData
     public override int SecondAction(CardManager card)
     {
         throw new System.NotImplementedException();
+    }
+    public override void sharpen()
+    {
+        sharpened++;
+        cardData = new UICardData("Barrage", cost: cost, "Deal 1 damage for each other attack played this turn + "+sharpened, UICardData.CardType.ATTACK);
+
     }
 }

@@ -13,7 +13,7 @@ public class Hammer : CardData
 
     public override void Action(EnemyManager[] enemys)
     {
-        enemys[0].Damage(Random.Range(1, 7));
+        enemys[0].Damage(Random.Range(1+sharpened, 7+sharpened));
     }
     public override void Action(CardData[] cards)
     {
@@ -27,5 +27,10 @@ public class Hammer : CardData
     public override int SecondAction(CardManager card)
     {
         throw new System.NotImplementedException();
+    }
+    public override void sharpen()
+    {
+        sharpened++;
+        cardData = new UICardData("Hammer", cost: 2, "Deal "+(1+sharpened)+"-"+(7+sharpened)+" damage at random", UICardData.CardType.ATTACK);
     }
 }

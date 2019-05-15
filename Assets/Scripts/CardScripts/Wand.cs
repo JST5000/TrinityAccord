@@ -13,7 +13,7 @@ public class Wand : CardData
 
     public override void Action(EnemyManager[] enemys)
     {
-        enemys[0].Damage(2);
+        enemys[0].Damage(2+sharpened);
         CardData top=grabTop();
         if (top==null)
         {
@@ -41,6 +41,11 @@ public class Wand : CardData
     public override int SecondAction(CardManager card)
     {
         throw new System.NotImplementedException();
+    }
+    public override void sharpen()
+    {
+        sharpened++;
+        cardData = new UICardData("Wand", cost: 1, "Deal " + (2 + sharpened) + " damage. Play the top card of deck if it is a spell", UICardData.CardType.ATTACK);
     }
 }
 

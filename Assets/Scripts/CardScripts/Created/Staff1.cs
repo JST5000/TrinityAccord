@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shuriken : CardData
+public class Staff1 : CardData
 {
-    public Shuriken()
+    public Staff1()
     {
-        cardData = new UICardData("Shuriken", cost: 1, "Deal 3 damage", UICardData.CardType.ATTACK);
-        cost = 1;
-        target = Target.ENEMY;
+        cardData = new UICardData("A", cost: 0, "Deal 2 damage", UICardData.CardType.ATTACK);
+        cost = 0;
     }
 
     public override void Action(EnemyManager[] enemys)
     {
-        enemys[0].Damage(3+sharpened);
     }
     public override void Action(CardData[] cards)
     {
@@ -31,6 +29,6 @@ public class Shuriken : CardData
     public override void sharpen()
     {
         sharpened++;
-        cardData = new UICardData("Shuriken", cost: 1, "Deal " + (3 + sharpened) + " damage.", UICardData.CardType.ATTACK);
+        cardData = new UICardData("A", cost: 0, "Deal " + (2 + sharpened) + " damage.", UICardData.CardType.ATTACK);
     }
 }

@@ -13,7 +13,7 @@ public class OneTonHammer : CardData
 
     public override void Action(EnemyManager[] enemys)
     {
-        enemys[0].Damage(9);
+        enemys[0].Damage(9+sharpened);
         CardManager[] hand = getHand();
         List<int> validCards = new List<int>();
         for (int i = 0; i < hand.Length; ++i)
@@ -43,5 +43,10 @@ public class OneTonHammer : CardData
     public override int SecondAction(CardManager card)
     {
         throw new System.NotImplementedException();
+    }
+    public override void sharpen()
+    {
+        sharpened++;
+        cardData = new UICardData("One-Ton-Hammer", cost: 3, "Deal " + (9 + sharpened) + " damage to target, random card in hand costs 3 until end of encounter", UICardData.CardType.ATTACK);
     }
 }

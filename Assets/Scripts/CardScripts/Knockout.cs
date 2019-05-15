@@ -13,7 +13,7 @@ public class Knockout : CardData
 
     public override void Action(EnemyManager[] enemys)
     {
-        enemys[0].Damage(3);
+        enemys[0].Damage(3+sharpened);
         enemys[0].Stun();
     }
     public override void Action(CardData[] cards)
@@ -28,5 +28,10 @@ public class Knockout : CardData
     public override int SecondAction(CardManager card)
     {
         throw new System.NotImplementedException();
+    }
+    public override void sharpen()
+    {
+        sharpened++;
+        cardData = new UICardData("Knockout", cost: 1, "Deal " + (3 + sharpened) + " damage Stun", UICardData.CardType.ATTACK);
     }
 }

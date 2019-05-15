@@ -23,7 +23,14 @@ public class Crossbow : CardData
         switch (mode)
         {
             case 1:
-                cardData = new UICardData("Crossbow", cost: 2, "Deal 6 damage Flip", UICardData.CardType.ATTACK);
+                if (sharpened == 0)
+                {
+                    cardData = new UICardData("Crossbow", cost: 2, "Deal 6 damage Flip", UICardData.CardType.ATTACK);
+                }else
+                {
+                    cardData = new UICardData("Crossbow", cost: 2, "Deal " + (6 + sharpened) + " damage Flip", UICardData.CardType.ATTACK);
+
+                }
                 target = Target.ENEMY;
                 cost = 2;
                 break;
@@ -42,7 +49,7 @@ public class Crossbow : CardData
         switch (mode)
         {
             case 1:
-                enemys[0].Damage(6);
+                enemys[0].Damage(6+sharpened);
                 break;
             case 2:
                 break;
@@ -61,5 +68,13 @@ public class Crossbow : CardData
     public override int SecondAction(CardManager card)
     {
         throw new System.NotImplementedException();
+    }
+    public override void sharpen()
+    {
+        sharpened++;
+        if (mode == 1)
+        {
+            cardData = new UICardData("Crossbow", cost: 2, "Deal " + (6 + sharpened) + " damage Flip", UICardData.CardType.ATTACK);
+        }
     }
 }

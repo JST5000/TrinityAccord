@@ -14,7 +14,7 @@ public class Flail : CardData
 
     public override void Action(EnemyManager[] enemies)
     {
-        damageRandom(3);
+        damageRandom(3+sharpened);
     }
     public override void Action(CardData[] cards)
     {
@@ -28,5 +28,10 @@ public class Flail : CardData
     public override int SecondAction(CardManager card)
     {
         throw new System.NotImplementedException();
+    }
+    public override void sharpen()
+    {
+        sharpened++;
+        cardData = new UICardData("Flail", cost: 1, "Deal " + (3 + sharpened) + " damage to random enemy", UICardData.CardType.ATTACK);
     }
 }

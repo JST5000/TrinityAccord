@@ -16,11 +16,19 @@ public class Storm : CardData
     {
         foreach (EnemyManager enemy in enemys)
         {
-            enemy.Damage(2 + growDamage);
+            enemy.Damage(2 + growDamage+sharpened);
 
         }
         growDamage = 0;
-        cardData = new UICardData("Storm", cost: 3, "Deal 2 damage to all enemies Charge 1", UICardData.CardType.ATTACK);
+        if (sharpened == 0)
+        {
+            cardData = new UICardData("Storm", cost: 3, "Deal 2 damage to all enemies Charge 1", UICardData.CardType.ATTACK);
+        }
+        else
+        {
+            cardData = new UICardData("Storm", cost: 3, "Deal " + (2 + sharpened) + " damage to all enemies Charge 1", UICardData.CardType.ATTACK);
+
+        }
 
     }
     public override void Action(CardData[] cards)
@@ -39,7 +47,7 @@ public class Storm : CardData
     public override void onDiscard()
     {
         growDamage += 1;
-        cardData = new UICardData("Storm", cost: 3, "Deal " + (2 + growDamage) + " damage to all enemies Charge 1", UICardData.CardType.ATTACK);
+        cardData = new UICardData("Storm", cost: 3, "Deal " + (2 + growDamage+sharpened) + " damage to all enemies Charge 1", UICardData.CardType.ATTACK);
 
     }
 }

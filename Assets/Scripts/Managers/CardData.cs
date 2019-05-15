@@ -19,6 +19,7 @@ public abstract class CardData
     public GameObject selectedTarget;
     public string cardName;
     public int cost;
+    public int sharpened = 0;
     public int changedCost=-1;
     public bool fragile = false;
     public bool duplicated = false;
@@ -33,6 +34,10 @@ public abstract class CardData
             id = nextId;
             ++nextId;
         }
+    }
+    public virtual void sharpen()
+    {
+
     }
     public void setCost(int cost)
     {

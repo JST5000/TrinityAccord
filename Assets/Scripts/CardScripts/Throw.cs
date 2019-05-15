@@ -13,7 +13,7 @@ public class Throw : CardData
 
     public override void Action(EnemyManager[] enemys)
     {
-        enemys[0].Damage(3);
+        enemys[0].Damage(3+sharpened);
         CardData top = grabTop();
         if (top==null)
         {
@@ -38,5 +38,10 @@ public class Throw : CardData
     public override int SecondAction(CardManager card)
     {
         throw new System.NotImplementedException();
+    }
+    public override void sharpen()
+    {
+        sharpened++;
+        cardData = new UICardData("Throw", cost: 2, "Deal " + (1 + sharpened) + " damage. Destroy top card of deck. If its an attack, +2 damage", UICardData.CardType.ATTACK);
     }
 }

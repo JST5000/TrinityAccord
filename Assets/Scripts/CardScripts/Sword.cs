@@ -13,7 +13,7 @@ public class Sword : CardData
 
     public override void Action(EnemyManager[] enemys)
     {
-        enemys[0].Damage(3);
+        enemys[0].Damage(3+sharpened);
     }
     public override void Action(CardData[] cards)
     {
@@ -27,6 +27,11 @@ public class Sword : CardData
     public override int SecondAction(CardManager card)
     {
         throw new System.NotImplementedException();
+    }
+    public override void sharpen()
+    {
+        sharpened++;
+        cardData = new UICardData("Sword", cost: 2, "Deal "+(3+sharpened)+ " damage.", UICardData.CardType.ATTACK);
     }
 }
 

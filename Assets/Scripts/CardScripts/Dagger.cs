@@ -13,7 +13,7 @@ public class Dagger : CardData
 
     public override void Action(EnemyManager[] enemys)
     {
-        enemys[0].Damage(1);
+        enemys[0].Damage(1+sharpened);
     }
     public override void Action(CardData[] cards)
     {
@@ -27,5 +27,10 @@ public class Dagger : CardData
     public override int SecondAction(CardManager card)
     {
         throw new System.NotImplementedException();
+    }
+    public override void sharpen()
+    {
+        sharpened++;
+        cardData = new UICardData("Dagger", cost: 1, "Deal " + (1 + sharpened) + " damage.", UICardData.CardType.ATTACK);
     }
 }

@@ -92,7 +92,7 @@ public class PermanentState : MonoBehaviour
         deck.Add(new Dagger());
         deck.Add(new Dagger());
         deck.Add(new Energize());
-        deck.Add(new Berserk());
+        deck.Add(new Staff());
         return deck;
     }
 

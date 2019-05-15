@@ -13,8 +13,8 @@ public class Claws : CardData
 
     public override void Action(EnemyManager[] enemys)
     {
-        enemys[0].Damage(3);
-        damageRandom(2);
+        enemys[0].Damage(3+sharpened);
+        damageRandom(2+sharpened);
     }
     public override void Action(CardData[] cards)
     {
@@ -28,5 +28,10 @@ public class Claws : CardData
     public override int SecondAction(CardManager card)
     {
         throw new System.NotImplementedException();
+    }
+    public override void sharpen()
+    {
+        sharpened++;
+        cardData = new UICardData("Claws", cost: 2, "Deal "+(3+sharpened) + " damage to target and "+(2+sharpened)+" damage to random enemy", UICardData.CardType.ATTACK);
     }
 }

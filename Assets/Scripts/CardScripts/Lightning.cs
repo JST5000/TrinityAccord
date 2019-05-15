@@ -19,7 +19,7 @@ public class Lightning : CardData
     {
         for (int i = 0; i < 3; ++i)
         {
-            damageRandom(3);
+            damageRandom(3+sharpened);
         }
         //TODO requery for enemies after each hit, incase someone dies and you need to recalculate.
         //A new enemy may be spawned/removed based on a non-lightning effect so we cannot deduce from our set the new set of targets.
@@ -38,5 +38,10 @@ public class Lightning : CardData
     public override int SecondAction(CardManager card)
     {
         throw new System.NotImplementedException();
+    }
+    public override void sharpen()
+    {
+        sharpened++;
+        cardData = new UICardData("Lightning", cost: 3, "Deal " + (3 + sharpened) + " damage to 3 random enemies", UICardData.CardType.ATTACK);
     }
 }

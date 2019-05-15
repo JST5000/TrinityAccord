@@ -13,7 +13,7 @@ public class Juggle : CardData
 
     public override void Action(EnemyManager[] enemys)
     {
-        enemys[0].Damage(3);
+        enemys[0].Damage(3+sharpened);
         enemys[0].Stun();
     }
     public override void Action(CardData[] cards)
@@ -39,5 +39,10 @@ public class Juggle : CardData
         }
         return false;
         
+    }
+    public override void sharpen()
+    {
+        sharpened++;
+        cardData = new UICardData("Juggle", cost: 1, "If there is spell in hand, deal " + (1 + sharpened) + " damage and stun an enemy", UICardData.CardType.ATTACK);
     }
 }
