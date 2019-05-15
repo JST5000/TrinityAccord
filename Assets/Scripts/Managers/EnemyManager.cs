@@ -100,6 +100,11 @@ public class EnemyManager : MonoBehaviour
         encounterMan.OnEnemyDeath(); //Alerts the encounterManager of death
     }
 
+    public void Drowsy()
+    {
+        data.Drowsy();
+    }
+
     public void SetEmpty()
     {
         isEmpty = true;
