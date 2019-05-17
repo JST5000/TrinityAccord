@@ -6,7 +6,7 @@ using TMPro;
 
 public class UpdateEnemyUI : MonoBehaviour
 {
-    public Text nameDisplay;
+    public TextMeshProUGUI nameDisplay;
     public HealthManager hpManager;
     public LifeManager livesHolder;
     public Image enemyPicture;
