@@ -12,7 +12,7 @@ public class PermanentState : MonoBehaviour
     public static int wins = 0;
     public static int money = 10;
     public static int maxHealth = 10;
-    public static int health = maxHealth;
+    public static int health = maxHealth - 1;
     
     private static EnemyData[] nextEncounter;
 
@@ -92,7 +92,7 @@ public class PermanentState : MonoBehaviour
         deck.Add(new Dagger());
         deck.Add(new Dagger());
         deck.Add(new Energize());
-        deck.Add(new Staff());
+        deck.Add(new Berserk());
         return deck;
     }
 

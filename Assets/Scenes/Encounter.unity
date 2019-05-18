@@ -758,8 +758,8 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 510930166}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
+  m_Alpha: 0
+  m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!224 &554150317 stripped
@@ -822,7 +822,7 @@ MonoBehaviour:
   healthUI: {fileID: 1395858390}
   statusMessage: {fileID: 510930168}
   defaultEnergy: 3
-  CanDie: 0
+  CanDie: 1
   resetHealthBetweenEncounters: 0
 --- !u!1 &688938026
 GameObject:

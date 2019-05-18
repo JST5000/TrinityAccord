@@ -21,7 +21,6 @@ public abstract class CardData
     public int cost;
 
     public int sharpened = 0;
-    public int changedCost=-1;
 
     public bool fragile = false;
     public bool duplicated = false;
@@ -56,14 +55,16 @@ public abstract class CardData
     {
 
     }
+
+    public virtual void OnSelectedInHand()
+    {
+
+    }
+
     public void setCost(int cost)
     {
         this.cost = cost;
         cardData.cost = cost;
-    }
-    public void setChangedCost(int cost)
-    {
-        changedCost = cost;
     }
 
     public int GetId()
@@ -98,11 +99,6 @@ public abstract class CardData
 
     public UICardData GetUICardData()
     {
-        if (changedCost != -1)
-        {
-            cardData.cost = changedCost;
-            cost = changedCost;
-        }
         return cardData;
     }
 
@@ -117,7 +113,7 @@ public abstract class CardData
     }
 
     public int getCost()
-    {
+    { 
         return cost;
     }
 

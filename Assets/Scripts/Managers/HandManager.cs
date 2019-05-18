@@ -9,6 +9,11 @@ public class HandManager : MonoBehaviour
 
     public void UpdateAllCardsInHand()
     {
+        UpdateAllCardsInHand(false);
+    }
+
+    public void UpdateAllCardsInHand(bool allOn)
+    {
         Player player = GameObject.Find("Player").GetComponent<Player>();
         int availableEnergy = player.GetEnergy();
         CardManager[] cardsInHand = GetComponentsInChildren<CardManager>();
@@ -18,7 +23,7 @@ public class HandManager : MonoBehaviour
             {
                 CardUIUpdater manUI = man.transform.GetComponent<CardUIUpdater>();
                 //If we are selecting cards in hand, their playability does not matter (Likely a discard effect)
-                if (disableHand || (!man.IsPlayable() && !(UIManager.currentMode == GameMode.PickCardInHand)))
+                if (!allOn && (disableHand || (!man.IsPlayable() && !(UIManager.currentMode == GameMode.PickCardInHand))))
                 {
                     manUI.DisableCard();
                 }
@@ -28,6 +33,11 @@ public class HandManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void EnableAllCardsInHand()
+    {
+        UpdateAllCardsInHand(true);
     }
 
     public bool HasPlayable()

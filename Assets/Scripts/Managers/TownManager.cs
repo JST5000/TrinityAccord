@@ -9,6 +9,12 @@ public class TownManager : MonoBehaviour
 {
     public TextMeshProUGUI response;
     public TextMeshProUGUI moneyCounter;
+    public HealthManager healthDisplay;
+
+    private void Start()
+    {
+        healthDisplay.SetMaxHealth(PermanentState.maxHealth);
+    }
 
     public void OpenAttackShop()
     {
@@ -66,5 +72,6 @@ public class TownManager : MonoBehaviour
     private void Update()
     {
         moneyCounter.text = "Coins: " + PermanentState.money;
+        healthDisplay.SetCurrHealth(PermanentState.health);
     }
 }

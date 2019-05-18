@@ -7,7 +7,7 @@ public class DualWeild : CardData
     public DualWeild()
     {
         cardData = new UICardData("DualWeild", cost: 2, "Deal 4 damage to target, random card in hand costs 1 until end of encounter", UICardData.CardType.ATTACK);
-        cost = 3;
+        cost = 2;
         target = Target.ENEMY;
     }
 
@@ -29,7 +29,9 @@ public class DualWeild : CardData
             return;
         }
         int randomIndex = UnityEngine.Random.Range(0, validCards.Count);
-        hand[validCards[randomIndex]].GetCardData().setChangedCost(1);
+        hand[validCards[randomIndex]].GetCardData().setCost(1);
+        //Ensure they are playable
+        GameObject.Find("Hand").GetComponent<HandManager>().UpdateAllCardsInHand();
     }
     public override void Action(CardData[] cards)
     {

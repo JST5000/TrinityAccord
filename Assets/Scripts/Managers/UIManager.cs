@@ -64,7 +64,10 @@ public class UIManager : MonoBehaviour
         if (newSelection != null)
         {
             selectedCard.GetComponent<CardUIUpdater>().Highlight();
+            //Ex. Clone uses this to enable all disabled cards in hand
+            selectedCard.GetCardData().OnSelectedInHand();
         }
+
     }
 
     private void Start()
@@ -86,6 +89,24 @@ public class UIManager : MonoBehaviour
             {
                 SetCurrentMode(GameMode.SelectCard);
             }
+        }
+        if(Input.GetMouseButtonDown(1))
+        {
+            ResetSelection();
+        }
+    }
+
+    private void ResetSelection()
+    {
+        if (selectedCard != null)
+        {
+            selectedCard.GetComponent<CardUIUpdater>().ResetHighlight();
+            selectedCard = null;
+            if(currentMode == GameMode.PickCardInHand || currentMode == GameMode.PickTarget)
+            {
+                currentMode = GameMode.SelectCard;
+            }
+            GameObject.Find("Hand").GetComponent<HandManager>().UpdateAllCardsInHand();
         }
     }
 

@@ -10,8 +10,6 @@ public class ShopManager : MonoBehaviour
     public Transform ShopItemParent;
     public TextMeshProUGUI Title;
     public Image ShopKeeper;
-    public TextMeshProUGUI MoneyDisplay;
-    public TextMeshProUGUI HealthDisplay;
     public TextMeshProUGUI FeedbackDisplay;
 
     private bool showHealth = false;
@@ -56,8 +54,6 @@ public class ShopManager : MonoBehaviour
         {
             item.UpdateUI();
         }
-        UpdateMoneyDisplay();
-        UpdateHealthDisplay();
         UpdateFeedbackDisplay();
     }
 
@@ -69,22 +65,6 @@ public class ShopManager : MonoBehaviour
         } else
         {
             FeedbackDisplay.text = "Welcome!";
-        }
-    }
-
-    private void UpdateMoneyDisplay()
-    {
-        MoneyDisplay.text = PermanentState.money + " Coins";
-    }
-
-    private void UpdateHealthDisplay()
-    {
-        if(showHealth)
-        {
-            HealthDisplay.text = PermanentState.health + "/" + PermanentState.maxHealth + " HP";
-        } else
-        {
-            HealthDisplay.text = "";
         }
     }
 

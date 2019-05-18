@@ -100,6 +100,9 @@ public class StackManager : MonoBehaviour
         {
             GameObject.Find("Deck").GetComponent<DeckManager>().AddToDiscard(top);
         }
+
+        //Card Effects may require updating the hand such as Dual Weild
+        GameObject.Find("Hand").GetComponent<HandManager>().UpdateAllCardsInHand();
         UpdateUI();
         return top;
     }
