@@ -82,6 +82,7 @@ public class StackManager : MonoBehaviour
             duplicate--;
         }
         top.duplicated = false;
+
         if (top.getTarget().Equals(Target.CARD))
         {
             CardData[] targetCard = { top.selectedTarget.GetComponent<CardManager>().GetCardData() };

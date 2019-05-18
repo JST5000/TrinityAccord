@@ -105,27 +105,27 @@ public abstract class CardData
         }
         return cardData;
     }
-/*    public CardData Clone(CardData card)
-    {
-        DeckManager deck = GameObject.Find("Deck").GetComponent<DeckManager>();
-        return deck.Clone(card);
-    } */
+
     public string getName()
     {
         return cardData.cardName;
     }
+
     public Target getTarget()
     {
         return target;
     }
+
     public int getCost()
     {
         return cost;
     }
+
     public UICardData.CardType getType()
     {
         return cardData.cardType;
     }
+
     protected void damageRandom(int amount)
     {
         EnemyManager[] enemies = GameObject.Find("Board").GetComponent<EncounterManager>().allEnemyManagers;
@@ -152,11 +152,13 @@ public abstract class CardData
             randomIndex = UnityEngine.Random.Range(0, enemies.Length);
         } 
     }
+
     protected CardData draw()
     {
         DeckManager deck = GameObject.Find("Deck").GetComponent<DeckManager>();
         return deck.DrawCard();
     }
+
     protected void drawFromDiscard()
     {
         DeckManager deck = GameObject.Find("Deck").GetComponent<DeckManager>();
@@ -171,6 +173,7 @@ public abstract class CardData
         DeckManager deck = GameObject.Find("Deck").GetComponent<DeckManager>();
         return deck.grabTop();
     }
+
     protected bool encounterActive()
     {
         if (GameObject.Find("Board").GetComponent<EncounterManager>().enemyCount <= 0)
@@ -182,31 +185,38 @@ public abstract class CardData
             return true;
         }
     }
+
     protected void addEnergy(int amount)
     {
         GameObject.Find("Player").GetComponent<Player>().AddEnergy(amount);
     }
+
     protected void addEnergyNextTurn(int amount)
     {
         GameObject.Find("Player").GetComponent<Player>().addBonusEnergy(amount);
     }
+
     protected void selectCard(int amount)
     {
        UIManager.selectCardInHand(this,amount);
     }
+
     protected int checkNumberOfCardsInHand()
     {
 
         return GameObject.Find("Deck").GetComponent<DeckManager>().getNumberOfCardsInHand();
     }
+
     protected int getNumberOfAttacksPlayed()
     {
         return GameObject.Find("StackHolder").GetComponent<StackManager>().attacksPlayed;
     }
+
     protected int getNumberOfCardsPlayed()
     {
         return GameObject.Find("StackHolder").GetComponent<StackManager>().cardsPlayed;
     }
+
     protected CardManager getMyCardManager()
     {
         foreach (CardManager cardManager in GameObject.Find("Deck").GetComponent<DeckManager>().hand)
@@ -218,18 +228,22 @@ public abstract class CardData
         }
         return null;
     }
+
     protected CardManager[] getHand()
     {
         return GameObject.Find("Deck").GetComponent<DeckManager>().hand;
     }
+
     protected DeckManager getDeckManager()
     {
         return GameObject.Find("Deck").GetComponent<DeckManager>();
     }
+
     protected EnemyManager[] getEnemyManagers()
     {
         return GameObject.Find("Board").GetComponent<EncounterManager>().allEnemyManagers;
     }
+
     protected void playCardSameTarget(CardData card)
     {
         if (card.target.Equals(Target.ENEMY))
@@ -246,7 +260,8 @@ public abstract class CardData
         }
         GameObject.Find("StackHolder").GetComponent<StackManager>().Push(card);
     }
-    protected void playCardRandomTarget(CardData card)
+
+    public static void playCardRandomTarget(CardData card)
     {
         if (card.target.Equals(Target.ENEMY))
         {

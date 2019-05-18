@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using TMPro;
 
 public class Player : MonoBehaviour
 {
     public EnergyManager energyUI;
     public HealthManager healthUI;
+    public TextMeshProUGUI statusMessage;
 
     public int defaultEnergy = 3;
 
@@ -15,6 +16,8 @@ public class Player : MonoBehaviour
     public bool resetHealthBetweenEncounters = false;
 
     private int blindDuration = 0;
+    private bool blindWasSet = false;
+    private bool enableBlindTimer = false;
 
     private int currEnergy;
     private int maxHealth;
@@ -34,6 +37,8 @@ public class Player : MonoBehaviour
         {
             InitHealth(PermanentState.maxHealth, PermanentState.health);
         }
+        //Start invisible
+        CanvasGroupManip.Disable(statusMessage.GetComponent<CanvasGroup>());
     }
 
     public void InitHealth(int max, int curr)
@@ -45,9 +50,24 @@ public class Player : MonoBehaviour
     public void EndTurn()
     {
         ResetEnergy();
-        if (blindDuration > 0)
+        if (enableBlindTimer && blindDuration > 0)
         {
             blindDuration--;
+            if(blindDuration == 0)
+            {
+                CanvasGroupManip.Disable(statusMessage.GetComponent<CanvasGroup>());
+                enableBlindTimer = false;
+            } 
+        }
+        
+    }
+
+    public void StartTurn()
+    {
+        if(blindWasSet)
+        {
+            enableBlindTimer = true;
+            blindWasSet = false;
         }
     }
 
@@ -121,7 +141,10 @@ public class Player : MonoBehaviour
 
     public void Blind(int duration)
     {
+        Debug.Log("Blinded!");
+        blindWasSet = true;
         blindDuration = Mathf.Max(blindDuration, duration);
+        CanvasGroupManip.Enable(statusMessage.GetComponent<CanvasGroup>());
     }
 
     public bool IsBlind()

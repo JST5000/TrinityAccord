@@ -191,12 +191,18 @@ public class UIManager : MonoBehaviour
     {
         //Pay Cost
         Debug.Log(selectedCard);
-        GameObject.Find("Player").GetComponent<Player>().PayEnergy(selectedCard.GetCardData().getCost());
-        
-        //Put the card on the stack
-        StackManager playStack = GameObject.Find("StackHolder").GetComponent<StackManager>();
-        playStack.Push(selectedCard.GetCardData());
-        
+        Player player = GameObject.Find("Player").GetComponent<Player>();
+        player.PayEnergy(selectedCard.GetCardData().getCost());
+        if (player.IsBlind())
+        {
+            CardData.playCardRandomTarget(selectedCard.GetCardData());
+        }
+        else
+        {
+            //Put the card on the stack
+            StackManager playStack = GameObject.Find("StackHolder").GetComponent<StackManager>();
+            playStack.Push(selectedCard.GetCardData());
+        }
         //Remove the card from the hand 
         selectedCard.SetEmpty();
 
@@ -245,8 +251,10 @@ public class UIManager : MonoBehaviour
 
             //VERY IMPORTANT, ResetCounts must happen AFTER the EncounterManager EndTurn, otherwise the "Recently Played" set will be cleared!
             cardStack.ResetCounts();
-            GameObject.Find("Player").GetComponent<Player>().EndTurn(); //Resets energy
+            Player player = GameObject.Find("Player").GetComponent<Player>();
+            player.EndTurn(); //Resets energy
 
+            player.StartTurn(); //Initialize any debuffs acquired
             decks.StartTurn(); //Draws hand
 
             updateHitboxWithStatus(Status.USED, clicked);
