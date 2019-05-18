@@ -6,16 +6,12 @@ enum CardLocation { Hand, Stack}
 public class CardManager : MonoBehaviour
 {
 
-    Target target;
-    //string cardName;
-    int cost;
     CardData cardData;
+
     public bool empty;
+
     public void Init(CardData cardData)
     {
-        this.target = cardData.getTarget();
-        //this.cardName = cardData.getName();
-        this.cost = cardData.getCost();
         this.cardData = cardData;
         this.empty = false;
     }
@@ -37,7 +33,7 @@ public class CardManager : MonoBehaviour
 
     public Target GetTargets()
     {
-        return target;
+        return cardData.getTarget();
     }
 
     public void Action(EnemyManager[] enemys)

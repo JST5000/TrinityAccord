@@ -19,21 +19,38 @@ public abstract class CardData
     public GameObject selectedTarget;
     public string cardName;
     public int cost;
+
     public int sharpened = 0;
     public int changedCost=-1;
+
     public bool fragile = false;
     public bool duplicated = false;
+
     public abstract void Action(EnemyManager[] enemys);
     public abstract void Action(CardData[] cards);
     public abstract void Action(CardData[] cards, EnemyManager[] enemys);
     public abstract int SecondAction(CardManager card);
 
+    //TODO - Remove this one and move everything into the CardData(UICardData, Target) constructor to guarentee correct initialization
     protected CardData()
+    {
+        lock (IdLock)
+        {
+            id = nextId;
+            ++nextId;
+        }
+    }
+
+    protected CardData(UICardData baseline, Target target)
     {
         lock (IdLock) {
             id = nextId;
             ++nextId;
         }
+        this.cardData = baseline;
+        this.cost = baseline.cost;
+        this.target = target;
+
     }
     public virtual void sharpen()
     {

@@ -25,9 +25,8 @@ public class TownManager : MonoBehaviour
     public void OpenHealthShop()
     {
         List<ShopItem> inventory = new List<ShopItem>();
-        inventory.Add(new HealthItem(1));
-        inventory.Add(new HealthItem(3));
-        inventory.Add(new HealthItem(7));
+        inventory.Add(new HealthItem(2));
+        inventory.Add(new HealthItem(5));
         Enter("Health Shop", "James", inventory, true);
     }
 

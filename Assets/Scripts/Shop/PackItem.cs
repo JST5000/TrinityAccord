@@ -11,7 +11,7 @@ public class PackItem : ShopItem
 
     private static int GetCost()
     {
-        return 5;
+        return 3;
     }
 
     override public void  Effect()

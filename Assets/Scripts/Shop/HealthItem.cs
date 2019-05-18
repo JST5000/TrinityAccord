@@ -13,19 +13,8 @@ public class HealthItem : ShopItem
 
     private static int GetCost(int heal)
     {
-        int cost = 0;
-        int costPerHeal = 2;
-        if (heal <= 2)
-        {
-            cost = costPerHeal * heal;
-        } else if(heal <= 5)
-        {
-            cost = costPerHeal * heal - costPerHeal/2;
-        } else
-        {
-            cost = costPerHeal * heal - costPerHeal;
-        }
-        return cost;
+        int healPerCost = 2;       
+        return heal / healPerCost;
     }
 
     override public void  Effect()

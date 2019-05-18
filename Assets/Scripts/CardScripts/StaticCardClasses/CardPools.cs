@@ -61,6 +61,7 @@ public static class CardPools
         all.Add(new Throw());
         all.Add(new Wisdom());
         all.Add(new Unearth());
+        all.Add(new Staff());
         allDraftableCards = all;
     }
 
