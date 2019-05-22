@@ -61,6 +61,7 @@ public abstract class CardData
 
     }
 
+
     public void setCost(int cost)
     {
         this.cost = cost;

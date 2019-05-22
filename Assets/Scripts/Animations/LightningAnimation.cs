@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightningAnimation : MonoBehaviour
+public class LightningAnimation : CardAnimation
 {
     // Start is called before the first frame update
-    void Start()
+    public LightningAnimation()
     {
-        
-    }
+        base.time = 1f;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

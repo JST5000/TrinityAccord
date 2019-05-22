@@ -11,7 +11,7 @@ public class StackManager : MonoBehaviour
     private CardManager displayedCardData;
     private CardUIUpdater displayedCard;
     private float currTime = 0;
-    private float timePerCard = .7f;
+    private float timePerCard = .5f;
     public int cardsPlayed = 0;
     public int attacksPlayed = 0;
     public int duplicate = 0;
@@ -103,11 +103,11 @@ public class StackManager : MonoBehaviour
             GameObject.Find("Deck").GetComponent<DeckManager>().AddToDiscard(top);
         }
 
-
         //Card Effects may require updating the hand such as Dual Weild
         GameObject.Find("Hand").GetComponent<HandManager>().UpdateAllCardsInHand();
         UpdateUI();
         inAnimation = false;
+        
     }
 
     private void UpdateUI()
