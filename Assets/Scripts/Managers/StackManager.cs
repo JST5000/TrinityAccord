@@ -15,6 +15,7 @@ public class StackManager : MonoBehaviour
     public int cardsPlayed = 0;
     public int attacksPlayed = 0;
     public int duplicate = 0;
+    public bool inAnimation = false;
 
     void Start()
     {
@@ -35,8 +36,9 @@ public class StackManager : MonoBehaviour
         if (playedCards.Count != 0)
         {
             currTime += Time.deltaTime;
-            if(currTime >= timePerCard)
+            if(currTime >= timePerCard&&!inAnimation)
             {
+                inAnimation = true;
                 currTime = 0;
                 Pop();
             }
@@ -68,7 +70,7 @@ public class StackManager : MonoBehaviour
         UpdateUI();
     }
 
-    public CardData Pop()
+    public void Pop()
     {
         CardData top = playedCards.Pop();
         if (duplicate > 0 && !top.duplicated) //&& top.GetType().Equals(UICardData.CardType.SPELL))
@@ -101,10 +103,11 @@ public class StackManager : MonoBehaviour
             GameObject.Find("Deck").GetComponent<DeckManager>().AddToDiscard(top);
         }
 
+
         //Card Effects may require updating the hand such as Dual Weild
         GameObject.Find("Hand").GetComponent<HandManager>().UpdateAllCardsInHand();
         UpdateUI();
-        return top;
+        inAnimation = false;
     }
 
     private void UpdateUI()
