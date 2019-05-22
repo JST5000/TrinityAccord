@@ -15,7 +15,8 @@ public class UIManager : MonoBehaviour
     static CardData actionCard;
     static int actionsNeeded;//Used to discard multiple cards for backpack
 
-    public const bool ENABLE_CLICK_BORDERS = false;
+    private bool canEndTurn = true;
+
     private enum Status { USED, UNUSED };
 
     private static GameMode GetCurrentMode()
@@ -110,28 +111,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void updateHitboxWithStatus(Status s, GameObject obj) 
-    {
-        if (ENABLE_CLICK_BORDERS)
-        {
-            DebugBorder border = obj.GetComponentInChildren<DebugBorder>();
-            if (border != null)
-            {
-                Color output = Color.black;
-                if (s == Status.USED)
-                {
-                    output = Color.green;
-                }
-                else
-                {
-                    output = Color.red;
-                }
-                border.SetRGBColorTemporarily(output);
-           
-            }
-            
-        }
-    }
 
     public void clickEnemy(GameObject clicked)
     {
@@ -141,25 +120,20 @@ public class UIManager : MonoBehaviour
      
             selectedCard.GetCardData().selectedTarget = clicked;
             PlayCard();
-            updateHitboxWithStatus(Status.USED, clicked);
-        }
-        else
-        {
-            updateHitboxWithStatus(Status.UNUSED, clicked);
-
         }
     }
     public void clickBoard(GameObject clicked)
     {
         Debug.Log("Clicked the Board");
-        if (GetCurrentMode().Equals(GameMode.PickTarget) && (requiredInput.Equals(Target.ALL_ENEMIES) || requiredInput.Equals(Target.BOARD)))
+        /*
+        if (GetCurrentMode().Equals(GameMode.PickTarget) && requiredInput.Equals(Target.ALL_ENEMIES)) //|| requiredInput.Equals(Target.BOARD)))
         {
             selectedCard.GetCardData().selectedTarget = clicked;
             PlayCard();
             //Triggers the card effect
             
         }
-        updateHitboxWithStatus(Status.UNUSED, clicked);
+        */
     }
 
     public void clickCardInHand(GameObject clicked)
@@ -199,9 +173,15 @@ public class UIManager : MonoBehaviour
             SetAndHighlightSelectedCard(cardMan);
             Debug.Log("Selected Card = " + selectedCard);
             requiredInput = selectedCard.GetTargets();
-            SetCurrentMode(GameMode.PickTarget);
-
-            updateHitboxWithStatus(Status.USED, clicked);
+            if (requiredInput == Target.BOARD || requiredInput == Target.ALL_ENEMIES)
+            {
+                selectedCard.GetCardData().selectedTarget = GameObject.Find("Board");
+                PlayCard();
+            }
+            else
+            {
+                SetCurrentMode(GameMode.PickTarget);
+            }
         } else
         {
             Debug.Log("The card: " + cardMan.GetCardData().getName() + " was unplayable (Likely due to cost).");
@@ -246,22 +226,31 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("Clicked the Deck");
         GameObject.Find("Deck").GetComponent<DeckManager>().PrintDeck();
-        updateHitboxWithStatus(Status.UNUSED, clicked);
     }
 
     public void clickDiscard(GameObject clicked)
     {
         Debug.Log("Clicked the Discard Pile");
         GameObject.Find("Deck").GetComponent<DeckManager>().PrintDiscard();
-        updateHitboxWithStatus(Status.UNUSED, clicked);
     }
 
-    public void clickEndTurn(GameObject clicked)
+    public void autoEndTurn()
+    {
+        if(canEndTurn)
+        {
+            canEndTurn = false;
+            clickEndTurn();
+            canEndTurn = true;
+        } 
+    }
+
+    public void clickEndTurn()
     {
         Debug.Log("Clicked End Turn");
 
         //During animation you should not be able to end turn
-        if (!GetCurrentMode().Equals(GameMode.Animation)||GetCurrentMode().Equals(GameMode.PickCardInHand))
+        if ((!GetCurrentMode().Equals(GameMode.Animation)
+            || GetCurrentMode().Equals(GameMode.PickCardInHand)))
         {
             SetAndHighlightSelectedCard(null); //Resets selection
 
@@ -277,8 +266,6 @@ public class UIManager : MonoBehaviour
 
             player.StartTurn(); //Initialize any debuffs acquired
             decks.StartTurn(); //Draws hand
-
-            updateHitboxWithStatus(Status.USED, clicked);
         }
     }
 

@@ -201,10 +201,10 @@ MonoBehaviour:
       - m_Target: {fileID: 935945234132611161, guid: 0eb3d9d32382374429e3c6c4b1402c57,
           type: 3}
         m_MethodName: clickEndTurn
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 4077812113045243023}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

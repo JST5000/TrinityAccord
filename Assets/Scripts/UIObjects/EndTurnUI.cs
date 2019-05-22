@@ -8,6 +8,7 @@ public class EndTurnUI : MonoBehaviour
 
     HandManager handMan;
     StackManager stack;
+    UIManager uiMan;
 
     Button bg;
 
@@ -18,7 +19,7 @@ public class EndTurnUI : MonoBehaviour
         stack = GameObject.Find("StackHolder").GetComponent<StackManager>();
 
         bg = GetComponent<Button>();
-        
+        uiMan = GameObject.Find("UIManagerWrapper").GetComponent<UIManager>();
     }
 
     // Update is called once per frame
@@ -29,7 +30,8 @@ public class EndTurnUI : MonoBehaviour
             SetColorToNotDone();
         } else
         {
-            SetColorToDone();
+            //SetColorToDone();
+            uiMan.autoEndTurn();
         }
     }
 

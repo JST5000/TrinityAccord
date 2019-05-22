@@ -5,7 +5,7 @@ using UnityEngine;
 public class Knight : EnemyData
 {
     public Knight()
-        : base(name: "Knight", maxHP: 3, staggers: 2, damage: 2, timer: 3, effect: InLineIcon.DAMAGE + ": 2, Takes up to 1 damage per hit.", spriteName: "Knight")
+        : base(name: "Knight", maxHP: 3, staggers: 2, damage: 2, timer: 3, effect: InLineIcon.DAMAGE + ": 2, Takes AT MOST 1 damage.", spriteName: "Knight")
     { }
 
     public override int GetModifiedDamageOnEachHit(int damage)
