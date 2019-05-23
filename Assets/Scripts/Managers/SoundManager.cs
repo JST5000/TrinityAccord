@@ -11,6 +11,11 @@ public static class SoundManager
 
     public static void playSound(string path)
     {
+        if (output == null)
+        {
+              output = GameObject.Find("Canvas").GetComponent<AudioSource>();
+
+        }
         Debug.Log(path + " played");
         output.clip = Resources.Load<AudioClip>(path);
         output.Play();
