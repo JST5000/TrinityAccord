@@ -103,6 +103,10 @@ public abstract class EnemyData
     //Returns true 
     public bool DamageRecursive(int damage)
     {
+        if(damage == 0)
+        {
+            return false;
+        }
         if (sleepTimer > 0)
         {
             sleepTimer = 0;
@@ -120,9 +124,9 @@ public abstract class EnemyData
 
             StaggerEnemy();
             CurrHP = MaxHP;
-            if (Staggers != 0)
+            if (Staggers > 0)
             {
-                DamageRecursive(currDamage);
+                return DamageRecursive(currDamage);
             }
             else
             {
