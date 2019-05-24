@@ -95,7 +95,6 @@ public class EnemyManager : MonoBehaviour
     }
     private void Die()
     {
-        Debug.Log("EnemyManager called Die()");
         SetEmpty(); //Removes UI element
         EncounterManager encounterMan = GetComponentInParent<EncounterManager>();
         encounterMan.OnEnemyDeath(); //Alerts the encounterManager of death
