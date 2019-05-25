@@ -328,7 +328,7 @@ MonoBehaviour:
   m_Padding:
     m_Left: 5
     m_Right: 5
-    m_Top: 60
+    m_Top: 30
     m_Bottom: 5
   m_ChildAlignment: 0
   m_Spacing: 0
@@ -352,6 +352,9 @@ MonoBehaviour:
   displayName: {fileID: 4143416101930426678}
   cardEffect: {fileID: 626371744891895398}
   background: {fileID: 355574507242479886}
+  AttackBG: {fileID: 0}
+  SpellBG: {fileID: 0}
+  HighlightBG: {fileID: 0}
   cardCG: {fileID: 557272752686652720}
 --- !u!225 &557272752686652720
 CanvasGroup:

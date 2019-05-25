@@ -10,7 +10,13 @@ public class CardUIUpdater : MonoBehaviour
     public TextMeshProUGUI displayName;
     public TextMeshProUGUI cardEffect;
     public Image background;
-    private Color prevBGColor;
+
+    public Sprite AttackBG;
+    public Sprite SpellBG;
+    public Sprite HighlightBG;
+
+
+    private Sprite prevBG;
     private bool highlighted = false;
 
     private Color normalTint;
@@ -29,10 +35,27 @@ public class CardUIUpdater : MonoBehaviour
     {
         TurnOffCard();
         cardHolder = GetComponentInChildren<CardManager>();
+        LoadBackgrounds();
         Button primaryButton = GetComponent<Button>();
         if (primaryButton != null)
         {
             normalTint = primaryButton.colors.normalColor;
+        }
+    }
+
+    private void LoadBackgrounds()
+    {
+        if (AttackBG == null)
+        {
+            AttackBG = Resources.Load<Sprite>("Card_Art/Attack_Card_Full");
+        }
+        if (SpellBG == null)
+        {
+            SpellBG = Resources.Load<Sprite>("Card_Art/Spell_Card_Full");
+        }
+        if (HighlightBG == null)
+        {
+            HighlightBG = Resources.Load<Sprite>("Card_Art/Selected_Card_Full");
         }
     }
 
@@ -114,11 +137,11 @@ public class CardUIUpdater : MonoBehaviour
         {
             if (type.Equals(UICardData.CardType.ATTACK))
             {
-                background.color = Color.red;
+                background.sprite = AttackBG;
             }
             else if (type.Equals(UICardData.CardType.SPELL))
             {
-                background.color = Color.cyan;
+                background.sprite = SpellBG;
             }
         }
     }
@@ -126,15 +149,19 @@ public class CardUIUpdater : MonoBehaviour
     public void Highlight()
     {
         highlighted = true;
+        prevBG = background.sprite;
+        background.sprite = HighlightBG;
+        /*
         var color = background.color;
         prevBGColor = new Color(color.r, color.g, color.b, color.a);
         color = Color.yellow;
         background.color = color;
+        */
     }
 
     public void ResetHighlight()
     {
         highlighted = false;
-        background.color = prevBGColor;
+        background.sprite = prevBG;
     }
 }
