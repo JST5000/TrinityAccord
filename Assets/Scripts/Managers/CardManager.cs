@@ -10,9 +10,20 @@ public class CardManager : MonoBehaviour
 
     public bool empty;
 
+    public bool AlwaysDisplayText;
+
+    private bool prevSettingForCardArt;
+
     public void Init(CardData cardData)
     {
         this.cardData = cardData;
+        if (AlwaysDisplayText)
+        {
+            cardData.GetUICardData().displayOnlyCardArt = false;
+        } else
+        {
+            cardData.GetUICardData().displayOnlyCardArt = true;
+        }
         this.empty = false;
     }
     public void SetEmpty()
@@ -65,6 +76,17 @@ public class CardManager : MonoBehaviour
         } else
         {
             return null;
+        }
+    }
+
+    public void SetCardArtOpacity(bool displayOnlyCardArt)
+    {
+        if(AlwaysDisplayText)
+        {
+            cardData.GetUICardData().displayOnlyCardArt = false;
+
+        } else {
+            cardData.GetUICardData().displayOnlyCardArt = displayOnlyCardArt;
         }
     }
 

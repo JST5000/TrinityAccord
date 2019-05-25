@@ -10,6 +10,7 @@ public class CardUIUpdater : MonoBehaviour
     public TextMeshProUGUI displayName;
     public TextMeshProUGUI cardEffect;
     public Image background;
+    public Image CardArt;
 
     public Sprite AttackBG;
     public Sprite SpellBG;
@@ -127,8 +128,55 @@ public class CardUIUpdater : MonoBehaviour
     {
         costText.text = "" + data.cost;
         displayName.text = data.cardName;
-        cardEffect.text = data.effectText;
+        DisplayTextAndCardArtDynamically(data);
         UpdateBGColor(data.cardType);
+    }
+
+    private void DisplayTextAndCardArtDynamically(UICardData data)
+    {
+        if (data.cardArt == null)
+        {
+            DisplayFullTextWithNoArt(data);
+        }
+        else
+        {
+            if (data.displayOnlyCardArt)
+            {
+                DisplayFullCardArt(data);
+            }
+            else
+            {
+                DisplayFullTextWithFadedArt(data);
+            }
+        }
+    }
+
+    //Hides text, shows full card art
+    private void DisplayFullCardArt(UICardData data)
+    {
+        cardEffect.text = "";
+        CardArt.sprite = data.cardArt;
+        var color = CardArt.color;
+        color.a = 1f;
+        CardArt.color = color;
+    }
+
+    //Makes the art transparent and initializes text so text is fully readable
+    private void DisplayFullTextWithFadedArt(UICardData data)
+    {
+        cardEffect.text = data.effectText;
+        CardArt.sprite = data.cardArt;
+        var color = CardArt.color;
+        color.a = .4f;
+        CardArt.color = color;
+    }
+
+    private void DisplayFullTextWithNoArt(UICardData data)
+    {
+        cardEffect.text = data.effectText;
+        var color = CardArt.color;
+        color.a = 0f;
+        CardArt.color = color;
     }
 
     private void UpdateBGColor(UICardData.CardType type)

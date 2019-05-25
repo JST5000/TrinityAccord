@@ -11,7 +11,7 @@ public class UICardData
     public string effectText;
     public CardType cardType;
     public Sprite cardArt;
-    public bool maximize;
+    public bool displayOnlyCardArt;
 
     public UICardData(string cardName, int cost, string effectText, CardType type)
     {
@@ -21,11 +21,16 @@ public class UICardData
         this.cardType = type;
     }
 
-    public UICardData(string cardName, int cost, string effectText, CardType type, Sprite cardArt, bool maximize) 
+    public UICardData(string cardName, int cost, string effectText, CardType type, string cardArtFileName) 
         : this(cardName, cost, effectText, type)
     {
-        this.cardArt = cardArt;
-        this.maximize = maximize;
+        this.cardArt = Resources.Load<Sprite>("Card_Art\\" + cardArtFileName);
+        if(cardArt == null)
+        {
+            Debug.Log("Unable to find the card art for " + cardArt);
+        }
+        //Default to full screen art with no text or show text
+        this.displayOnlyCardArt = true;
     }
 
 }
