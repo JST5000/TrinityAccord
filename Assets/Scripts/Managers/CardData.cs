@@ -18,7 +18,6 @@ public abstract class CardData
     public  Target target;
     public GameObject selectedTarget;
     public string cardName;
-    public int cost;
 
     public int sharpened = 0;
 
@@ -47,7 +46,6 @@ public abstract class CardData
             ++nextId;
         }
         this.cardData = baseline;
-        this.cost = baseline.cost;
         this.target = target;
 
     }
@@ -64,7 +62,6 @@ public abstract class CardData
 
     public void setCost(int cost)
     {
-        this.cost = cost;
         cardData.cost = cost;
     }
 
@@ -84,7 +81,7 @@ public abstract class CardData
     //Does basic check of mana cost/availability. Extra requirements must be implemented separately.
     public bool IsPlayable()
     {
-        bool playerHasEnoughEnergy = GameObject.Find("Player").GetComponent<Player>().GetEnergy() >= cost;
+        bool playerHasEnoughEnergy = GameObject.Find("Player").GetComponent<Player>().GetEnergy() >= cardData.cost;
         return playerHasEnoughEnergy && IsPlayableAdditionalRequirements();
     }
 
@@ -115,7 +112,7 @@ public abstract class CardData
 
     public int getCost()
     { 
-        return cost;
+        return cardData.cost;
     }
 
     public UICardData.CardType getType()

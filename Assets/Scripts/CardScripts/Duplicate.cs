@@ -7,7 +7,6 @@ public class Duplicate : CardData
     public Duplicate()
     {
         cardData = new UICardData("Duplicate", cost: 1, "Copy the next spell played", UICardData.CardType.SPELL);
-        cost = 1;
         target = Target.BOARD;
     }
 

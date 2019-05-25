@@ -7,7 +7,6 @@ public class Greed : CardData
     public Greed()
     {
         cardData = new UICardData("Greed", cost: 0, "Draw 2", UICardData.CardType.SPELL);
-        cost = 0;
         target = Target.BOARD;
     }
 

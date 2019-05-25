@@ -7,7 +7,6 @@ public class Juggle : CardData
     public Juggle()
     {
         cardData = new UICardData("Juggle", cost: 1, "If there is spell in hand, deal 3 damage and stun an enemy", UICardData.CardType.ATTACK);
-        cost = 1;
         target = Target.ENEMY;
     }
 

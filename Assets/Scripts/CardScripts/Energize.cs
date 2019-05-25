@@ -7,7 +7,6 @@ public class Energize : CardData
     public Energize()
     {
         cardData = new UICardData("Energize", cost: 0, "Gain 1 Energy", UICardData.CardType.SPELL);
-        cost = 0;
         target = Target.BOARD;
     }
 

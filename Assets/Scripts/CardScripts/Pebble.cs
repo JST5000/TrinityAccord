@@ -7,7 +7,6 @@ public class Pebble : CardData
     public Pebble()
     {
         cardData = new UICardData("Pebble", cost: 0, "Deal 1 damage Draw 1 card", UICardData.CardType.ATTACK);
-        cost = 0;
         target = Target.ENEMY;
     }
 

@@ -7,7 +7,6 @@ public class OneTonHammer : CardData
     public OneTonHammer()
     {
         cardData = new UICardData("One-Ton-Hammer", cost: 3, "Deal 9 damage to target, random card in hand costs 3 until end of encounter", UICardData.CardType.ATTACK);
-        cost = 3;
         target = Target.ENEMY;
     }
 

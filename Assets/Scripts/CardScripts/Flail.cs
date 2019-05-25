@@ -8,7 +8,6 @@ public class Flail : CardData
     public Flail()
     {
         cardData = new UICardData("Flail", cost: 1, "Deal 3 damage to random enemy", UICardData.CardType.ATTACK);
-        cost = 1;
         target = Target.BOARD;
     }
 

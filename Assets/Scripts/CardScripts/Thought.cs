@@ -7,7 +7,6 @@ public class Thought : CardData
     public Thought()
     {
         cardData = new UICardData("Thought", cost: 1, "Flip Idea", UICardData.CardType.SPELL);
-        cost = 1;
         fragile = true;
         target = Target.BOARD;
     }

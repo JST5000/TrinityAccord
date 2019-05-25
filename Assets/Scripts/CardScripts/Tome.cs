@@ -7,7 +7,6 @@ public class Tome : CardData
     public Tome()
     {
         cardData = new UICardData("Tome", cost: 1, "Draw 2, Gain 1 energy for each spell drawn", UICardData.CardType.SPELL);
-        cost = 1;
         target = Target.BOARD;
     }
 

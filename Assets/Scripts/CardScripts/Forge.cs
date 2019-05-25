@@ -7,7 +7,6 @@ public class Forge : CardData
     public Forge()
     {
         cardData = new UICardData("Forge", cost: 3, "Deal 4 damage, add a Great Sword to discard", UICardData.CardType.ATTACK);
-        cost = 3;
         target = Target.ENEMY;
     }
 

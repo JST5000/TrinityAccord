@@ -7,7 +7,6 @@ public class Sword : CardData
     public Sword()
     {
         cardData = new UICardData("Sword", cost: 2, "Deal 3 damage.", UICardData.CardType.ATTACK);
-        cost = 2;
         target = Target.ENEMY;
     }
 

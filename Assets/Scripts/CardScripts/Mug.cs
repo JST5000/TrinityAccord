@@ -7,7 +7,6 @@ public class Mug : CardData
     public Mug()
     {
         cardData = new UICardData("Mug", cost: 2, "Deal 2 damage. If the enemy is stunned or killed gain 2 energy, draw a card", UICardData.CardType.ATTACK);
-        cost = 2;
         target = Target.ENEMY;
     }
 

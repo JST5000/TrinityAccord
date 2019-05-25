@@ -7,7 +7,6 @@ public class Hammer : CardData
     public Hammer()
     {
         cardData = new UICardData("Hammer", cost: 2, "Deal 1-7 damage at random", UICardData.CardType.ATTACK);
-        cost = 2;
         target = Target.ENEMY;
     }
 

@@ -8,7 +8,6 @@ public class Storm : CardData
     public Storm()
     {
         cardData = new UICardData("Storm", cost: 3, "Deal 2 damage to all enemies Charge 1", UICardData.CardType.ATTACK);
-        cost = 3;
         target = Target.BOARD;
     }
 

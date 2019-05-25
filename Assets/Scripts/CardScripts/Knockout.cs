@@ -7,7 +7,6 @@ public class Knockout : CardData
     public Knockout()
     {
         cardData = new UICardData("Knockout", cost: 2, "Deal 3 damage Stun", UICardData.CardType.ATTACK);
-        cost = 2;
         target = Target.ENEMY;
     }
 

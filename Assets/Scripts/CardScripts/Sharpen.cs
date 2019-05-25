@@ -7,7 +7,6 @@ public class Sharpen : CardData
     public Sharpen()
     {
         cardData = new UICardData("Sharpen", cost: 1, "Increase damage of cards in hand", UICardData.CardType.SPELL);
-        cost = 1;
         target = Target.BOARD;
     }
 

@@ -8,7 +8,6 @@ public class Foil : CardData
     public Foil()
     {
         cardData = new UICardData("Foil", cost: 2, "Deal 3 damage, reduce cost by 1", UICardData.CardType.ATTACK);
-        cost = 2;
         target = Target.ENEMY;
     }
 
@@ -22,7 +21,6 @@ public class Foil : CardData
             newEnergy = 0;
         }
         cardData = new UICardData("Foil", cost: newEnergy, cardData.effectText, UICardData.CardType.ATTACK);
-        cost = newEnergy;
 
     }
     public override void Action(CardData[] cards)

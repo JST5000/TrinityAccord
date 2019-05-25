@@ -7,7 +7,6 @@ public class Claws : CardData
     public Claws()
     {
         cardData = new UICardData("Claws", cost: 2, "Deal 3 damage to target and 2 damage to random enemy", UICardData.CardType.ATTACK);
-        cost = 2;
         target = Target.ENEMY;
     }
 

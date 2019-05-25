@@ -7,7 +7,6 @@ public class Shock : CardData
     public Shock()
     {
         cardData = new UICardData("Shock", cost: 2, "Stagger target", UICardData.CardType.SPELL);
-        cost = 2;
         target = Target.ENEMY;
     }
 

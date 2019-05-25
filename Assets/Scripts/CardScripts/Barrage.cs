@@ -6,8 +6,7 @@ public class Barrage : CardData
 {
     public Barrage()
     {
-        cost = 0;
-        cardData = new UICardData("Barrage", cost: cost, "Deal 1 damage for each other attack played this turn", UICardData.CardType.ATTACK);
+        cardData = new UICardData("Barrage", cost: 0, "Deal 1 damage for each other attack played this turn", UICardData.CardType.ATTACK);
         target = Target.ENEMY;
     }
 
@@ -31,7 +30,7 @@ public class Barrage : CardData
     public override void sharpen()
     {
         sharpened++;
-        cardData = new UICardData("Barrage", cost: cost, "Deal 1 damage for each other attack played this turn + "+sharpened, UICardData.CardType.ATTACK);
+        cardData = new UICardData("Barrage", cost: 0, "Deal 1 damage for each other attack played this turn + "+sharpened, UICardData.CardType.ATTACK);
 
     }
 }

@@ -32,12 +32,10 @@ public class Crossbow : CardData
 
                 }
                 target = Target.ENEMY;
-                cost = 2;
                 break;
             case 2:
                 cardData = new UICardData("Reload", cost: 0, "Flip", UICardData.CardType.SPELL);
                 target = Target.BOARD;
-                cost = 0;
                 break;
 
         }

@@ -7,7 +7,6 @@ public class Execute : CardData
     public Execute()
     {
         cardData = new UICardData("Execute", cost: 2, "Deal 2 damage. If the enemy is staggered, deal 5 more", UICardData.CardType.ATTACK);
-        cost = 2;
         target = Target.ENEMY;
     }
 

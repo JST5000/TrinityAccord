@@ -7,7 +7,6 @@ public class Unearth : CardData
     public Unearth()
     {
         cardData = new UICardData("Unearth", cost: 0, "Draw 1 from discard", UICardData.CardType.SPELL);
-        cost = 0;
         target = Target.BOARD;
     }
 

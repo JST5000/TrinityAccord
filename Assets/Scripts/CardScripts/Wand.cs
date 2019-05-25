@@ -7,7 +7,6 @@ public class Wand : CardData
     public Wand()
     {
         cardData = new UICardData("Wand", cost: 1, "Deal 2 damage. Play the top card of deck if it is a spell", UICardData.CardType.ATTACK);
-        cost = 1;
         target = Target.ENEMY;
     }
 

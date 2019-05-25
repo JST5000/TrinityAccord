@@ -7,7 +7,6 @@ public class Rally : CardData
         public Rally()
         {
             cardData = new UICardData("Rally", cost: 2, "Deal 3 damage Grow 2", UICardData.CardType.ATTACK);
-            cost = 2;
             target = Target.ENEMY;
         }
 

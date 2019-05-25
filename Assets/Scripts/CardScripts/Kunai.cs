@@ -7,7 +7,6 @@ public class Kunai : CardData
     public Kunai()
     {
         cardData = new UICardData("Kunai", cost: 2, "Deal 3 damage, add a shuriken to discard", UICardData.CardType.ATTACK);
-        cost = 2;
         target = Target.ENEMY;
     }
 

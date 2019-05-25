@@ -7,7 +7,6 @@ public class Clone : CardData
     public Clone()
     {
         cardData = new UICardData("Clone", cost: 0, "Becomes copy of target until end of game", UICardData.CardType.SPELL);
-        cost = 0;
         target = Target.CARD;
         fragile = true;
     }

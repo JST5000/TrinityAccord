@@ -10,7 +10,6 @@ public class Peer : CardData
     public Peer()
     {
         cardData = new UICardData("Peer", cost: 0, "Look at the top 2 cards of the deck and draw one", UICardData.CardType.SPELL);
-        cost = 0;
         target = Target.BOARD;
     }
     

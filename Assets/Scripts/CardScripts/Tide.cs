@@ -8,7 +8,6 @@ public class Tide : CardData
     public Tide()
     {
         cardData = new UICardData("Tide", cost: 3, "Deal 2 damage to all enemies Grow 1", UICardData.CardType.ATTACK);
-        cost = 3;
         target = Target.ALL_ENEMIES;
     }
 

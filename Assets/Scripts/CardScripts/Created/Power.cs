@@ -7,7 +7,6 @@ public class Power : CardData
     public Power()
     {
         cardData = new UICardData("Power", cost: 0, "Gain 2 energy", UICardData.CardType.SPELL);
-        cost = 0;
         target = Target.BOARD;
     }
 

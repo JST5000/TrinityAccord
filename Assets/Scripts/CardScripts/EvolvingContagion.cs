@@ -17,16 +17,13 @@ public class EvolvingContagion : CardData
             case 1:
                 cardData = new UICardData("Greed", cost: 0, "Draw 2", UICardData.CardType.SPELL);
                 target = Target.BOARD;
-                cost = 0;
                 break;
             case 2:
                 cardData = new UICardData("Power", cost: 0, "Gain 2 energy", UICardData.CardType.SPELL);
                 target = Target.BOARD;
-                cost = 0;
                 break;
             case 3:
                 cardData = new UICardData("Vile Sword", cost: 2, "Deal 5 damage", UICardData.CardType.ATTACK);
-                cost = 2;
                 target = Target.ENEMY;
                 break;
 

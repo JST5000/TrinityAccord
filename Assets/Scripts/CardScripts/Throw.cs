@@ -7,7 +7,6 @@ public class Throw : CardData
     public Throw()
     {
         cardData = new UICardData("Throw", cost: 2, "Deal 3 damage. Destroy top card of deck. If its an attack, +2 damage", UICardData.CardType.ATTACK);
-        cost = 2;
         target = Target.ENEMY;
     }
 

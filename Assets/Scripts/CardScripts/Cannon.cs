@@ -7,7 +7,6 @@ public class Cannon : CardData
     public Cannon()
     {
         cardData = new UICardData("Cannon", cost: 3, "Deal 4 damage Deal 2 to adjacent", UICardData.CardType.ATTACK);
-        cost = 3;
         target = Target.ENEMY;
     }
 

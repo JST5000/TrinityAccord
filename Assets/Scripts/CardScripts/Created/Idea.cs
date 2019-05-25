@@ -7,7 +7,6 @@ public class Idea : CardData
     public Idea()
     {
         cardData = new UICardData("Idea", cost: 0, "Draw 2", UICardData.CardType.SPELL);
-        cost = 0;
         target = Target.BOARD;
     }
 

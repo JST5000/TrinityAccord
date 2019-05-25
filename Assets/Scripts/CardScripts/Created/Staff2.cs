@@ -7,7 +7,6 @@ public class Staff2 : CardData
     public Staff2()
     {
         cardData = new UICardData("B", cost: 0, "Deal 1 damage Draw 1 card", UICardData.CardType.ATTACK);
-        cost = 0;
     }
 
     public override void Action(EnemyManager[] enemys)

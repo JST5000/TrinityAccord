@@ -7,7 +7,6 @@ public class Bash : CardData
     public Bash()
     {
         cardData = new UICardData("Bash", cost: 1, "Stun a random enemy", UICardData.CardType.SPELL);
-        cost = 1;
         target = Target.BOARD;
     }
 

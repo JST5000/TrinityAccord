@@ -8,7 +8,6 @@ public class Chaos : CardData
     public Chaos()
     {
         cardData = new UICardData("Chaos", cost: 1, "Deal 1 damage at random for each card played before this", UICardData.CardType.ATTACK);
-        cost = 1;
         target = Target.ALL_ENEMIES;
     }
 

@@ -7,7 +7,6 @@ public class Contaminate : CardData
     public Contaminate()
     {
         cardData = new UICardData("Contaminate", cost: 1, "Turns random card in hand into contagion card", UICardData.CardType.SPELL);
-        cost = 1;
         target = Target.BOARD;
     }
 

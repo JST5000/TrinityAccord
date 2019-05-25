@@ -7,7 +7,6 @@ public class Berserk : CardData
     public Berserk()
     {
         cardData = new UICardData("Berserk", cost: 2, "Play top 2 cards of deck at random", UICardData.CardType.SPELL);
-        cost = 2;
         target = Target.BOARD;
     }
 

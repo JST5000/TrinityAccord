@@ -7,7 +7,6 @@ public class Shuriken : CardData
     public Shuriken()
     {
         cardData = new UICardData("Shuriken", cost: 1, "Deal 3 damage", UICardData.CardType.ATTACK);
-        cost = 1;
         target = Target.ENEMY;
     }
 

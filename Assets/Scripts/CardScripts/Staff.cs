@@ -10,7 +10,6 @@ public class Staff : CardData
     public Staff()
     {
         cardData = new UICardData("Staff", cost: 1, "Deal 2 damage, draw 1 card deal 1 damage, or draw 2 cards", UICardData.CardType.ATTACK);
-        cost = 1;
         target = Target.ENEMY;
     }
 

@@ -7,7 +7,6 @@ public class DualWeild : CardData
     public DualWeild()
     {
         cardData = new UICardData("DualWeild", cost: 2, "Deal 4 damage to target, random card in hand costs 1 until end of encounter", UICardData.CardType.ATTACK);
-        cost = 2;
         target = Target.ENEMY;
     }
 

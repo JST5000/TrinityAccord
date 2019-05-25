@@ -7,7 +7,6 @@ public class Yawn : CardData
     public Yawn()
     {
         cardData = new UICardData("Yawn", cost: 1, "Drowsy a random enemy", UICardData.CardType.SPELL);
-        cost = 1;
         target = Target.BOARD;
     }
 
