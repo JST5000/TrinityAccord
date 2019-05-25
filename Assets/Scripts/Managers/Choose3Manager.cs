@@ -109,7 +109,7 @@ public class Choose3Manager : MonoBehaviour
         UIManager.DoneSelectingOption(); //Restores ability to play cards
     }
 
-    public void EnterCustomFight(TextMeshProUGUI inputField)
+    public void EnterCustom(TextMeshProUGUI inputField)
     {
         string input = inputField.text.Substring(0, inputField.text.Length - 1);
         try
