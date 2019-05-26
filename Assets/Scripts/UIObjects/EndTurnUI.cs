@@ -10,6 +10,10 @@ public class EndTurnUI : MonoBehaviour
     StackManager stack;
     UIManager uiMan;
 
+    //Multiple people can request a pause, so allow multiple requests
+    public int pauseAutoEndTurn = 0;
+    private readonly object syncLock = new object();
+
     Button bg;
 
     // Start is called before the first frame update
@@ -25,13 +29,38 @@ public class EndTurnUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(handMan.HasPlayable() || !stack.IsDisplayEmpty())
+        if (handMan.HasPlayable() || !stack.IsDisplayEmpty())
         {
             SetColorToNotDone();
-        } else
+        }
+        else
         {
-            //SetColorToDone();
-            uiMan.autoEndTurn();
+            if (!IsPaused())
+            {
+                uiMan.autoEndTurn();
+            }
+        }
+    }
+
+    private bool IsPaused()
+    {
+        return pauseAutoEndTurn > 0;
+    }
+
+    public void PauseAutoEndTurn()
+    {
+        lock (syncLock)
+        {
+            pauseAutoEndTurn++;
+        }
+    }
+
+    public void ResumeAutoEndTurn()
+    {
+        lock (syncLock)
+        {
+            //Uses floor of 0 to prevent preemptive freeing of a pause
+            pauseAutoEndTurn = Mathf.Max(pauseAutoEndTurn - 1, 0);
         }
     }
 

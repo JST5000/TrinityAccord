@@ -23,6 +23,9 @@ public abstract class CardData
 
     public bool fragile = false;
     public bool duplicated = false;
+
+    public bool pauseGameplay = false;
+
     public float animationTime;
     public abstract void Action(EnemyManager[] enemys);
     public abstract void Action(CardData[] cards);

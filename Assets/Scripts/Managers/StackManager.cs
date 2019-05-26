@@ -6,21 +6,26 @@ using UnityEngine.UI;
 public class StackManager : MonoBehaviour
 {
     public Text label;
-    private List<CardData> playedCardsThisTurn = new List<CardData>();
-    private Stack<CardData> playedCards = new Stack<CardData>();
-    private CardManager displayedCardData;
-    private CardUIUpdater displayedCard;
-    private float currTime = 0;
-    private float timePerCard = .5f;
+
     public int cardsPlayed = 0;
     public int attacksPlayed = 0;
     public int duplicate = 0;
     public bool inAnimation = false;
 
+    private List<CardData> playedCardsThisTurn = new List<CardData>();
+    private Stack<CardData> playedCards = new Stack<CardData>();
+    private CardManager displayedCardData;
+    private CardUIUpdater displayedCard;
+    private EndTurnUI endTurn;
+    private float currTime = 0;
+    private float timePerCard = .5f;
+
+
     void Start()
     {
         displayedCardData = GetComponentInChildren<CardManager>();
         displayedCard = GetComponentInChildren<CardUIUpdater>();
+        endTurn = GameObject.Find("EndTurnButton").GetComponent<EndTurnUI>();
     }
 
     private void Update()
@@ -64,6 +69,7 @@ public class StackManager : MonoBehaviour
 
     public void Push(CardData justPlayed)
     {
+        endTurn.PauseAutoEndTurn();
         UpdateCounts(justPlayed);
         currTime = 0;
         playedCards.Push(justPlayed);
@@ -107,7 +113,7 @@ public class StackManager : MonoBehaviour
         GameObject.Find("Hand").GetComponent<HandManager>().UpdateAllCardsInHand();
         UpdateUI();
         inAnimation = false;
-        
+        endTurn.ResumeAutoEndTurn();    
     }
 
     private void UpdateUI()

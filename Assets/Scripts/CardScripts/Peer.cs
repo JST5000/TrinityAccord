@@ -10,11 +10,15 @@ public class Peer : CardData
     public Peer()
     {
         cardData = new UICardData("Peer", cost: 0, "Look at the top 2 cards of the deck and draw one", UICardData.CardType.SPELL);
+        pauseGameplay = true;
         target = Target.BOARD;
     }
     
     public override void Action(EnemyManager[] enemys)
     {
+        //Prevent end turn during card selection
+        GameObject.Find("EndTurnButton").GetComponent<EndTurnUI>().PauseAutoEndTurn();
+
         GameObject instance = GameObject.Instantiate(Resources.Load<GameObject>("Choose3Menu"), GameObject.Find("Canvas").transform, false);
         Choose3Manager choose3 = instance.GetComponent<Choose3Manager>();
         DeckManager deck = GameObject.Find("Deck").GetComponent<DeckManager>();
@@ -42,6 +46,9 @@ public class Peer : CardData
         {
             deck.DrawAtIndex(1);
         }
+
+        //Must be resumed explicitly since we flagged as a 'PauseGameplay' card
+        GameObject.Find("EndTurnButton").GetComponent<EndTurnUI>().ResumeAutoEndTurn();
     }
 
     public override void Action(CardData[] cards, EnemyManager[] enemys)
