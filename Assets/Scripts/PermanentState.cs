@@ -13,6 +13,9 @@ public class PermanentState : MonoBehaviour
     public static int money = 10;
     public static int maxHealth = 10;
     public static int health = maxHealth - 1;
+
+    //Needs to be remembered between level loads
+    public static List<int> unusedQuotes;
     
     private static EnemyData[] nextEncounter;
 
@@ -40,6 +43,7 @@ public class PermanentState : MonoBehaviour
         expectedLevel = Level.ONE;
         money = 0;
         health = maxHealth;
+        unusedQuotes = new List<int>();
     }
 
     void Awake()
@@ -124,6 +128,18 @@ public class PermanentState : MonoBehaviour
     public static void SetNextEncounter(EnemyData[] next)
     {
         nextEncounter = next;
+    }
+
+    public static string GetFightTitle()
+    {
+        if (PermanentState.wins < 5)
+        {
+            return "Level " + (1 + PermanentState.wins);
+        }
+        else
+        {
+            return "Final Boss!";
+        }
     }
 
     // Start is called before the first frame update
