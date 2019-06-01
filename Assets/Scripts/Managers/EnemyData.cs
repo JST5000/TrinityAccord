@@ -25,14 +25,14 @@ public abstract class EnemyData
     public int Staggers { get => staggers; set => SetStaggers(value); }
     protected int Damage { get => damage; set => damage = value; }
     public int MaxTimer { get => maxTimer; set => maxTimer = value; }
-    public int CurrTimer { get => currTimer; set => currTimer = value; }
+    public virtual int CurrTimer { get => currTimer; set => currTimer = value; }
     public string Effect { get => effect; set => effect = value; }
     public Sprite Picture { get => picture; set => picture = value; }
     public string SpriteName { get => spriteName; set => spriteName = value; }
     public string[] AlternateNames { get => alternateNames; set => alternateNames = value; }
     public bool Stunned { get => stunned; set => stunned = value; }
     public int SleepTimer { get => sleepTimer; set => sleepTimer = value; }
-
+    public bool Vulnerable { get; set; }
     public static int MaxSleepTimer = 3;
 
     public EnemyData(string name, int maxHP, int staggers, int damage, int timer, string effect, string spriteName, params string[] alternateNames)
@@ -49,6 +49,7 @@ public abstract class EnemyData
         LoadPicture(spriteName);
         this.alternateNames = alternateNames;
         this.sleepTimer = 0;
+        Vulnerable = false;
     }
 
     //Creates a new EnemyData of the same type (Does NOT copy fields)
@@ -96,7 +97,14 @@ public abstract class EnemyData
     //Returns true if the enemy has died
     public bool DealDamage(int damage)
     {
-        int modifiedDamage = GetModifiedDamageOnEachHit(damage);
+        int recievedDamage = damage;
+
+        if (Vulnerable)
+        {
+            recievedDamage *= 2;
+        }
+
+        int modifiedDamage = GetModifiedDamageOnEachHit(recievedDamage);
         return DamageRecursive(modifiedDamage);
     }
 
@@ -155,16 +163,53 @@ public abstract class EnemyData
         sleepTimer = MaxSleepTimer;
     }
 
-    protected void LoadPicture(string givenSpriteName)
+    string enemySpriteFolder = "Enemy_Sprites/";
+
+    protected void LoadPicture(string spriteName)
     {
-        string folderName = "Enemy_Sprites/";
-        this.picture = Resources.Load<Sprite>(folderName + givenSpriteName);
+        this.SpriteName = spriteName;
+        this.picture = Resources.Load<Sprite>(enemySpriteFolder + spriteName);
+    }
+
+    protected void LoadPicture(string spriteName, Sprite preloadedSprite)
+    {
+        this.SpriteName = spriteName;
+        this.picture = preloadedSprite;
     }
 
     public virtual bool SelfHarm() { return false; }
     protected virtual void OnLossOfLife() { }
     protected virtual void OnLastLife() { }
 
-   
+    protected void DisplayAttackSprite(string attackSpriteName, string originalSpriteName)
+    {
+        Sprite original = Resources.Load<Sprite>(enemySpriteFolder + originalSpriteName);
 
+        DisplayAttackSpriteCommon(original, originalSpriteName, attackSpriteName);
+    }
+
+    protected void DisplayAttackSprite(string attackSpriteName)
+    {
+        string originalSpriteName = this.SpriteName;
+        Sprite original = this.picture;
+
+        DisplayAttackSpriteCommon(original, originalSpriteName, attackSpriteName);
+    }
+
+    private void DisplayAttackSpriteCommon(Sprite original, string originalSpriteName, string attackSpriteName)
+    {
+        Sprite attack = Resources.Load<Sprite>(enemySpriteFolder + attackSpriteName);
+
+        GameObject.Find("MonoBehaviorUtil").GetComponent<ExternalMonoBehavior>().
+            UseStartCoroutine(TriggerStillFrameAttackAnimation(attack, attackSpriteName, original, originalSpriteName));
+    }
+
+    private IEnumerator TriggerStillFrameAttackAnimation(Sprite attack, string attackSpriteName, Sprite original, string originalSpriteName)
+    {
+        float durationOfChange = .3f;
+        LoadPicture(attackSpriteName, attack);
+        yield return new WaitForSeconds(durationOfChange);
+        LoadPicture(originalSpriteName, original);
+        yield return null;
+    }
 }

@@ -48,6 +48,7 @@ public class EncounterInterpreter
         enemies.Add(new ScytheSoldier());
         enemies.Add(new Mole());
         enemies.Add(new Executioner());
+        enemies.Add(new Clam());
         return enemies.ToArray();
     }
 

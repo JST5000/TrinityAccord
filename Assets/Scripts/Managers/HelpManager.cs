@@ -86,7 +86,8 @@ public class HelpManager : MonoBehaviour
             "Spell - Blue cards. Usually are utility." ,
             "Sleep - Stop the enemy's timer for up to 2 turns. Damage wakes them up!",
             "Stagger - Reset the enemie's attack timer to max and Stun them." ,
-            "Stun - Stop the enemy's timer for 1 turn."
+            "Stun - Stop the enemy's timer for 1 turn.", 
+            "Vulnerable - Recieves double damage."
         };
         pages.AddRange(GetGlossaryPages(new List<string>(glossary)));
     }
