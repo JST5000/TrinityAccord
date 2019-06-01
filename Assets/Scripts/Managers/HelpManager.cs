@@ -67,6 +67,7 @@ public class HelpManager : MonoBehaviour
             "\n\nEvery turn you draw 4 cards and get 3 energy." +
             " At the end of each turn, all your cards are discarded." +
             "\n\nIf your deck runs out of cards, your discard is shuffled in." +
+            "\n\nYou can hold at most 6 cards." +
             "\n\nPlay cards by clicking on them, then on their target."
             ));
         pages.Add(new HelpPage("Progression", "After every encounter, you get to add a new card to your deck." +
