@@ -33,6 +33,11 @@ public class TownManager : MonoBehaviour
         Enter("Health Shop", "James", GetHealthShopInventory(), showHealth: true);
     }
 
+    public void SallyShop()
+    {
+        Enter("Sarah's World", "Sarah_Kid", new List<ShopItem>(), false, "Hello! Good luck stranger!");
+    }
+
     private List<ShopItem> GetHealthShopInventory()
     {
         List<ShopItem> inventory = new List<ShopItem>();
@@ -69,13 +74,13 @@ public class TownManager : MonoBehaviour
         Enter(name, shopKeeperName, items, false);
     }
 
-    private void Enter(string name, string shopKeeperName, List<ShopItem> items, bool showHealth)
+    private void Enter(string name, string shopKeeperName, List<ShopItem> items, bool showHealth, string message = "")
     {
         GameObject instance = Instantiate<GameObject>(Resources.Load<GameObject>("Prefabs/ShopUI"));
         instance.transform.SetParent(GameObject.Find("Canvas").transform, false);
         instance.transform.position = new Vector3(0, 0, 0);
         Sprite shopKeeper = Resources.Load<Sprite>("People/" + shopKeeperName);
-        instance.GetComponent<ShopManager>().Init(shopKeeper, name, items, showHealth);
+        instance.GetComponent<ShopManager>().Init(shopKeeper, name, items, message);
     }
 
     private void Update()

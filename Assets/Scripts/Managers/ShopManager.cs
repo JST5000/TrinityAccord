@@ -14,8 +14,9 @@ public class ShopManager : MonoBehaviour
 
     private bool showHealth = false;
     private List<ShopItemManager> ShopItems;
+    private string message = "";
 
-    public void Init(Sprite ShopKeeper, string Name, List<ShopItem> Items)
+    public void Init(Sprite ShopKeeper, string Name, List<ShopItem> Items, string message = "")
     {
         this.ShopKeeper.sprite = ShopKeeper;
         this.Title.text = Name;
@@ -25,6 +26,7 @@ public class ShopManager : MonoBehaviour
             
             ShopItems.Add(ShopItem.CreateShopItemUI(ShopItemParent, item).GetComponent<ShopItemManager>());
         }
+        this.message = message;
         UpdateUI();
     }
 
@@ -59,7 +61,10 @@ public class ShopManager : MonoBehaviour
 
     private void UpdateFeedbackDisplay()
     {
-        if (ShopItems.Count == 0)
+        if(message != "")
+        {
+            FeedbackDisplay.text = message;
+        } else if (ShopItems.Count == 0)
         {
             FeedbackDisplay.text = "Out of stock for now, sorry!";
         } else

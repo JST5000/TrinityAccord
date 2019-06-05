@@ -1,12 +1,12 @@
 Level,Difficulty,Damage,Encounter
 "0",,"2,4,3,2,2,3,4","Sword, Axe"
+"0","2","4,0,3,0,0","Reckless Attacker, Boar"
 "1",,"0, 2,0","Sword, Knight"
 "1",,"1,2","Boar, Hive"
 "1",,"4,3,3,0,3","Wimp, Wimp, Reckless Attacker -1stagger"
 "1",,"2,0,0,3,5,2,3,0,0,2,0,4","Doombringer, Sword"
 "1",,"0,2,2","Armored Knight, Sword"
 "1",,"2,0,0","Cowardly Tiger, Turtle"
-"1","2","4,0,3,0,0","Reckless Attacker, Boar"
 "2",,"3,9,10,2,6,4,5,3,4,4,2,3,2,2,8,6","Boar, Boar, Squid"
 "2",,"6,8,8,6,6","Sword, Sword, Invasion: Sword, Axe Timer: 3"
 "2",,"2,3,4,4","Knight, Sword, Berserker"
