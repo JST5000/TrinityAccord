@@ -6,7 +6,7 @@ public class Dagger : CardData
 {
     public Dagger()
     {
-        cardData = new UICardData("Dagger", cost: 1, "Deal 1 damage.", UICardData.CardType.ATTACK, cardArtFileName: "Dagger");
+        cardData = new UICardData("Dagger", cost: 1, "Deal 1 damage.", UICardData.CardType.ATTACK, cardArtFileName: "Dagger1");
         target = Target.ENEMY;
     }
 
