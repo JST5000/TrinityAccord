@@ -89,7 +89,7 @@ public class Choose3Manager : MonoBehaviour
             {
                 if (listener == null && !DoNotLoadAnotherSceneFlag)
                 {
-                    SceneManager.LoadScene("Town1");
+                    SceneManager.LoadScene(PermanentState.GetNextTownSceneName());
                 }
                 Destroy(gameObject);
             }

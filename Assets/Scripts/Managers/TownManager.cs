@@ -30,10 +30,20 @@ public class TownManager : MonoBehaviour
 
     public void OpenHealthShop()
     {
+        Enter("Health Shop", "James", GetHealthShopInventory(), showHealth: true);
+    }
+
+    private List<ShopItem> GetHealthShopInventory()
+    {
         List<ShopItem> inventory = new List<ShopItem>();
         inventory.Add(new HealthItem(2));
         inventory.Add(new HealthItem(5));
-        Enter("Health Shop", "James", inventory, true);
+        return inventory;
+    }
+
+    public void OpenHealthShopTown2()
+    {
+        Enter("Health Shop", "Darnell_Closeup", GetHealthShopInventory(), showHealth: true);
     }
 
     public void OpenCardRemovalStand()

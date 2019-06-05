@@ -16,6 +16,8 @@ public class PermanentState : MonoBehaviour
 
     //Needs to be remembered between level loads
     public static List<int> unusedQuotes;
+
+    private static int FinalFight = 5;
     
     private static EnemyData[] nextEncounter;
 
@@ -132,13 +134,24 @@ public class PermanentState : MonoBehaviour
 
     public static string GetFightTitle()
     {
-        if (PermanentState.wins < 5)
+        if (PermanentState.wins < FinalFight)
         {
             return "Level " + (1 + PermanentState.wins);
         }
         else
         {
             return "Final Boss!";
+        }
+    }
+
+    public static string GetNextTownSceneName()
+    {
+        if(PermanentState.wins < FinalFight)
+        {
+            return "Town1";
+        } else
+        {
+            return "Town2";
         }
     }
 

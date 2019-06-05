@@ -18,6 +18,12 @@ public class Clam : EnemyData
         return InLineIcon.DAMAGE + ": 3, Vulnerable right before attacking!";
     }
 
+    public override void StaggerEnemy()
+    {
+        base.StaggerEnemy();
+        LoadPicture(clamClosed);
+    }
+
     public override int CurrTimer
     { get => base.CurrTimer;
         set => UpdateVulnerability(value);
