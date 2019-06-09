@@ -231,7 +231,7 @@ public class UIManager : MonoBehaviour
     public void clickDiscard(GameObject clicked)
     {
         Debug.Log("Clicked the Discard Pile");
-        GameObject.Find("Deck").GetComponent<DeckManager>().PrintDiscard();
+        GameObject.Find("Deck").GetComponent<DeckManager>().DisplayDiscardToPlayer();
     }
 
     public void autoEndTurn()

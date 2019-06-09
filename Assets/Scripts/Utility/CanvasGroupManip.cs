@@ -17,4 +17,15 @@ public class CanvasGroupManip : MonoBehaviour
         cg.blocksRaycasts = true;
         cg.interactable = true;
     }
+
+    public static void SetVisibility(bool enableCondition, CanvasGroup cg)
+    {
+        if(enableCondition)
+        {
+            Enable(cg);
+        } else
+        {
+            Disable(cg);
+        }
+    }
 }

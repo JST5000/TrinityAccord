@@ -6,7 +6,7 @@ public class Trick : CardData
 {
     public Trick()
     {
-        cardData = new UICardData("Trick", cost: 2, "Stun an enemy. Gain 1 energy 1 draw next turn", UICardData.CardType.SPELL);
+        cardData = new UICardData("Trick", cost: 2, "Stun an enemy. Gain 1 energy and 1 draw next turn", UICardData.CardType.SPELL, "Trick");
         target = Target.ENEMY;
     }
 

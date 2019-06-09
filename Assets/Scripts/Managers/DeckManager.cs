@@ -12,6 +12,8 @@ public class DeckManager : MonoBehaviour
     //Used by Squirrel and Trick
     private int extraDrawsOnTurnStart = 0;
 
+    private Transform DiscardView = null;
+
     //Initializes the player's deck
     void Start()
     {
@@ -194,6 +196,21 @@ public class DeckManager : MonoBehaviour
     public void AddToDiscard(CardData card)
     {
         discard.Add(card);
+    }
+
+    public void DisplayDiscardToPlayer()
+    {
+        Debug.Log(DiscardView);
+        if(DiscardView == null)
+        {
+            DiscardView = Instantiate(Resources.Load<Transform>("Prefabs/CardViewer"), GameObject.Find("Canvas").transform, false);
+
+        }
+        Debug.Log(DiscardView);
+        DiscardView.localScale = new Vector3(1, 1, 1);
+        RectTransform canvasRect = (RectTransform)transform.parent;
+        DiscardView.transform.localPosition = new Vector3(canvasRect.rect.width * .5f, canvasRect.rect.height * .5f);
+        DiscardView.GetComponent<CardViewerManager>().Init(discard.ToArray(), startOnLeft: true);
     }
 
     public void PrintDeck()
