@@ -12,7 +12,7 @@ public class Sword : CardData
 
     public override void Action(EnemyManager[] enemys)
     {
-        SoundManager.playSound("Sounds/Sword1");
+        SoundManager.playSound("Sword1");
         enemys[0].Damage(3+sharpened);
     }
     public override void Action(CardData[] cards)

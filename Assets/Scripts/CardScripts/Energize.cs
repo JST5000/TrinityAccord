@@ -12,7 +12,7 @@ public class Energize : CardData
 
     public override void Action(EnemyManager[] enemys)
     {
-        SoundManager.playSound("Sounds/Energize1");
+        SoundManager.playSound("Energize1");
         addEnergy(1);
     }
     public override void Action(CardData[] cards)

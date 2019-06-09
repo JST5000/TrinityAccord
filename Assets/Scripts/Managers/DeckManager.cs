@@ -203,14 +203,15 @@ public class DeckManager : MonoBehaviour
         Debug.Log(DiscardView);
         if(DiscardView == null)
         {
-            DiscardView = Instantiate(Resources.Load<Transform>("Prefabs/CardViewer"), GameObject.Find("Canvas").transform, false);
+            DiscardView = Instantiate(Resources.Load<Transform>("Prefabs/CardViewer1"), GameObject.Find("Canvas").transform, false);
 
         }
         Debug.Log(DiscardView);
         DiscardView.localScale = new Vector3(1, 1, 1);
         RectTransform canvasRect = (RectTransform)transform.parent;
-        DiscardView.transform.localPosition = new Vector3(canvasRect.rect.width * .5f, canvasRect.rect.height * .5f);
-        DiscardView.GetComponent<CardViewerManager>().Init(discard.ToArray(), startOnLeft: true);
+        DiscardView.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+        //DiscardView.transform.localPosition = new Vector3(canvasRect.rect.width * .5f, canvasRect.rect.height * .5f);
+        DiscardView.GetComponent<CardViewerManager>().Init(discard.ToArray(), startOnLeft: false);
     }
 
     public void PrintDeck()

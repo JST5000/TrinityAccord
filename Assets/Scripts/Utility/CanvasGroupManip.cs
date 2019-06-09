@@ -28,4 +28,10 @@ public class CanvasGroupManip : MonoBehaviour
             Disable(cg);
         }
     }
+
+    public static void Refresh(CanvasGroup cg)
+    {
+        Disable(cg);
+        Enable(cg);
+    }
 }

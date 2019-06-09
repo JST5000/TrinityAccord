@@ -12,7 +12,7 @@ public class Dagger : CardData
 
     public override void Action(EnemyManager[] enemys)
     {
-        SoundManager.playSound("Sounds/Knife1");
+        SoundManager.playSound("Knife1");
         enemys[0].Damage(1+sharpened);
     }
     public override void Action(CardData[] cards)

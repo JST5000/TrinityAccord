@@ -43,7 +43,7 @@ public class Choose3Manager : MonoBehaviour
     {
         selectedCardMan = null;
         for(int i = 0; i < givenOptions.Length; ++i) {
-           // options[i].GetComponent<LayoutElement>().ignoreLayout = false;
+            options[i].GetComponent<LayoutElement>().ignoreLayout = false;
             options[i].Init(givenOptions[i]);
         }
         for(int i = givenOptions.Length; i < options.Length; ++i)

@@ -17,11 +17,10 @@ public class CardViewerManager : MonoBehaviour
     private int upperIndex;
     CardData[] cards;
 
-    CanvasGroup overallCanvasGroup;
-
     public void Init(CardData[] givenOptions, bool startOnLeft = true)
     {
         cards = givenOptions;
+        Debug.Log(cards.Length + " DISCARD LENGTH");
         options = GetComponentsInChildren<CardManager>();
         int sizeOfOptions = Mathf.Min(givenOptions.Length, options.Length);
         if (startOnLeft)
@@ -36,14 +35,17 @@ public class CardViewerManager : MonoBehaviour
 
         LoadVisibleCards();
 
-        UpdateLeftRightButtons();
 
         CanvasGroupManip.SetVisibility(givenOptions.Length == 0, emptyMessage.GetComponent<CanvasGroup>());
 
+        transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+
         //Should be last, displays the whole object
         CanvasGroup overallCG = GetComponent<CanvasGroup>();
-        CanvasGroupManip.Disable(overallCG);
-        CanvasGroupManip.Enable(overallCG);
+        CanvasGroupManip.Refresh(leftButton);
+        CanvasGroupManip.Refresh(rightButton);
+        CanvasGroupManip.Refresh(overallCG);
+        UpdateLeftRightButtons();
     }
 
     //Depends on cards, lowerIndex and upperIndex as implicit inputs
@@ -54,7 +56,7 @@ public class CardViewerManager : MonoBehaviour
             && i < (upperIndex - lowerIndex);
             ++i)
         {
-            // options[i].GetComponent<LayoutElement>().ignoreLayout = false;
+            options[i].GetComponent<LayoutElement>().ignoreLayout = false;
             options[i].Init(cards[i + lowerIndex]);
         }
 
@@ -63,12 +65,13 @@ public class CardViewerManager : MonoBehaviour
             options[i].SetEmpty();
             options[i].GetComponent<LayoutElement>().ignoreLayout = true;
         }
-
+        UpdateLeftRightButtons();
     }
 
     public void Exit()
     {
-        CanvasGroupManip.Disable(overallCanvasGroup);
+        transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 2, Screen.height * 2, 0));
+        CanvasGroupManip.Disable(GetComponent<CanvasGroup>());
     }
 
     public void ShiftLeft()
@@ -78,7 +81,6 @@ public class CardViewerManager : MonoBehaviour
             lowerIndex--;
             upperIndex--;
             LoadVisibleCards();
-            UpdateLeftRightButtons();
         }
     }
 
@@ -89,21 +91,21 @@ public class CardViewerManager : MonoBehaviour
             lowerIndex++;
             upperIndex++;
             LoadVisibleCards();
-            UpdateLeftRightButtons();
         }
     }
 
     private void UpdateLeftRightButtons()
     {
-        CanvasGroupManip.SetVisibility(lowerIndex != 0, leftButton);
-        CanvasGroupManip.SetVisibility(upperIndex != cards.Length, rightButton);
+        //CanvasGroupManip.SetVisibility(lowerIndex != 0, leftButton);
+        //CanvasGroupManip.SetVisibility(upperIndex != cards.Length, rightButton);
+        CanvasGroupManip.Enable(leftButton);
+        CanvasGroupManip.Enable(rightButton);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        CardData[] defaultCards = { new Sword(), new Lightning(), new VileSword(), new Peer() };
-        Init(defaultCards);
+
     }
 
     // Update is called once per frame
