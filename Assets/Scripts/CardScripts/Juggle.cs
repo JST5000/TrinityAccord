@@ -6,12 +6,13 @@ public class Juggle : CardData
 {
     public Juggle()
     {
-        cardData = new UICardData("Juggle", cost: 1, "If there is spell in hand, deal 3 damage and stun an enemy", UICardData.CardType.ATTACK);
+        cardData = new UICardData("Juggle", cost: 1, "If there is spell in hand, deal 3 damage and stun an enemy", UICardData.CardType.ATTACK, cardArtFileName: "Juggle");
         target = Target.ENEMY;
     }
 
     public override void Action(EnemyManager[] enemys)
     {
+        SoundManager.playSound("Juggle1");
         enemys[0].Damage(3+sharpened);
         enemys[0].Stun();
     }
