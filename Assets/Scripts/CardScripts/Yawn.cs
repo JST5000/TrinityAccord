@@ -6,8 +6,12 @@ public class Yawn : CardData
 {
     public Yawn()
     {
-        cardData = new UICardData("Yawn", cost: 1, "Drowsy a random enemy", UICardData.CardType.SPELL);
         target = Target.BOARD;
+    }
+
+    protected override UICardData CreateUICardData()
+    {
+        return new UICardData("Yawn", cost: 1, "Drowsy a random enemy", UICardData.CardType.SPELL);
     }
 
     public override void Action(EnemyManager[] enemies)

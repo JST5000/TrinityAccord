@@ -65,7 +65,8 @@ public class DeckManager : MonoBehaviour
             if (cardManager.empty)
             {
                 CardData toAdd = deck[i];
-                cardManager.Init(deck[i]);
+                toAdd.OnDraw();
+                cardManager.Init(toAdd);
                 deck.RemoveAt(i);
                 GameObject.Find("Hand").GetComponent<HandManager>().UpdateAllCardsInHand();
                 return toAdd;
@@ -169,7 +170,7 @@ public class DeckManager : MonoBehaviour
         {
             if (!cardMan.IsEmpty())
             {
-                cardMan.GetCardData().onDiscard();
+                cardMan.GetCardData().OnDiscard();
                 discard.Add(cardMan.GetCardData());
                 cardMan.SetEmpty();
             }
@@ -209,7 +210,7 @@ public class DeckManager : MonoBehaviour
         Debug.Log(DiscardView);
         DiscardView.localScale = new Vector3(1, 1, 1);
         RectTransform canvasRect = (RectTransform)transform.parent;
-        DiscardView.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+//        DiscardView.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 0));
         //DiscardView.transform.localPosition = new Vector3(canvasRect.rect.width * .5f, canvasRect.rect.height * .5f);
         DiscardView.GetComponent<CardViewerManager>().Init(discard.ToArray(), startOnLeft: false);
     }

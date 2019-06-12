@@ -6,14 +6,35 @@ public class Hammer : CardData
 {
     public Hammer()
     {
-        cardData = new UICardData("Hammer", cost: 2, "Deal 1-7 damage at random", UICardData.CardType.ATTACK);
         target = Target.ENEMY;
     }
 
+    protected override UICardData CreateUICardData()
+    {
+        return new UICardData("Hammer", cost: 2, "Deal " + GetLowerBound() + "-" + GetUpperBound() + " damage at random", UICardData.CardType.ATTACK);
+    }
+
+    private int GetLowerBound()
+    {
+        return 1 + sharpened;
+    }
+
+    private int GetUpperBound()
+    {
+        return 7 + sharpened;
+    }
+
+    private int GetDamage()
+    {
+        return Random.Range(GetLowerBound(), GetUpperBound());
+    }
+
+
     public override void Action(EnemyManager[] enemys)
     {
-        enemys[0].Damage(Random.Range(1+sharpened, 7+sharpened));
+        enemys[0].Damage(GetDamage());
     }
+
     public override void Action(CardData[] cards)
     {
 
@@ -26,10 +47,5 @@ public class Hammer : CardData
     public override int SecondAction(CardManager card)
     {
         throw new System.NotImplementedException();
-    }
-    public override void sharpen()
-    {
-        sharpened++;
-        cardData = new UICardData("Hammer", cost: 2, "Deal "+(1+sharpened)+"-"+(7+sharpened)+" damage at random", UICardData.CardType.ATTACK);
     }
 }

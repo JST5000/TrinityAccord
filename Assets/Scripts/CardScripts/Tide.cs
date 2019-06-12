@@ -7,21 +7,31 @@ public class Tide : CardData
     private int growDamage = 0;
     public Tide()
     {
-        cardData = new UICardData("Tide", cost: 3, "Deal 2 damage to all enemies Grow 1", UICardData.CardType.ATTACK);
         target = Target.ALL_ENEMIES;
     }
+
+    protected override UICardData CreateUICardData()
+    {
+         return new UICardData("Tide", cost: 3, "Deal " + GetDamage() + " damage to all enemies Grow 1", UICardData.CardType.ATTACK);
+    }
+
+    private int GetDamage()
+    {
+        return 2 + growDamage;
+    }
+
 
     public override void Action(EnemyManager[] enemys)
     {
         foreach(EnemyManager enemy in enemys)
         {
-            enemy.Damage(2 + growDamage);
+            enemy.Damage(GetDamage());
 
         }
         growDamage += 1;
-        cardData = new UICardData("Tide", cost: 3, "Deal " + (2 + growDamage+sharpened) + " damage to all enemies Grow 1", UICardData.CardType.ATTACK);
-
+        UpdateUICardData();
     }
+
     public override void Action(CardData[] cards)
     {
 
@@ -34,10 +44,5 @@ public class Tide : CardData
     public override int SecondAction(CardManager card)
     {
         throw new System.NotImplementedException();
-    }
-    public override void sharpen()
-    {
-        sharpened++;
-        cardData = new UICardData("Tide", cost: 3, "Deal " + (2 + growDamage + sharpened) + " damage to all enemies Grow 1", UICardData.CardType.ATTACK);
     }
 }

@@ -6,19 +6,30 @@ public class Dagger : CardData
 {
     public Dagger()
     {
-        cardData = new UICardData("Dagger", cost: 1, "Deal 1 damage.", UICardData.CardType.ATTACK, cardArtFileName: "Dagger1");
         target = Target.ENEMY;
+    }
+
+    protected override UICardData CreateUICardData()
+    {
+        return new UICardData("Dagger", cost: 1, "Deal " + GetDamage() + " damage.", UICardData.CardType.ATTACK, cardArtFileName: "Dagger1");
+    }
+
+    private int GetDamage()
+    {
+        return 1 + sharpened;
     }
 
     public override void Action(EnemyManager[] enemys)
     {
         SoundManager.playSound("Knife1");
-        enemys[0].Damage(1+sharpened);
+        enemys[0].Damage(GetDamage());
     }
+
     public override void Action(CardData[] cards)
     {
 
     }
+
     public override void Action(CardData[] cards, EnemyManager[] enemys)
     {
 
@@ -27,10 +38,5 @@ public class Dagger : CardData
     public override int SecondAction(CardManager card)
     {
         throw new System.NotImplementedException();
-    }
-    public override void sharpen()
-    {
-        sharpened++;
-        cardData = new UICardData("Dagger", cost: 1, "Deal " + (1 + sharpened) + " damage.", UICardData.CardType.ATTACK);
     }
 }

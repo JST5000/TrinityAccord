@@ -4,55 +4,50 @@ using UnityEngine;
 
 public class Crossbow : CardData
 {
-    int mode;
+    bool isReloading;
+
     public Crossbow()
     {
-        mode = 2;
-        setMode();
+        isReloading = false;
+        target = Target.ENEMY;
     }
-    public void setMode()
+
+    protected override UICardData CreateUICardData()
     {
-        if (mode == 1)
+        if(isReloading)
         {
-            mode = 2;
-        }
-        else
+            return new UICardData("Reload", cost: 0, "Flip", UICardData.CardType.SPELL);
+        } else
         {
-            mode = 1;
+            return new UICardData("Crossbow", cost: 2, "Deal " + GetDamage() + " damage Flip", UICardData.CardType.ATTACK);
         }
-        switch (mode)
+    }
+
+    private int GetDamage()
+    {
+        return 6 + sharpened;
+    }
+
+    private void ToggleReload()
+    {
+        isReloading = !isReloading;
+        if(isReloading)
         {
-            case 1:
-                if (sharpened == 0)
-                {
-                    cardData = new UICardData("Crossbow", cost: 2, "Deal 6 damage Flip", UICardData.CardType.ATTACK);
-                }else
-                {
-                    cardData = new UICardData("Crossbow", cost: 2, "Deal " + (6 + sharpened) + " damage Flip", UICardData.CardType.ATTACK);
-
-                }
-                target = Target.ENEMY;
-                break;
-            case 2:
-                cardData = new UICardData("Reload", cost: 0, "Flip", UICardData.CardType.SPELL);
-                target = Target.BOARD;
-                break;
-
+            target = Target.BOARD;
+        } else
+        {
+            target = Target.ENEMY;
         }
-
+        UpdateUICardData();
     }
 
     public override void Action(EnemyManager[] enemys)
     {
-        switch (mode)
+        if (!isReloading)
         {
-            case 1:
-                enemys[0].Damage(6+sharpened);
-                break;
-            case 2:
-                break;
+            enemys[0].Damage(GetDamage());
         }
-        setMode();
+        ToggleReload();
     }
     public override void Action(CardData[] cards)
     {
@@ -66,13 +61,5 @@ public class Crossbow : CardData
     public override int SecondAction(CardManager card)
     {
         throw new System.NotImplementedException();
-    }
-    public override void sharpen()
-    {
-        sharpened++;
-        if (mode == 1)
-        {
-            cardData = new UICardData("Crossbow", cost: 2, "Deal " + (6 + sharpened) + " damage Flip", UICardData.CardType.ATTACK);
-        }
     }
 }

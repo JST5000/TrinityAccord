@@ -6,9 +6,13 @@ public class Thought : CardData
 {
     public Thought()
     {
-        cardData = new UICardData("Thought", cost: 1, "Flip Idea", UICardData.CardType.SPELL);
         fragile = true;
         target = Target.BOARD;
+    }
+
+    protected override UICardData CreateUICardData()
+    {
+       return new UICardData("Thought", cost: 1, "Flip Idea", UICardData.CardType.SPELL);
     }
 
     public override void Action(EnemyManager[] enemys)

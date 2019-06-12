@@ -12,14 +12,14 @@ public abstract class CardData
     protected static object IdLock = new object();
     private int id;
 
-    protected UICardData cardData = new UICardData("Uninitialized", cost: 4, "Uninitialized", UICardData.CardType.ATTACK);
+    protected UICardData uiCardData = new UICardData("Uninitialized", cost: 4, "Uninitialized", UICardData.CardType.ATTACK);
 
     //Target are for determining which user input is required. Ex. Tell the card which enemy is targeted.
     public  Target target;
     public GameObject selectedTarget;
     public string cardName;
 
-    public int sharpened = 0;
+    protected int sharpened = 0;
 
     public bool fragile = false;
     public bool duplicated = false;
@@ -40,6 +40,7 @@ public abstract class CardData
             id = nextId;
             ++nextId;
         }
+        UpdateUICardData();
     }
 
     protected CardData(UICardData baseline, Target target)
@@ -48,13 +49,28 @@ public abstract class CardData
             id = nextId;
             ++nextId;
         }
-        this.cardData = baseline;
+        this.uiCardData = baseline;
         this.target = target;
+        UpdateUICardData();
 
     }
+
+    public UICardData GetUICardData()
+    {
+        return uiCardData;
+    }
+
+    protected void UpdateUICardData()
+    {
+        uiCardData = CreateUICardData();
+    }
+
+    protected abstract UICardData CreateUICardData();
+
     public virtual void sharpen()
     {
-
+        sharpened++;
+        UpdateUICardData();
     }
 
     public virtual void OnSelectedInHand()
@@ -62,10 +78,9 @@ public abstract class CardData
 
     }
 
-
     public void setCost(int cost)
     {
-        cardData.cost = cost;
+        uiCardData.cost = cost;
     }
 
     public int GetId()
@@ -84,7 +99,7 @@ public abstract class CardData
     //Does basic check of mana cost/availability. Extra requirements must be implemented separately.
     public bool IsPlayable()
     {
-        bool playerHasEnoughEnergy = GameObject.Find("Player").GetComponent<Player>().GetEnergy() >= cardData.cost;
+        bool playerHasEnoughEnergy = GameObject.Find("Player").GetComponent<Player>().GetEnergy() >= uiCardData.cost;
         return playerHasEnoughEnergy && IsPlayableAdditionalRequirements();
     }
 
@@ -93,19 +108,13 @@ public abstract class CardData
     {
         return true;
     }
-    public virtual void onDiscard()
-    {
+    public virtual void OnDiscard() { }
+    public virtual void OnDraw() { }
 
-    }
-
-    public UICardData GetUICardData()
-    {
-        return cardData;
-    }
 
     public string getName()
     {
-        return cardData.cardName;
+        return uiCardData.cardName;
     }
 
     public Target getTarget()
@@ -115,12 +124,12 @@ public abstract class CardData
 
     public int getCost()
     { 
-        return cardData.cost;
+        return uiCardData.cost;
     }
 
     public UICardData.CardType getType()
     {
-        return cardData.cardType;
+        return uiCardData.cardType;
     }
 
     protected void damageRandom(int amount)

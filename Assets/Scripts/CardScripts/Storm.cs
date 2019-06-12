@@ -4,31 +4,31 @@ using UnityEngine;
 
 public class Storm : CardData
 {
-    private int growDamage = 0;
+    private int chargeDamage = 0;
     public Storm()
     {
-        cardData = new UICardData("Storm", cost: 3, "Deal 2 damage to all enemies Charge 1", UICardData.CardType.ATTACK);
         target = Target.BOARD;
+    }
+
+    protected override UICardData CreateUICardData()
+    {
+        return new UICardData("Storm", cost: 3, "Deal " + GetDamage() + " damage to all enemies Charge 1", UICardData.CardType.ATTACK);
+    }
+
+    private int GetDamage()
+    {
+        return 2 + chargeDamage + sharpened;
     }
 
     public override void Action(EnemyManager[] enemys)
     {
         foreach (EnemyManager enemy in enemys)
         {
-            enemy.Damage(2 + growDamage+sharpened);
+            enemy.Damage(GetDamage());
 
         }
-        growDamage = 0;
-        if (sharpened == 0)
-        {
-            cardData = new UICardData("Storm", cost: 3, "Deal 2 damage to all enemies Charge 1", UICardData.CardType.ATTACK);
-        }
-        else
-        {
-            cardData = new UICardData("Storm", cost: 3, "Deal " + (2 + sharpened) + " damage to all enemies Charge 1", UICardData.CardType.ATTACK);
-
-        }
-
+        chargeDamage = 0;
+        UpdateUICardData();
     }
     public override void Action(CardData[] cards)
     {
@@ -43,10 +43,9 @@ public class Storm : CardData
     {
         throw new System.NotImplementedException();
     }
-    public override void onDiscard()
+    public override void OnDiscard()
     {
-        growDamage += 1;
-        cardData = new UICardData("Storm", cost: 3, "Deal " + (2 + growDamage+sharpened) + " damage to all enemies Charge 1", UICardData.CardType.ATTACK);
-
+        chargeDamage += 1;
+        UpdateUICardData();
     }
 }

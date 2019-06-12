@@ -6,13 +6,22 @@ public class Pebble : CardData
 {
     public Pebble()
     {
-        cardData = new UICardData("Pebble", cost: 0, "Deal 1 damage Draw 1 card", UICardData.CardType.ATTACK, "Pebble");
         target = Target.ENEMY;
+    }
+
+    protected override UICardData CreateUICardData()
+    {
+         return new UICardData("Pebble", cost: 0, "Deal + " + GetDamage() + " damage Draw 1 card", UICardData.CardType.ATTACK, "Pebble");
+    }
+
+    private int GetDamage()
+    {
+        return 1 + sharpened;
     }
 
     public override void Action(EnemyManager[] enemys)
     {
-        enemys[0].Damage(1+sharpened);
+        enemys[0].Damage(GetDamage());
         draw();
     }
     public override void Action(CardData[] cards)
@@ -27,10 +36,5 @@ public class Pebble : CardData
     public override int SecondAction(CardManager card)
     {
         throw new System.NotImplementedException();
-    }
-    public override void sharpen()
-    {
-        sharpened++;
-        cardData = new UICardData("Pebble", cost: 0, "Deal " + (1 + sharpened) + " damage Draw 1 card", UICardData.CardType.ATTACK);
     }
 }

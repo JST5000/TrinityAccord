@@ -6,8 +6,12 @@ public class Greed : CardData
 {
     public Greed()
     {
-        cardData = new UICardData("Greed", cost: 0, "Draw 2", UICardData.CardType.SPELL);
         target = Target.BOARD;
+    }
+
+    protected override UICardData CreateUICardData()
+    {
+        return new UICardData("Greed", cost: 0, "Draw 2", UICardData.CardType.SPELL);
     }
 
     public override void Action(EnemyManager[] enemys)

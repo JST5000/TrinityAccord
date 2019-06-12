@@ -6,13 +6,22 @@ public class Forge : CardData
 {
     public Forge()
     {
-        cardData = new UICardData("Forge", cost: 3, "Deal 4 damage, add a Great Sword to discard", UICardData.CardType.ATTACK);
         target = Target.ENEMY;
+    }
+
+    protected override UICardData CreateUICardData()
+    {
+        return new UICardData("Forge", cost: 3, "Deal " + GetDamage() + " damage, add a Great Sword to discard", UICardData.CardType.ATTACK);
+    }
+
+    private int GetDamage()
+    {
+        return 4 + sharpened;
     }
 
     public override void Action(EnemyManager[] enemys)
     {
-        enemys[0].Damage(4+sharpened);
+        enemys[0].Damage(GetDamage());
         addCardToDiscard(new GreatSword());
 
     }
@@ -28,10 +37,5 @@ public class Forge : CardData
     public override int SecondAction(CardManager card)
     {
         throw new System.NotImplementedException();
-    }
-    public override void sharpen()
-    {
-        sharpened++;
-        cardData = new UICardData("Forge", cost: 1, "Deal " + (4 + sharpened) + " damage, add a Great Sword to discard", UICardData.CardType.ATTACK);
     }
 }

@@ -6,8 +6,12 @@ public class Trick : CardData
 {
     public Trick()
     {
-        cardData = new UICardData("Trick", cost: 2, "Stun an enemy. Gain 1 energy and 1 draw next turn", UICardData.CardType.SPELL, "Trick");
         target = Target.ENEMY;
+    }
+
+    protected override UICardData CreateUICardData()
+    {
+        return new UICardData("Trick", cost: 2, "Stun an enemy. Gain 1 energy and 1 draw next turn", UICardData.CardType.SPELL, "Trick");
     }
 
     public override void Action(EnemyManager[] enemys)

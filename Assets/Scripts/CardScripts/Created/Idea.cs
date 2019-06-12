@@ -6,8 +6,12 @@ public class Idea : CardData
 {
     public Idea()
     {
-        cardData = new UICardData("Idea", cost: 0, "Draw 2", UICardData.CardType.SPELL);
         target = Target.BOARD;
+    }
+
+    protected override UICardData CreateUICardData()
+    {
+        return new UICardData("Idea", cost: 0, "Draw 2", UICardData.CardType.SPELL);
     }
 
     public override void Action(EnemyManager[] enemys)

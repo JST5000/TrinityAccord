@@ -6,8 +6,12 @@ public class Sharpen : CardData
 {
     public Sharpen()
     {
-        cardData = new UICardData("Sharpen", cost: 1, "Increase damage of cards in hand", UICardData.CardType.SPELL);
         target = Target.BOARD;
+    }
+
+    protected override UICardData CreateUICardData()
+    {
+        return new UICardData("Sharpen", cost: 1, "Increase damage of cards in hand", UICardData.CardType.SPELL, "Sharpen");
     }
 
     public override void Action(EnemyManager[] enemys)
@@ -25,6 +29,7 @@ public class Sharpen : CardData
         {
             hand[validCards[i]].GetCardData().sharpen();
         }
+        SoundManager.playSound("Sharpen1");
     }
     public override void Action(CardData[] cards)
     {

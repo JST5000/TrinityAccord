@@ -6,8 +6,22 @@ public class Cannon : CardData
 {
     public Cannon()
     {
-        cardData = new UICardData("Cannon", cost: 3, "Deal 4 damage Deal 2 to adjacent", UICardData.CardType.ATTACK);
         target = Target.ENEMY;
+    }
+
+    protected override UICardData CreateUICardData()
+    {
+        return new UICardData("Cannon", cost: 3, "Deal " + GetCenterDamage() +" damage Deal " + GetOuterDamage() + " to adjacent", UICardData.CardType.ATTACK);
+    }
+
+    private int GetCenterDamage()
+    {
+        return 4 + sharpened;
+    }
+
+    private int GetOuterDamage()
+    {
+        return 2 + sharpened;
     }
 
     public override void Action(EnemyManager[] enemys)
@@ -16,14 +30,14 @@ public class Cannon : CardData
         {
             if (getEnemyManagers()[i].Equals(enemys[0]))
             {
-                getEnemyManagers()[i].Damage(4+sharpened);
+                getEnemyManagers()[i].Damage(GetCenterDamage());
                 if (!(i - 1 < 0))
                 {
-                    getEnemyManagers()[i - 1].Damage(2+sharpened);
+                    getEnemyManagers()[i - 1].Damage(GetOuterDamage());
                 }
                 if (!(i + 1 >= getEnemyManagers().Length))
                 {
-                    getEnemyManagers()[i+1].Damage(2+sharpened);
+                    getEnemyManagers()[i+1].Damage(GetOuterDamage());
                 }
 
             }
@@ -41,10 +55,5 @@ public class Cannon : CardData
     public override int SecondAction(CardManager card)
     {
         throw new System.NotImplementedException();
-    }
-    public override void sharpen()
-    {
-        sharpened++;
-        cardData = new UICardData("Cannon", cost: 3, "Deal "+(4+sharpened)+ " damage Deal "+(2+sharpened)+" to adjacent", UICardData.CardType.ATTACK);
     }
 }

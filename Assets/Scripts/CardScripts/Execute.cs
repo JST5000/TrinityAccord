@@ -6,21 +6,36 @@ public class Execute : CardData
 {
     public Execute()
     {
-        cardData = new UICardData("Execute", cost: 2, "Deal 2 damage. If the enemy is staggered, deal 5 more", UICardData.CardType.ATTACK);
         target = Target.ENEMY;
+    }
+
+    protected override UICardData CreateUICardData()
+    {
+        return new UICardData("Execute", cost: 2, "Deal " + GetInitialDamage() + " damage. If the enemy is stunned, deal " + GetAdditionalDamage() + " more", 
+            UICardData.CardType.ATTACK);
+    }
+
+    private int GetInitialDamage()
+    {
+        return 2 + sharpened;
+    }
+
+    private int GetAdditionalDamage()
+    {
+        return 5;
     }
 
     public override void Action(EnemyManager[] enemys)
     {
 
-        enemys[0].Damage(2+sharpened);
+        enemys[0].Damage(GetInitialDamage());
         if (enemys[0].IsEmpty())
         {
             return;
         }
         if(enemys[0].IsStunned())
         {
-            enemys[0].Damage(5);
+            enemys[0].Damage(GetAdditionalDamage());
 
         }
     }
@@ -36,10 +51,5 @@ public class Execute : CardData
     public override int SecondAction(CardManager card)
     {
         throw new System.NotImplementedException();
-    }
-    public override void sharpen()
-    {
-        sharpened++;
-        cardData = new UICardData("Execute", cost: 2, "Deal " + (2 + sharpened) + " If the enemy is staggered, deal 5 more", UICardData.CardType.ATTACK);
     }
 }

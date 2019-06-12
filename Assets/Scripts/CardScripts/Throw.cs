@@ -6,13 +6,27 @@ public class Throw : CardData
 {
     public Throw()
     {
-        cardData = new UICardData("Throw", cost: 2, "Deal 3 damage. Destroy top card of deck. If its an attack, +2 damage", UICardData.CardType.ATTACK);
         target = Target.ENEMY;
+    }
+
+    protected override UICardData CreateUICardData()
+    {
+        return new UICardData("Throw", cost: 2, "Deal " + GetPrimaryDamage() + " damage. Destroy top card of deck. If its an attack, +" + GetAdditionalDamage() + " damage", UICardData.CardType.ATTACK);
+    }
+
+    private int GetPrimaryDamage()
+    {
+        return 3 + sharpened;
+    }
+
+    private int GetAdditionalDamage()
+    {
+        return 2;
     }
 
     public override void Action(EnemyManager[] enemys)
     {
-        enemys[0].Damage(3+sharpened);
+        enemys[0].Damage(GetPrimaryDamage());
         CardData top = grabTop();
         if (top==null)
         {
@@ -20,7 +34,7 @@ public class Throw : CardData
         }
         if (top.getType().Equals(UICardData.CardType.ATTACK))
         {
-            enemys[0].Damage(2);
+            enemys[0].Damage(GetAdditionalDamage());
         }
         getDeckManager().grabTop();
         
@@ -37,10 +51,5 @@ public class Throw : CardData
     public override int SecondAction(CardManager card)
     {
         throw new System.NotImplementedException();
-    }
-    public override void sharpen()
-    {
-        sharpened++;
-        cardData = new UICardData("Throw", cost: 2, "Deal " + (1 + sharpened) + " damage. Destroy top card of deck. If its an attack, +2 damage", UICardData.CardType.ATTACK);
     }
 }

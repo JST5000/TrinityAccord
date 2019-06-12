@@ -6,8 +6,12 @@ public class Wisdom : CardData
 {
     public Wisdom()
     {
-        cardData = new UICardData("Wisdom", cost: 1, "Draw 1 from discard, draw 1 ", UICardData.CardType.SPELL);
         target = Target.BOARD;
+    }
+
+    protected override UICardData CreateUICardData()
+    {
+        return new UICardData("Wisdom", cost: 1, "Draw 1 from discard, draw 1 ", UICardData.CardType.SPELL);
     }
 
     public override void Action(EnemyManager[] enemys)

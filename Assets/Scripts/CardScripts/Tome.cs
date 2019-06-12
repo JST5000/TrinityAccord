@@ -6,8 +6,13 @@ public class Tome : CardData
 {
     public Tome()
     {
-        cardData = new UICardData("Tome", cost: 1, "Draw 2, Gain 1 energy for each spell drawn", UICardData.CardType.SPELL);
         target = Target.BOARD;
+    }
+
+    protected override UICardData CreateUICardData()
+    {
+        return new UICardData("Tome", cost: 1, "Draw 2, Gain 1 energy for each spell drawn", UICardData.CardType.SPELL);
+
     }
 
     public override void Action(EnemyManager[] enemys)

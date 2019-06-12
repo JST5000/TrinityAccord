@@ -6,28 +6,37 @@ public class Staff1 : CardData
 {
     public Staff1()
     {
-        cardData = new UICardData("A", cost: 0, "Deal 2 damage", UICardData.CardType.ATTACK);
+    }
+
+    protected override UICardData CreateUICardData()
+    {
+        return new UICardData("A", cost: 0, "Deal " + GetDamage() + " damage", UICardData.CardType.ATTACK);
+    }
+
+    private int GetDamage()
+    {
+        return 2 + sharpened;
     }
 
     public override void Action(EnemyManager[] enemys)
     {
+        throw new System.NotImplementedException();
+
     }
     public override void Action(CardData[] cards)
     {
+        throw new System.NotImplementedException();
+
 
     }
     public override void Action(CardData[] cards, EnemyManager[] enemys)
     {
+        throw new System.NotImplementedException();
 
     }
 
     public override int SecondAction(CardManager card)
     {
         throw new System.NotImplementedException();
-    }
-    public override void sharpen()
-    {
-        sharpened++;
-        cardData = new UICardData("A", cost: 0, "Deal " + (2 + sharpened) + " damage.", UICardData.CardType.ATTACK);
     }
 }

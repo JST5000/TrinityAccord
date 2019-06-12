@@ -6,8 +6,12 @@ public class Contaminate : CardData
 {
     public Contaminate()
     {
-        cardData = new UICardData("Contaminate", cost: 1, "Turns random card in hand into contagion card", UICardData.CardType.SPELL);
         target = Target.BOARD;
+    }
+
+    protected override UICardData CreateUICardData()
+    {
+        return new UICardData("Contaminate", cost: 1, "Turns random card in hand into contagion card", UICardData.CardType.SPELL);
     }
 
     public override void Action(EnemyManager[] enemys)
@@ -36,7 +40,7 @@ public class Contaminate : CardData
                 validCards.Add(i);
             }
         }
-        //Nothing to damage
+        //Nothing to transform
         if (validCards.Count == 0)
         {
             return;

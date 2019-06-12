@@ -6,9 +6,14 @@ public class Quickdraw : CardData
 {
     public Quickdraw()
     {
-        cardData = new UICardData("Quickdraw", cost: 1, "Discard hand, draw 3", UICardData.CardType.SPELL);
         target = Target.BOARD;
     }
+
+    protected override UICardData CreateUICardData()
+    {
+        return new UICardData("Quickdraw", cost: 1, "Discard hand, draw 3", UICardData.CardType.SPELL);
+    }
+
 
     public override void Action(EnemyManager[] enemys)
     {

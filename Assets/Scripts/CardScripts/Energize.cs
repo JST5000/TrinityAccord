@@ -6,8 +6,12 @@ public class Energize : CardData
 {
     public Energize()
     {
-        cardData = new UICardData("Energize", cost: 0, "Gain 1 Energy", UICardData.CardType.SPELL, "Mug");
         target = Target.BOARD;
+    }
+
+    protected override UICardData CreateUICardData()
+    {
+        return new UICardData("Energize", cost: 0, "Gain 1 Energy", UICardData.CardType.SPELL, "Mug");
     }
 
     public override void Action(EnemyManager[] enemys)

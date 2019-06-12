@@ -6,8 +6,12 @@ public class Bash : CardData
 {
     public Bash()
     {
-        cardData = new UICardData("Bash", cost: 1, "Stun a random enemy", UICardData.CardType.SPELL);
         target = Target.BOARD;
+    }
+
+    protected override UICardData CreateUICardData()
+    {
+        return new UICardData("Bash", cost: 1, "Stun a random enemy", UICardData.CardType.SPELL);
     }
 
     public override void Action(EnemyManager[] enemies)

@@ -4,50 +4,75 @@ using UnityEngine;
 
 public class EvolvingContagion : CardData
 {
-    int mode;
-    public EvolvingContagion()
+    ContagionCard mode;
+
+    public EvolvingContagion() { }
+
+    protected override UICardData CreateUICardData()
     {
-        setMode();
-    }
-    public void setMode()
-    {
-        mode = UnityEngine.Random.Range(1, 4);
         switch (mode)
         {
-            case 1:
-                cardData = new UICardData("Greed", cost: 0, "Draw 2", UICardData.CardType.SPELL);
+            case ContagionCard.GREED:
+                return new UICardData("Greed", cost: 0, "Draw 2", UICardData.CardType.SPELL);
+            case ContagionCard.POWER:
+                return new UICardData("Power", cost: 0, "Gain 2 energy", UICardData.CardType.SPELL);
+            case ContagionCard.VILE_SWORD:
+                return new UICardData("Vile Sword", cost: 2, "Deal " + GetVileSwordDamage() + " damage", UICardData.CardType.ATTACK);
+            default:
+                Debug.LogError("Unable to recognize mode: " + mode + ".");
+                return null;
+        }
+    }
+
+    public void SetMode()
+    {
+        mode = ContagionCardMethods.GetRandom();
+        switch (mode)
+        {
+            case ContagionCard.GREED:
                 target = Target.BOARD;
                 break;
-            case 2:
-                cardData = new UICardData("Power", cost: 0, "Gain 2 energy", UICardData.CardType.SPELL);
+            case ContagionCard.POWER:
                 target = Target.BOARD;
                 break;
-            case 3:
-                cardData = new UICardData("Vile Sword", cost: 2, "Deal 5 damage", UICardData.CardType.ATTACK);
+            case ContagionCard.VILE_SWORD:
                 target = Target.ENEMY;
                 break;
-
         }
+        UpdateUICardData();
+    }
 
+    private int GetVileSwordDamage()
+    {
+        return 5 + sharpened;
     }
 
     public override void Action(EnemyManager[] enemys)
     {
         switch (mode)
         {
-            case 1:
+            case ContagionCard.GREED:
                 draw();
                 draw();
                 break;
-            case 2:
+            case ContagionCard.POWER:
                 addEnergy(2);
                 break;
-            case 3:
-                enemys[0].Damage(5);
+            case ContagionCard.VILE_SWORD:
+                enemys[0].Damage(GetVileSwordDamage());
                 break;
         }
-        setMode();
+        SetMode();
     }
+
+    public override void sharpen()
+    {
+        if (mode == ContagionCard.VILE_SWORD)
+        {
+            base.sharpen();
+        }
+    }
+
     public override void Action(CardData[] cards)
     {
 
@@ -57,9 +82,9 @@ public class EvolvingContagion : CardData
 
     }
 
-    public override void onDiscard()
+    public override void OnDraw()
     {
-        setMode();
+        SetMode();
     }
     public override int SecondAction(CardManager card)
     {

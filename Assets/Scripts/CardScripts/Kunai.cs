@@ -6,13 +6,22 @@ public class Kunai : CardData
 {
     public Kunai()
     {
-        cardData = new UICardData("Kunai", cost: 2, "Deal 3 damage, add a shuriken to discard", UICardData.CardType.ATTACK);
         target = Target.ENEMY;
+    }
+
+    protected override UICardData CreateUICardData()
+    {
+        return new UICardData("Kunai", cost: 2, "Deal " + GetDamage() + " damage, add a shuriken to discard", UICardData.CardType.ATTACK);
+    }
+
+    private int GetDamage()
+    {
+        return 3 + sharpened;
     }
 
     public override void Action(EnemyManager[] enemys)
     {
-        enemys[0].Damage(3+sharpened);
+        enemys[0].Damage(GetDamage());
         addCardToDiscard(new Shuriken());
 
     }
@@ -28,10 +37,5 @@ public class Kunai : CardData
     public override int SecondAction(CardManager card)
     {
         throw new System.NotImplementedException();
-    }
-    public override void sharpen()
-    {
-        sharpened++;
-        cardData = new UICardData("Kunai", cost: 1, "Deal " + (3 + sharpened) + " damage, add a shuriken to discard", UICardData.CardType.ATTACK);
     }
 }

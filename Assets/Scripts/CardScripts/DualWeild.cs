@@ -6,13 +6,22 @@ public class DualWeild : CardData
 {
     public DualWeild()
     {
-        cardData = new UICardData("DualWeild", cost: 2, "Deal 4 damage to target, random card in hand costs 1 until end of encounter", UICardData.CardType.ATTACK);
         target = Target.ENEMY;
+    }
+
+    protected override UICardData CreateUICardData()
+    {
+       return new UICardData("DualWeild", cost: 2, "Deal " + GetDamage() + " damage to target, random card in hand costs 1 until end of encounter", UICardData.CardType.ATTACK);
+    }
+
+    private int GetDamage()
+    {
+        return 4 + sharpened;
     }
 
     public override void Action(EnemyManager[] enemys)
     {
-        enemys[0].Damage(4);
+        enemys[0].Damage(GetDamage());
         CardManager[] hand = getHand();
         List<int> validCards = new List<int>();
         for (int i = 0; i < hand.Length; ++i)
@@ -22,14 +31,15 @@ public class DualWeild : CardData
                 validCards.Add(i);
             }
         }
-        //Nothing to damage
+        //No cards in hand
         if (validCards.Count == 0)
         {
             return;
         }
         int randomIndex = UnityEngine.Random.Range(0, validCards.Count);
         hand[validCards[randomIndex]].GetCardData().setCost(1);
-        //Ensure they are playable
+        
+        //Ensure clickability of cards is updated
         GameObject.Find("Hand").GetComponent<HandManager>().UpdateAllCardsInHand();
     }
     public override void Action(CardData[] cards)

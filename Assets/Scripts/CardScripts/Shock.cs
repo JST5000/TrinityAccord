@@ -6,9 +6,14 @@ public class Shock : CardData
 {
     public Shock()
     {
-        cardData = new UICardData("Shock", cost: 2, "Stagger target", UICardData.CardType.SPELL);
         target = Target.ENEMY;
     }
+
+    protected override UICardData CreateUICardData()
+    {
+        return new UICardData("Shock", cost: 2, "Stagger target", UICardData.CardType.SPELL);
+    }
+
 
     public override void Action(EnemyManager[] enemys)
     {

@@ -6,18 +6,27 @@ public class Staff3 : CardData
 {
     public Staff3()
     {
-        cardData = new UICardData("C", cost: 0, "Draw 2 cards", UICardData.CardType.ATTACK);
+    }
+
+    protected override UICardData CreateUICardData()
+    {
+        return new UICardData("C", cost: 0, "Draw 2 cards", UICardData.CardType.ATTACK);
     }
 
     public override void Action(EnemyManager[] enemys)
     {
+        throw new System.NotImplementedException();
+
     }
     public override void Action(CardData[] cards)
     {
+        throw new System.NotImplementedException();
+
 
     }
     public override void Action(CardData[] cards, EnemyManager[] enemys)
     {
+        throw new System.NotImplementedException();
 
     }
 

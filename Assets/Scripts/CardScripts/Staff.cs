@@ -9,8 +9,12 @@ public class Staff : CardData
     EnemyManager[] tempTarget;
     public Staff()
     {
-        cardData = new UICardData("Staff", cost: 1, "Deal 2 damage, draw 1 card deal 1 damage, or draw 2 cards", UICardData.CardType.ATTACK);
         target = Target.ENEMY;
+    }
+
+    protected override UICardData CreateUICardData()
+    {
+        return new UICardData("Staff", cost: 1, "Deal 2 damage, draw 1 card deal 1 damage, or draw 2 cards", UICardData.CardType.ATTACK);
     }
 
     public override void Action(EnemyManager[] enemys)
@@ -67,6 +71,6 @@ public class Staff : CardData
             options[0].sharpen();
             options[1].sharpen();
         }
-        cardData = new UICardData("Staff", cost: 1, "Deal " + (2 + sharpened) + " damage, draw 1 card deal " + (1 + sharpened) + " damage, or draw 2 cards", UICardData.CardType.ATTACK);
+        uiCardData = new UICardData("Staff", cost: 1, "Deal " + (2 + sharpened) + " damage, draw 1 card deal " + (1 + sharpened) + " damage, or draw 2 cards", UICardData.CardType.ATTACK);
     }
 }

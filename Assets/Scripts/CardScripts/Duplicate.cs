@@ -6,8 +6,12 @@ public class Duplicate : CardData
 {
     public Duplicate()
     {
-        cardData = new UICardData("Duplicate", cost: 1, "Copy the next spell played", UICardData.CardType.SPELL);
         target = Target.BOARD;
+    }
+
+    protected override UICardData CreateUICardData()
+    {
+        return new UICardData("Duplicate", cost: 1, "Copy the next spell played", UICardData.CardType.SPELL);
     }
 
     public override void Action(EnemyManager[] enemys)

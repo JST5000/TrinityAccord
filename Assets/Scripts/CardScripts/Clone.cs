@@ -6,10 +6,15 @@ public class Clone : CardData
 {
     public Clone()
     {
-        cardData = new UICardData("Clone", cost: 0, "Becomes copy of target until end of game", UICardData.CardType.SPELL);
         target = Target.CARD;
         fragile = true;
     }
+
+    protected override UICardData CreateUICardData()
+    {
+        return new UICardData("Clone", cost: 0, "Becomes copy of target until end of game", UICardData.CardType.SPELL);
+    }
+
 
     public override void OnSelectedInHand()
     {

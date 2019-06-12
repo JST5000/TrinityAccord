@@ -6,8 +6,12 @@ public class Backpack : CardData
 {
     public Backpack()
     {
-        cardData = new UICardData("Backpack", cost: 0, "Draw 2 Discard 2", UICardData.CardType.SPELL);
         target = Target.BOARD;
+    }
+
+    protected override UICardData CreateUICardData()
+    {
+        return new UICardData("Backpack", cost: 0, "Draw 2 Discard 2", UICardData.CardType.SPELL);
     }
 
     public override void Action(EnemyManager[] enemys)
