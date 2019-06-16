@@ -23,6 +23,14 @@ public class TownManager : MonoBehaviour
         Enter("Attack Shop", "Jenny", inventory);
     }
 
+    public void OpenTent()
+    {
+        List<ShopItem> inventory = new List<ShopItem>();
+        inventory.Add(new PackItem());
+        inventory.Add(new HealthItem(3, 2));
+        Enter("Explorer's Tent", "Explorer", inventory, true, "What can I do for ya?");
+    }
+
     public void OpenQuestStand()
     {
         Enter("Quest Stand", "Dave", new List<ShopItem>());
