@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using System;
 using UnityEngine;
-
+using TMPro;
 
 public class DeckManager : MonoBehaviour
 {
+    public TextMeshProUGUI deckCount;
+    public TextMeshProUGUI discardCount;
+
     public List<CardData> deck;
     public List<CardData> discard;
     public CardManager[] hand;
@@ -242,6 +245,12 @@ public class DeckManager : MonoBehaviour
         return hand[r.Next(0, hand.Length)].transform.gameObject;
 
 
+    }
+
+    private void Update()
+    {
+        deckCount.text = "(" + deck.Count + ")";
+        discardCount.text = "(" + discard.Count + ")";
     }
 
 
