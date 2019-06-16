@@ -26,6 +26,7 @@ public class TransitionManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameUI.SetVisibilityOfGameUI(false);
         CanvasGroupManip.Disable(GetCanvasGroup());
         Init(PermanentState.GetFightTitle(), GetQuote());
     }
@@ -51,8 +52,8 @@ public class TransitionManager : MonoBehaviour
 
     public void Disable()
     {
+        GameUI.SetVisibilityOfGameUI(true);
         CanvasGroupManip.Disable(GetCanvasGroup());
-
     }
     
     private class Quote

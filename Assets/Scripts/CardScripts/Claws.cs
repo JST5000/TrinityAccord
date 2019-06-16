@@ -11,7 +11,7 @@ public class Claws : CardData
 
     protected override UICardData CreateUICardData()
     {
-        return new UICardData("Claws", cost: 2, "Deal " + GetPrimaryDamage() + " damage to target and " + GetSecondaryDamage() + " damage to random enemy", UICardData.CardType.ATTACK);
+        return new UICardData("Claws", cost: 2, "Deal " + GetPrimaryDamage() + " damage to target and " + GetSecondaryDamage() + " damage to random enemy", UICardData.CardType.ATTACK, "Claws");
     }
 
     private int GetPrimaryDamage()

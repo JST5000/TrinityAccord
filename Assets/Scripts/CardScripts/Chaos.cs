@@ -17,7 +17,7 @@ public class Chaos : CardData
         {
             effect += " (+" + sharpened + ")";
         }
-        return new UICardData("Chaos", cost: 1, effect, UICardData.CardType.ATTACK);
+        return new UICardData("Chaos", cost: 1, effect, UICardData.CardType.ATTACK, "Chaos_mastery");
     }
 
     public override void Action(EnemyManager[] enemies)

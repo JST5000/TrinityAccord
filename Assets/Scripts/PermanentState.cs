@@ -14,6 +14,8 @@ public class PermanentState : MonoBehaviour
     public static int maxHealth = 10;
     public static int health = maxHealth - 1;
 
+    public static bool hasDraftedClassCard = false;
+
     //Needs to be remembered between level loads
     public static List<int> unusedQuotes;
 
@@ -98,7 +100,6 @@ public class PermanentState : MonoBehaviour
         deck.Add(new Dagger());
         deck.Add(new Dagger());
         deck.Add(new Energize());
-        deck.Add(new Berserk());
         return deck;
     }
 

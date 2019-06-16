@@ -9,6 +9,8 @@ public class Choose3Manager : MonoBehaviour
 {
     public static CardManager selectedCardMan = null;
     public static CardData selectedCard = null;
+
+    public Text Title;
     public Button confirm;
     public Transform ChooseEncounterMenu;
     public bool reloadEncounterOnDraft = false;
@@ -83,10 +85,12 @@ public class Choose3Manager : MonoBehaviour
             }
             if (reloadEncounterOnDraft && !DoNotLoadAnotherSceneFlag)
             {
+                //CanvasGroupManip.Disable(GetComponent<CanvasGroup>());
                 SceneManager.LoadScene("Encounter");
             }
             else
             {
+                CanvasGroupManip.Disable(GetComponent<CanvasGroup>());
                 if (listener == null && !DoNotLoadAnotherSceneFlag)
                 {
                     SceneManager.LoadScene(PermanentState.GetNextTownSceneName());
@@ -144,6 +148,11 @@ public class Choose3Manager : MonoBehaviour
             buttonText.text = "Show";
         }
         menuHidden = !menuHidden;
+    }
+
+    public void SetTitle(string newTitle)
+    {
+        this.Title.text = newTitle;
     }
 
     // Start is called before the first frame update
