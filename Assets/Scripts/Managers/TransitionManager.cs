@@ -52,8 +52,12 @@ public class TransitionManager : MonoBehaviour
 
     public void Disable()
     {
-        GameUI.SetVisibilityOfGameUI(true);
-        CanvasGroupManip.Disable(GetCanvasGroup());
+        //This means the selection is done, so the quote is relevant
+        if (!PermanentState.PauseGameInteraction)
+        {
+            GameUI.SetVisibilityOfGameUI(true);
+            CanvasGroupManip.Disable(GetCanvasGroup());
+        }
     }
     
     private class Quote

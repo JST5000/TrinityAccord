@@ -30,6 +30,7 @@ public class DraftClassCard : MonoBehaviour
         choose3Manager.SetTitle("Select your class!");
         choose3Manager.Init(classCards);
         choose3Manager.reloadEncounterOnDraft = true;
+        choose3Manager.PauseGameInteraction();
     }
 
     // Update is called once per frame

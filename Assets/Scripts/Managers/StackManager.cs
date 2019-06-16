@@ -13,6 +13,8 @@ public class StackManager : MonoBehaviour
     public bool inAnimation = false;
 
     private List<CardData> playedCardsThisTurn = new List<CardData>();
+    private List<CardData> cardsReturnedSoFar = new List<CardData>();
+
     private Stack<CardData> playedCards = new Stack<CardData>();
     private CardManager displayedCardData;
     private CardUIUpdater displayedCard;
@@ -144,6 +146,7 @@ public class StackManager : MonoBehaviour
     {
         cardsPlayed = 0;
         playedCardsThisTurn.Clear();
+        cardsReturnedSoFar.Clear();
         attacksPlayed = 0;
         duplicate = 0;
     }
@@ -152,22 +155,21 @@ public class StackManager : MonoBehaviour
     //Returns null if no cards were played this turn
     public CardData GetRandomCardPlayedThisTurn()
     {
-        if (playedCardsThisTurn.Count == 0)
+        if (playedCardsThisTurn.Count <= cardsReturnedSoFar.Count)
         {
             return null;
-        } else { 
-            return CardDataUtil.ChooseNWithoutReplacement(playedCardsThisTurn, 1)[0];
-        }
-    }
-
-    public void RemoveCardFromPlayedThisTurn(CardData card)
-    {
-        if(playedCardsThisTurn.Contains(card))
-        {
-            playedCardsThisTurn.Remove(card);
-        } else
-        {
-            Debug.LogError("Unable to find the reference to a card: " + card.cardName + " in the cards played this turn list!");
+        } else {
+            List<CardData> uniqueOptions = new List<CardData>();
+            foreach(CardData card in playedCardsThisTurn)
+            {
+                if(!cardsReturnedSoFar.Contains(card))
+                {
+                    uniqueOptions.Add(card);
+                }
+            }
+            CardData selected = CardDataUtil.ChooseNWithoutReplacement(uniqueOptions, 1)[0];
+            cardsReturnedSoFar.Add(selected);
+            return selected;
         }
     }
 }

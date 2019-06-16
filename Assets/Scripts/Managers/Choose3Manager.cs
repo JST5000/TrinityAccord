@@ -21,6 +21,8 @@ public class Choose3Manager : MonoBehaviour
 
     private bool DoNotLoadAnotherSceneFlag = false;
 
+    private bool ResumeGameInteractionOnExit = false;
+
     private CardManager[] options;
 
     private CardData listener;
@@ -85,18 +87,26 @@ public class Choose3Manager : MonoBehaviour
             }
             if (reloadEncounterOnDraft && !DoNotLoadAnotherSceneFlag)
             {
-                //CanvasGroupManip.Disable(GetComponent<CanvasGroup>());
+                RestoreGameInteractionIfPaused();
                 SceneManager.LoadScene("Encounter");
             }
             else
             {
-                CanvasGroupManip.Disable(GetComponent<CanvasGroup>());
+                RestoreGameInteractionIfPaused();            
                 if (listener == null && !DoNotLoadAnotherSceneFlag)
                 {
                     SceneManager.LoadScene(PermanentState.GetNextTownSceneName());
                 }
                 Destroy(gameObject);
             }
+        }
+    }
+
+    private void RestoreGameInteractionIfPaused()
+    {
+        if (ResumeGameInteractionOnExit)
+        {
+            PermanentState.PauseGameInteraction = false;
         }
     }
 
@@ -153,6 +163,12 @@ public class Choose3Manager : MonoBehaviour
     public void SetTitle(string newTitle)
     {
         this.Title.text = newTitle;
+    }
+
+    public void PauseGameInteraction()
+    {
+        ResumeGameInteractionOnExit = true;
+        PermanentState.PauseGameInteraction = true;
     }
 
     // Start is called before the first frame update

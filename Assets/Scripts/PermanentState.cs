@@ -16,6 +16,8 @@ public class PermanentState : MonoBehaviour
 
     public static bool hasDraftedClassCard = false;
 
+    public static bool PauseGameInteraction = false;
+
     //Needs to be remembered between level loads
     public static List<int> unusedQuotes;
 
