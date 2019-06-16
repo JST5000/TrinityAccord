@@ -96,10 +96,8 @@ public class CardViewerManager : MonoBehaviour
 
     private void UpdateLeftRightButtons()
     {
-        //CanvasGroupManip.SetVisibility(lowerIndex != 0, leftButton);
-        //CanvasGroupManip.SetVisibility(upperIndex != cards.Length, rightButton);
-        CanvasGroupManip.Enable(leftButton);
-        CanvasGroupManip.Enable(rightButton);
+        CanvasGroupManip.SetVisibility(lowerIndex != 0, leftButton);
+        CanvasGroupManip.SetVisibility(upperIndex != cards.Length, rightButton);
     }
 
     // Start is called before the first frame update
