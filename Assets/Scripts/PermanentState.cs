@@ -43,6 +43,7 @@ public class PermanentState : MonoBehaviour
     public static void ResetStatics()
     {
         wins = 0;
+        PermanentState.hasDraftedClassCard = false;
         InitializeBaseDeck();
         expectedLevel = Level.TUTORIAL;
         InitializeDefaultEncounter();

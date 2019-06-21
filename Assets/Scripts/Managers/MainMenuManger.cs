@@ -24,7 +24,7 @@ public class MainMenuManger : MonoBehaviour
     { 
         //Removes previous game data
         GameObject permanentState = GameObject.Find("PermanentState");
-        if(permanentState != null)
+        if (permanentState != null)
         {
             Destroy(permanentState);
         }

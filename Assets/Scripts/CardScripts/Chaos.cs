@@ -12,7 +12,7 @@ public class Chaos : CardData
 
     protected override UICardData CreateUICardData()
     {
-        string effect = "Deal 1 damage at random for each card played before this";
+        string effect = "Deal 1 damage at random for each card played this turn (including this)";
         if (sharpened > 0)
         {
             effect += " (+" + sharpened + ")";
@@ -22,7 +22,7 @@ public class Chaos : CardData
 
     public override void Action(EnemyManager[] enemies)
     {
-        for (int i = 0; i < getNumberOfCardsPlayed() - 1 + sharpened; ++i)
+        for (int i = 0; i < getNumberOfCardsPlayed() + sharpened; ++i)
         {
             damageRandom(1);
         }

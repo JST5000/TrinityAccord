@@ -114,6 +114,7 @@ public class Player : MonoBehaviour
     {
         if(CanDie)
         {
+            PermanentState.hasDraftedClassCard = false;
             SceneManager.LoadScene("LoseScreen");
         }
     }
