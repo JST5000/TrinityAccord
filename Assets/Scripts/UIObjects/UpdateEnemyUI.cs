@@ -15,6 +15,9 @@ public class UpdateEnemyUI : MonoBehaviour
     public TextMeshProUGUI effectDisplay;
     public TextMeshProUGUI debuffText;
 
+    public CanvasGroup TargetArrowCG;
+    private bool targetVisibility;
+
     private EnemyManager enemyHolder;
 
     private bool isDisabled = false;
@@ -25,6 +28,8 @@ public class UpdateEnemyUI : MonoBehaviour
     {
         enemyHolder = GetComponent<EnemyManager>();
         DisableEnemy();
+
+        targetVisibility = (TargetArrowCG.alpha > .1f);
     }
 
     public void PopulateUI(UIEnemyData data)
@@ -136,6 +141,15 @@ public class UpdateEnemyUI : MonoBehaviour
         else
         {
             debuffText.text = "";
+        }
+    }
+
+    public void SetTarget(bool target)
+    {
+        if(this.targetVisibility != target)
+        {
+            targetVisibility = target;
+            CanvasGroupManip.SetVisibility(target, this.TargetArrowCG);
         }
     }
 }

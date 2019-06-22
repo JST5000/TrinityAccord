@@ -7,7 +7,7 @@ public class Storm : CardData
     private int chargeDamage = 0;
     public Storm()
     {
-        target = Target.BOARD;
+        target = Target.ALL_ENEMIES;
     }
 
     protected override UICardData CreateUICardData()

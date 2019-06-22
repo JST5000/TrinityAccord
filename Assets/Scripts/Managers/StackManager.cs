@@ -118,6 +118,33 @@ public class StackManager : MonoBehaviour
         endTurn.ResumeAutoEndTurn();    
     }
 
+    private EnemyManager[] GetEnemiesToIndicateAsTargets()
+    {
+        if(playedCards.Count == 0)
+        {
+            EnemyManager[] empty = { };
+            return empty;
+        }
+        CardData top = playedCards.Peek();
+
+        if (top.getTarget().Equals(Target.CARD) || top.getTarget().Equals(Target.BOARD))
+        {
+            EnemyManager[] empty = { };
+            return empty;
+        }
+        else if (top.getTarget().Equals(Target.ENEMY))
+        {
+            EnemyManager[] targetEnemy = { top.selectedTarget.GetComponent<EnemyManager>() };
+            return targetEnemy;
+        }
+        else if (top.getTarget().Equals(Target.ALL_ENEMIES))
+        {
+            EnemyManager[] allEnemies = top.selectedTarget.GetComponentsInChildren<EnemyManager>();
+            return allEnemies;
+        }
+        throw new KeyNotFoundException("Tried to get card targets, but did not recognize the target recieved. " + top.getTarget());
+    }
+
     private void UpdateUI()
     {
         if(playedCards.Count == 0)
@@ -128,7 +155,15 @@ public class StackManager : MonoBehaviour
             displayedCardData.Init(playedCards.Peek());
             displayedCard.UpdateUI(playedCards.Peek().GetUICardData());
         }
+        UpdateEnemyTargetIndicators();
     }
+
+    private void UpdateEnemyTargetIndicators()
+    {
+        EnemyManager[] targets = GetEnemiesToIndicateAsTargets();
+        GameObject.Find("Board").GetComponent<EncounterManager>().SetTargetInidcators(targets);
+    }
+
     private void UpdateCounts(CardData card)
     {
         cardsPlayed++;

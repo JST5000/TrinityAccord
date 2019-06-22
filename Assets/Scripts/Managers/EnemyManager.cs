@@ -124,5 +124,13 @@ public class EnemyManager : MonoBehaviour
     {
         return data.GetUIData();
     }
+
+    public void SetTargetIndicator(bool targetStatus)
+    {
+        if(!IsEmpty())
+        {
+            GetComponent<UpdateEnemyUI>().SetTarget(targetStatus);
+        }
+    }
 }
 

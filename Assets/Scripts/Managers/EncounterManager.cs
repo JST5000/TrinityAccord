@@ -183,4 +183,16 @@ public class EncounterManager : MonoBehaviour
         }
         Instantiate(Choose3Menu, GameObject.Find("Canvas").transform, false);
     }
+
+    public void SetTargetInidcators(EnemyManager[] targets)
+    {
+        foreach(EnemyManager enemy in allEnemyManagers)
+        {
+            enemy.SetTargetIndicator(false);
+        }
+        foreach(EnemyManager target in targets)
+        {
+            target.SetTargetIndicator(true);
+        }
+    }
 }
