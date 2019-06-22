@@ -15,12 +15,14 @@ public class ScytheSoldier : EnemyData
     {
         StackManager stack = GameObject.Find("StackHolder").GetComponent<StackManager>();
         CardData recentlyPlayed = stack.GetRandomCardPlayedThisTurn();
-        if(recentlyPlayed != null)
+        if (recentlyPlayed != null)
         {
+            CardData removedCard = null;
             DeckManager deckMan = GameObject.Find("Deck").GetComponent<DeckManager>();
             int discardIndex = CardDataUtil.FindCard(deckMan.discard, recentlyPlayed);
             if (discardIndex != -1)
             {
+                removedCard = deckMan.discard[discardIndex];
                 deckMan.discard.RemoveAt(discardIndex);
             }
             else
@@ -28,13 +30,17 @@ public class ScytheSoldier : EnemyData
                 int deckIndex = CardDataUtil.FindCard(deckMan.deck, recentlyPlayed);
                 if (deckIndex != -1)
                 {
+
+                    removedCard = deckMan.deck[deckIndex].Clone();
                     deckMan.deck.RemoveAt(deckIndex);
                 }
-                else
-                {
-                    Debug.LogError(CardDataUtil.FindCard(new List<CardManager>(deckMan.hand), recentlyPlayed));
-                    Debug.LogError("Tried to remove :" + recentlyPlayed + ", but was unable to find it in the Deck or Discard! Scythe Soldier attack has failed.");
-                }
+            }
+
+            if (removedCard != null)
+            {
+                //Shows the player what was lost
+                StackManager playStack = GameObject.Find("StackHolder").GetComponent<StackManager>();
+                playStack.Push(removedCard, StackUsage.DESTROY);
             }
         }
     }

@@ -27,7 +27,7 @@ public class Throw : CardData
     public override void Action(EnemyManager[] enemys)
     {
         enemys[0].Damage(GetPrimaryDamage());
-        CardData top = grabTop();
+        CardData top = BurnTopCard();
         if (top==null)
         {
             return;
@@ -36,9 +36,9 @@ public class Throw : CardData
         {
             enemys[0].Damage(GetAdditionalDamage());
         }
-        getDeckManager().grabTop();
         
     }
+
     public override void Action(CardData[] cards)
     {
 

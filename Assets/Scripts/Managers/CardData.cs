@@ -264,7 +264,7 @@ public abstract class CardData
         {
             card.selectedTarget = GameObject.Find("Board");
         }
-        GameObject.Find("StackHolder").GetComponent<StackManager>().Push(card);
+        GameObject.Find("StackHolder").GetComponent<StackManager>().Push(card, StackUsage.PLAY);
     }
 
     public static void playCardRandomTarget(CardData card)
@@ -298,16 +298,25 @@ public abstract class CardData
         {
             card.selectedTarget = GameObject.Find("Board");
         }
-        GameObject.Find("StackHolder").GetComponent<StackManager>().Push(card);
+        GameObject.Find("StackHolder").GetComponent<StackManager>().Push(card, StackUsage.PLAY);
     }
+
     protected void addCardToDiscard(CardData card)
     {
         GameObject.Find("Deck").GetComponent<DeckManager>().AddToDiscard(card);
     }
-    /*
-    protected Choose3Manager GetChoose3Manager()
+
+    protected CardData BurnTopCard()
     {
-        return GameObject.Find
+        CardData top = getDeckManager().grabTop();
+        StackManager playStack = GameObject.Find("StackHolder").GetComponent<StackManager>();
+        playStack.Push(top, StackUsage.DESTROY);
+        return top;
     }
-    */
+
+    protected void DiscardCardOnStack(CardData card)
+    {
+        StackManager playStack = GameObject.Find("StackHolder").GetComponent<StackManager>();
+        playStack.Push(card, StackUsage.DISCARD);
+    }
 }

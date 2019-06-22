@@ -32,7 +32,8 @@ public class Backpack : CardData
 
     public override int SecondAction(CardManager card)
     {
-        card.discard();
+        DiscardCardOnStack(card.GetCardData());
+        card.SetEmpty();
         if (checkNumberOfCardsInHand() == 0)
         {
             return 10;//Exits card select mode if there arent enough cards in hand

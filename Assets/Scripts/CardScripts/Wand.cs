@@ -34,7 +34,7 @@ public class Wand : CardData
         }
         else
         {
-            addCardToDiscard(top);
+            DiscardCardOnStack(top);
         }
     }
     public override void Action(CardData[] cards)

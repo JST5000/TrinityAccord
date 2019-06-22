@@ -12,10 +12,14 @@ public class StackManager : MonoBehaviour
     public int duplicate = 0;
     public bool inAnimation = false;
 
+    public Image Overlay;
+    public Sprite DestroyIcon;
+    public Sprite DiscardIcon;
+
     private List<CardData> playedCardsThisTurn = new List<CardData>();
     private List<CardData> cardsReturnedSoFar = new List<CardData>();
 
-    private Stack<CardData> playedCards = new Stack<CardData>();
+    private Stack<KeyValuePair<CardData, StackUsage>> playedCards = new Stack<KeyValuePair<CardData, StackUsage>>();
     private CardManager displayedCardData;
     private CardUIUpdater displayedCard;
     private EndTurnUI endTurn;
@@ -43,7 +47,8 @@ public class StackManager : MonoBehaviour
         if (playedCards.Count != 0)
         {
             currTime += Time.deltaTime;
-            if(currTime >= timePerCard&&!inAnimation)
+            if(currTime >= timePerCard 
+                && !inAnimation)
             {
                 inAnimation = true;
                 currTime = 0;
@@ -69,18 +74,24 @@ public class StackManager : MonoBehaviour
         return displayedCardData.IsEmpty();
     }
 
-    public void Push(CardData justPlayed)
+    public void Push(CardData justPlayed, StackUsage usage)
     {
         endTurn.PauseAutoEndTurn();
         UpdateCounts(justPlayed);
         currTime = 0;
-        playedCards.Push(justPlayed);
+        playedCards.Push(MakePair(justPlayed, usage));
         UpdateUI();
+    }
+
+    private KeyValuePair<CardData, StackUsage> MakePair(CardData card, StackUsage usage)
+    {
+        return new KeyValuePair<CardData, StackUsage>(card, usage);
     }
 
     public void Pop()
     {
-        CardData top = playedCards.Pop();
+        KeyValuePair<CardData, StackUsage> cardAndUsage = playedCards.Pop();
+        CardData top = cardAndUsage.Key;
         if (duplicate > 0 && !top.duplicated) //&& top.GetType().Equals(UICardData.CardType.SPELL))
         {
             Debug.Log("Duplicate active");
@@ -88,28 +99,12 @@ public class StackManager : MonoBehaviour
             CardData copy = top.Clone();//deck.Clone();
             top.fragile = true;
             top.duplicated = true;
-            Push(copy);
+            Push(copy, StackUsage.PLAY);
             duplicate--;
         }
         top.duplicated = false;
 
-        if (top.getTarget().Equals(Target.CARD))
-        {
-            CardData[] targetCard = { top.selectedTarget.GetComponent<CardManager>().GetCardData() };
-            top.Action(targetCard);
-        }else if (top.getTarget().Equals(Target.ENEMY))
-        {
-            EnemyManager[] targetEnemy = { top.selectedTarget.GetComponent<EnemyManager>() };
-            top.Action(targetEnemy);
-        }else if(top.getTarget().Equals(Target.BOARD)|| top.getTarget().Equals(Target.ALL_ENEMIES))
-        {
-            EnemyManager[] allEnemies = top.selectedTarget.GetComponentsInChildren<EnemyManager>();
-            top.Action(allEnemies);
-        }
-        if (!top.fragile)
-        {
-            GameObject.Find("Deck").GetComponent<DeckManager>().AddToDiscard(top);
-        }
+        ConsumeCardEffect(cardAndUsage);
 
         //Card Effects may require updating the hand such as Dual Weild
         GameObject.Find("Hand").GetComponent<HandManager>().UpdateAllCardsInHand();
@@ -118,14 +113,60 @@ public class StackManager : MonoBehaviour
         endTurn.ResumeAutoEndTurn();    
     }
 
+    private void ConsumeCardEffect(KeyValuePair<CardData, StackUsage> cardAndUsage)
+    {
+        StackUsage usage = cardAndUsage.Value;
+        if(usage == StackUsage.PLAY)
+        {
+            PlayCard(cardAndUsage.Key);
+        } else if(usage == StackUsage.DISCARD)
+        {
+            AddToDiscard(cardAndUsage.Key);
+        } else if(usage == StackUsage.DESTROY)
+        {
+           
+            //Doing nothing removes it from the game
+        }
+    }
+
+    private void PlayCard(CardData top)
+    {
+        if (top.getTarget().Equals(Target.CARD))
+        {
+            CardData[] targetCard = { top.selectedTarget.GetComponent<CardManager>().GetCardData() };
+            top.Action(targetCard);
+        }
+        else if (top.getTarget().Equals(Target.ENEMY))
+        {
+            EnemyManager[] targetEnemy = { top.selectedTarget.GetComponent<EnemyManager>() };
+            top.Action(targetEnemy);
+        }
+        else if (top.getTarget().Equals(Target.BOARD) || top.getTarget().Equals(Target.ALL_ENEMIES))
+        {
+            EnemyManager[] allEnemies = top.selectedTarget.GetComponentsInChildren<EnemyManager>();
+            top.Action(allEnemies);
+        }
+        AddToDiscard(top);
+    }
+
+    private void AddToDiscard(CardData card)
+    {
+        if (!card.fragile)
+        {
+            GameObject.Find("Deck").GetComponent<DeckManager>().AddToDiscard(card);
+        }
+    }
+
     private EnemyManager[] GetEnemiesToIndicateAsTargets()
     {
-        if(playedCards.Count == 0)
+        if(playedCards.Count == 0
+            || playedCards.Peek().Value != StackUsage.PLAY)
         {
             EnemyManager[] empty = { };
             return empty;
         }
-        CardData top = playedCards.Peek();
+
+        CardData top = playedCards.Peek().Key;
 
         if (top.getTarget().Equals(Target.CARD) || top.getTarget().Equals(Target.BOARD))
         {
@@ -142,6 +183,7 @@ public class StackManager : MonoBehaviour
             EnemyManager[] allEnemies = top.selectedTarget.GetComponentsInChildren<EnemyManager>();
             return allEnemies;
         }
+
         throw new KeyNotFoundException("Tried to get card targets, but did not recognize the target recieved. " + top.getTarget());
     }
 
@@ -152,10 +194,40 @@ public class StackManager : MonoBehaviour
             displayedCardData.SetEmpty();
         } else
         {
-            displayedCardData.Init(playedCards.Peek());
-            displayedCard.UpdateUI(playedCards.Peek().GetUICardData());
+            CardData top = playedCards.Peek().Key;
+            displayedCardData.Init(top);
+            displayedCard.UpdateUI(top.GetUICardData());
         }
+        UpdateOverlay();
         UpdateEnemyTargetIndicators();
+    }
+
+    private void UpdateOverlay()
+    {
+        CanvasGroup overlayCG = Overlay.GetComponent<CanvasGroup>();
+
+        if (playedCards.Count == 0)
+        {
+            CanvasGroupManip.Disable(overlayCG);
+        }
+        else
+        {
+            StackUsage usage = playedCards.Peek().Value;
+            if (usage == StackUsage.PLAY)
+            {
+                CanvasGroupManip.Disable(overlayCG);
+            }
+            else if (usage == StackUsage.DISCARD)
+            {
+                Overlay.sprite = DiscardIcon;
+                CanvasGroupManip.Enable(overlayCG);
+            }
+            else if (usage == StackUsage.DESTROY)
+            {
+                Overlay.sprite = DestroyIcon;
+                CanvasGroupManip.Enable(overlayCG);
+            }
+        }
     }
 
     private void UpdateEnemyTargetIndicators()

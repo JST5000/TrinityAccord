@@ -202,7 +202,7 @@ public class UIManager : MonoBehaviour
         {
             //Put the card on the stack
             StackManager playStack = GameObject.Find("StackHolder").GetComponent<StackManager>();
-            playStack.Push(selectedCard.GetCardData());
+            playStack.Push(selectedCard.GetCardData(), StackUsage.PLAY);
         }
         //Remove the card from the hand 
         selectedCard.SetEmpty();
