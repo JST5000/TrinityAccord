@@ -236,7 +236,7 @@ public class UIManager : MonoBehaviour
 
     public void autoEndTurn()
     {
-        if(canEndTurn)
+        if(canEndTurn && actionsNeeded <= 0)
         {
             canEndTurn = false;
             clickEndTurn();

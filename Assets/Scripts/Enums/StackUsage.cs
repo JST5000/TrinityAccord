@@ -6,5 +6,6 @@ public enum StackUsage
 {
     PLAY,
     DISCARD,
-    DESTROY
+    DESTROY,
+    PLAY_AND_RETURN_TO_HAND
 }

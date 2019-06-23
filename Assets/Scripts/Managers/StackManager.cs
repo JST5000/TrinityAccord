@@ -99,7 +99,7 @@ public class StackManager : MonoBehaviour
             CardData copy = top.Clone();//deck.Clone();
             top.fragile = true;
             top.duplicated = true;
-            Push(copy, StackUsage.PLAY);
+            Push(copy, cardAndUsage.Value);
             duplicate--;
         }
         top.duplicated = false;
@@ -119,13 +119,19 @@ public class StackManager : MonoBehaviour
         if(usage == StackUsage.PLAY)
         {
             PlayCard(cardAndUsage.Key);
-        } else if(usage == StackUsage.DISCARD)
+            AddToDiscard(cardAndUsage.Key);
+        }
+        else if(usage == StackUsage.DISCARD)
         {
             AddToDiscard(cardAndUsage.Key);
         } else if(usage == StackUsage.DESTROY)
         {
            
             //Doing nothing removes it from the game
+        } else if(usage == StackUsage.PLAY_AND_RETURN_TO_HAND)
+        {
+            PlayCard(cardAndUsage.Key);
+            AddToHand(cardAndUsage.Key);
         }
     }
 
@@ -146,7 +152,6 @@ public class StackManager : MonoBehaviour
             EnemyManager[] allEnemies = top.selectedTarget.GetComponentsInChildren<EnemyManager>();
             top.Action(allEnemies);
         }
-        AddToDiscard(top);
     }
 
     private void AddToDiscard(CardData card)
@@ -155,6 +160,11 @@ public class StackManager : MonoBehaviour
         {
             GameObject.Find("Deck").GetComponent<DeckManager>().AddToDiscard(card);
         }
+    }
+
+    private void AddToHand(CardData card)
+    {
+        GameObject.Find("Deck").GetComponent<DeckManager>().addCardToHand(card);
     }
 
     private EnemyManager[] GetEnemiesToIndicateAsTargets()
@@ -226,6 +236,9 @@ public class StackManager : MonoBehaviour
             {
                 Overlay.sprite = DestroyIcon;
                 CanvasGroupManip.Enable(overlayCG);
+            } else if(usage == StackUsage.PLAY_AND_RETURN_TO_HAND)
+            {
+                CanvasGroupManip.Disable(overlayCG);
             }
         }
     }

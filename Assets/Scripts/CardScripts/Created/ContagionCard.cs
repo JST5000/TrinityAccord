@@ -6,7 +6,7 @@ enum ContagionCard
 {
     GREED = 0,
     POWER = 1,
-    VILE_SWORD = 2
+    VILE_SWORD = 2,
 }
 static class ContagionCardMethods
 {

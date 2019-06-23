@@ -2,14 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EvolvingContagion : CardData
+public class Virus : CardData
 {
     ContagionCard mode;
+    bool displayDefaultMode;
 
-    public EvolvingContagion() { }
+    public Virus()
+    {
+        BecomeDefaultVirusCard();
+    }
 
     protected override UICardData CreateUICardData()
     {
+        if(displayDefaultMode)
+        {
+            return new UICardData("Virus", cost: 0, "Becomes a random Contagion card when drawn!", UICardData.CardType.SPELL);
+        }
+
         switch (mode)
         {
             case ContagionCard.GREED:
@@ -24,8 +33,9 @@ public class EvolvingContagion : CardData
         }
     }
 
-    public void SetMode()
+    public void BecomeRandomContagionCard(bool showDefaultCard = true)
     {
+        displayDefaultMode = false;
         mode = ContagionCardMethods.GetRandom();
         switch (mode)
         {
@@ -39,6 +49,13 @@ public class EvolvingContagion : CardData
                 target = Target.ENEMY;
                 break;
         }
+        UpdateUICardData();
+    }
+
+    private void BecomeDefaultVirusCard()
+    {
+        displayDefaultMode = true;
+        target = Target.CARD;
         UpdateUICardData();
     }
 
@@ -62,7 +79,7 @@ public class EvolvingContagion : CardData
                 enemys[0].Damage(GetVileSwordDamage());
                 break;
         }
-        SetMode();
+        BecomeDefaultVirusCard();
     }
 
     public override void sharpen()
@@ -75,7 +92,7 @@ public class EvolvingContagion : CardData
 
     public override void Action(CardData[] cards)
     {
-
+        BecomeRandomContagionCard();
     }
     public override void Action(CardData[] cards, EnemyManager[] enemys)
     {
@@ -84,7 +101,12 @@ public class EvolvingContagion : CardData
 
     public override void OnDraw()
     {
-        SetMode();
+        playCardRandomTarget(this);
+    }
+
+    public override void OnDiscard()
+    {
+        BecomeDefaultVirusCard();
     }
     public override int SecondAction(CardManager card)
     {

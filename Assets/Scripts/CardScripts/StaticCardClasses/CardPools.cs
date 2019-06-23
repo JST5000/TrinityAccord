@@ -50,7 +50,7 @@ public static class CardPools
         all.Add(new Contaminate());
         all.Add(new Crossbow());
         all.Add(new DualWeild());
-        all.Add(new EvolvingContagion());
+        all.Add(new Virus());
         all.Add(new Execute());
         all.Add(new Foil());
         all.Add(new Forge());
