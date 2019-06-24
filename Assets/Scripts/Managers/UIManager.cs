@@ -252,7 +252,7 @@ public class UIManager : MonoBehaviour
         if ((!GetCurrentMode().Equals(GameMode.Animation)
             || GetCurrentMode().Equals(GameMode.PickCardInHand)))
         {
-            SetAndHighlightSelectedCard(null); //Resets selection
+            ResetSelection();
 
             GameObject.Find("Board").GetComponent<EncounterManager>().EndTurn();
 
