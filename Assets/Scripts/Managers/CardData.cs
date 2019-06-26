@@ -24,6 +24,8 @@ public abstract class CardData
     public bool fragile = false;
     public bool duplicated = false;
 
+    public bool CannotBePlayed = false;
+
     public bool pauseGameplay = false;
 
     public float animationTime;
@@ -267,7 +269,7 @@ public abstract class CardData
         GameObject.Find("StackHolder").GetComponent<StackManager>().Push(card, StackUsage.PLAY);
     }
 
-    public static void playCardRandomTarget(CardData card)
+    public static void playCardRandomTarget(CardData card, StackUsage usage = StackUsage.PLAY)
     {
         if (card.target.Equals(Target.ENEMY))
         {
@@ -298,7 +300,7 @@ public abstract class CardData
         {
             card.selectedTarget = GameObject.Find("Board");
         }
-        GameObject.Find("StackHolder").GetComponent<StackManager>().Push(card, StackUsage.PLAY);
+        GameObject.Find("StackHolder").GetComponent<StackManager>().Push(card, usage);
     }
 
     protected void addCardToDiscard(CardData card)

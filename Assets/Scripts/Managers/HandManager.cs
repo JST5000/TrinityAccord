@@ -6,6 +6,15 @@ public class HandManager : MonoBehaviour
 {
     public bool disableHand = false;
 
+    CardManager[] cardsInHand;
+
+    private void LoadCardsInHand()
+    {
+        if (cardsInHand == null)
+        {
+            cardsInHand = GetComponentsInChildren<CardManager>();
+        }
+    }
 
     public void UpdateAllCardsInHand()
     {
@@ -16,7 +25,7 @@ public class HandManager : MonoBehaviour
     {
         Player player = GameObject.Find("Player").GetComponent<Player>();
         int availableEnergy = player.GetEnergy();
-        CardManager[] cardsInHand = GetComponentsInChildren<CardManager>();
+        LoadCardsInHand();
         foreach (CardManager man in cardsInHand)
         {
             if (!man.IsEmpty())
@@ -35,6 +44,24 @@ public class HandManager : MonoBehaviour
         }
     }
 
+    public void RemoveCardFromHand(int cardId)
+    {
+        LoadCardsInHand();
+        foreach (CardManager man in cardsInHand)
+        {
+            if(!man.IsEmpty()
+                && man.GetCardData().GetId() == cardId)
+            {
+                man.SetEmpty();
+                
+                break;
+            } else
+            {
+                Debug.Log(man?.GetCardData()?.GetId());
+            }
+        }
+    }
+
     public void EnableAllCardsInHand()
     {
         UpdateAllCardsInHand(true);
@@ -42,7 +69,7 @@ public class HandManager : MonoBehaviour
 
     public bool HasPlayable()
     {
-        CardManager[] cardsInHand = GetComponentsInChildren<CardManager>();
+        LoadCardsInHand();
         foreach (CardManager man in cardsInHand)
         {
             if (!man.IsEmpty() && man.IsPlayable())

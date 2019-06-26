@@ -49,7 +49,7 @@ public static class CardPools
         all.Add(new Chaos());
         all.Add(new Contaminate());
         all.Add(new Crossbow());
-        all.Add(new DualWeild());
+        all.Add(new DualWield());
         all.Add(new Virus());
         all.Add(new Execute());
         all.Add(new Foil());

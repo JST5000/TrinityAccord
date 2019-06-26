@@ -12,7 +12,7 @@ public class Lightning : CardData
 
     protected override UICardData CreateUICardData()
     {
-        return new UICardData("Lightning", cost: 3, "Deal " + GetDamage() + " damage to 3 random enemies.", UICardData.CardType.SPELL, "Lightning");
+        return new UICardData("Lightning", cost: 3, "Deal " + GetDamage() + " damage to 3 random enemies.", UICardData.CardType.SPELL, "Lightning2");
     }
 
     private int GetDamage()

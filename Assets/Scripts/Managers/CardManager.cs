@@ -10,21 +10,31 @@ public class CardManager : MonoBehaviour
 
     public bool empty;
 
+    public bool IsInHand = false;
+
     public bool AlwaysDisplayText;
 
     private bool prevSettingForCardArt;
 
     public void Init(CardData cardData)
     {
-        this.cardData = cardData;
-        if (AlwaysDisplayText)
+        if (cardData.CannotBePlayed && IsInHand)
         {
-            cardData.GetUICardData().displayOnlyCardArt = false;
-        } else
-        {
-            cardData.GetUICardData().displayOnlyCardArt = true;
+            return;
         }
-        this.empty = false;
+        else
+        {
+            this.cardData = cardData;
+            if (AlwaysDisplayText)
+            {
+                cardData.GetUICardData().displayOnlyCardArt = false;
+            }
+            else
+            {
+                cardData.GetUICardData().displayOnlyCardArt = true;
+            }
+            this.empty = false;
+        }
     }
     public void SetEmpty()
     {

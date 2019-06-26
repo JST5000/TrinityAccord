@@ -16,10 +16,10 @@ public class Crossbow : CardData
     {
         if(isReloading)
         {
-            return new UICardData("Reload", cost: 0, "Flip", UICardData.CardType.SPELL);
+            return new UICardData("Reload", cost: 0, "Flip Crossbow", UICardData.CardType.SPELL);
         } else
         {
-            return new UICardData("Crossbow", cost: 2, "Deal " + GetDamage() + " damage Flip", UICardData.CardType.ATTACK);
+            return new UICardData("Crossbow", cost: 2, "Deal " + GetDamage() + " damage Flip Reload", UICardData.CardType.ATTACK);
         }
     }
 

@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DualWeild : CardData
+public class DualWield : CardData
 {
-    public DualWeild()
+    public DualWield()
     {
         target = Target.ENEMY;
     }
 
     protected override UICardData CreateUICardData()
     {
-       return new UICardData("DualWeild", cost: 2, "Deal " + GetDamage() + " damage to target, random card in hand costs 1 until end of encounter", UICardData.CardType.ATTACK);
+       return new UICardData("DualWield", cost: 2, "Deal " + GetDamage() + " damage to target, random card in hand costs 1 until end of encounter", UICardData.CardType.ATTACK);
     }
 
     private int GetDamage()

@@ -27,7 +27,7 @@ public class StackManager : MonoBehaviour
     private float timePerCard = .5f;
 
 
-    void Start()
+    void Awake()
     {
         displayedCardData = GetComponentInChildren<CardManager>();
         displayedCard = GetComponentInChildren<CardUIUpdater>();

@@ -12,6 +12,6 @@ static class ContagionCardMethods
 {
     public static ContagionCard GetRandom()
     {
-        return (ContagionCard)Random.Range(0, 2);
+        return (ContagionCard)Random.Range(0, 3);
     }
 }

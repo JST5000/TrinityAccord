@@ -22,11 +22,11 @@ public class Virus : CardData
         switch (mode)
         {
             case ContagionCard.GREED:
-                return new UICardData("Greed", cost: 0, "Draw 2", UICardData.CardType.SPELL);
+                return new UICardData("Greed", cost: 0, "Draw 2", UICardData.CardType.SPELL, "Greed");
             case ContagionCard.POWER:
-                return new UICardData("Power", cost: 0, "Gain 2 energy", UICardData.CardType.SPELL);
+                return new UICardData("Power", cost: 0, "Gain 2 energy", UICardData.CardType.SPELL, "Power");
             case ContagionCard.VILE_SWORD:
-                return new UICardData("Vile Sword", cost: 2, "Deal " + GetVileSwordDamage() + " damage", UICardData.CardType.ATTACK);
+                return new UICardData("Vile Sword", cost: 2, "Deal " + GetVileSwordDamage() + " damage", UICardData.CardType.ATTACK, "Vile_Sword");
             default:
                 Debug.LogError("Unable to recognize mode: " + mode + ".");
                 return null;
@@ -36,6 +36,7 @@ public class Virus : CardData
     public void BecomeRandomContagionCard(bool showDefaultCard = true)
     {
         displayDefaultMode = false;
+        CannotBePlayed = false;
         mode = ContagionCardMethods.GetRandom();
         switch (mode)
         {
@@ -55,6 +56,7 @@ public class Virus : CardData
     private void BecomeDefaultVirusCard()
     {
         displayDefaultMode = true;
+        CannotBePlayed = true;
         target = Target.CARD;
         UpdateUICardData();
     }
@@ -101,7 +103,9 @@ public class Virus : CardData
 
     public override void OnDraw()
     {
-        playCardRandomTarget(this);
+        BecomeDefaultVirusCard();
+        GameObject.Find("Hand").GetComponent<HandManager>().RemoveCardFromHand(GetId());
+        playCardRandomTarget(this, StackUsage.PLAY_AND_RETURN_TO_HAND);
     }
 
     public override void OnDiscard()

@@ -11,7 +11,7 @@ public class Power : CardData
 
     protected override UICardData CreateUICardData()
     {
-        return new UICardData("Power", cost: 0, "Gain 2 energy", UICardData.CardType.SPELL);
+        return new UICardData("Power", cost: 0, "Gain 2 energy", UICardData.CardType.SPELL, "Power");
     }
 
     public override void Action(EnemyManager[] enemys)

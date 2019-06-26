@@ -11,7 +11,7 @@ public class Greed : CardData
 
     protected override UICardData CreateUICardData()
     {
-        return new UICardData("Greed", cost: 0, "Draw 2", UICardData.CardType.SPELL);
+        return new UICardData("Greed", cost: 0, "Draw 2", UICardData.CardType.SPELL, "Greed");
     }
 
     public override void Action(EnemyManager[] enemys)
