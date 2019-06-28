@@ -2,37 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Staff3 : CardData
+public class Nightmare : CardData
 {
-    public Staff3()
+    public Nightmare()
     {
-    }
-
-    protected override UICardData CreateUICardData()
-    {
-        return new UICardData("C", cost: 1, "Draw 2 cards", UICardData.CardType.ATTACK);
+        target = Target.ENEMY;
     }
 
     public override void Action(EnemyManager[] enemys)
     {
-        throw new System.NotImplementedException();
-
+        enemys[0].Damage(GetDamage());
+        enemys[0].Drowsy();
     }
+
     public override void Action(CardData[] cards)
     {
         throw new System.NotImplementedException();
-
-
     }
+
     public override void Action(CardData[] cards, EnemyManager[] enemys)
     {
         throw new System.NotImplementedException();
-
     }
 
     public override int SecondAction(CardManager card)
     {
         throw new System.NotImplementedException();
     }
-}
 
+    protected override UICardData CreateUICardData()
+    {
+        return new UICardData("Nightmare", cost: 3, "Deal " + GetDamage() + " damage and put an enemy to sleep next turn.", UICardData.CardType.ATTACK);
+    }
+
+    private int GetDamage()
+    {
+        return 3 + sharpened;
+    }
+}

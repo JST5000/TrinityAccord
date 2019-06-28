@@ -10,7 +10,7 @@ public class Staff2 : CardData
 
     protected override UICardData CreateUICardData()
     {
-        return new UICardData("B", cost: 0, "Deal " + GetDamage() + " damage Draw 1 card", UICardData.CardType.ATTACK);
+        return new UICardData("B", cost: 1, "Deal " + GetDamage() + " damage Draw 1 card", UICardData.CardType.ATTACK);
     }
 
     private int GetDamage()

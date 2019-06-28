@@ -16,23 +16,7 @@ public class Yawn : CardData
 
     public override void Action(EnemyManager[] enemies)
     {
-
-        List<int> validEnemies = new List<int>();
-        for (int i = 0; i < enemies.Length; ++i)
-        {
-            if (!enemies[i].IsEmpty())
-            {
-                validEnemies.Add(i);
-            }
-        }
-        //Nothing to damage
-        if (validEnemies.Count == 0)
-        {
-            return;
-        }
-        int randomIndex = UnityEngine.Random.Range(0, validEnemies.Count);
-        enemies[validEnemies[randomIndex]].Drowsy();
-
+        GetRandomEnemy().Drowsy();
     }
     public override void Action(CardData[] cards)
     {

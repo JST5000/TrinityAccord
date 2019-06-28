@@ -50,7 +50,7 @@ public class Virus : CardData
                 target = Target.ENEMY;
                 break;
         }
-        UpdateUICardData();
+        UpdateUICardData(doNotUpdateCost: false);
     }
 
     private void BecomeDefaultVirusCard()
@@ -58,7 +58,7 @@ public class Virus : CardData
         displayDefaultMode = true;
         CannotBePlayed = true;
         target = Target.CARD;
-        UpdateUICardData();
+        UpdateUICardData(doNotUpdateCost: false);
     }
 
     private int GetVileSwordDamage()

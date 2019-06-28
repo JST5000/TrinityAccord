@@ -18,6 +18,8 @@ public class EncounterManager : MonoBehaviour
 
     float timeUntilVictory = 0;
 
+    private EnemyManager targetedEnemy = null;
+
     //Allows static access to the Spawn functionality for enemies to call in their attacks
     //Abstracts knowledge of what object has the EncounterManager script
     public static void SpawnEnemyInDefaultManager(EnemyData newEnemy)
@@ -66,6 +68,7 @@ public class EncounterManager : MonoBehaviour
         {
             validEnemy.EndTurn();
         }
+        SetTargetedEnemy(null);
     }
 
     void InitEnemyManagers()
@@ -193,6 +196,22 @@ public class EncounterManager : MonoBehaviour
         foreach(EnemyManager target in targets)
         {
             target.SetTargetIndicator(true);
+        }
+    }
+
+    public void SetTargetedEnemy(EnemyManager newTarget)
+    {
+        targetedEnemy = newTarget;
+    }
+
+    public EnemyManager GetTargetedEnemy()
+    {
+        if(targetedEnemy != null && !targetedEnemy.IsEmpty())
+        {
+            return targetedEnemy;
+        } else
+        {
+            return null;
         }
     }
 }

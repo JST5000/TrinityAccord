@@ -50,6 +50,8 @@ public static class CardPools
         all.Add(new Contaminate());
         all.Add(new Crossbow());
         all.Add(new DualWield());
+        all.Add(new Nightmare());
+        all.Add(new Yawn());
         all.Add(new Virus());
         all.Add(new Execute());
         all.Add(new Foil());
@@ -63,6 +65,7 @@ public static class CardPools
         all.Add(new Unearth());
         all.Add(new Staff());
         all.Add(new Sharpen());
+        all.Add(new TargetCard());
 
         allDraftableCards = all;
     }

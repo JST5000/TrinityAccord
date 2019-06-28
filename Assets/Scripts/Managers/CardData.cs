@@ -12,7 +12,7 @@ public abstract class CardData
     protected static object IdLock = new object();
     private int id;
 
-    protected UICardData uiCardData = new UICardData("Uninitialized", cost: 4, "Uninitialized", UICardData.CardType.ATTACK);
+    protected UICardData uiCardData = null;
 
     //Target are for determining which user input is required. Ex. Tell the card which enemy is targeted.
     public  Target target;
@@ -62,9 +62,14 @@ public abstract class CardData
         return uiCardData;
     }
 
-    protected void UpdateUICardData()
+    protected void UpdateUICardData(bool doNotUpdateCost = true)
     {
-        uiCardData = CreateUICardData();
+        UICardData updated = CreateUICardData();
+        if(uiCardData != null && doNotUpdateCost)
+        {
+            updated.cost = uiCardData.cost;
+        }
+        uiCardData = updated;
     }
 
     protected abstract UICardData CreateUICardData();
@@ -134,31 +139,53 @@ public abstract class CardData
         return uiCardData.cardType;
     }
 
+    protected EnemyManager GetRandomEnemy()
+    {
+        EncounterManager encounter = GameObject.Find("Board").GetComponent<EncounterManager>();
+        EnemyManager targetEnemy = null;
+        if (encounter.GetTargetedEnemy() != null)
+        {
+            targetEnemy = encounter.GetTargetedEnemy();
+        }
+        else
+        {
+            List<int> validEnemies = new List<int>();
+            EnemyManager[] enemies = encounter.allEnemyManagers;
+            for (int i = 0; i < enemies.Length; ++i)
+            {
+                if (!enemies[i].IsEmpty())
+                {
+                    validEnemies.Add(i);
+                }
+            }
+            int randomIndex = UnityEngine.Random.Range(0, validEnemies.Count);
+            targetEnemy = enemies[validEnemies[randomIndex]];
+        }
+        return targetEnemy;
+    }
+
     protected void damageRandom(int amount)
     {
-        EnemyManager[] enemies = GameObject.Find("Board").GetComponent<EncounterManager>().allEnemyManagers;
-        List<int> validEnemies = new List<int>();
-        for(int i = 0; i < enemies.Length; ++i)
-        {
-            if(!enemies[i].IsEmpty())
-            {
-                validEnemies.Add(i);
-            }
-        }
+        EnemyManager targetEnemy = GetRandomEnemy();
         //Nothing to damage
-        if(validEnemies.Count == 0)
+        if (targetEnemy == null)
         {
             return;
         }
-        int randomIndex = UnityEngine.Random.Range(0, validEnemies.Count);
-        for (int i = 0; i < 100 && !enemies[validEnemies[randomIndex]].Damage(amount); ++i) //Used instead of while to avoid infinite loop on error
+        DamageRandomEnemyHelper(targetEnemy, amount);
+
+    }
+
+    private void DamageRandomEnemyHelper(EnemyManager target, int amount)
+    {
+        for (int i = 0; i < 100 && !target.Damage(amount); ++i) //Used instead of while to avoid infinite loop on error
         {
             if (!encounterActive())
             {
                 return;
             }
-            randomIndex = UnityEngine.Random.Range(0, enemies.Length);
-        } 
+            //randomIndex = UnityEngine.Random.Range(0, enemies.Length);
+        }
     }
 
     protected CardData draw()
