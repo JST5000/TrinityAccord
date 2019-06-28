@@ -11,7 +11,11 @@ public class OneTonHammer : CardData
 
     protected override UICardData CreateUICardData()
     {
-        return new UICardData("One-Ton-Hammer", cost: 3, "Deal " + GetDamage() + " damage to target, random card in hand costs 3 until end of encounter", UICardData.CardType.ATTACK);
+        return new UICardData("One-Ton-Hammer", 
+            cost: 3, 
+            "Deal " + GetDamage() + " damage to target, random card in hand costs 3 until end of encounter", 
+            UICardData.CardType.ATTACK, 
+            "One_Ton_Hammer");
     }
 
     private int GetDamage()
