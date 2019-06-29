@@ -35,6 +35,7 @@ public class PauseMenuManager : MonoBehaviour
     public void ExitToTitle()
     {
         SceneManager.LoadScene("Main Menu");
+        Destroy(transform.parent.gameObject);
     }
 
     public void ExitGame()

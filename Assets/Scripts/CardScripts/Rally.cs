@@ -12,7 +12,7 @@ public class Rally : CardData
 
     protected override UICardData CreateUICardData()
     {
-        return new UICardData("Rally", cost: 2, "Deal " + GetDamage() + " damage Grow 2", UICardData.CardType.ATTACK);
+        return new UICardData("Rally", cost: 2, "Deal " + GetDamage() + " damage Grow 2", UICardData.CardType.ATTACK, "Rally");
     }
 
     private int GetDamage()

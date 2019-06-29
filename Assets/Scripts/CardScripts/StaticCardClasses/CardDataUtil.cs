@@ -29,6 +29,10 @@ public static class CardDataUtil
     //Throws KeyNotFoundException if input is invalid. 
     public static CardData[] InterpretText(string input)
     {
+        if(input == null || input == "")
+        {
+            throw new KeyNotFoundException("Unable to find empty input");
+        }
 
         Debug.Log("Text being interpretted: " + input);
         string[] separator = { ", " };

@@ -65,7 +65,7 @@ public static class CardPools
         all.Add(new Unearth());
         all.Add(new Staff());
         all.Add(new Sharpen());
-        all.Add(new TargetCard());
+//        all.Add(new TargetCard()); Readd when fixing, or when fixed
 
         allDraftableCards = all;
     }

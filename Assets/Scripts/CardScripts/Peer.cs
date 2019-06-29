@@ -15,7 +15,7 @@ public class Peer : CardData
 
     protected override UICardData CreateUICardData()
     {
-        return new UICardData("Peer", cost: 0, "Look at the top 2 cards of the deck and draw one", UICardData.CardType.SPELL);
+        return new UICardData("Peer", cost: 0, "Look at the top 2 cards of the deck and draw one", UICardData.CardType.SPELL, "Peer");
     }
 
 

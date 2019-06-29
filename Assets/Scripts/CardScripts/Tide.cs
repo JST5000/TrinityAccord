@@ -12,7 +12,7 @@ public class Tide : CardData
 
     protected override UICardData CreateUICardData()
     {
-         return new UICardData("Tide", cost: 3, "Deal " + GetDamage() + " damage to all enemies Grow 1", UICardData.CardType.ATTACK);
+         return new UICardData("Tide", cost: 3, "Deal " + GetDamage() + " damage to all enemies Grow 1", UICardData.CardType.ATTACK, "Tide");
     }
 
     private int GetDamage()
