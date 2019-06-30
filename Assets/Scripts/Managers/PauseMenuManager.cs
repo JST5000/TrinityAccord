@@ -18,14 +18,14 @@ public class PauseMenuManager : MonoBehaviour
 
     public void OpenHelp()
     {
-        Transform help = Instantiate(Help, GameObject.Find("Canvas").transform, false);
+        Transform help = Instantiate(Help, transform.parent, false);
         Vector3 newScale = MatchTransform.SetScaleToMatch((RectTransform)help, (RectTransform)help.parent.transform);
         help.GetComponent<HelpManager>().RelativeScale = newScale;
     }
 
     public void OpenGlossary()
     {
-        Transform instance = Instantiate(Help, GameObject.Find("Canvas").transform, false);
+        Transform instance = Instantiate(Help, transform.parent, false);
         Vector3 newScale = MatchTransform.SetScaleToMatch((RectTransform)instance, (RectTransform)instance.parent.transform);
         HelpManager help = instance.GetComponent<HelpManager>();
         help.RelativeScale = newScale;
@@ -36,6 +36,7 @@ public class PauseMenuManager : MonoBehaviour
     {
         SceneManager.LoadScene("Main Menu");
         Destroy(transform.parent.gameObject);
+        GetComponent<AdminHidden>().ExternalDisable();
     }
 
     public void ExitGame()

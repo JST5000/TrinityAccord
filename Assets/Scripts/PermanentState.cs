@@ -150,16 +150,27 @@ public class PermanentState : MonoBehaviour
 
     public static string GetNextTownSceneName()
     {
-        if(wins == 1)
+        return GetTownForNWins(wins);
+    }
+
+    public static string GetTownForNWins(int nWins)
+    {
+        if (wins == 1)
         {
             return "Town3";
-        } else if(wins == 4)
+        } else if(wins == 2)
+        {
+            return "SailboatHarbor";
+        }
+        else if (wins == 4)
         {
             return "Town4";
-        } else if(wins == FinalFight)
+        }
+        else if (wins == FinalFight)
         {
             return "Town2";
-        } else
+        }
+        else
         {
             return "Town1";
         }

@@ -64,10 +64,9 @@ public class HelpManager : MonoBehaviour
         pages.Add(new HelpPage("Cards", "", CardWithLabels));
         pages.Add(new HelpPage("Enemies", "", EnemyWithLabels));
         pages.Add(new HelpPage("Deck and Hand", "Your deck starts with 8 cards." +
-            "\n\nEvery turn you draw 4 cards and get 3 energy." +
+            "\n\nEvery turn you draw 4 cards and get 3 energy. (Max 6 cards)" +
             " At the end of each turn, all your cards are discarded." +
             "\n\nIf your deck runs out of cards, your discard is shuffled in." +
-            "\n\nYou can hold at most 6 cards." +
             "\n\nPlay cards by clicking on them, then on their target."
             ));
         pages.Add(new HelpPage("Progression", "After every encounter, you get to add a new card to your deck." +
@@ -142,7 +141,7 @@ public class HelpManager : MonoBehaviour
         textContent.text = page.TextContent;
         if(page.Prefab != null)
         {
-            currentPagePrefab = Instantiate(page.Prefab, GameObject.Find("Canvas").transform, false);
+            currentPagePrefab = Instantiate(page.Prefab, transform.parent, false);
             currentPagePrefab.localScale = RelativeScale;
         }
         UpdatePageCounter();

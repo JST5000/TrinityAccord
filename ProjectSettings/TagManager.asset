@@ -24,8 +24,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - PauseMenu
+  - Help
   - 
   - DebugBoarder
   - 
@@ -67,4 +67,7 @@ TagManager:
     locked: 0
   - name: EnemyUI3
     uniqueID: 503985595
+    locked: 0
+  - name: PauseMenu
+    uniqueID: 1794880355
     locked: 0

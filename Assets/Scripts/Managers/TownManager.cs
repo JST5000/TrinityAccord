@@ -30,6 +30,14 @@ public class TownManager : MonoBehaviour
         Enter("Emma's Cabin", "Emma", inventory, true, "Oh you poor thing...");
     }
 
+    public void OpenSailboat()
+    {
+        List<ShopItem> inventory = new List<ShopItem>();
+        inventory.Add(new TravelItem("Safe Travel", 3, "SailingIcon", PermanentState.GetTownForNWins(PermanentState.wins + 1), true));
+        inventory.Add(new TravelItem("Risky Travel", 0, "SwimmingIcon", "Encounter", false));
+        Enter("Harbor", "WaterBoy", inventory, false, "Pay for safe travel?");
+    }
+
     public void OpenTent()
     {
         List<ShopItem> inventory = new List<ShopItem>();

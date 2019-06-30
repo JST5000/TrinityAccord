@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Town4.unity
     guid: 43d81a8d8c34ba540be27630ccdef8ed
+  - enabled: 1
+    path: Assets/Scenes/SailboatHarbor.unity
+    guid: 87a4714722a12764da74f1167d79d5ba
   m_configObjects: {}

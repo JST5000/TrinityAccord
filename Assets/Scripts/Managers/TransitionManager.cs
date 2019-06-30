@@ -11,7 +11,6 @@ public class TransitionManager : MonoBehaviour
     public float MaxDurationSeconds = 3;
     private float CurrentDuration = 0;
 
-
     private CanvasGroup CanvasG;
 
     public void Init(string title, string quote, string attribution = "")
