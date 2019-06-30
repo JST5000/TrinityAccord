@@ -33,9 +33,9 @@ public class TownManager : MonoBehaviour
     public void OpenTent()
     {
         List<ShopItem> inventory = new List<ShopItem>();
-        inventory.Add(new PackItem());
+        //inventory.Add(new PackItem());
         inventory.Add(new HealthItem(3, 2));
-        Enter("Explorer's Tent", "Explorer", inventory, true, "What can I do for ya?");
+        Enter("Explorer's Tent", "Explorer", inventory, true, "I can fix you for a price.");
     }
 
     public void OpenQuestStand()
