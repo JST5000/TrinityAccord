@@ -11,7 +11,7 @@ public class Tome : CardData
 
     protected override UICardData CreateUICardData()
     {
-        return new UICardData("Tome", cost: 1, "Draw 2, Gain 1 energy for each spell drawn", UICardData.CardType.SPELL);
+        return new UICardData("Tome", cost: 1, "Draw 2, Gain 1 energy for each spell drawn", UICardData.CardType.SPELL, "Tome");
 
     }
 
