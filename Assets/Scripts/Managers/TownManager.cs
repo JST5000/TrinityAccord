@@ -35,7 +35,15 @@ public class TownManager : MonoBehaviour
         List<ShopItem> inventory = new List<ShopItem>();
         inventory.Add(new TravelItem("Safe Travel", 3, "SailingIcon", PermanentState.GetTownForNWins(PermanentState.wins + 1), true));
         inventory.Add(new TravelItem("Risky Travel", 0, "SwimmingIcon", "Encounter", false));
-        Enter("Harbor", "WaterBoy", inventory, false, "Pay for safe travel?");
+        Enter("Harbor", "WaterBoy", inventory, true, "Pay for safe travel?");
+    }
+
+    public void OpenArtistHill()
+    {
+        List<ShopItem> inventory = new List<ShopItem>();
+        inventory.Add(new HealthItem(2, 1));
+
+        Enter("Kwame's Hill", "Kwame", inventory, true, "Hahaha, welcome!");
     }
 
     public void OpenTent()

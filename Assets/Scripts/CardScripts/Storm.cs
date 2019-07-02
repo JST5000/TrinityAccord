@@ -12,7 +12,7 @@ public class Storm : CardData
 
     protected override UICardData CreateUICardData()
     {
-        return new UICardData("Storm", cost: 3, "Deal " + GetDamage() + " damage to all enemies Charge 1", UICardData.CardType.ATTACK);
+        return new UICardData("Storm", cost: 3, "Deal " + GetDamage() + " damage to all enemies Charge 1", UICardData.CardType.ATTACK, "Storm");
     }
 
     private int GetDamage()
