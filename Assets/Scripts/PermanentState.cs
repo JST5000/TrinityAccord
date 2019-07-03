@@ -155,18 +155,22 @@ public class PermanentState : MonoBehaviour
 
     public static string GetTownForNWins(int nWins)
     {
-        if (wins == 1)
+        if (nWins == 1)
         {
             return "Town3";
-        } else if(wins == 2)
+        } else if(nWins == 2)
         {
             return "SailboatHarbor";
         }
-        else if (wins == 4)
+        else if (nWins == 3)
+        {
+            return "ArtistHill";
+        }
+        else if (nWins == 4)
         {
             return "Town4";
-        }
-        else if (wins == FinalFight)
+        } 
+        else if (nWins == FinalFight)
         {
             return "Town2";
         }
@@ -174,6 +178,13 @@ public class PermanentState : MonoBehaviour
         {
             return "Town1";
         }
+    }
+
+    public static void ChooseNextFight()
+    {
+        EnemyData[] selectedEncounter = GenerateEncounter.GetEncounter(PermanentState.expectedLevel);
+        PermanentState.SetNextEncounter(selectedEncounter);
+        PermanentState.expectedLevel = GenerateEncounter.GetHarder(PermanentState.expectedLevel);
     }
 
     // Start is called before the first frame update

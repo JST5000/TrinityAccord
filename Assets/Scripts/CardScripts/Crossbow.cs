@@ -38,7 +38,7 @@ public class Crossbow : CardData
         {
             target = Target.ENEMY;
         }
-        UpdateUICardData();
+        UpdateUICardData(doNotUpdateCost: false);
     }
 
     public override void Action(EnemyManager[] enemys)

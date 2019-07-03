@@ -20,7 +20,7 @@ public class TravelItem : ShopItem
         {
             PermanentState.wins++;
         }
-
+        PermanentState.ChooseNextFight();
         SceneManager.LoadScene(SceneName);
     }
 }

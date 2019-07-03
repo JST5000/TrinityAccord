@@ -42,7 +42,8 @@ public class TownManager : MonoBehaviour
     {
         List<ShopItem> inventory = new List<ShopItem>();
         inventory.Add(new HealthItem(2, 1));
-
+        inventory.Add(new HealthItem(6, 2));
+        inventory.Add(new TravelItem("Onward", 0, "JumpingOffCliffIcon", "Encounter", false));
         Enter("Kwame's Hill", "Kwame", inventory, true, "Hahaha, welcome!");
     }
 
@@ -51,7 +52,7 @@ public class TownManager : MonoBehaviour
         List<ShopItem> inventory = new List<ShopItem>();
         //inventory.Add(new PackItem());
         inventory.Add(new HealthItem(3, 2));
-        Enter("Explorer's Tent", "Explorer", inventory, true, "I can fix you for a price.");
+        Enter("Explorer's Tent", "Explorer", inventory, true, "I can fix you... for a price.");
     }
 
     public void OpenQuestStand()
@@ -89,16 +90,11 @@ public class TownManager : MonoBehaviour
 
     public void LeaveTown(Text exit)
     {
-        ChooseNextFight();
+        PermanentState.ChooseNextFight();
         SceneManager.LoadScene("Encounter");
     }
 
-    private void ChooseNextFight()
-    {
-        EnemyData[] selectedEncounter = GenerateEncounter.GetEncounter(PermanentState.expectedLevel);
-        PermanentState.SetNextEncounter(selectedEncounter);
-        PermanentState.expectedLevel = GenerateEncounter.GetHarder(PermanentState.expectedLevel);
-    }
+
 
     private void Enter(string name, string shopKeeperName, List<ShopItem> items)
     {

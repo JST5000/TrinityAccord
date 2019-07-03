@@ -159,7 +159,10 @@ public abstract class CardData
                 }
             }
             int randomIndex = UnityEngine.Random.Range(0, validEnemies.Count);
-            targetEnemy = enemies[validEnemies[randomIndex]];
+            if (validEnemies.Count != 0)
+            {
+                targetEnemy = enemies[validEnemies[randomIndex]];
+            }
         }
         return targetEnemy;
     }

@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SailboatHarbor.unity
     guid: 87a4714722a12764da74f1167d79d5ba
+  - enabled: 1
+    path: Assets/Scenes/ArtistHill.unity
+    guid: 8ee1f18127cf50c408fb5a719145b190
   m_configObjects: {}
