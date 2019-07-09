@@ -32,7 +32,7 @@ public class Nightmare : CardData
 
     protected override UICardData CreateUICardData()
     {
-        return new UICardData("Nightmare", cost: 3, "Deal " + GetDamage() + " damage and put an enemy to sleep next turn.", UICardData.CardType.ATTACK);
+        return new UICardData("Nightmare", cost: 3, "Deal " + GetDamage() + " damage and put an enemy to sleep next turn.", UICardData.CardType.ATTACK, "Knightmare");
     }
 
     private int GetDamage()

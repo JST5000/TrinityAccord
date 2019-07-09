@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Foil : CardData
 {
-    private int growEnergy = 0;
+    private int expectedCost = 2;
     public Foil()
     {
         target = Target.ENEMY;
@@ -23,15 +23,16 @@ public class Foil : CardData
 
     private int GetCost()
     {
-        return (int)Mathf.Max(0, 2 - growEnergy);
+        return (int)Mathf.Max(0, expectedCost);
     }
 
     public override void Action(EnemyManager[] enemys)
     {
         enemys[0].Damage(GetDamage());
-        growEnergy += 1;
-        UpdateUICardData();
+        expectedCost -= 1;
+        UpdateUICardData(doNotUpdateCost: false);
     }
+
     public override void Action(CardData[] cards)
     {
 
