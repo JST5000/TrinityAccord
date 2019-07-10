@@ -11,6 +11,8 @@ public class CardUIUpdater : MonoBehaviour
     public TextMeshProUGUI cardEffect;
     public Image background;
     public Image CardArt;
+    public TextMeshProUGUI sharpenedText;
+
 
     public Sprite AttackBG;
     public Sprite SpellBG;
@@ -134,49 +136,74 @@ public class CardUIUpdater : MonoBehaviour
 
     private void DisplayTextAndCardArtDynamically(UICardData data)
     {
-        if (data.cardArt == null)
+        if (data.displayOnlyCardArt)
         {
-            DisplayFullTextWithNoArt(data);
+            DisplayWithFullCardArt(data);
         }
         else
         {
-            if (data.displayOnlyCardArt)
-            {
-                DisplayFullCardArt(data);
-            }
-            else
-            {
-                DisplayFullTextWithFadedArt(data);
-            }
+            DisplayFullTextWithFadedArt(data);
         }
     }
 
     //Hides text, shows full card art
-    private void DisplayFullCardArt(UICardData data)
+    private void DisplayWithFullCardArt(UICardData data)
+    {
+
+        if (data.cardArt != null)
+        {
+            DisplayAvailableCardArt(data);
+        } else
+        {
+            DisplayCardTextOnly(data);
+        }
+
+
+    }
+
+    private void DisplayAvailableCardArt(UICardData data)
     {
         cardEffect.text = "";
         CardArt.sprite = data.cardArt;
+        SetCardArtOpacity(1f);
+        SetSharpenedTextOpacity(1f);
+    }
+
+    private void DisplayCardTextOnly(UICardData data)
+    {
+        SetCardArtOpacity(0f);
+        SetSharpenedTextOpacity(1f);
+        cardEffect.text = data.effectText;
+    }
+
+    private void SetCardArtOpacity(float opacity)
+    {
         var color = CardArt.color;
-        color.a = 1f;
+        color.a = opacity;
         CardArt.color = color;
+    }
+
+    private void SetSharpenedTextOpacity(float opacity)
+    {
+        var sharpenedColor = sharpenedText.color;
+        sharpenedColor.a = opacity;
+        sharpenedText.color = sharpenedColor;
     }
 
     //Makes the art transparent and initializes text so text is fully readable
     private void DisplayFullTextWithFadedArt(UICardData data)
     {
         cardEffect.text = data.effectText;
-        CardArt.sprite = data.cardArt;
-        var color = CardArt.color;
-        color.a = .4f;
-        CardArt.color = color;
-    }
-
-    private void DisplayFullTextWithNoArt(UICardData data)
-    {
-        cardEffect.text = data.effectText;
-        var color = CardArt.color;
-        color.a = 0f;
-        CardArt.color = color;
+        float dim = .4f;
+        if (data.cardArt != null)
+        {
+            CardArt.sprite = data.cardArt;
+            SetCardArtOpacity(dim);
+        } else
+        {
+            SetCardArtOpacity(0f);
+        }
+        SetSharpenedTextOpacity(dim);
     }
 
     private void UpdateBGColor(UICardData.CardType type)
