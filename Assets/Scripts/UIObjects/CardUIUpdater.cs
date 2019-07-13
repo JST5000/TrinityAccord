@@ -185,11 +185,13 @@ public class CardUIUpdater : MonoBehaviour
 
     private void SetSharpenedTextOpacity(float opacity)
     {
-        var sharpenedColor = sharpenedText.color;
-        sharpenedColor.a = opacity;
-        sharpenedText.color = sharpenedColor;
+        if (sharpenedText != null)
+        {
+            var sharpenedColor = sharpenedText.color;
+            sharpenedColor.a = opacity;
+            sharpenedText.color = sharpenedColor;
+        }
     }
-
     //Makes the art transparent and initializes text so text is fully readable
     private void DisplayFullTextWithFadedArt(UICardData data)
     {

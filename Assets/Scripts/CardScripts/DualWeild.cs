@@ -16,13 +16,13 @@ public class DualWield : CardData
 
     private int GetDamage()
     {
-        return 4 + sharpened;
+        return 4 + sharpenDamage;
     }
 
     public override void Action(EnemyManager[] enemys)
     {
         enemys[0].Damage(GetDamage());
-        CardManager[] hand = getHand();
+        /*CardManager[] hand = getHand();
         List<int> validCards = new List<int>();
         for (int i = 0; i < hand.Length; ++i)
         {
@@ -36,12 +36,17 @@ public class DualWield : CardData
         {
             return;
         }
-        int randomIndex = UnityEngine.Random.Range(0, validCards.Count);
-        hand[validCards[randomIndex]].GetCardData().setCost(1);
-        
+        int randomIndex = UnityEngine.Random.Range(0, validCards.Count); */
+        CardManager card = DeckManager.Get().GetRandomValidCardManagerFromHand();
+        if (card != null)
+        {
+            card.GetCardData().setCost(1);
+        }
+
         //Ensure clickability of cards is updated
         GameObject.Find("Hand").GetComponent<HandManager>().UpdateAllCardsInHand();
     }
+
     public override void Action(CardData[] cards)
     {
 

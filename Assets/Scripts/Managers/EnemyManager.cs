@@ -86,6 +86,7 @@ public class EnemyManager : MonoBehaviour
 
     private void Attack()
     {
+        GetComponent<UpdateEnemyUI>().AttackEnemy();
         data.Attack();
         //Returns true if dead
         if(data.SelfHarm())

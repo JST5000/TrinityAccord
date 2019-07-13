@@ -16,7 +16,7 @@ public class Throw : CardData
 
     private int GetPrimaryDamage()
     {
-        return 3 + sharpened;
+        return 3 + sharpenDamage;
     }
 
     private int GetAdditionalDamage()

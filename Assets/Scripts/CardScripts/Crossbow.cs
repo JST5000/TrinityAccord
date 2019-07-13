@@ -25,7 +25,7 @@ public class Crossbow : CardData
 
     private int GetDamage()
     {
-        return 6 + sharpened;
+        return 6 + sharpenDamage;
     }
 
     private void ToggleReload()

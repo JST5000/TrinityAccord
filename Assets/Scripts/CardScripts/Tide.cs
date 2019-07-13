@@ -17,7 +17,7 @@ public class Tide : CardData
 
     private int GetDamage()
     {
-        return 2 + growDamage;
+        return 2 + growDamage + sharpenDamage;
     }
 
 

@@ -16,7 +16,7 @@ public class Sword : CardData
 
     private int GetDamage()
     {
-        return 3 + sharpened;
+        return 3 + sharpenDamage;
     }
 
 

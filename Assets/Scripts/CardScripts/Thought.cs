@@ -12,12 +12,12 @@ public class Thought : CardData
 
     protected override UICardData CreateUICardData()
     {
-       return new UICardData("Thought", cost: 1, "Flip Idea", UICardData.CardType.SPELL);
+       return new UICardData("Thought", cost: 1, "Flip Greed", UICardData.CardType.SPELL);
     }
 
     public override void Action(EnemyManager[] enemys)
     {
-        addCardToDiscard(new Idea());
+        addCardToDiscard(new Greed());
     }
     public override void Action(CardData[] cards)
     {

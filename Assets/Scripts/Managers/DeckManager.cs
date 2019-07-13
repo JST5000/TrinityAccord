@@ -17,6 +17,11 @@ public class DeckManager : MonoBehaviour
 
     private Transform DiscardView = null;
 
+    public static DeckManager Get()
+    {
+        return GameObject.Find("Deck").GetComponent<DeckManager>();
+    }
+
     //Initializes the player's deck
     void Start()
     {
@@ -79,7 +84,8 @@ public class DeckManager : MonoBehaviour
 
     }
 
-    public void addCardToHand(CardData card)
+    //Returns true if able to add the card
+    public bool addCardToHand(CardData card)
     {
         foreach (CardManager cardManager in hand)
         {
@@ -87,9 +93,10 @@ public class DeckManager : MonoBehaviour
             {
                 cardManager.Init(card);
                 GameObject.Find("Hand").GetComponent<HandManager>().UpdateAllCardsInHand();
-                return;
+                return true;
             }
         }
+        return false;
     }
     public CardData getTop()
     {
@@ -213,8 +220,6 @@ public class DeckManager : MonoBehaviour
         Debug.Log(DiscardView);
         DiscardView.localScale = new Vector3(1, 1, 1);
         RectTransform canvasRect = (RectTransform)transform.parent;
-//        DiscardView.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-        //DiscardView.transform.localPosition = new Vector3(canvasRect.rect.width * .5f, canvasRect.rect.height * .5f);
         DiscardView.GetComponent<CardViewerManager>().Init(discard.ToArray(), startOnLeft: false);
     }
 
@@ -239,12 +244,24 @@ public class DeckManager : MonoBehaviour
             Debug.Log(card);
         }
     }
-    public GameObject getRandomCardTarget()
+
+    public CardManager GetRandomValidCardManagerFromHand()
     {
-        System.Random r = new System.Random();
-        return hand[r.Next(0, hand.Length)].transform.gameObject;
-
-
+        List<int> validCards = new List<int>();
+        for (int i = 0; i < hand.Length; ++i)
+        {
+            if (!hand[i].IsEmpty())
+            {
+                validCards.Add(i);
+            }
+        }
+        //No cards in hand
+        if (validCards.Count == 0)
+        {
+            return null;
+        }
+        int randomIndex = UnityEngine.Random.Range(0, validCards.Count);
+        return hand[validCards[randomIndex]];
     }
 
     private void Update()
@@ -252,9 +269,4 @@ public class DeckManager : MonoBehaviour
         deckCount.text = "(" + deck.Count + ")";
         discardCount.text = "(" + discard.Count + ")";
     }
-
-
-
-
-
 }

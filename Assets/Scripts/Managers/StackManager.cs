@@ -95,8 +95,8 @@ public class StackManager : MonoBehaviour
         if (duplicate > 0 && !top.duplicated) //&& top.GetType().Equals(UICardData.CardType.SPELL))
         {
             Debug.Log("Duplicate active");
-            DeckManager deck = GameObject.Find("Deck").GetComponent<DeckManager>();
-            CardData copy = top.Clone();//deck.Clone();
+            DeckManager deck = DeckManager.Get();
+            CardData copy = top.CloneCardType();//deck.Clone();
             top.fragile = true;
             top.duplicated = true;
             Push(copy, cardAndUsage.Value);
@@ -158,13 +158,13 @@ public class StackManager : MonoBehaviour
     {
         if (!card.fragile)
         {
-            GameObject.Find("Deck").GetComponent<DeckManager>().AddToDiscard(card);
+            DeckManager.Get().AddToDiscard(card);
         }
     }
 
     private void AddToHand(CardData card)
     {
-        GameObject.Find("Deck").GetComponent<DeckManager>().addCardToHand(card);
+        DeckManager.Get().addCardToHand(card);
     }
 
     private EnemyManager[] GetEnemiesToIndicateAsTargets()

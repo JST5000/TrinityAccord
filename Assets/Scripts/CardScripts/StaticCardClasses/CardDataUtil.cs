@@ -23,7 +23,7 @@ public static class CardDataUtil
             nameToCard = GetNameDictionary(CreateFreshCopiesOf(CardPools.GetAllCardsIncludingDefaults()).ToArray());
         }
 
-        return nameToCard[CardName].Clone();
+        return nameToCard[CardName].CloneCardType();
     }
 
     //Throws KeyNotFoundException if input is invalid. 
@@ -62,7 +62,7 @@ public static class CardDataUtil
         List<CardData> fresh = new List<CardData>();
         foreach (CardData card in deck)
         {
-            fresh.Add(card.Clone());
+            fresh.Add(card.CloneCardType());
         }
         return fresh;
     }
@@ -82,7 +82,7 @@ public static class CardDataUtil
         for(int i = 0; i < n; ++i)
         {
             int randIndex = Random.Range(0, validOption.Count);
-            chosen.Add(pool[validOption[randIndex]].Clone());
+            chosen.Add(pool[validOption[randIndex]].CloneCardType());
             validOption.RemoveAt(randIndex);
         }
         return chosen;

@@ -63,7 +63,7 @@ public class Virus : CardData
 
     private int GetVileSwordDamage()
     {
-        return 5 + sharpened;
+        return 5 + sharpenDamage;
     }
 
     public override void Action(EnemyManager[] enemys)

@@ -22,7 +22,7 @@ public class Staff : CardData
 
         GameObject instance = GameObject.Instantiate(Resources.Load<GameObject>("Choose3Menu"), GameObject.Find("Canvas").transform, false);
         Choose3Manager choose3 = instance.GetComponent<Choose3Manager>();
-        DeckManager deck = GameObject.Find("Deck").GetComponent<DeckManager>();
+        DeckManager deck = DeckManager.Get();
 
         //Forces shuffle at start of effect instead of midway
         choose3.Init(options);
@@ -41,11 +41,11 @@ public class Staff : CardData
     {
         if (cards[0].Equals(options[0]))
         {
-            tempTarget[0].Damage(2 + sharpened);
+            tempTarget[0].Damage(2 + sharpenDamage);
         }
         else if (cards[0].Equals(options[1]))
         {
-            tempTarget[0].Damage(1 + sharpened);
+            tempTarget[0].Damage(1 + sharpenDamage);
             draw();
         }else
         {
@@ -65,12 +65,12 @@ public class Staff : CardData
     }
     public override void sharpen()
     {
-        sharpened++;
-        for (int i = 0; i < sharpened; i++)
+        sharpenDamage++;
+        for (int i = 0; i < sharpenDamage; i++)
         {
             options[0].sharpen();
             options[1].sharpen();
         }
-        uiCardData = new UICardData("Staff", cost: 1, "Deal " + (2 + sharpened) + " damage, draw 1 card deal " + (1 + sharpened) + " damage, or draw 2 cards", UICardData.CardType.ATTACK);
+        uiCardData = new UICardData("Staff", cost: 1, "Deal " + (2 + sharpenDamage) + " damage, draw 1 card deal " + (1 + sharpenDamage) + " damage, or draw 2 cards", UICardData.CardType.ATTACK);
     }
 }

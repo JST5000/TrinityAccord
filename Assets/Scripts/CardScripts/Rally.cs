@@ -17,7 +17,7 @@ public class Rally : CardData
 
     private int GetDamage()
     {
-        return 3 + growDamage + sharpened;
+        return 3 + growDamage + sharpenDamage;
     }
 
 

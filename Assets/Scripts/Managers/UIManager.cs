@@ -194,6 +194,10 @@ public class UIManager : MonoBehaviour
         Debug.Log(selectedCard);
         Player player = GameObject.Find("Player").GetComponent<Player>();
         player.PayEnergy(selectedCard.GetCardData().getCost());
+        
+        //Remove the card from the hand 
+        selectedCard.SetEmpty();
+
         if (player.IsBlind())
         {
             CardData.playCardRandomTarget(selectedCard.GetCardData());
@@ -204,8 +208,6 @@ public class UIManager : MonoBehaviour
             StackManager playStack = GameObject.Find("StackHolder").GetComponent<StackManager>();
             playStack.Push(selectedCard.GetCardData(), StackUsage.PLAY);
         }
-        //Remove the card from the hand 
-        selectedCard.SetEmpty();
 
         //Removes highlight for the next card to appear
         selectedCard.GetComponent<CardUIUpdater>().ResetHighlight();
@@ -225,13 +227,13 @@ public class UIManager : MonoBehaviour
     public void clickDeck(GameObject clicked)
     {
         Debug.Log("Clicked the Deck");
-        GameObject.Find("Deck").GetComponent<DeckManager>().PrintDeck();
+        DeckManager.Get().PrintDeck();
     }
 
     public void clickDiscard(GameObject clicked)
     {
         Debug.Log("Clicked the Discard Pile");
-        GameObject.Find("Deck").GetComponent<DeckManager>().DisplayDiscardToPlayer();
+        DeckManager.Get().DisplayDiscardToPlayer();
     }
 
     public void autoEndTurn()
@@ -256,7 +258,7 @@ public class UIManager : MonoBehaviour
 
             GameObject.Find("Board").GetComponent<EncounterManager>().EndTurn();
 
-            DeckManager decks = GameObject.Find("Deck").GetComponent<DeckManager>();
+            DeckManager decks = DeckManager.Get();
             decks.EndTurn(); //Discards hand
 
             //VERY IMPORTANT, ResetCounts must happen AFTER the EncounterManager EndTurn, otherwise the "Recently Played" set will be cleared!

@@ -1011,6 +1011,7 @@ GameObject:
   - component: {fileID: 6683361689800135411}
   - component: {fileID: 3648329561333771786}
   - component: {fileID: 4754648793935962146}
+  - component: {fileID: 3949247994916934000}
   m_Layer: 5
   m_Name: Enemy
   m_TagString: Untagged
@@ -1195,6 +1196,18 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &3949247994916934000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8260390675079304805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7047f8c236f759d4f82d0ddf5556885f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2207161615107999254
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1439,6 +1452,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69c1e1ee47dda954bb7c8dd8d0143ccb, type: 3}
+--- !u!224 &1316659802774179160 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6219746234040980250, guid: 69c1e1ee47dda954bb7c8dd8d0143ccb,
+    type: 3}
+  m_PrefabInstance: {fileID: 4905912178914238018}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4403132462854331442 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8723011264095076976, guid: 69c1e1ee47dda954bb7c8dd8d0143ccb,
@@ -1451,12 +1470,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4909b70667547b40ad9344811f89eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &1316659802774179160 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6219746234040980250, guid: 69c1e1ee47dda954bb7c8dd8d0143ccb,
-    type: 3}
-  m_PrefabInstance: {fileID: 4905912178914238018}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7304873675285241323
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -18,7 +18,7 @@ public class Foil : CardData
 
     private int GetDamage()
     {
-        return 3 + sharpened;
+        return 3 + sharpenDamage;
     }
 
     private int GetCost()

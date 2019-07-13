@@ -26,7 +26,7 @@ public class Peer : CardData
 
         GameObject instance = GameObject.Instantiate(Resources.Load<GameObject>("Choose3Menu"), GameObject.Find("Canvas").transform, false);
         Choose3Manager choose3 = instance.GetComponent<Choose3Manager>();
-        DeckManager deck = GameObject.Find("Deck").GetComponent<DeckManager>();
+        DeckManager deck = DeckManager.Get();
         
         //Forces shuffle at start of effect instead of midway
         topCards[1] = deck.GetAtIndex(1);
@@ -43,7 +43,7 @@ public class Peer : CardData
     //Will be called by the Choose3Manager when a choice has been made
     public override void Action(CardData[] cards)
     {
-        DeckManager deck = GameObject.Find("Deck").GetComponent<DeckManager>();
+        DeckManager deck = DeckManager.Get();
         if (cards[0] == topCards[0])
         {
             deck.DrawAtIndex(0);

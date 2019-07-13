@@ -23,6 +23,8 @@ public class UpdateEnemyUI : MonoBehaviour
     private bool isDisabled = false;
     public CanvasGroup enemyCG;
 
+    private Transform HealthBar;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +32,8 @@ public class UpdateEnemyUI : MonoBehaviour
         DisableEnemy();
 
         targetVisibility = (TargetArrowCG.alpha > .1f);
+
+        HealthBar = GameObject.Find("Player Health Bar").transform;
     }
 
     public void PopulateUI(UIEnemyData data)
@@ -79,6 +83,11 @@ public class UpdateEnemyUI : MonoBehaviour
             enemyCG.interactable = true;
             isDisabled = false;
         }
+    }
+
+    public void AttackEnemy()
+    {
+        GetComponent<MoveToBump>().StartBump(transform, HealthBar, .5f, true);
     }
 
     public void UpdateUI(UIEnemyData data)

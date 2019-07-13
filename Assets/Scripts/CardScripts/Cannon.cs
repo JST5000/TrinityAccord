@@ -16,12 +16,12 @@ public class Cannon : CardData
 
     private int GetCenterDamage()
     {
-        return 4 + sharpened;
+        return 4 + sharpenDamage;
     }
 
     private int GetOuterDamage()
     {
-        return 2 + sharpened;
+        return 2 + sharpenDamage;
     }
 
     public override void Action(EnemyManager[] enemys)

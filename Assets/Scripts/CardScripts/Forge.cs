@@ -16,7 +16,7 @@ public class Forge : CardData
 
     private int GetDamage()
     {
-        return 4 + sharpened;
+        return 4 + sharpenDamage;
     }
 
     public override void Action(EnemyManager[] enemys)

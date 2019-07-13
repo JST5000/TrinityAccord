@@ -16,7 +16,7 @@ public class Kunai : CardData
 
     private int GetDamage()
     {
-        return 3 + sharpened;
+        return 3 + sharpenDamage;
     }
 
     public override void Action(EnemyManager[] enemys)

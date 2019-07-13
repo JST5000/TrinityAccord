@@ -54,6 +54,25 @@ public class EncounterManager : MonoBehaviour
         }
     }
 
+    public EnemyManager GetRandomAliveEnemyManager()
+    {
+            List<int> validEnemies = new List<int>();
+            for (int i = 0; i < allEnemyManagers.Length; ++i)
+            {
+                if (!allEnemyManagers[i].IsEmpty())
+                {
+                    validEnemies.Add(i);
+                }
+            }
+            //No cards in hand
+            if (validEnemies.Count == 0)
+            {
+                return null;
+            }
+            int randomIndex = UnityEngine.Random.Range(0, validEnemies.Count);
+            return allEnemyManagers[validEnemies[randomIndex]];
+    }
+
     public void EndTurn()
     {
         List<EnemyManager> validEnemies = new List<EnemyManager>();
@@ -67,6 +86,7 @@ public class EncounterManager : MonoBehaviour
         foreach (EnemyManager validEnemy in validEnemies)
         {
             validEnemy.EndTurn();
+            
         }
         SetTargetedEnemy(null);
     }

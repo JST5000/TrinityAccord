@@ -18,7 +18,7 @@ public class ScytheSoldier : EnemyData
         if (recentlyPlayed != null)
         {
             CardData removedCard = null;
-            DeckManager deckMan = GameObject.Find("Deck").GetComponent<DeckManager>();
+            DeckManager deckMan = DeckManager.Get();
             int discardIndex = CardDataUtil.FindCard(deckMan.discard, recentlyPlayed);
             if (discardIndex != -1)
             {
@@ -31,7 +31,7 @@ public class ScytheSoldier : EnemyData
                 if (deckIndex != -1)
                 {
 
-                    removedCard = deckMan.deck[deckIndex].Clone();
+                    removedCard = deckMan.deck[deckIndex].CloneCardType();
                     deckMan.deck.RemoveAt(deckIndex);
                 }
             }

@@ -17,7 +17,7 @@ public class Storm : CardData
 
     private int GetDamage()
     {
-        return 2 + chargeDamage + sharpened;
+        return 2 + chargeDamage + sharpenDamage;
     }
 
     public override void Action(EnemyManager[] enemys)

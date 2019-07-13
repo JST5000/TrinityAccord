@@ -16,7 +16,7 @@ public class Staff1 : CardData
 
     private int GetDamage()
     {
-        return 2 + sharpened;
+        return 2 + sharpenDamage;
     }
 
     public override void Action(EnemyManager[] enemys)

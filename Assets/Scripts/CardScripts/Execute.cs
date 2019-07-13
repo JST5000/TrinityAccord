@@ -17,7 +17,7 @@ public class Execute : CardData
 
     private int GetInitialDamage()
     {
-        return 2 + sharpened;
+        return 2 + sharpenDamage;
     }
 
     private int GetAdditionalDamage()

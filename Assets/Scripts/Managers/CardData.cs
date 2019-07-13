@@ -19,7 +19,7 @@ public abstract class CardData
     public GameObject selectedTarget;
     public string cardName;
 
-    protected int sharpened = 0;
+    protected int sharpenDamage = 0;
 
     public bool fragile = false;
     public bool duplicated = false;
@@ -76,7 +76,7 @@ public abstract class CardData
 
     public virtual void sharpen()
     {
-        sharpened++;
+        sharpenDamage++;
         UpdateUICardData();
     }
 
@@ -95,7 +95,7 @@ public abstract class CardData
         return id;
     }
 
-    public CardData Clone()
+    public CardData CloneCardType()
     {
         Type type = this.GetType();
         CardData copy = (CardData)Activator.CreateInstance(type);
@@ -193,13 +193,13 @@ public abstract class CardData
 
     protected CardData draw()
     {
-        DeckManager deck = GameObject.Find("Deck").GetComponent<DeckManager>();
+        DeckManager deck = DeckManager.Get();
         return deck.DrawCard();
     }
 
     protected void drawFromDiscard()
     {
-        DeckManager deck = GameObject.Find("Deck").GetComponent<DeckManager>();
+        DeckManager deck = DeckManager.Get();
         CardData toAdd= deck.grabDiscard();
         if (toAdd != null) {
             deck.addCardToHand(toAdd);
@@ -208,7 +208,7 @@ public abstract class CardData
     }
     protected CardData grabTop()
     {
-        DeckManager deck = GameObject.Find("Deck").GetComponent<DeckManager>();
+        DeckManager deck = DeckManager.Get();
         return deck.grabTop();
     }
 
@@ -242,7 +242,7 @@ public abstract class CardData
     protected int checkNumberOfCardsInHand()
     {
 
-        return GameObject.Find("Deck").GetComponent<DeckManager>().getNumberOfCardsInHand();
+        return DeckManager.Get().getNumberOfCardsInHand();
     }
 
     protected int getNumberOfAttacksPlayed()
@@ -257,9 +257,9 @@ public abstract class CardData
 
     protected CardManager getMyCardManager()
     {
-        foreach (CardManager cardManager in GameObject.Find("Deck").GetComponent<DeckManager>().hand)
+        foreach (CardManager cardManager in DeckManager.Get().hand)
         {
-            if (cardManager.GetCardData().Equals(this))
+            if (cardManager.GetCardData() == this)
             {
                 return cardManager;
             }
@@ -269,12 +269,12 @@ public abstract class CardData
 
     protected CardManager[] getHand()
     {
-        return GameObject.Find("Deck").GetComponent<DeckManager>().hand;
+        return DeckManager.Get().hand;
     }
 
     protected DeckManager getDeckManager()
     {
-        return GameObject.Find("Deck").GetComponent<DeckManager>();
+        return DeckManager.Get();
     }
 
     protected EnemyManager[] getEnemyManagers()
@@ -290,7 +290,7 @@ public abstract class CardData
         }
         else if (card.target.Equals(Target.CARD))
         {
-            card.selectedTarget=GameObject.Find("Deck").GetComponent<DeckManager>().getRandomCardTarget();
+            card.selectedTarget = DeckManager.Get().GetRandomValidCardManagerFromHand().gameObject;
         }
         else
         {
@@ -303,28 +303,11 @@ public abstract class CardData
     {
         if (card.target.Equals(Target.ENEMY))
         {
-            GameObject[] enemies = GameObject.Find("Board").GetComponent<EncounterManager>().enemyGameObjects;
-
-            List<int> validEnemies = new List<int>();
-            for (int i = 0; i < enemies.Length; ++i)
-            {
-                if (!enemies[i].GetComponent<EnemyManager>().IsEmpty())
-                {
-                    validEnemies.Add(i);
-                }
-            }
-            //Nothing to damage
-            if (validEnemies.Count == 0)
-            {
-
-                return;
-            }
-            int randomIndex = UnityEngine.Random.Range(0, validEnemies.Count);
-            card.selectedTarget = (GameObject)enemies[validEnemies[randomIndex]];
+            card.selectedTarget = GameObject.Find("Board").GetComponent<EncounterManager>().GetRandomAliveEnemyManager().gameObject;
         }
         else if (card.target.Equals(Target.CARD))
         {
-            card.selectedTarget = GameObject.Find("Deck").GetComponent<DeckManager>().getRandomCardTarget();
+            card.selectedTarget = DeckManager.Get().GetRandomValidCardManagerFromHand().gameObject;
         }
         else
         {
@@ -335,7 +318,7 @@ public abstract class CardData
 
     protected void addCardToDiscard(CardData card)
     {
-        GameObject.Find("Deck").GetComponent<DeckManager>().AddToDiscard(card);
+        DeckManager.Get().AddToDiscard(card);
     }
 
     protected CardData BurnTopCard()

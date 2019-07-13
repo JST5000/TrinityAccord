@@ -16,7 +16,7 @@ public class GreatSword : CardData
 
     private int GetDamage()
     {
-        return 6 + sharpened;
+        return 6 + sharpenDamage;
     }
 
     public override void Action(EnemyManager[] enemys)

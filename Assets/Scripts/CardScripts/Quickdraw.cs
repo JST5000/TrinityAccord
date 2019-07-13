@@ -17,7 +17,7 @@ public class Quickdraw : CardData
 
     public override void Action(EnemyManager[] enemys)
     {
-        GameObject.Find("Deck").GetComponent<DeckManager>().DiscardHand();
+        DeckManager.Get().DiscardHand();
         draw();
         draw();
         draw();

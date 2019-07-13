@@ -10,6 +10,6 @@ public class Squirrel : EnemyData
     override
     protected void OnLossOfLife()
     {
-        GameObject.Find("Deck").GetComponent<DeckManager>().AddDrawNextTurn();
+        DeckManager.Get().AddDrawNextTurn();
     }
 }

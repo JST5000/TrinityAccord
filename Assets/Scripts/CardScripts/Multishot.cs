@@ -20,7 +20,7 @@ public class Multishot : CardData
 
     private int GetDamage()
     {
-        return 3 + chargeDamage + sharpened;
+        return 3 + chargeDamage + sharpenDamage;
     }
 
     public override void Action(EnemyManager[] enemys)

@@ -12,7 +12,7 @@ public class Clone : CardData
 
     protected override UICardData CreateUICardData()
     {
-        return new UICardData("Clone", cost: 0, "Becomes copy of target until end of game", UICardData.CardType.SPELL);
+        return new UICardData("Clone", cost: 0, "Becomes copy of target until end of encounter", UICardData.CardType.SPELL);
     }
 
 
@@ -28,8 +28,26 @@ public class Clone : CardData
     }
     public override void Action(CardData[] cards)
     {
-        getMyCardManager().Init(cards[0].Clone());
+        CardData copy = this;
+        if (cards.Length != 0)
+        {
+            copy = cards[0].CloneCardType();
+            copy.setCost(cards[0].getCost());
+        }
 
+        CardManager cardInHand = getMyCardManager();
+        if (cardInHand != null)
+        {
+            cardInHand.Init(copy);
+        }
+        else
+        {
+            DeckManager dm = DeckManager.Get();
+            if (!dm.addCardToHand(copy))
+            {
+                DeckManager.Get().AddToDiscard(copy);
+            }
+        }
     }
     public override void Action(CardData[] cards, EnemyManager[] enemys)
     {
