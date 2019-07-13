@@ -103,6 +103,7 @@ public class Player : MonoBehaviour
     public void Damage(int dmg)
     {
         SetCurrentHealth(currHealth - dmg);
+        SoundManager.playSound("Belt_Smack");
         UpdateHealthUI();
         if (currHealth <= 0)
         {
