@@ -12,6 +12,7 @@ public class CardUIUpdater : MonoBehaviour
     public Image background;
     public Image CardArt;
     public TextMeshProUGUI sharpenedText;
+    public CanvasGroup LockIconCG;
 
 
     public Sprite AttackBG;
@@ -73,6 +74,7 @@ public class CardUIUpdater : MonoBehaviour
             {
                 UpdateUI(cardHolder.GetUICardData());
             }
+            CanvasGroupManip.SetVisibility(cardHolder.IsPreserved(), LockIconCG);
             TurnOnCard();
         } else
         {

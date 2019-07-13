@@ -19,7 +19,7 @@ public class Clone : CardData
     public override void OnSelectedInHand()
     {
         base.OnSelectedInHand();
-        GameObject.Find("Hand").GetComponent<HandManager>().EnableAllCardsInHand();
+        HandManager.Get().EnableAllCardsInHand();
     }
 
     public override void Action(EnemyManager[] enemys)

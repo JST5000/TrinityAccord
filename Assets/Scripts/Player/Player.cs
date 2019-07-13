@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
         currEnergy = defaultEnergy+bonusEnergy;
         bonusEnergy = 0;
         UpdateEnergyUI();
-        GameObject.Find("Hand").GetComponent<HandManager>().UpdateAllCardsInHand();
+        HandManager.Get().UpdateAllCardsInHand();
     }
     public void addBonusEnergy(int amount)
     {
@@ -91,13 +91,13 @@ public class Player : MonoBehaviour
     {
         currEnergy -= cost;
         UpdateEnergyUI();
-        GameObject.Find("Hand").GetComponent<HandManager>().UpdateAllCardsInHand();
+        HandManager.Get().UpdateAllCardsInHand();
     }
     public void AddEnergy(int amount)
     {
         currEnergy += amount;
         UpdateEnergyUI();
-        GameObject.Find("Hand").GetComponent<HandManager>().UpdateAllCardsInHand();
+        HandManager.Get().UpdateAllCardsInHand();
     }
 
     public void Damage(int dmg)

@@ -104,7 +104,7 @@ public class Virus : CardData
     public override void OnDraw()
     {
         BecomeDefaultVirusCard();
-        GameObject.Find("Hand").GetComponent<HandManager>().RemoveCardFromHand(GetId());
+        HandManager.Get().RemoveCardFromHand(GetId());
         playCardRandomTarget(this, StackUsage.PLAY_AND_RETURN_TO_HAND);
     }
 

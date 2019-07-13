@@ -19,7 +19,7 @@ public class EndTurnUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        handMan = GameObject.Find("Hand").GetComponent<HandManager>();
+        handMan = HandManager.Get();
         stack = GameObject.Find("StackHolder").GetComponent<StackManager>();
 
         bg = GetComponent<Button>();

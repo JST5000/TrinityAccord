@@ -107,7 +107,7 @@ public class StackManager : MonoBehaviour
         ConsumeCardEffect(cardAndUsage);
 
         //Card Effects may require updating the hand such as Dual Weild
-        GameObject.Find("Hand").GetComponent<HandManager>().UpdateAllCardsInHand();
+        HandManager.Get().UpdateAllCardsInHand();
         UpdateUI();
         inAnimation = false;
         endTurn.ResumeAutoEndTurn();    

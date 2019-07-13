@@ -16,6 +16,11 @@ public class HandManager : MonoBehaviour
         }
     }
 
+    public static HandManager Get()
+    {
+        return GameObject.Find("Hand").GetComponent<HandManager>();
+    }
+
     public void UpdateAllCardsInHand()
     {
         UpdateAllCardsInHand(false);
@@ -78,6 +83,18 @@ public class HandManager : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public CardManager GetManagerWithCard(CardData card)
+    {
+        foreach (CardManager man in cardsInHand)
+        {
+            if(!man.IsEmpty() && man.GetCardData().Equals(card))
+            {
+                return man;
+            }
+        }
+        return null;
     }
 
     public void DisableHandInteractions()

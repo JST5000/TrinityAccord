@@ -14,6 +14,8 @@ public class CardManager : MonoBehaviour
 
     public bool AlwaysDisplayText;
 
+    private bool Preserve;
+
     private bool prevSettingForCardArt;
 
     public void Init(CardData cardData)
@@ -34,11 +36,14 @@ public class CardManager : MonoBehaviour
                 cardData.GetUICardData().displayOnlyCardArt = true;
             }
             this.empty = false;
+            this.Preserve = false;
         }
     }
+
     public void SetEmpty()
     {
         empty = true;
+        this.Preserve = false;
     }
 
     public bool IsEmpty()
@@ -92,6 +97,21 @@ public class CardManager : MonoBehaviour
         } else {
             cardData.GetUICardData().displayOnlyCardArt = displayOnlyCardArt;
         }
+    }
+
+    public void PreserveCard()
+    {
+        Preserve = true;
+    }
+
+    public void DisablePreserved()
+    {
+        Preserve = false;
+    }
+
+    public bool IsPreserved()
+    {
+        return Preserve;
     }
 
     public bool IsPlayable()

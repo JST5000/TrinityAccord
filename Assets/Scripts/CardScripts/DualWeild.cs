@@ -44,7 +44,7 @@ public class DualWield : CardData
         }
 
         //Ensure clickability of cards is updated
-        GameObject.Find("Hand").GetComponent<HandManager>().UpdateAllCardsInHand();
+        HandManager.Get().UpdateAllCardsInHand();
     }
 
     public override void Action(CardData[] cards)

@@ -68,20 +68,13 @@ public class DeckManager : MonoBehaviour
         {
             ShuffleDiscardIntoDeck();
         }
-        foreach (CardManager cardManager in hand)
+        CardData toAdd = deck[i];
+        if(addCardToHand(toAdd))
         {
-            if (cardManager.empty)
-            {
-                CardData toAdd = deck[i];
-                toAdd.OnDraw();
-                cardManager.Init(toAdd);
-                deck.RemoveAt(i);
-                GameObject.Find("Hand").GetComponent<HandManager>().UpdateAllCardsInHand();
-                return toAdd;
-            }
+            deck.RemoveAt(i);
+            return toAdd;
         }
         return null;
-
     }
 
     //Returns true if able to add the card
@@ -91,8 +84,9 @@ public class DeckManager : MonoBehaviour
         {
             if (cardManager.empty)
             {
+                card.OnDraw();
                 cardManager.Init(card);
-                GameObject.Find("Hand").GetComponent<HandManager>().UpdateAllCardsInHand();
+                HandManager.Get().UpdateAllCardsInHand();
                 return true;
             }
         }
@@ -178,12 +172,13 @@ public class DeckManager : MonoBehaviour
     public void DiscardHand() {
         foreach(CardManager cardMan in hand)
         {
-            if (!cardMan.IsEmpty())
+            if (!cardMan.IsEmpty() && !cardMan.IsPreserved())
             {
                 cardMan.GetCardData().OnDiscard();
                 discard.Add(cardMan.GetCardData());
                 cardMan.SetEmpty();
             }
+            cardMan.DisablePreserved();
         }
     }
 

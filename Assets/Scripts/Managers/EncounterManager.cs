@@ -132,7 +132,7 @@ public class EncounterManager : MonoBehaviour
     public void OnEncounterWin()
     {
         PermanentState.wins++;
-        HandManager hand = GameObject.Find("Hand").GetComponent<HandManager>();
+        HandManager hand = HandManager.Get();
         hand.DisableHandInteractions();
         //No more turns, so disallow ending turn
         GameObject.Find("EndTurnButton").GetComponent<Button>().interactable = false;

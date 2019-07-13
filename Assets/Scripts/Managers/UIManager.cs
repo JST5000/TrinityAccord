@@ -32,7 +32,7 @@ public class UIManager : MonoBehaviour
     public static void selectCardInHand(CardData card,int count)
     {
         SetCurrentMode(GameMode.PickCardInHand);
-        GameObject.Find("Hand").GetComponent<HandManager>().UpdateAllCardsInHand();
+        HandManager.Get().UpdateAllCardsInHand();
         actionCard = card;
         actionsNeeded = count;
     }
@@ -107,7 +107,7 @@ public class UIManager : MonoBehaviour
             {
                 currentMode = GameMode.SelectCard;
             }
-            GameObject.Find("Hand").GetComponent<HandManager>().UpdateAllCardsInHand();
+            HandManager.Get().UpdateAllCardsInHand();
         }
     }
 
@@ -213,7 +213,7 @@ public class UIManager : MonoBehaviour
         selectedCard.GetComponent<CardUIUpdater>().ResetHighlight();
 
         //Recheck if any conditions are not met
-        GameObject.Find("Hand").GetComponent<HandManager>().UpdateAllCardsInHand();
+        HandManager.Get().UpdateAllCardsInHand();
 
         currentMode = GameMode.Animation;
         requiredInput = Target.NONE;
