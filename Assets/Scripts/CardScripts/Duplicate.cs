@@ -14,6 +14,11 @@ public class Duplicate : CardData
         return new UICardData("Duplicate", cost: 1, "Copy the next spell played", UICardData.CardType.SPELL);
     }
 
+    public override int GetBonusDamage()
+    {
+        return 0;
+    }
+
     public override void Action(EnemyManager[] enemys)
     {
         GameObject.Find("StackHolder").GetComponent<StackManager>().duplicate++;

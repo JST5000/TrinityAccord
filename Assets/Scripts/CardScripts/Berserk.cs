@@ -14,6 +14,10 @@ public class Berserk : CardData
         return new UICardData("Berserk", cost: 2, "Play top 2 cards of deck at random", UICardData.CardType.SPELL, "Berserk");
     }
 
+    public override int GetBonusDamage()
+    {
+        return 0;
+    }
 
     public override void Action(EnemyManager[] enemys)
     {

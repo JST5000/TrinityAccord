@@ -14,6 +14,11 @@ public class Wisdom : CardData
         return new UICardData("Wisdom", cost: 1, "Draw 1 from discard, draw 1 ", UICardData.CardType.SPELL);
     }
 
+    public override int GetBonusDamage()
+    {
+        return 0;
+    }
+
     public override void Action(EnemyManager[] enemys)
     {
        

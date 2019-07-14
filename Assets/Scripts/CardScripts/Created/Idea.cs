@@ -14,6 +14,11 @@ public class Idea : CardData
         return new UICardData("Idea", cost: 0, "Draw 2", UICardData.CardType.SPELL);
     }
 
+    public override int GetBonusDamage()
+    {
+        return 0;
+    }
+
     public override void Action(EnemyManager[] enemys)
     {
         draw();

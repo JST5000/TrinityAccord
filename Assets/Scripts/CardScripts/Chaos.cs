@@ -13,16 +13,16 @@ public class Chaos : CardData
     protected override UICardData CreateUICardData()
     {
         string effect = "Deal 1 damage at random for each card played this turn (including this)";
-        if (sharpenDamage > 0)
+        if (GetBonusDamage() > 0)
         {
-            effect += " (+" + sharpenDamage + ")";
+            effect += " (+" + GetBonusDamage() + ")";
         }
         return new UICardData("Chaos", cost: 1, effect, UICardData.CardType.ATTACK, "Chaos_mastery");
     }
 
     public override void Action(EnemyManager[] enemies)
     {
-        for (int i = 0; i < getNumberOfCardsPlayed() + sharpenDamage; ++i)
+        for (int i = 0; i < getNumberOfCardsPlayed() + GetBonusDamage(); ++i)
         {
             damageRandom(1);
         }

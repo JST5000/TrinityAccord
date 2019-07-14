@@ -15,6 +15,11 @@ public class Thought : CardData
        return new UICardData("Thought", cost: 1, "Flip Greed", UICardData.CardType.SPELL);
     }
 
+    public override int GetBonusDamage()
+    {
+        return 0;
+    }
+
     public override void Action(EnemyManager[] enemys)
     {
         addCardToDiscard(new Greed());

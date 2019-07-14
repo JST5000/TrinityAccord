@@ -17,9 +17,13 @@ public class Tide : CardData
 
     private int GetDamage()
     {
-        return 2 + growDamage + sharpenDamage;
+        return 2 + GetBonusDamage();
     }
 
+    public override int GetBonusDamage()
+    {
+        return growDamage + base.GetBonusDamage();
+    }
 
     public override void Action(EnemyManager[] enemys)
     {

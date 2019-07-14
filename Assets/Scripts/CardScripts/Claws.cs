@@ -16,12 +16,12 @@ public class Claws : CardData
 
     private int GetPrimaryDamage()
     {
-        return 3 + sharpenDamage;
+        return 3 + GetBonusDamage();
     }
 
     private int GetSecondaryDamage()
     {
-        return 2 + sharpenDamage;
+        return 2 + GetBonusDamage();
     }
 
     public override void Action(EnemyManager[] enemys)

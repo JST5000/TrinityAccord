@@ -14,6 +14,10 @@ public class Shock : CardData
         return new UICardData("Shock", cost: 2, "Stagger target", UICardData.CardType.SPELL);
     }
 
+    public override int GetBonusDamage()
+    {
+        return 0;
+    }
 
     public override void Action(EnemyManager[] enemys)
     {

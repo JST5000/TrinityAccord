@@ -102,7 +102,7 @@ public class PrefabInstance : MonoBehaviour
         GameObject go = PrefabUtility.InstantiatePrefab(pi.prefab) as GameObject;
         Quaternion rot = go.transform.localRotation;
         Vector3 scale = go.transform.localScale;
-        go.transform.parent = pi.transform;
+        go.transform.SetParent(pi.transform);
         go.transform.localPosition = Vector3.zero;
         go.transform.localScale = scale;
         go.transform.localRotation = rot;

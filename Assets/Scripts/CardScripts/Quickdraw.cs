@@ -14,6 +14,10 @@ public class Quickdraw : CardData
         return new UICardData("Quickdraw", cost: 1, "Discard hand, draw 3", UICardData.CardType.SPELL);
     }
 
+    public override int GetBonusDamage()
+    {
+        return 0;
+    }
 
     public override void Action(EnemyManager[] enemys)
     {
@@ -22,6 +26,7 @@ public class Quickdraw : CardData
         draw();
         draw();
     }
+
     public override void Action(CardData[] cards)
     {
 

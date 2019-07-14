@@ -18,6 +18,10 @@ public class Peer : CardData
         return new UICardData("Peer", cost: 0, "Look at the top 2 cards of the deck and draw one", UICardData.CardType.SPELL, "Peer");
     }
 
+    public override int GetBonusDamage()
+    {
+        return 0;
+    }
 
     public override void Action(EnemyManager[] enemys)
     {

@@ -15,9 +15,14 @@ public class Storm : CardData
         return new UICardData("Storm", cost: 3, "Deal " + GetDamage() + " damage to all enemies Charge 1", UICardData.CardType.ATTACK, "Storm");
     }
 
+    public override int GetBonusDamage()
+    {
+        return chargeDamage + base.GetBonusDamage();
+    }
+
     private int GetDamage()
     {
-        return 2 + chargeDamage + sharpenDamage;
+        return 2 + GetBonusDamage();
     }
 
     public override void Action(EnemyManager[] enemys)

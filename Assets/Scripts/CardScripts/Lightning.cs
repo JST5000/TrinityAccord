@@ -17,7 +17,7 @@ public class Lightning : CardData
 
     private int GetDamage()
     {
-        return 3;
+        return 3 + GetBonusDamage();
     }
 
     //Needs all enemies

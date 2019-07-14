@@ -14,6 +14,11 @@ public class Contaminate : CardData
         return new UICardData("Contaminate", cost: 1, "Turns random card in hand into contagion card", UICardData.CardType.SPELL);
     }
 
+    public override int GetBonusDamage()
+    {
+        return 0;
+    }
+
     public override void Action(EnemyManager[] enemys)
     {
         int mode = UnityEngine.Random.Range(1, 4);

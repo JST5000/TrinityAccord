@@ -18,15 +18,21 @@ public class Multishot : CardData
         return new UICardData("Multishot", cost: 2, "Deal " + GetDamage() + " damage Charge 3", UICardData.CardType.ATTACK);
     }
 
+    public override int GetBonusDamage()
+    {
+        return base.GetBonusDamage() + chargeDamage;
+    }
+
     private int GetDamage()
     {
-        return 3 + chargeDamage + sharpenDamage;
+        return 3 + GetBonusDamage();
     }
 
     public override void Action(EnemyManager[] enemys)
     {
         enemys[0].Damage(GetDamage());
         chargeDamage = 0;
+        UpdateUICardData();
     }
 
     public override void Action(CardData[] cards)
@@ -45,7 +51,6 @@ public class Multishot : CardData
     public override void OnDiscard()
     {
         chargeDamage += growthRate;
-        uiCardData = GetUICardData();
-
+        UpdateUICardData();
     }
 }

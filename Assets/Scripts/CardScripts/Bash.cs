@@ -14,6 +14,11 @@ public class Bash : CardData
         return new UICardData("Bash", cost: 1, "Stun a random enemy", UICardData.CardType.SPELL);
     }
 
+    public override int GetBonusDamage()
+    {
+        return 0;
+    }
+
     public override void Action(EnemyManager[] enemies)
     {
 

@@ -14,7 +14,7 @@ public class Staff : CardData
 
     protected override UICardData CreateUICardData()
     {
-        return new UICardData("Staff", cost: 1, "Deal 2 damage, draw 1 card deal 1 damage, or draw 2 cards", UICardData.CardType.ATTACK);
+        return new UICardData("Staff", cost: 1, "Deal " + (2 + GetBonusDamage()) + " damage, draw 1 card deal " + (1 + GetBonusDamage()) + " damage, or draw 2 cards", UICardData.CardType.ATTACK);
     }
 
     public override void Action(EnemyManager[] enemys)
@@ -41,11 +41,11 @@ public class Staff : CardData
     {
         if (cards[0].Equals(options[0]))
         {
-            tempTarget[0].Damage(2 + sharpenDamage);
+            tempTarget[0].Damage(2 + GetBonusDamage());
         }
         else if (cards[0].Equals(options[1]))
         {
-            tempTarget[0].Damage(1 + sharpenDamage);
+            tempTarget[0].Damage(1 + GetBonusDamage());
             draw();
         }else
         {
@@ -65,12 +65,12 @@ public class Staff : CardData
     }
     public override void sharpen()
     {
-        sharpenDamage++;
-        for (int i = 0; i < sharpenDamage; i++)
+        //TODO reset options when sharpen would reset
+        base.sharpen();
+        for (int i = 0; i < GetBonusDamage(); i++)
         {
             options[0].sharpen();
             options[1].sharpen();
         }
-        uiCardData = new UICardData("Staff", cost: 1, "Deal " + (2 + sharpenDamage) + " damage, draw 1 card deal " + (1 + sharpenDamage) + " damage, or draw 2 cards", UICardData.CardType.ATTACK);
     }
 }

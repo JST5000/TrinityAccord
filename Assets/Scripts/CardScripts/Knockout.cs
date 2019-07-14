@@ -16,7 +16,7 @@ public class Knockout : CardData
 
     private int GetDamage()
     {
-        return 3 + sharpenDamage;
+        return 3 + GetBonusDamage();
     }
 
     public override void Action(EnemyManager[] enemys)

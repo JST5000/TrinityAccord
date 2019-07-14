@@ -15,9 +15,14 @@ public class Rally : CardData
         return new UICardData("Rally", cost: 2, "Deal " + GetDamage() + " damage Grow 2", UICardData.CardType.ATTACK, "Rally");
     }
 
+    public override int GetBonusDamage()
+    {
+        return base.GetBonusDamage() + growDamage;
+    }
+
     private int GetDamage()
     {
-        return 3 + growDamage + sharpenDamage;
+        return 3 + GetBonusDamage();
     }
 
 

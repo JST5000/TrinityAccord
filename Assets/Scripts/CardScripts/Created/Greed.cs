@@ -14,6 +14,11 @@ public class Greed : CardData
         return new UICardData("Greed", cost: 0, "Draw 2", UICardData.CardType.SPELL, "Greed");
     }
 
+    public override int GetBonusDamage()
+    {
+        return 0;
+    }
+
     public override void Action(EnemyManager[] enemys)
     {
         draw();

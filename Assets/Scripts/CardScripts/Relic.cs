@@ -14,6 +14,11 @@ public class Relic : CardData
         return new UICardData("Relic", cost: 0, "Draw a card and Preserve it", UICardData.CardType.SPELL);
     }
 
+    public override int GetBonusDamage()
+    {
+        return 0;
+    }
+
     public override void Action(EnemyManager[] enemys)
     {
         CardData draw = DeckManager.Get().DrawCard();

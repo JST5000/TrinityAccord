@@ -12,16 +12,16 @@ public class Barrage : CardData
     protected override UICardData CreateUICardData()
     {
         string effect = "Deal 1 damage for each other attack played this turn";
-        if(sharpenDamage > 0)
+        if(GetBonusDamage() > 0)
         {
-            effect += " (+" + sharpenDamage + ")";
+            effect += " (+" + GetBonusDamage() + ")";
         }
         return new UICardData("Barrage", cost: 0, effect, UICardData.CardType.ATTACK);
     }
 
     public override void Action(EnemyManager[] enemys)
     {
-        enemys[0].Damage(getNumberOfAttacksPlayed()-1+sharpenDamage);
+        enemys[0].Damage(getNumberOfAttacksPlayed() - 1 + GetBonusDamage());
     }
     public override void Action(CardData[] cards)
     {

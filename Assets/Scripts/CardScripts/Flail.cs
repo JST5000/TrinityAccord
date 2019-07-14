@@ -17,12 +17,12 @@ public class Flail : CardData
 
     private int GetDamage()
     {
-        return 3 + sharpenDamage;
+        return 3 + GetBonusDamage();
     }
 
     public override void Action(EnemyManager[] enemies)
     {
-        damageRandom(3+sharpenDamage);
+        damageRandom(3+GetBonusDamage());
     }
     public override void Action(CardData[] cards)
     {

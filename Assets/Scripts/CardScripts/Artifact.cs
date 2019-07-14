@@ -14,6 +14,11 @@ public class Artifact : CardData
         return new UICardData("Artifact", cost: 0, "Preserve target card", UICardData.CardType.SPELL);
     }
 
+    public override int GetBonusDamage()
+    {
+        return 0;
+    }
+
     public override void Action(EnemyManager[] enemys)
     {
         CardData draw = DeckManager.Get().DrawCard();

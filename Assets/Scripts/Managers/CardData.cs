@@ -80,6 +80,11 @@ public abstract class CardData
         UpdateUICardData();
     }
 
+    public virtual int GetBonusDamage()
+    {
+        return sharpenDamage;
+    }
+
     public virtual void OnSelectedInHand()
     {
 

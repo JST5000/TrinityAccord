@@ -14,6 +14,11 @@ public class Energize : CardData
         return new UICardData("Energize", cost: 0, "Gain 1 Energy", UICardData.CardType.SPELL, "Mug");
     }
 
+    public override int GetBonusDamage()
+    {
+        return 0;
+    }
+
     public override void Action(EnemyManager[] enemys)
     {
         SoundManager.playSound("Energize1");

@@ -14,6 +14,11 @@ public class Trick : CardData
         return new UICardData("Trick", cost: 2, "Stun an enemy. Gain 1 energy and 1 draw next turn", UICardData.CardType.SPELL, "Trick");
     }
 
+    public override int GetBonusDamage()
+    {
+        return 0;
+    }
+
     public override void Action(EnemyManager[] enemys)
     {
         enemys[0].Stun();

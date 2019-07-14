@@ -63,7 +63,19 @@ public class Virus : CardData
 
     private int GetVileSwordDamage()
     {
-        return 5 + sharpenDamage;
+        return 5 + GetBonusDamage();
+    }
+
+    public override int GetBonusDamage()
+    {
+        if (mode == ContagionCard.VILE_SWORD)
+        {
+            return base.GetBonusDamage();
+        }
+        else
+        {
+            return 0;
+        }
     }
 
     public override void Action(EnemyManager[] enemys)

@@ -17,12 +17,12 @@ public class Execute : CardData
 
     private int GetInitialDamage()
     {
-        return 2 + sharpenDamage;
+        return 2 + GetBonusDamage();
     }
 
     private int GetAdditionalDamage()
     {
-        return 5;
+        return 5 + GetBonusDamage();
     }
 
     public override void Action(EnemyManager[] enemys)

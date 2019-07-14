@@ -38,6 +38,6 @@ public class TargetCard : CardData
 
     private int GetDamage()
     {
-        return 1 + sharpenDamage;
+        return 1 + GetBonusDamage();
     }
 }

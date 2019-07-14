@@ -20,7 +20,7 @@ public class OneTonHammer : CardData
 
     private int GetDamage()
     {
-        return 9 + sharpenDamage;
+        return 9 + GetBonusDamage();
     }
 
 

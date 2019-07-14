@@ -189,6 +189,12 @@ public class CardUIUpdater : MonoBehaviour
     {
         if (sharpenedText != null)
         {
+            int amount = cardHolder.GetCardData().GetBonusDamage();
+
+            sharpenedText.text = (amount == 0) 
+                ? "" 
+                : "+ " + amount; 
+
             var sharpenedColor = sharpenedText.color;
             sharpenedColor.a = opacity;
             sharpenedText.color = sharpenedColor;

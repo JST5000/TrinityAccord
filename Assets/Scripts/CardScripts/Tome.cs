@@ -15,6 +15,11 @@ public class Tome : CardData
 
     }
 
+    public override int GetBonusDamage()
+    {
+        return 0;
+    }
+
     public override void Action(EnemyManager[] enemys)
     {
         for (int i = 0; i < 2; i++)

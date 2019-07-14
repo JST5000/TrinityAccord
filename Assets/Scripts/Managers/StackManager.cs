@@ -27,12 +27,14 @@ public class StackManager : MonoBehaviour
     private float timePerCard = .5f;
 
 
-    void Awake()
+    void Start()
     {
         displayedCardData = GetComponentInChildren<CardManager>();
         displayedCard = GetComponentInChildren<CardUIUpdater>();
         endTurn = GameObject.Find("EndTurnButton").GetComponent<EndTurnUI>();
     }
+
+
 
     private void Update()
     {

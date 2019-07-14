@@ -14,6 +14,11 @@ public class Power : CardData
         return new UICardData("Power", cost: 0, "Gain 2 energy", UICardData.CardType.SPELL, "Power");
     }
 
+    public override int GetBonusDamage()
+    {
+        return 0;
+    }
+
     public override void Action(EnemyManager[] enemys)
     {
         addEnergy(2);

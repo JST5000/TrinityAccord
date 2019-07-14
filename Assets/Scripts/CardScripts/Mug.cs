@@ -16,7 +16,7 @@ public class Mug : CardData
 
     private int GetDamage()
     {
-        return 2 + sharpenDamage;
+        return 2 + GetBonusDamage();
     }
 
 

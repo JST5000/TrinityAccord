@@ -16,7 +16,7 @@ public class Throw : CardData
 
     private int GetPrimaryDamage()
     {
-        return 3 + sharpenDamage;
+        return 3 + GetBonusDamage();
     }
 
     private int GetAdditionalDamage()
@@ -26,17 +26,18 @@ public class Throw : CardData
 
     public override void Action(EnemyManager[] enemys)
     {
-        enemys[0].Damage(GetPrimaryDamage());
         CardData top = BurnTopCard();
         if (top==null)
         {
             return;
         }
+        int totalDamage = GetPrimaryDamage();
         if (top.getType().Equals(UICardData.CardType.ATTACK))
         {
-            enemys[0].Damage(GetAdditionalDamage());
+            totalDamage += GetAdditionalDamage();
         }
-        
+        enemys[0].Damage(totalDamage);
+
     }
 
     public override void Action(CardData[] cards)

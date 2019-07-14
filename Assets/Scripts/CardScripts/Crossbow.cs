@@ -23,9 +23,20 @@ public class Crossbow : CardData
         }
     }
 
+    public override int GetBonusDamage()
+    {
+        if (isReloading)
+        {
+            return 0;
+        } else
+        {
+            return base.GetBonusDamage();
+        }
+    }
+
     private int GetDamage()
     {
-        return 6 + sharpenDamage;
+        return 6 + GetBonusDamage();
     }
 
     private void ToggleReload()

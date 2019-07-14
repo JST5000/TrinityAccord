@@ -13,6 +13,11 @@ public class Staff3 : CardData
         return new UICardData("C", cost: 1, "Draw 2 cards", UICardData.CardType.ATTACK);
     }
 
+    public override int GetBonusDamage()
+    {
+        return 0;
+    }
+
     public override void Action(EnemyManager[] enemys)
     {
         throw new System.NotImplementedException();

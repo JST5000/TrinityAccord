@@ -14,6 +14,11 @@ public class Sharpen : CardData
         return new UICardData("Sharpen", cost: 1, "Increase damage of cards in hand", UICardData.CardType.SPELL, "Sharpen");
     }
 
+    public override int GetBonusDamage()
+    {
+        return 0;
+    }
+
     public override void Action(EnemyManager[] enemys)
     {
         List<int> validCards = new List<int>();

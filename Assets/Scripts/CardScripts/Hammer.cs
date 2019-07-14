@@ -16,12 +16,12 @@ public class Hammer : CardData
 
     private int GetLowerBound()
     {
-        return 1 + sharpenDamage;
+        return 1 + GetBonusDamage();
     }
 
     private int GetUpperBound()
     {
-        return 7 + sharpenDamage;
+        return 7 + GetBonusDamage();
     }
 
     private int GetDamage()

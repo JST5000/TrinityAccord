@@ -16,7 +16,7 @@ public class Juggle : CardData
 
     private int GetDamage()
     {
-        return 3 + sharpenDamage;
+        return 3 + GetBonusDamage();
     }
 
 

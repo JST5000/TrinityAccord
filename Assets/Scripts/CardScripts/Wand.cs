@@ -16,7 +16,7 @@ public class Wand : CardData
 
     private int GetDamage()
     {
-        return 2 + sharpenDamage;
+        return 2 + GetBonusDamage();
     }
 
     public override void Action(EnemyManager[] enemys)

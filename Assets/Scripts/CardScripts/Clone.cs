@@ -15,6 +15,10 @@ public class Clone : CardData
         return new UICardData("Clone", cost: 0, "Becomes copy of target until end of encounter", UICardData.CardType.SPELL);
     }
 
+    public override int GetBonusDamage()
+    {
+        return 0;
+    }
 
     public override void OnSelectedInHand()
     {

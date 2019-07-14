@@ -16,7 +16,7 @@ public class Pebble : CardData
 
     private int GetDamage()
     {
-        return 1 + sharpenDamage;
+        return 1 + GetBonusDamage();
     }
 
     public override void Action(EnemyManager[] enemys)
