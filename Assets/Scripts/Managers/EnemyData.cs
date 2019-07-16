@@ -160,7 +160,18 @@ public abstract class EnemyData
 
     public virtual void Drowsy()
     {
-        sleepTimer = MaxSleepTimer;
+        if(sleepTimer == 0)
+        {
+            sleepTimer = MaxSleepTimer; //Drowsy
+        } else
+        {
+            sleepTimer = MaxSleepTimer - 1; //Still asleep
+        }
+    }
+
+    public void WakeUp()
+    {
+        sleepTimer = 0;
     }
 
     string enemySpriteFolder = "Enemy_Sprites/";

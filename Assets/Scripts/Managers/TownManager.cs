@@ -26,14 +26,14 @@ public class TownManager : MonoBehaviour
     public void OpenCabin()
     {
         List<ShopItem> inventory = new List<ShopItem>();
-        inventory.Add(new HealthItem(3, 1));
+        inventory.Add(new HealthItem(10, 3));
         Enter("Emma's Cabin", "Emma", inventory, true, "Oh you poor thing...");
     }
 
     public void OpenSailboat()
     {
         List<ShopItem> inventory = new List<ShopItem>();
-        inventory.Add(new TravelItem("Safe Travel", 3, "SailingIcon", PermanentState.GetTownForNWins(PermanentState.wins + 1), true));
+        inventory.Add(new TravelItem("Safe Travel", 2, "SailingIcon", PermanentState.GetTownForNWins(PermanentState.wins + 1), true));
         inventory.Add(new TravelItem("Risky Travel", 0, "SwimmingIcon", "Encounter", false));
         Enter("Harbor", "WaterBoy", inventory, true, "Pay for safe travel?");
     }
@@ -42,7 +42,7 @@ public class TownManager : MonoBehaviour
     {
         List<ShopItem> inventory = new List<ShopItem>();
         inventory.Add(new HealthItem(2, 1));
-        inventory.Add(new HealthItem(6, 2));
+        inventory.Add(new PackItem());
         inventory.Add(new TravelItem("Onward", 0, "JumpingOffCliffIcon", "Encounter", false));
         Enter("Kwame's Hill", "Kwame", inventory, true, "Hahaha, welcome!");
     }
@@ -67,7 +67,9 @@ public class TownManager : MonoBehaviour
 
     public void SallyShop()
     {
-        Enter("Sarah's World", "Sarah_Kid", new List<ShopItem>(), false, "Hello! Good luck stranger!");
+        List<ShopItem> inventory = new List<ShopItem>();
+        inventory.Add(new PackItem(5));
+        Enter("Sarah's World", "Sarah_Kid", inventory, false, "Hi Crystal!\nI found this, do you want it?");
     }
 
     private List<ShopItem> GetHealthShopInventory()
@@ -80,7 +82,7 @@ public class TownManager : MonoBehaviour
 
     public void OpenHealthShopTown2()
     {
-        Enter("Health Shop", "Darnell_Closeup", GetHealthShopInventory(), showHealth: true);
+        Enter("Health Shop", "Darnell_Closeup", GetHealthShopInventory(), showHealth: true, "Sally found something!");
     }
 
     public void OpenCardRemovalStand()

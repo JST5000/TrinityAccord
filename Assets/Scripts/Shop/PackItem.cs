@@ -5,13 +5,8 @@ using UnityEngine;
 public class PackItem : ShopItem
 {
 
-    public PackItem() : base("Mixed Pack", GetCost(), imageName: "CardBack")
+    public PackItem(int cost = 3) : base("Mixed Pack", cost, imageName: "CardBack")
     {
-    }
-
-    private static int GetCost()
-    {
-        return 3;
     }
 
     override public void  Effect()

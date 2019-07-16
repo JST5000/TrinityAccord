@@ -106,6 +106,11 @@ public class EnemyManager : MonoBehaviour
         data.Drowsy();
     }
 
+    public void WakeUp()
+    {
+        data.WakeUp();
+    }
+
     public void SetEmpty()
     {
         isEmpty = true;
@@ -128,7 +133,12 @@ public class EnemyManager : MonoBehaviour
 
     public void SetTargetIndicator(bool targetStatus)
     {
-        if(!IsEmpty())
+        //Never want to show the target when there is no enemy!
+        if (isEmpty)
+        {
+            GetComponent<UpdateEnemyUI>().SetTarget(false);
+        }
+        else
         {
             GetComponent<UpdateEnemyUI>().SetTarget(targetStatus);
         }

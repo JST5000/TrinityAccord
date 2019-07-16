@@ -10,7 +10,6 @@ public class PrefabInstance : MonoBehaviour
 {
     public GameObject prefab;
 
-//#if UNITY_EDITOR
     // Struct of all components. Used for edit-time visualization and gizmo drawing
     public struct Thingy
     {
@@ -86,9 +85,16 @@ public class PrefabInstance : MonoBehaviour
         }
     }
 
+#if UNITY_EDITOR
     // Baking stuff: Copy in all the referenced objects into the scene on play or build
     [PostProcessScene(-2)]
     public static void OnPostprocessScene()
+    {
+        SpawnAllPrefabs();
+    }
+#endif
+
+    public static void SpawnAllPrefabs()
     {
         foreach (PrefabInstance pi in UnityEngine.Object.FindObjectsOfType(typeof(PrefabInstance)))
             BakeInstance(pi);
@@ -111,5 +117,4 @@ public class PrefabInstance : MonoBehaviour
             BakeInstance(childPi);
     }
 
-//#endif
 }

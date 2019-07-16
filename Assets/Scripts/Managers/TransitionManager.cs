@@ -99,6 +99,14 @@ public class TransitionManager : MonoBehaviour
             new Quote("I saw them! The benevolent behemoths of the sea.", "a Fisherman"),
             new Quote("Fire flows fast, blossoms bloom slow.", "Common Wisdom"),
             new Quote("If you open your mind, one day you might become an individual.", "Anonymous"), //Inspiro
+            new Quote("If you find you are dying a lot, get good.", "Daniel"),
+            new Quote("Risky is a terrible name for a road!", "Anonymous"),
+            new Quote("Hello, [tap] [tap] is this thing on?", "The Captain"),
+            new Quote("When the dust settles, we will all be mourned.", "Scripture 3:14"),
+            new Quote("Ashes scare me, they look like dust, but they never revive.", "The Executioner"),
+            new Quote("So I told him, 'No! You can't fit a behemoth bone there!'", "The Architect"),
+            new Quote("I can fix you... for a price.", "The 'Explorer'"),
+
         };
         if(PermanentState.unusedQuotes.Count == 0)
         {

@@ -64,7 +64,7 @@ public class HelpManager : MonoBehaviour
         pages.Add(new HelpPage("Cards", "", CardWithLabels));
         pages.Add(new HelpPage("Enemies", "", EnemyWithLabels));
         pages.Add(new HelpPage("Deck and Hand", "Your deck starts with 8 cards." +
-            "\n\nEvery turn you draw 4 cards and get 3 energy. (Max 6 cards)" +
+            "\n\nEvery turn you draw 4 cards and get 3 energy." +
             " At the end of each turn, all your cards are discarded." +
             "\n\nIf your deck runs out of cards, your discard is shuffled in." +
             "\n\nPlay cards by clicking on them, then on their target."
@@ -75,7 +75,7 @@ public class HelpManager : MonoBehaviour
         string[] glossary =
         {
             InLineIcon.DAMAGE + ": X - Deal X damage to the the player." ,
-            InLineIcon.ON_STAGGER + ": Y - When a life is lost, change this effect to Y." ,
+            InLineIcon.ON_STAGGER + ": X - When a life is lost, change this effect to X." ,
             "Attack - Red cards. Usually do damage." ,
             "Blind X - All attacks have random targets for X turns." ,
             "Charge X - Every time this card is discarded, increase its attack by x. Resets on use.",
@@ -83,6 +83,7 @@ public class HelpManager : MonoBehaviour
             "Flip - Transform this into a new card or new effect.",
             "Grow X - Every time this card is played, increase its attack by X." ,
             "Spell - Blue cards. Usually are utility." ,
+            "Preserve - Target card is not discarded at the end of the turn.",
             "Sleep - Stop the enemy's timer for up to 2 turns. Damage wakes them up!",
             "Stagger - Reset the enemie's attack timer to max and Stun them." ,
             "Stun - Stop the enemy's timer for 1 turn.", 

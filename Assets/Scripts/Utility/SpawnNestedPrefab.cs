@@ -6,6 +6,6 @@ public class SpawnNestedPrefab : MonoBehaviour
 {
     void Awake()
     {
-        PrefabInstance.OnPostprocessScene();
+        PrefabInstance.SpawnAllPrefabs();
     }
 }

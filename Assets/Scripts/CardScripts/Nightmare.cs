@@ -12,6 +12,7 @@ public class Nightmare : CardData
     public override void Action(EnemyManager[] enemys)
     {
         enemys[0].Damage(GetDamage());
+        enemys[0].WakeUp(); //Explicit call to avoid race conditions
         enemys[0].Drowsy();
     }
 
