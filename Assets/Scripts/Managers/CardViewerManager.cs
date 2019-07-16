@@ -23,6 +23,7 @@ public class CardViewerManager : MonoBehaviour
         Debug.Log(cards.Length + " DISCARD LENGTH");
         options = GetComponentsInChildren<CardManager>();
         int sizeOfOptions = Mathf.Min(givenOptions.Length, options.Length);
+        Debug.Log("Size of options; " + sizeOfOptions);
         if (startOnLeft)
         {
             lowerIndex = 0;

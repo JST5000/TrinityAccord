@@ -10,7 +10,7 @@ public class PrefabInstance : MonoBehaviour
 {
     public GameObject prefab;
 
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
     // Struct of all components. Used for edit-time visualization and gizmo drawing
     public struct Thingy
     {
@@ -111,5 +111,5 @@ public class PrefabInstance : MonoBehaviour
             BakeInstance(childPi);
     }
 
-#endif
+//#endif
 }

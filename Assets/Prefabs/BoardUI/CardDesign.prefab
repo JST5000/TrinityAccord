@@ -558,6 +558,7 @@ GameObject:
   - component: {fileID: 557272752686652720}
   - component: {fileID: 5572561016489849894}
   - component: {fileID: 2321990210596745978}
+  - component: {fileID: 3453161298424500639}
   m_Layer: 5
   m_Name: CardDesign
   m_TagString: Untagged
@@ -584,10 +585,10 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 36.117, y: 58.4}
-  m_SizeDelta: {x: 72.233, y: 116.8}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 36.117, y: -210.6}
+  m_SizeDelta: {x: 72.233, y: 116.79999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7347157940655945737
 CanvasRenderer:
@@ -801,6 +802,26 @@ MonoBehaviour:
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
+--- !u!114 &3453161298424500639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5084933794933947284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1679637790, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &7578173837345928361
 GameObject:
   m_ObjectHideFlags: 0
