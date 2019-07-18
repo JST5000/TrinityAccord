@@ -10,7 +10,7 @@ public class CardManager : MonoBehaviour
 
     public bool empty;
 
-    public bool IsInHand = false;
+   // public bool IsInHand = false;
 
     public bool AlwaysDisplayText;
 
@@ -20,7 +20,7 @@ public class CardManager : MonoBehaviour
 
     public void Init(CardData cardData)
     {
-        if (cardData.CannotBePlayed && IsInHand)
+        if (cardData.CannotBePlayed && GetComponentInParent<HandManager>())
         {
             return;
         }

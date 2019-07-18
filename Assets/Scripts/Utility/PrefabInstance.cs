@@ -18,6 +18,8 @@ public class PrefabInstance : MonoBehaviour
         public List<Material> materials;
     }
 
+#if UNITY_EDITOR
+
     [System.NonSerializedAttribute] public List<Thingy> things = new List<Thingy>();
 
     void OnValidate()
@@ -85,14 +87,12 @@ public class PrefabInstance : MonoBehaviour
         }
     }
 
-#if UNITY_EDITOR
     // Baking stuff: Copy in all the referenced objects into the scene on play or build
     [PostProcessScene(-2)]
     public static void OnPostprocessScene()
     {
         SpawnAllPrefabs();
     }
-#endif
 
     public static void SpawnAllPrefabs()
     {
@@ -116,5 +116,6 @@ public class PrefabInstance : MonoBehaviour
         foreach (PrefabInstance childPi in go.GetComponentsInChildren<PrefabInstance>())
             BakeInstance(childPi);
     }
+#endif
 
 }

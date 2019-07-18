@@ -19,6 +19,8 @@ public class UIManager : MonoBehaviour
 
     private enum Status { USED, UNUSED };
 
+    public static float timeSinceAutoEndTurn = 0;
+
     private static GameMode GetCurrentMode()
     {
         return currentMode;
@@ -95,6 +97,7 @@ public class UIManager : MonoBehaviour
         {
             ResetSelection();
         }
+        timeSinceAutoEndTurn += Time.deltaTime;
     }
 
     private void ResetSelection()
@@ -241,7 +244,8 @@ public class UIManager : MonoBehaviour
         if(canEndTurn && actionsNeeded <= 0)
         {
             canEndTurn = false;
-            clickEndTurn();
+            endTurn();
+            timeSinceAutoEndTurn = 0;
             canEndTurn = true;
         } 
     }
@@ -249,7 +253,17 @@ public class UIManager : MonoBehaviour
     public void clickEndTurn()
     {
         Debug.Log("Clicked End Turn");
+        float manualEndTurnLockout = 1f;
+        if(timeSinceAutoEndTurn >= manualEndTurnLockout)
+        {
+            endTurn();
+        }
 
+
+    }
+
+    private void endTurn()
+    {
         //During animation you should not be able to end turn
         if ((!GetCurrentMode().Equals(GameMode.Animation)
             || GetCurrentMode().Equals(GameMode.PickCardInHand)))

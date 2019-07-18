@@ -15,7 +15,7 @@ public class DeckManager : MonoBehaviour
     //Used by Squirrel and Trick
     private int extraDrawsOnTurnStart = 0;
 
-    private Transform DiscardView = null;
+    public Transform DiscardView;
 
     public static DeckManager Get()
     {
@@ -45,7 +45,8 @@ public class DeckManager : MonoBehaviour
 
     public void StartTurn()
     {
-        for(int i = 0; i < 4 + extraDrawsOnTurnStart; i++)
+        hand = GameObject.Find("Hand").GetComponentsInChildren<CardManager>();
+        for (int i = 0; i < 4 + extraDrawsOnTurnStart; i++)
         {
             DrawCard();
         }

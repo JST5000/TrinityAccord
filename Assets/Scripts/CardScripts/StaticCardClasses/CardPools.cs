@@ -52,7 +52,7 @@ public static class CardPools
         all.Add(new DualWield());
         all.Add(new Nightmare());
         all.Add(new Yawn());
-        all.Add(new Virus());
+        //all.Add(new Virus()); Super buggy right now, needs to be fixed
         all.Add(new Execute());
         all.Add(new Foil());
         all.Add(new Forge());
