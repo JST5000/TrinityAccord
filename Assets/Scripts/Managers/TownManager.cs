@@ -30,6 +30,13 @@ public class TownManager : MonoBehaviour
         Enter("Emma's Cabin", "Emma", inventory, true, "Oh you poor thing...");
     }
 
+    public void OpenCampfire()
+    {
+        List<ShopItem> inventory = new List<ShopItem>();
+        inventory.Add(new HealthItem(5, 2));
+        Enter("Mapper's Camp", "CampfireManOnly", inventory, true, "Left, Right. Are you lost?");
+    }
+
     public void OpenSailboat()
     {
         List<ShopItem> inventory = new List<ShopItem>();

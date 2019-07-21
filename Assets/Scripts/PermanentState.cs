@@ -157,7 +157,7 @@ public class PermanentState : MonoBehaviour
     {
         if (nWins == 1)
         {
-            return "Town3";
+            return "ExplorerTent";
         } else if(nWins == 2)
         {
             return "SailboatHarbor";
@@ -168,15 +168,15 @@ public class PermanentState : MonoBehaviour
         }
         else if (nWins == 4)
         {
-            return "Town4";
+            return "Cabin";
         } 
         else if (nWins == FinalFight)
         {
-            return "Town2";
+            return "SallyAndStand";
         }
         else
         {
-            return "Town1";
+            return "Market";
         }
     }
 

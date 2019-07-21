@@ -21,16 +21,16 @@ EditorBuildSettings:
     path: Assets/Scenes/WinScreen.unity
     guid: ce19694077a336c44afb8b7ce90c980d
   - enabled: 1
-    path: Assets/Scenes/Town1.unity
+    path: Assets/Scenes/Market.unity
     guid: 859ac581a02261344a8330125fc7735e
   - enabled: 1
-    path: Assets/Scenes/Town2.unity
+    path: Assets/Scenes/SallyAndStand.unity
     guid: 2ebd600e8c5badd4b86f73ee5c96af61
   - enabled: 1
-    path: Assets/Scenes/Town3.unity
+    path: Assets/Scenes/ExplorerTent.unity
     guid: 48b2b629d1d38fc4587b27e74116ef6f
   - enabled: 1
-    path: Assets/Scenes/Town4.unity
+    path: Assets/Scenes/Cabin.unity
     guid: 43d81a8d8c34ba540be27630ccdef8ed
   - enabled: 1
     path: Assets/Scenes/SailboatHarbor.unity
