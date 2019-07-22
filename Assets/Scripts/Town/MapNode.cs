@@ -2,19 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapNode : MonoBehaviour
+public class MapNode
 {
-    string name;
-    List<MapNode> children;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public string sceneName;
+    public MapNode left;
+    public MapNode right;
+    
+    public MapNode(string sceneName, MapNode left = null, MapNode right = null) {
+        this.sceneName = sceneName;
+        this.left = left;
+        this.right = right;
     }
 }

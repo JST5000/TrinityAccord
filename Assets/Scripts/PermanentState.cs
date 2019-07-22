@@ -14,9 +14,13 @@ public class PermanentState : MonoBehaviour
     public static int maxHealth = 10;
     public static int health = maxHealth - 1;
 
+    private string previousTown = "";
+
     public static bool hasDraftedClassCard = false;
 
     public static bool PauseGameInteraction = false;
+
+    public static WorldMap worldMap = new WorldMap();
 
     //Needs to be remembered between level loads
     public static List<int> unusedQuotes;
@@ -51,6 +55,7 @@ public class PermanentState : MonoBehaviour
         money = 0;
         health = maxHealth;
         unusedQuotes = new List<int>();
+        worldMap = new WorldMap();
     }
 
     void Awake()
@@ -148,9 +153,16 @@ public class PermanentState : MonoBehaviour
         }
     }
 
+
+
     public static string GetNextTownSceneName()
     {
-        return GetTownForNWins(wins);
+        return worldMap.GetCurrentTown().sceneName;
+    }
+
+    public static void MoveToNextTown(bool left)
+    {
+        worldMap.MoveToNextTown(left);
     }
 
     public static string GetTownForNWins(int nWins)

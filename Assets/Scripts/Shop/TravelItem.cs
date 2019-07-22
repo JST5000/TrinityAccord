@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class TravelItem : ShopItem
 {
-    string SceneName;
-    private bool SkipLevel;
+    protected string SceneName;
+    protected bool SkipLevel;
 
     public TravelItem(string optionName, int cost, string imageName, string SceneName, bool SkipLevel) : base(optionName, cost, imageName: imageName)
     {

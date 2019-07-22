@@ -40,8 +40,9 @@ public class TownManager : MonoBehaviour
     public void OpenSailboat()
     {
         List<ShopItem> inventory = new List<ShopItem>();
-        inventory.Add(new TravelItem("Safe Travel", 2, "SailingIcon", PermanentState.GetTownForNWins(PermanentState.wins + 1), true));
-        inventory.Add(new TravelItem("Risky Travel", 0, "SwimmingIcon", "Encounter", false));
+        inventory.Add(new RelativeTravelItem(true, 2, "SailingIcon", skipLevel: true, "Fast"));
+        //inventory.Add(new TravelItem("Safe Travel", 2, "SailingIcon", PermanentState.GetTownForNWins(PermanentState.wins + 1), true));
+        inventory.Add(new RelativeTravelItem(true, 0, "SwimmingIcon", false, "Slow"));
         Enter("Harbor", "WaterBoy", inventory, true, "Pay for safe travel?");
     }
 
@@ -50,7 +51,7 @@ public class TownManager : MonoBehaviour
         List<ShopItem> inventory = new List<ShopItem>();
         inventory.Add(new HealthItem(2, 1));
         inventory.Add(new PackItem());
-        inventory.Add(new TravelItem("Onward", 0, "JumpingOffCliffIcon", "Encounter", false));
+        inventory.Add(new RelativeTravelItem(false, 0, "JumpingOffCliffIcon", false, "Onward"));
         Enter("Kwame's Hill", "Kwame", inventory, true, "Hahaha, welcome!");
     }
 
@@ -79,6 +80,12 @@ public class TownManager : MonoBehaviour
         Enter("Sarah's World", "Sarah_Kid", inventory, false, "Hi Crystal!\nI found this, do you want it?");
     }
 
+    public void OpenOasis()
+    {
+        List<ShopItem> inventory = GetHealthShopInventory();
+        Enter("Oasis", "Rainman_Closeup", inventory, true, "Preparing for a rainy day?");
+    }
+
     private List<ShopItem> GetHealthShopInventory()
     {
         List<ShopItem> inventory = new List<ShopItem>();
@@ -97,8 +104,9 @@ public class TownManager : MonoBehaviour
         Enter("Card Removal Stand", "Jenny", new List<ShopItem>());
     }
 
-    public void LeaveTown(Text exit)
+    public void LeaveTown(bool left)
     {
+        PermanentState.MoveToNextTown(left);
         PermanentState.ChooseNextFight();
         SceneManager.LoadScene("Encounter");
     }
