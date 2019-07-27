@@ -38,4 +38,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ArtistHill.unity
     guid: 8ee1f18127cf50c408fb5a719145b190
+  - enabled: 1
+    path: Assets/Scenes/Oasis.unity
+    guid: 87ca0290d21647845bb8ef51864f7170
+  - enabled: 1
+    path: Assets/Scenes/Vantage.unity
+    guid: b3e4caff843e88b4dbbf22708f29f08f
+  - enabled: 1
+    path: Assets/Scenes/Campfire.unity
+    guid: c92a8382bae1685478a15211c0afae1d
   m_configObjects: {}

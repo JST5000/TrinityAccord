@@ -104,6 +104,14 @@ public class TownManager : MonoBehaviour
         Enter("Card Removal Stand", "Jenny", new List<ShopItem>());
     }
 
+    public void OpenVantage()
+    {
+        List<ShopItem> inventory = new List<ShopItem>();
+        inventory.Add(new HealthItem(5, 1));
+        inventory.Add(new RelativeTravelItem(true, 0, "MountainPath", false));
+        Enter("Vantage Point", "Hiker", inventory, true, "Quite a sight eh?");
+    }
+
     public void LeaveTown(bool left)
     {
         PermanentState.MoveToNextTown(left);
