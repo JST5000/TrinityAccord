@@ -41,9 +41,7 @@ public class TownManager : MonoBehaviour
     public void OpenSailboat()
     {
         List<ShopItem> inventory = new List<ShopItem>();
-        inventory.Add(new RelativeTravelItem(true, 2, "SailingIcon", skipLevel: true));
-        inventory.Add(new RelativeTravelItem(true, 0, "SwimmingIcon", skipLevel: false));
-        inventory.Add(new RelativeTravelItem(false, 2, "SailingIcon", skipLevel: true));
+        inventory.Add(new RelativeTravelItem(true, 1, "SailingIcon", skipLevel: true));
         inventory.Add(new RelativeTravelItem(false, 0, "SwimmingIcon", skipLevel: false));
         Enter("Harbor", "WaterBoy", inventory, true, "Pay for safe travel?");
     }
