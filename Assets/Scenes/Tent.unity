@@ -410,6 +410,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 331196764}
   m_CullTransparentMesh: 0
+--- !u!114 &415561219 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3380938786259895150, guid: eb9b31ea257023a43a237e632bc2c1e9,
+    type: 3}
+  m_PrefabInstance: {fileID: 811110224}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d11c3d09c0aa36449b27d1569a95d45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &448325979
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,22 +707,27 @@ PrefabInstance:
     - target: {fileID: 1600961938116311211, guid: eb9b31ea257023a43a237e632bc2c1e9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1600961938116311211, guid: eb9b31ea257023a43a237e632bc2c1e9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: RelativePathName, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1600961938116311211, guid: eb9b31ea257023a43a237e632bc2c1e9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 585216640}
     - target: {fileID: 1600961939332131920, guid: eb9b31ea257023a43a237e632bc2c1e9,
         type: 3}
       propertyPath: m_Text
       value: Onward?
+      objectReference: {fileID: 0}
+    - target: {fileID: 3380938786259895150, guid: eb9b31ea257023a43a237e632bc2c1e9,
+        type: 3}
+      propertyPath: left
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb9b31ea257023a43a237e632bc2c1e9, type: 3}
@@ -720,6 +737,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 512595170}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &585216640 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3380938786259895150, guid: eb9b31ea257023a43a237e632bc2c1e9,
+    type: 3}
+  m_PrefabInstance: {fileID: 512595170}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d11c3d09c0aa36449b27d1569a95d45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &706205581
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,18 +961,18 @@ PrefabInstance:
     - target: {fileID: 1600961938116311211, guid: eb9b31ea257023a43a237e632bc2c1e9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1600961938116311211, guid: eb9b31ea257023a43a237e632bc2c1e9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: RelativePathName, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1600961938116311211, guid: eb9b31ea257023a43a237e632bc2c1e9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 415561219}
     - target: {fileID: 1600961938116311211, guid: eb9b31ea257023a43a237e632bc2c1e9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument

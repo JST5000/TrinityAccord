@@ -24,19 +24,19 @@ EditorBuildSettings:
     path: Assets/Scenes/Market.unity
     guid: 859ac581a02261344a8330125fc7735e
   - enabled: 1
-    path: Assets/Scenes/SallyAndStand.unity
+    path: Assets/Scenes/Last Stand.unity
     guid: 2ebd600e8c5badd4b86f73ee5c96af61
   - enabled: 1
-    path: Assets/Scenes/ExplorerTent.unity
+    path: Assets/Scenes/Tent.unity
     guid: 48b2b629d1d38fc4587b27e74116ef6f
   - enabled: 1
     path: Assets/Scenes/Cabin.unity
     guid: 43d81a8d8c34ba540be27630ccdef8ed
   - enabled: 1
-    path: Assets/Scenes/SailboatHarbor.unity
+    path: Assets/Scenes/Harbor.unity
     guid: 87a4714722a12764da74f1167d79d5ba
   - enabled: 1
-    path: Assets/Scenes/ArtistHill.unity
+    path: Assets/Scenes/Artist Hill.unity
     guid: 8ee1f18127cf50c408fb5a719145b190
   - enabled: 1
     path: Assets/Scenes/Oasis.unity

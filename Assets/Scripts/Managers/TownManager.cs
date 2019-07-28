@@ -34,15 +34,17 @@ public class TownManager : MonoBehaviour
     {
         List<ShopItem> inventory = new List<ShopItem>();
         inventory.Add(new HealthItem(5, 2));
+        inventory.Add(new RemovalItem());
         Enter("Mapper's Camp", "CampfireManOnly", inventory, true, "Left, Right. Are you lost?");
     }
 
     public void OpenSailboat()
     {
         List<ShopItem> inventory = new List<ShopItem>();
-        inventory.Add(new RelativeTravelItem(true, 2, "SailingIcon", skipLevel: true, "Fast"));
-        //inventory.Add(new TravelItem("Safe Travel", 2, "SailingIcon", PermanentState.GetTownForNWins(PermanentState.wins + 1), true));
-        inventory.Add(new RelativeTravelItem(true, 0, "SwimmingIcon", false, "Slow"));
+        inventory.Add(new RelativeTravelItem(true, 2, "SailingIcon", skipLevel: true));
+        inventory.Add(new RelativeTravelItem(true, 0, "SwimmingIcon", skipLevel: false));
+        inventory.Add(new RelativeTravelItem(false, 2, "SailingIcon", skipLevel: true));
+        inventory.Add(new RelativeTravelItem(false, 0, "SwimmingIcon", skipLevel: false));
         Enter("Harbor", "WaterBoy", inventory, true, "Pay for safe travel?");
     }
 
@@ -58,14 +60,15 @@ public class TownManager : MonoBehaviour
     public void OpenTent()
     {
         List<ShopItem> inventory = new List<ShopItem>();
-        //inventory.Add(new PackItem());
         inventory.Add(new HealthItem(3, 2));
-        Enter("Explorer's Tent", "Explorer", inventory, true, "I can fix you... for a price.");
+        Enter("Explorer's Tent", "Explorer", inventory, true, "The right is new... hmmm...");
     }
 
     public void OpenQuestStand()
     {
-        Enter("Quest Stand", "Dave", new List<ShopItem>());
+        List<ShopItem> inventory = new List<ShopItem>();
+        
+        Enter("Novelty Shop", "Dave", inventory, false, "New wares!");
     }
 
     public void OpenHealthShop()
@@ -76,7 +79,7 @@ public class TownManager : MonoBehaviour
     public void SallyShop()
     {
         List<ShopItem> inventory = new List<ShopItem>();
-        inventory.Add(new PackItem(5));
+        inventory.Add(new PackItem(4));
         Enter("Sarah's World", "Sarah_Kid", inventory, false, "Hi Crystal!\nI found this, do you want it?");
     }
 
@@ -101,7 +104,9 @@ public class TownManager : MonoBehaviour
 
     public void OpenCardRemovalStand()
     {
-        Enter("Card Removal Stand", "Jenny", new List<ShopItem>());
+        List<ShopItem> inventory = new List<ShopItem>();
+        inventory.Add(new RemovalItem());
+        Enter("Dagger Removal", "Jenny", inventory, true, "I'll destroy that dagger!");
     }
 
     public void OpenVantage()
@@ -112,9 +117,9 @@ public class TownManager : MonoBehaviour
         Enter("Vantage Point", "Hiker", inventory, true, "Quite a sight eh?");
     }
 
-    public void LeaveTown(bool left)
+    public void LeaveTown(RelativePathName path)
     {
-        PermanentState.MoveToNextTown(left);
+        PermanentState.MoveToNextTown(path.left);
         PermanentState.ChooseNextFight();
         SceneManager.LoadScene("Encounter");
     }

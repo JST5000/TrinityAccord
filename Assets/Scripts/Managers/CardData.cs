@@ -17,7 +17,6 @@ public abstract class CardData
     //Target are for determining which user input is required. Ex. Tell the card which enemy is targeted.
     public  Target target;
     public GameObject selectedTarget;
-    public string cardName;
 
     protected int sharpenDamage = 0;
 
