@@ -21,6 +21,14 @@ public static class CardPools
     private static void InitAllDraftableCards()
     {
         List<CardData> all = new List<CardData>();
+
+ /*     //Class cards  
+        all.Add(new Juggle());
+        all.Add(new Berserk());
+        all.Add(new Chaos());
+        all.Add(new Sharpen()); */
+
+
         all.Add(new Backpack());
         all.Add(new Barrage());
         all.Add(new Cannon());
@@ -30,7 +38,6 @@ public static class CardPools
         //all.Add(new Duplicate());
         all.Add(new Flail());
         all.Add(new Hammer());
-        all.Add(new Juggle());
         all.Add(new Knockout());
         all.Add(new Lightning());
         all.Add(new Mug());
@@ -45,8 +52,6 @@ public static class CardPools
         all.Add(new Wand());
         all.Add(new Peer());
         all.Add(new Bash());
-        all.Add(new Berserk());
-        all.Add(new Chaos());
         all.Add(new Contaminate());
         all.Add(new Crossbow());
         all.Add(new DualWield());
@@ -64,7 +69,6 @@ public static class CardPools
         all.Add(new Wisdom());
         all.Add(new Unearth());
         all.Add(new Staff());
-        all.Add(new Sharpen());
         all.Add(new Relic());
         all.Add(new Artifact());
         all.Add(new Sandstorm());
@@ -83,6 +87,16 @@ public static class CardPools
             allCardsIncludingDefaults.Add(new Dagger());
         }
         return allCardsIncludingDefaults;
+    }
+
+    public static List<CardData> GetAllDraftableAttacks()
+    {
+        return GetAllDraftableCards().FindAll((CardData card) => card.getType().Equals(UICardData.CardType.ATTACK));
+    }
+
+    public static List<CardData> GetAllDraftableSpells()
+    {
+        return GetAllDraftableCards().FindAll((CardData card) => card.getType().Equals(UICardData.CardType.SPELL));
     }
 
 }

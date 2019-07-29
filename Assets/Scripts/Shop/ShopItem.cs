@@ -9,7 +9,9 @@ public abstract class ShopItem
     public string imageName;
     public Sprite picture;
     public bool limited;
-    
+
+    public CardData card;
+
     public ShopItem(string name, int cost, string imageName)
     {
         this.name = name;
@@ -26,10 +28,39 @@ public abstract class ShopItem
         this.limited = limited;
     }
 
+    /// <summary>
+    /// Used to have a card shop item using the existing prefab
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="cost"></param>
+    /// <param name="limited"></param>
+    public ShopItem(string name, int cost, CardData card, bool limited)
+    {
+        this.card = card;
+        this.name = name;
+        this.cost = cost;
+        this.limited = limited;
+    }
+
     public static GameObject CreateShopItemUI(Transform parent, ShopItem item)
     {
-        GameObject instance = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/ShopItem"), parent, false);
+        string prefabPath = "Prefabs/ShopItem";
+        if (item.card != null)
+        {
+            prefabPath = "Prefabs/CardItem";
+        }
+
+        GameObject instance = GameObject.Instantiate(Resources.Load<GameObject>(prefabPath), parent, false);
+
+        if(item.card != null)
+        {
+            CardManager cardMan = instance.GetComponentInChildren<CardManager>();
+            cardMan.Init(item.card);
+            cardMan.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        }
+
         instance.GetComponent<ShopItemManager>().Init(item);
+
         return instance;
     }
 
@@ -46,6 +77,4 @@ public abstract class ShopItem
         string folderName = "Shop_Icons/";
         this.picture = Resources.Load<Sprite>(folderName + givenSpriteName);
     }
-
-
 }

@@ -11,7 +11,7 @@ public class Berserk : CardData
 
     protected override UICardData CreateUICardData()
     {
-        return new UICardData("Berserk", cost: 2, "Play top 2 cards of deck at random", UICardData.CardType.SPELL, "Berserk");
+        return new UICardData("Berserk", cost: 3, "Play top 3 cards of deck at random", UICardData.CardType.SPELL, "Berserk");
     }
 
     public override int GetBonusDamage()
@@ -21,7 +21,7 @@ public class Berserk : CardData
 
     public override void Action(EnemyManager[] enemys)
     {
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 3; i++)
         {
             CardData top = grabTop();
             if (top == null)

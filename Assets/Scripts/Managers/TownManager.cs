@@ -11,16 +11,29 @@ public class TownManager : MonoBehaviour
     public TextMeshProUGUI moneyCounter;
     public HealthManager healthDisplay;
 
+    public CardData[] stock = null;
+
     private void Start()
     {
         healthDisplay.SetMaxHealth(PermanentState.maxHealth);
+        ResetStock();
     }
 
+    private void ResetStock()
+    {
+        stock = null;
+    }
+    
     public void OpenAttackShop()
     {
         List<ShopItem> inventory = new List<ShopItem>();
-        inventory.Add(new PackItem());
-        Enter("Attack Shop", "Jenny", inventory);
+
+        AddStock(CardDataUtil.ChooseNWithoutReplacement(CardPools.GetAllDraftableAttacks(), 3));
+
+        inventory.Add(new CardItem(stock[0]));
+        inventory.Add(new CardItem(stock[1]));
+        inventory.Add(new CardItem(stock[2]));
+        Enter("Attack Shop", "Jenny", inventory, false, "See any you like?");
     }
 
     public void OpenCabin()
@@ -34,6 +47,10 @@ public class TownManager : MonoBehaviour
     {
         List<ShopItem> inventory = new List<ShopItem>();
         inventory.Add(new HealthItem(5, 2));
+
+        AddStock(CardDataUtil.ChooseNWithoutReplacement(CardPools.GetAllDraftableSpells(), 1));
+        inventory.Add(new CardItem(stock[0], 3));
+
         inventory.Add(new RemovalItem());
         Enter("Mapper's Camp", "CampfireManOnly", inventory, true, "Left, Right. Are you lost?");
     }
@@ -59,13 +76,19 @@ public class TownManager : MonoBehaviour
     {
         List<ShopItem> inventory = new List<ShopItem>();
         inventory.Add(new HealthItem(3, 2));
-        Enter("Explorer's Tent", "Explorer", inventory, true, "The right is new... hmmm...");
+
+        AddStock(CardDataUtil.ChooseNWithoutReplacement(CardPools.GetAllDraftableCards(), 1));
+        inventory.Add(new CardItem(stock[0], 2));
+
+        Enter("Explorer's Tent", "Explorer", inventory, true, "The right is new!");
     }
 
-    public void OpenQuestStand()
+    public void OpenNoveltyShop()
     {
         List<ShopItem> inventory = new List<ShopItem>();
-        
+        inventory.Add(new CardItem(new Sandstorm()));
+        inventory.Add(new CardItem(new Artifact()));
+        inventory.Add(new CardItem(new Relic()));
         Enter("Novelty Shop", "Dave", inventory, false, "New wares!");
     }
 
@@ -77,13 +100,19 @@ public class TownManager : MonoBehaviour
     public void SallyShop()
     {
         List<ShopItem> inventory = new List<ShopItem>();
-        inventory.Add(new PackItem(4));
-        Enter("Sarah's World", "Sarah_Kid", inventory, false, "Hi Crystal!\nI found this, do you want it?");
+
+        AddStock(CardDataUtil.ChooseNWithoutReplacement(CardPools.GetAllDraftableCards(), 1));
+        inventory.Add(new CardItem(stock[0], 0));
+        Enter("Sarah's World", "Sarah_Kid", inventory, false, "I found this, do you want it?");
     }
 
     public void OpenOasis()
     {
         List<ShopItem> inventory = GetHealthShopInventory();
+
+        AddStock(CardDataUtil.ChooseNWithoutReplacement(CardPools.GetAllDraftableSpells(), 1));
+        inventory.Add(new CardItem(stock[0]));
+
         Enter("Oasis", "Rainman_Closeup", inventory, true, "Preparing for a rainy day?");
     }
 
@@ -110,7 +139,7 @@ public class TownManager : MonoBehaviour
     public void OpenVantage()
     {
         List<ShopItem> inventory = new List<ShopItem>();
-        inventory.Add(new HealthItem(5, 1));
+        inventory.Add(new HealthItem(2, 1));
         inventory.Add(new RelativeTravelItem(true, 0, "MountainPath", false));
         Enter("Vantage Point", "Hiker", inventory, true, "Quite a sight eh?");
     }
@@ -122,6 +151,17 @@ public class TownManager : MonoBehaviour
         SceneManager.LoadScene("Encounter");
     }
 
+    /// <summary>
+    /// Temporary workaround which allows one shop to hold a consistent stock for CardItems
+    /// </summary>
+    /// <param name="cards"></param>
+    private void AddStock(List<CardData> cards)
+    {
+        if (stock == null)
+        {
+            stock = cards.ToArray();
+        }
+    }
 
 
     private void Enter(string name, string shopKeeperName, List<ShopItem> items)

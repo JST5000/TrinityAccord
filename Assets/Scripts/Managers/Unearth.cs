@@ -14,6 +14,11 @@ public class Unearth : CardData
         return new UICardData("Unearth", cost: 0, "Draw 1 from discard", UICardData.CardType.SPELL);
     }
 
+    public override int GetBonusDamage()
+    {
+        return 0;
+    }
+
     public override void Action(EnemyManager[] enemys)
     {
 

@@ -73,8 +73,24 @@ public class ShopItemManager : MonoBehaviour
             {
                 Disable();
             }
-            ItemImg.sprite = Data.picture;
-            Cost.text = "Cost: " + Data.cost;
+
+            if (Data.picture != null)
+            {
+                ItemImg.color = new Color(1, 1, 1, 1);
+                ItemImg.sprite = Data.picture;
+            } else
+            {
+                ItemImg.color = new Color(1, 1, 1, 0);
+            }
+
+            if (SoldOut)
+            {
+                Cost.text = "SOLD OUT!";
+            }
+            else
+            {
+                Cost.text = "Cost: " + Data.cost;
+            }
             Quantity.text = GetQuantityText();
         }
     }
@@ -103,7 +119,7 @@ public class ShopItemManager : MonoBehaviour
     {
         if(SoldOut)
         {
-            return "SOLD OUT!";
+            return "";
         } else if(Data.limited)
         {
             return "LIMITED!";

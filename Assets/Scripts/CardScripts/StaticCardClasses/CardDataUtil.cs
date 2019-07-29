@@ -62,9 +62,14 @@ public static class CardDataUtil
         List<CardData> fresh = new List<CardData>();
         foreach (CardData card in deck)
         {
-            fresh.Add(card.CloneCardType());
+            fresh.Add(CreateFreshCopiesOf(card));
         }
         return fresh;
+    }
+
+    public static CardData CreateFreshCopiesOf(CardData card)
+    {
+        return card.CloneCardType();
     }
 
     public static List<CardData> ChooseNWithoutReplacement(List<CardData> pool, int n)

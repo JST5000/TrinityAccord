@@ -11,18 +11,18 @@ public class CanvasGroupManip : MonoBehaviour
         cg.interactable = false;
     }
 
-    public static void Enable(CanvasGroup cg)
+    public static void Enable(CanvasGroup cg, bool blocksRaycasts = true)
     {
         cg.alpha = 1;
-        cg.blocksRaycasts = true;
+        cg.blocksRaycasts = blocksRaycasts;
         cg.interactable = true;
     }
 
-    public static void SetVisibility(bool enableCondition, CanvasGroup cg)
+    public static void SetVisibility(bool enableCondition, CanvasGroup cg, bool blocksRaycasts = true)
     {
         if(enableCondition)
         {
-            Enable(cg);
+            Enable(cg, blocksRaycasts);
         } else
         {
             Disable(cg);

@@ -19,6 +19,8 @@ public class CardUIUpdater : MonoBehaviour
     public Sprite SpellBG;
     public Sprite HighlightBG;
 
+    public bool blocksRaycasts = true;
+
 
     private Sprite prevBG;
     private bool highlighted = false;
@@ -74,7 +76,7 @@ public class CardUIUpdater : MonoBehaviour
             {
                 UpdateUI(cardHolder.GetUICardData());
             }
-            CanvasGroupManip.SetVisibility(cardHolder.IsPreserved(), LockIconCG);
+            CanvasGroupManip.SetVisibility(cardHolder.IsPreserved(), LockIconCG, blocksRaycasts);
             TurnOnCard();
         } else
         {
@@ -89,9 +91,7 @@ public class CardUIUpdater : MonoBehaviour
     {
         if (!IsOff)
         {
-            cardCG.alpha = 0;
-            cardCG.blocksRaycasts = false;
-            cardCG.interactable = false;
+            CanvasGroupManip.Disable(cardCG);
             IsOff = true;
         }
     }
@@ -101,9 +101,7 @@ public class CardUIUpdater : MonoBehaviour
     {
         if (IsOff)
         {
-            cardCG.alpha = 1;
-            cardCG.blocksRaycasts = true;
-            cardCG.interactable = true;
+            CanvasGroupManip.Enable(cardCG, blocksRaycasts);
             IsOff = false;
         }
     }

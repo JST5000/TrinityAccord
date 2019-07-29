@@ -1775,7 +1775,7 @@ GameObject:
   - component: {fileID: 1988122235}
   - component: {fileID: 1988122238}
   m_Layer: 5
-  m_Name: QuestStand
+  m_Name: NoveltyShop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1842,7 +1842,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 448325984}
-        m_MethodName: OpenQuestStand
+        m_MethodName: OpenNoveltyShop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
