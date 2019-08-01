@@ -126,19 +126,32 @@ public class DeckManager : MonoBehaviour
         }
         return null;
     }
-    public CardData grabDiscard()
+    public CardData grabDiscard(int index = -1)
     {
         if (discard.Count == 0)
         {
             return null;
         }
-        int randomIndex = UnityEngine.Random.Range(0, discard.Count);
-        CardData toReturn = discard[randomIndex];
-        discard.RemoveAt(randomIndex);
+
+        int toReturnIndex = index;
+
+        if (index < 0)
+        {
+            toReturnIndex = UnityEngine.Random.Range(0, discard.Count);
+        }
+
+        CardData toReturn = discard[toReturnIndex];
+        discard.RemoveAt(toReturnIndex);
         return toReturn;
 
 
     }
+
+    public CardData GrabTopCardOfDiscard()
+    {
+        return grabDiscard(discard.Count - 1);
+    }
+
     public void discardTop()
     {
         discard.Add(deck[0]);

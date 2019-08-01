@@ -201,10 +201,10 @@ public abstract class CardData
         return deck.DrawCard();
     }
 
-    protected void drawFromDiscard()
+    protected void drawFromDiscard(int index = -1)
     {
         DeckManager deck = DeckManager.Get();
-        CardData toAdd= deck.grabDiscard();
+        CardData toAdd= deck.grabDiscard(index);
         if (toAdd != null) {
             deck.addCardToHand(toAdd);
         }

@@ -11,7 +11,7 @@ public class Unearth : CardData
 
     protected override UICardData CreateUICardData()
     {
-        return new UICardData("Unearth", cost: 0, "Draw 1 from discard", UICardData.CardType.SPELL);
+        return new UICardData("Unearth", cost: 0, "Draw the top card from your discard.", UICardData.CardType.SPELL, "Unearth");
     }
 
     public override int GetBonusDamage()
@@ -21,8 +21,13 @@ public class Unearth : CardData
 
     public override void Action(EnemyManager[] enemys)
     {
-
-        drawFromDiscard();
+        DeckManager deckMan = DeckManager.Get();
+        CardData card = deckMan.GrabTopCardOfDiscard();
+        if (card != null && !deckMan.addCardToHand(card)) {
+            //Reverse the change
+            deckMan.AddToDiscard(card);
+        }
+        
     }
     public override void Action(CardData[] cards)
     {

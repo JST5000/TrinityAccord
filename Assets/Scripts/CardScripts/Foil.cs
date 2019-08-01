@@ -13,7 +13,7 @@ public class Foil : CardData
 
     protected override UICardData CreateUICardData()
     {
-        return new UICardData("Foil", cost: GetCost(), "Deal " + GetDamage() + " damage, reduce cost by 1", UICardData.CardType.ATTACK);
+        return new UICardData("Foil", cost: GetCost(), "Deal " + GetDamage() + " damage, reduce cost by 1", UICardData.CardType.ATTACK, "Foil");
     }
 
     private int GetDamage()
