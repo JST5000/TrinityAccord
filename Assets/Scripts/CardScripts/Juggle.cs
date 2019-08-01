@@ -22,7 +22,7 @@ public class Juggle : CardData
 
     public override void Action(EnemyManager[] enemys)
     {
-        SoundManager.playSound("Juggle1");
+        SoundManager.PlayCardSFX("Juggle1");
         enemys[0].Damage(GetDamage());
         enemys[0].Stun();
     }

@@ -21,7 +21,7 @@ public class Dagger : CardData
 
     public override void Action(EnemyManager[] enemys)
     {
-        SoundManager.playSound("Knife1");
+        SoundManager.PlayCardSFX("Knife1");
         enemys[0].Damage(GetDamage());
     }
 

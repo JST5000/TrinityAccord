@@ -34,7 +34,7 @@ public class Sharpen : CardData
         {
             hand[validCards[i]].GetCardData().sharpen();
         }
-        SoundManager.playSound("Sharpen1");
+        SoundManager.PlayCardSFX("Sharpen1");
     }
     public override void Action(CardData[] cards)
     {

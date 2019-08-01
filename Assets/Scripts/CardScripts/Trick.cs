@@ -22,7 +22,7 @@ public class Trick : CardData
     public override void Action(EnemyManager[] enemys)
     {
         enemys[0].Stun();
-        SoundManager.playSound("Trick1");
+        SoundManager.PlayCardSFX("Trick1");
         getDeckManager().AddDrawNextTurn();
         addEnergyNextTurn(1);
     }

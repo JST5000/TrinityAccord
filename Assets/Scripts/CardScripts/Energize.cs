@@ -21,7 +21,7 @@ public class Energize : CardData
 
     public override void Action(EnemyManager[] enemys)
     {
-        SoundManager.playSound("Energize1");
+        SoundManager.PlayCardSFX("Energize1");
         addEnergy(1);
     }
     public override void Action(CardData[] cards)

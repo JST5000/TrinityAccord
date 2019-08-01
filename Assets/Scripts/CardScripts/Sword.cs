@@ -22,7 +22,7 @@ public class Sword : CardData
 
     public override void Action(EnemyManager[] enemys)
     {
-        SoundManager.playSound("Sword1");
+        SoundManager.PlayCardSFX("Sword1");
         enemys[0].Damage(GetDamage());
     }
     public override void Action(CardData[] cards)
