@@ -20,12 +20,16 @@ public class EncounterManager : MonoBehaviour
 
     private EnemyManager targetedEnemy = null;
 
+    public static EncounterManager Get()
+    {
+        return GameObject.Find("Board").GetComponent<EncounterManager>();
+    }
+
     //Allows static access to the Spawn functionality for enemies to call in their attacks
     //Abstracts knowledge of what object has the EncounterManager script
     public static void SpawnEnemyInDefaultManager(EnemyData newEnemy)
     {
-        string ownerOfEncounterManager = "Board";
-        GameObject.Find(ownerOfEncounterManager).GetComponent<EncounterManager>().SpawnEnemy(newEnemy);
+        Get().SpawnEnemy(newEnemy);
     }
 
     public void Init(EnemyData[] encounter)
@@ -52,6 +56,8 @@ public class EncounterManager : MonoBehaviour
         {
             Debug.Log("There were more enemies in this encounter than EnemyManagers. Please implement how this feature should be.");
         }
+
+        UpdateAllEnemyUI();
     }
 
     public EnemyManager GetRandomAliveEnemyManager()
@@ -122,6 +128,7 @@ public class EncounterManager : MonoBehaviour
         {
             OnEncounterWin();
         }
+        UpdateAllEnemyUI();
     }
 
     IEnumerator WaitForNSeconds(float n)
@@ -233,5 +240,29 @@ public class EncounterManager : MonoBehaviour
         {
             return null;
         }
+    }
+
+    public static void UpdateAllEnemyUI()
+    {
+        foreach (EnemyManager man in Get().allEnemyManagers)
+        {
+            if (!man.IsEmpty())
+            {
+                man.UpdateUIData();
+            }
+        }
+    }
+
+    public static List<EnemyManager> GetEnemyManagersWithName(string enemyName)
+    {
+        List<EnemyManager> enemy = new List<EnemyManager>();
+        foreach (EnemyManager man in Get().allEnemyManagers)
+        {
+            if (!man.IsEmpty() && man.GetUIData().EnemyName.Equals(enemyName))
+            {
+                enemy.Add(man);
+            }
+        }
+        return enemy;
     }
 }

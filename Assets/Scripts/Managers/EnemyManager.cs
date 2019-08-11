@@ -131,6 +131,11 @@ public class EnemyManager : MonoBehaviour
         return data.GetUIData();
     }
 
+    public void UpdateUIData()
+    {
+        data.UpdateUIData();
+    }
+
     public void SetTargetIndicator(bool targetStatus)
     {
         //Never want to show the target when there is no enemy!

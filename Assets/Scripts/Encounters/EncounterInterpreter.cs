@@ -49,6 +49,8 @@ public class EncounterInterpreter
         enemies.Add(new Mole());
         enemies.Add(new Executioner());
         enemies.Add(new Clam());
+        enemies.Add(new Piranha());
+        enemies.Add(new Pufferfish());
         return enemies.ToArray();
     }
 

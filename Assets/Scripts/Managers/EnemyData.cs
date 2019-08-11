@@ -65,6 +65,9 @@ public abstract class EnemyData
         return new UIEnemyData(enemyName, currHP: currHP, maxHP: maxHP, staggers, damage, maxTimer, currTimer, effect, picture, stunned: stunned, sleepTimer: sleepTimer);
     }
 
+    //Used by children to add triggered updates to effects and such
+    public virtual void UpdateUIData() { }
+
     public void Attack() {
         //Default damage effect
         GameObject.Find("Player").GetComponent<Player>().Damage(damage);
@@ -108,7 +111,6 @@ public abstract class EnemyData
         return DamageRecursive(modifiedDamage);
     }
 
-    //Returns true 
     public bool DamageRecursive(int damage)
     {
         if(damage == 0)
@@ -223,4 +225,6 @@ public abstract class EnemyData
         LoadPicture(originalSpriteName, original);
         yield return null;
     }
+
+
 }
