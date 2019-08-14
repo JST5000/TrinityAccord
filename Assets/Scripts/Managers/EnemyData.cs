@@ -23,7 +23,7 @@ public abstract class EnemyData
     public int MaxHP { get => maxHP; set => maxHP = value; }
     public int CurrHP { get => currHP; set => currHP = value; }
     public int Staggers { get => staggers; set => SetStaggers(value); }
-    protected int Damage { get => damage; set => damage = value; }
+    public int Damage { get => damage; set => damage = value; }
     public int MaxTimer { get => maxTimer; set => maxTimer = value; }
     public virtual int CurrTimer { get => currTimer; set => currTimer = value; }
     public string Effect { get => effect; set => effect = value; }

@@ -148,5 +148,15 @@ public class EnemyManager : MonoBehaviour
             GetComponent<UpdateEnemyUI>().SetTarget(targetStatus);
         }
     }
+
+
+    /// <summary>
+    /// Should only be used when there is a direct field that needs to be modified. Ex. Whale + Barnacle interaction
+    /// </summary>
+    /// <returns></returns>
+    public EnemyData GetEnemyData()
+    {
+        return data;
+    }
 }
 
