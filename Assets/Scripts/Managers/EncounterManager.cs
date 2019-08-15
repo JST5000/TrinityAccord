@@ -30,6 +30,7 @@ public class EncounterManager : MonoBehaviour
     public static void SpawnEnemyInDefaultManager(EnemyData newEnemy)
     {
         Get().SpawnEnemy(newEnemy);
+        UpdateAllEnemyUI();
     }
 
     public void Init(EnemyData[] encounter)

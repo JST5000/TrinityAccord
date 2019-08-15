@@ -54,6 +54,9 @@ public class EncounterInterpreter
         enemies.Add(new Whale());
         enemies.Add(new AttackBarnacle());
         enemies.Add(new DefenseBarnacle());
+        enemies.Add(new Dung());
+        enemies.Add(new Fly());
+        enemies.Add(new Bait());
         return enemies.ToArray();
     }
 
