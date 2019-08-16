@@ -20,12 +20,6 @@ public class Clone : CardData
         return 0;
     }
 
-    public override void OnSelectedInHand()
-    {
-        base.OnSelectedInHand();
-        HandManager.Get().EnableAllCardsInHand();
-    }
-
     public override void Action(EnemyManager[] enemys)
     {
 

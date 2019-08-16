@@ -86,7 +86,10 @@ public abstract class CardData
 
     public virtual void OnSelectedInHand()
     {
-
+        if (target.Equals(Target.CARD))
+        {
+            HandManager.Get().EnableAllCardsInHand();
+        }
     }
 
     public void setCost(int cost)

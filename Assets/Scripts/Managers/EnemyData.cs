@@ -35,6 +35,8 @@ public abstract class EnemyData
     public bool Vulnerable { get; set; }
     public static int MaxSleepTimer = 3;
 
+    protected bool ImmuneToDebuffs = false;
+
     public EnemyData(string name, int maxHP, int staggers, int damage, int timer, string effect, string spriteName, params string[] alternateNames)
     {
         this.enemyName = name;
@@ -132,7 +134,7 @@ public abstract class EnemyData
             //Must drop staggers first for onStagger effects to activate (Ex. Tiger -> Timer increase)
             Staggers--;
 
-            StaggerEnemy();
+            StaggerEnemy(staggerFromDamage: true);
             CurrHP = MaxHP;
             if (Staggers > 0)
             {
@@ -149,25 +151,35 @@ public abstract class EnemyData
         
     }
 
-    public virtual void StaggerEnemy()
+    public virtual void StaggerEnemy(bool staggerFromDamage = false)
     {
-        CurrTimer = MaxTimer;
-        Stun();
+        if (staggerFromDamage || !ImmuneToDebuffs)
+        {
+            CurrTimer = MaxTimer;
+            Stun(staggerFromDamage);
+        }
     }
 
-    public virtual void Stun()
+    public virtual void Stun(bool internalStun = false)
     {
-        Stunned = true;
+        if (internalStun || !ImmuneToDebuffs)
+        {
+            Stunned = true;
+        }
     }
 
     public virtual void Drowsy()
     {
-        if(sleepTimer == 0)
+        if (!ImmuneToDebuffs)
         {
-            sleepTimer = MaxSleepTimer; //Drowsy
-        } else
-        {
-            sleepTimer = MaxSleepTimer - 1; //Still asleep
+            if (sleepTimer == 0)
+            {
+                sleepTimer = MaxSleepTimer; //Drowsy
+            }
+            else
+            {
+                sleepTimer = MaxSleepTimer - 1; //Still asleep
+            }
         }
     }
 

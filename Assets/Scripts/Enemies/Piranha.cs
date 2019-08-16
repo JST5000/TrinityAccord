@@ -11,7 +11,8 @@ public class Piranha : EnemyData
 
     private static int GetPiranhaDamage()
     {
-        return EncounterManager.GetEnemyManagersWithName(piranhaName).Count;
+        int? output = EncounterManager.GetEnemyManagersWithName(piranhaName)?.Count;
+        return output != null ? output.Value : 1;
     }
 
     private static string GetPiranhaEffect()

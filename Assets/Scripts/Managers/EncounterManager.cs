@@ -22,7 +22,7 @@ public class EncounterManager : MonoBehaviour
 
     public static EncounterManager Get()
     {
-        return GameObject.Find("Board").GetComponent<EncounterManager>();
+        return GameObject.Find("Board")?.GetComponent<EncounterManager>();
     }
 
     //Allows static access to the Spawn functionality for enemies to call in their attacks
@@ -257,13 +257,17 @@ public class EncounterManager : MonoBehaviour
     public static List<EnemyManager> GetEnemyManagersWithName(string enemyName)
     {
         List<EnemyManager> enemy = new List<EnemyManager>();
-        foreach (EnemyManager man in Get().allEnemyManagers)
+        if (Get() != null)
         {
-            if (!man.IsEmpty() && man.GetUIData().EnemyName.Equals(enemyName))
+            foreach (EnemyManager man in Get().allEnemyManagers)
             {
-                enemy.Add(man);
+                if (!man.IsEmpty() && man.GetUIData().EnemyName.Equals(enemyName))
+                {
+                    enemy.Add(man);
+                }
             }
+            return enemy;
         }
-        return enemy;
+        return null;
     }
 }

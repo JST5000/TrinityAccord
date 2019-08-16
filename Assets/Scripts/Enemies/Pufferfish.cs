@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Pufferfish : EnemyData
 {
-    private static int MaxHealthIncrease = 3;
+    private static int MaxHealthIncrease = 2;
 
     private static int BaseDamage = 2;
 

@@ -57,7 +57,9 @@ public class EncounterInterpreter
         enemies.Add(new Dung());
         enemies.Add(new Fly());
         enemies.Add(new Bait());
-        return enemies.ToArray();
+        enemies.Add(new Bull());
+        enemies.Add(new Crab());
+            return enemies.ToArray();
     }
 
     public static EnemyData InterpretWord(string enemyName)

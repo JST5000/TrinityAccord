@@ -151,6 +151,15 @@ public class TownManager : MonoBehaviour
         SceneManager.LoadScene("Encounter");
     }
 
+    public void FightBoss(string encounterList)
+    {
+        //TODO add ability to choose left/right even as you set a specific fight
+        //This is fine for Boss's since there is no next town, but will need to correct for other use cases
+        PermanentState.MoveToNextTown(true);
+        PermanentState.SetNextEncounter(EncounterInterpreter.InterpretText(encounterList));
+        SceneManager.LoadScene("Encounter");
+    }
+
     /// <summary>
     /// Temporary workaround which allows one shop to hold a consistent stock for CardItems
     /// </summary>
