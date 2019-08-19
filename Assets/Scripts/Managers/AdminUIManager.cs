@@ -20,4 +20,9 @@ public class AdminUIManager : MonoBehaviour
         instance.GetComponent<Choose3Manager>().reloadEncounterOnDraft = true;
     }
 
+    public void HealToFull()
+    {
+        GameObject.Find("Player").GetComponent<Player>().Heal(10);
+    }
+
 }

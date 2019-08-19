@@ -26,6 +26,13 @@ public class StackManager : MonoBehaviour
     private float currTime = 0;
     private float timePerCard = .5f;
 
+    private object ExecutionLock = new object();
+    private int WaitsOnExecution = 0;
+
+    public static StackManager Get()
+    {
+        return GameObject.Find("StackHolder").GetComponent<StackManager>();
+    }
 
     void Start()
     {
@@ -33,8 +40,6 @@ public class StackManager : MonoBehaviour
         displayedCard = GetComponentInChildren<CardUIUpdater>();
         endTurn = GameObject.Find("EndTurnButton").GetComponent<EndTurnUI>();
     }
-
-
 
     private void Update()
     {
@@ -46,7 +51,7 @@ public class StackManager : MonoBehaviour
             SetAlphaColor(label, 1);  
         }
 
-        if (playedCards.Count != 0)
+        if (playedCards.Count != 0 && WaitsOnExecution <= 0)
         {
             currTime += Time.deltaTime;
             if(currTime >= timePerCard 
@@ -292,6 +297,25 @@ public class StackManager : MonoBehaviour
             CardData selected = CardDataUtil.ChooseNWithoutReplacement(uniqueOptions, 1)[0];
             cardsReturnedSoFar.Add(selected);
             return selected;
+        }
+    }
+
+    public void PauseExecution()
+    {
+        lock(ExecutionLock)
+        {
+            WaitsOnExecution++;
+        }
+    }
+
+    public void ResumeExecution()
+    {
+        lock(ExecutionLock)
+        {
+            if (WaitsOnExecution > 0)
+            {
+                WaitsOnExecution--;
+            }
         }
     }
 }

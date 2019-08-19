@@ -19,11 +19,12 @@ public class Staff : CardData
 
     public override void Action(EnemyManager[] enemys)
     {
+        PauseExecutionUntilChoiceMade();
 
         GameObject instance = GameObject.Instantiate(Resources.Load<GameObject>("Choose3Menu"), GameObject.Find("Canvas").transform, false);
         Choose3Manager choose3 = instance.GetComponent<Choose3Manager>();
         DeckManager deck = DeckManager.Get();
-
+        
         //Forces shuffle at start of effect instead of midway
         choose3.Init(options);
 
@@ -52,6 +53,7 @@ public class Staff : CardData
             draw();
             draw();
         }
+        ResumeExecution();
     }
 
     public override void Action(CardData[] cards, EnemyManager[] enemys)

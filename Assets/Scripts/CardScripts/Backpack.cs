@@ -11,7 +11,7 @@ public class Backpack : CardData
 
     protected override UICardData CreateUICardData()
     {
-        return new UICardData("Backpack", cost: 0, "Draw 2 Discard 2", UICardData.CardType.SPELL);
+        return new UICardData("Backpack", cost: 0, "Draw 2 Discard 2", UICardData.CardType.SPELL, "Backpack");
     }
 
     public override int GetBonusDamage()

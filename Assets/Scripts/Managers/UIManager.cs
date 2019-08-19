@@ -37,12 +37,14 @@ public class UIManager : MonoBehaviour
         HandManager.Get().UpdateAllCardsInHand();
         actionCard = card;
         actionsNeeded = count;
+        StackManager.Get().PauseExecution();
     }
     public static void cardInHandClicked(CardManager card)
     {
         actionsNeeded -= actionCard.SecondAction(card);
         if (actionsNeeded <= 0)
         {
+            StackManager.Get().ResumeExecution();
             SetCurrentMode(GameMode.SelectCard);
         }
     }

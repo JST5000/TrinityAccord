@@ -26,7 +26,7 @@ public class Peer : CardData
     public override void Action(EnemyManager[] enemys)
     {
         //Prevent end turn during card selection
-        GameObject.Find("EndTurnButton").GetComponent<EndTurnUI>().PauseAutoEndTurn();
+        PauseExecutionUntilChoiceMade();
 
         GameObject instance = GameObject.Instantiate(Resources.Load<GameObject>("Choose3Menu"), GameObject.Find("Canvas").transform, false);
         Choose3Manager choose3 = instance.GetComponent<Choose3Manager>();
@@ -57,7 +57,7 @@ public class Peer : CardData
         }
 
         //Must be resumed explicitly since we flagged as a 'PauseGameplay' card
-        GameObject.Find("EndTurnButton").GetComponent<EndTurnUI>().ResumeAutoEndTurn();
+        ResumeExecution();
     }
 
     public override void Action(CardData[] cards, EnemyManager[] enemys)

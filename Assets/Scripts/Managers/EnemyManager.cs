@@ -101,6 +101,11 @@ public class EnemyManager : MonoBehaviour
         encounterMan.OnEnemyDeath(); //Alerts the encounterManager of death
     }
 
+    public bool IsAlive()
+    {
+        return !IsEmpty() && data.CurrHP > 0;
+    }
+
     public void Drowsy()
     {
         data.Drowsy();

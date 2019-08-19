@@ -341,4 +341,16 @@ public abstract class CardData
         StackManager playStack = GameObject.Find("StackHolder").GetComponent<StackManager>();
         playStack.Push(card, StackUsage.DISCARD);
     }
+
+    protected void PauseExecutionUntilChoiceMade()
+    {
+        GameObject.Find("EndTurnButton").GetComponent<EndTurnUI>().PauseAutoEndTurn();
+        StackManager.Get().PauseExecution();
+    }
+
+    protected void ResumeExecution()
+    {
+        GameObject.Find("EndTurnButton").GetComponent<EndTurnUI>().ResumeAutoEndTurn();
+        StackManager.Get().ResumeExecution();
+    }
 }
