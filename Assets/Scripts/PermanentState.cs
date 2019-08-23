@@ -157,39 +157,12 @@ public class PermanentState : MonoBehaviour
 
     public static string GetNextTownSceneName()
     {
-        return worldMap.GetCurrentTown().sceneName;
+        return worldMap.GetCurrentTown().SceneName;
     }
 
     public static void MoveToNextTown(bool left)
     {
         worldMap.MoveToNextTown(left);
-    }
-
-    public static string GetTownForNWins(int nWins)
-    {
-        if (nWins == 1)
-        {
-            return "ExplorerTent";
-        } else if(nWins == 2)
-        {
-            return "SailboatHarbor";
-        }
-        else if (nWins == 3)
-        {
-            return "ArtistHill";
-        }
-        else if (nWins == 4)
-        {
-            return "Cabin";
-        } 
-        else if (nWins == FinalFight)
-        {
-            return "SallyAndStand";
-        }
-        else
-        {
-            return "Market";
-        }
     }
 
     public static void ChooseNextFight()

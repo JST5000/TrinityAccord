@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Whale : EnemyData {
 
-    private static int baseDamage = 3;
+    private static int baseDamage = 5;
 
     public Whale() : base(name: "Whale", maxHP: 9, staggers: 3, damage: baseDamage, timer: 3, effect: GetEffect(baseDamage), "Whale")
     {

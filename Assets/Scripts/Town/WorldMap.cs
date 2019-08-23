@@ -31,11 +31,11 @@ public class WorldMap
     {
         if (left)
         {
-            currentTown = currentTown.left;
+            currentTown = currentTown.Left;
         }
         else
         {
-            currentTown = currentTown.right;
+            currentTown = currentTown.Right;
         }
     }
 
@@ -43,10 +43,10 @@ public class WorldMap
     {
         if(left)
         {
-            return currentTown?.left?.sceneName;
+            return currentTown?.Left?.SceneName;
         } else
         {
-            return currentTown?.right?.sceneName;
+            return currentTown?.Right?.SceneName;
         }
     }
 
