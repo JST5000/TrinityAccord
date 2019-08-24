@@ -7,14 +7,14 @@ public class AttackBarnacle : EnemyData
     bool firstAttackMode = true;
 
     private static int BaseDamage { get; set; } = 1;
-    private static int WhaleDamageBuff = 3;
-    private static int WhaleAccelerateRate = 1;
+    private static readonly int whaleDamageBuff = 3;
+    private static readonly int whaleAccelerateRate = 1;
 
-    private static string Closed = "Attack_Barnacle_Closed";
-    private static string Open = "Attack_Barnacle_Opened";
+    private static readonly string Closed = "Attack_Barnacle_Closed";
+    private static readonly string Open = "Attack_Barnacle_Opened";
 
     public AttackBarnacle()
-        : base(name: "Barnacle", maxHP: 6, staggers: 2, damage: BaseDamage, timer: 2, effect: GetEffect(true), spriteName: Closed, "AttackBarnacle")
+        : base(name: "Barnacle", maxHP: 5, staggers: 3, damage: BaseDamage, timer: 2, effect: GetEffect(true), spriteName: Closed, "AttackBarnacle")
     { }
 
     protected override void AttackUniqueEffect()
@@ -24,8 +24,7 @@ public class AttackBarnacle : EnemyData
         {
             if (firstAttackMode)
             {
-
-                whale.GetEnemyData().Damage += 2;
+                whale.GetEnemyData().Damage += whaleDamageBuff;
             } else
             {
                 whale.GetEnemyData().MaxTimer--;
@@ -52,11 +51,11 @@ public class AttackBarnacle : EnemyData
     {
         if (firstAttackMode)
         {
-            return InLineIcon.DAMAGE + $": {BaseDamage},\nBuff Whale damage by {WhaleDamageBuff},\nFlip";
+            return InLineIcon.DAMAGE + $": {BaseDamage},\nBuff Whale damage by {whaleDamageBuff},\nFlip";
         }
         else
         {
-            return InLineIcon.DAMAGE + $": {BaseDamage},\nAccelerate Whale by {WhaleAccelerateRate} turn, Flip";
+            return InLineIcon.DAMAGE + $": {BaseDamage},\nAccelerate Whale by {whaleAccelerateRate} turn, Flip";
         }
     }
 }

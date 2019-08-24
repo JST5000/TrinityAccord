@@ -6,6 +6,8 @@ public class WorldMap
 {
     private MapNode currentTown = null;
 
+    public List<MapNode> PathTraveled { get; set; } = new List<MapNode>();
+
     public WorldMap()
     {
         currentTown = GenerateWorldMap();
@@ -13,6 +15,8 @@ public class WorldMap
 
     private MapNode GenerateWorldMap()
     {
+        PathTraveled = new List<MapNode>();
+
         MapNode LastStand = new MapNode("Last Stand");
         MapNode Cabin = new MapNode("Cabin", null, LastStand);
         MapNode Vantage = new MapNode("Vantage", LastStand, null);
@@ -23,6 +27,8 @@ public class WorldMap
         MapNode Oasis = new MapNode("Oasis", Campfire, Market);
 
         MapNode Tent = new MapNode("Tent", Harbor, Oasis);
+
+        PathTraveled.Add(Tent);
 
         return Tent;
     }
@@ -37,6 +43,8 @@ public class WorldMap
         {
             currentTown = currentTown.Right;
         }
+
+        PathTraveled.Add(currentTown);
     }
 
     public string GetChildSceneName(bool left)

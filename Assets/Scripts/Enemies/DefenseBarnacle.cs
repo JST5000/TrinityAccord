@@ -13,7 +13,7 @@ public class DefenseBarnacle : EnemyData
     private static string Open = "Defense_Barnacle_Opened";
 
     public DefenseBarnacle()
-        : base(name: "Barnacle", maxHP: 6, staggers: 2, damage: BaseDamage, timer: 2, effect: GetEffect(true), spriteName: Closed, "DefenseBarnacle")
+        : base(name: "Barnacle", maxHP: 5, staggers: 3, damage: BaseDamage, timer: 2, effect: GetEffect(true), spriteName: Closed, "DefenseBarnacle")
     { }
 
     protected override void AttackUniqueEffect()

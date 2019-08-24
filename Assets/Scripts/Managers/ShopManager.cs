@@ -38,6 +38,13 @@ public class ShopManager : MonoBehaviour
 
     public void Exit()
     {
+        //Turn on path icons
+        CanvasGroup path = GameObject.Find("Path")?.GetComponent<CanvasGroup>();
+        if (path != null)
+        {
+            CanvasGroupManip.Enable(path);
+        }
+
         Destroy(gameObject);
     }
 

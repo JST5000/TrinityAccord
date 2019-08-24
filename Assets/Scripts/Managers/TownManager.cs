@@ -126,7 +126,7 @@ public class TownManager : MonoBehaviour
 
     public void OpenHealthShopTown2()
     {
-        Enter("Health Shop", "Darnell_Closeup", GetHealthShopInventory(), showHealth: true, "Sally found something!");
+        Enter("Health Shop", "Darnell_Closeup", GetHealthShopInventory(), showHealth: true, "Sarah found something!");
     }
 
     public void OpenCardRemovalStand()
@@ -180,6 +180,9 @@ public class TownManager : MonoBehaviour
 
     private void Enter(string name, string shopKeeperName, List<ShopItem> items, bool showHealth, string message = "")
     {
+        //Turn off path icons
+        CanvasGroupManip.Disable(GameObject.Find("Path")?.GetComponent<CanvasGroup>());
+
         GameObject instance = Instantiate<GameObject>(Resources.Load<GameObject>("Prefabs/ShopUI"));
         instance.transform.SetParent(GameObject.Find("Canvas").transform, false);
         instance.transform.position = new Vector3(0, 0, 0);
