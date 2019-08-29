@@ -146,6 +146,7 @@ public class Player : MonoBehaviour
         Debug.Log("Blinded!");
         blindWasSet = true;
         blindDuration = Mathf.Max(blindDuration, duration);
+        statusMessage.text = "BLINDED!";
         CanvasGroupManip.Enable(statusMessage.GetComponent<CanvasGroup>());
     }
 

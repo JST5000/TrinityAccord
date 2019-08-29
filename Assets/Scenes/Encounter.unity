@@ -883,7 +883,7 @@ GameObject:
   - component: {fileID: 510930168}
   - component: {fileID: 510930170}
   m_Layer: 5
-  m_Name: BlindedText
+  m_Name: StatusMessage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -130,6 +130,7 @@ public class StackManager : MonoBehaviour
         }
         else if(usage == StackUsage.DISCARD)
         {
+            cardAndUsage.Key.OnDiscard();
             AddToDiscard(cardAndUsage.Key);
         } else if(usage == StackUsage.DESTROY)
         {

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 public enum GameMode {SelectCard, PickTarget, Animation,PickCardInHand, SelectingOption  }; 
 
 public class UIManager : MonoBehaviour
@@ -21,6 +22,8 @@ public class UIManager : MonoBehaviour
 
     public static float timeSinceAutoEndTurn = 0;
 
+    private static string StatusMessageObjectName = "StatusMessage";
+
     private static GameMode GetCurrentMode()
     {
         return currentMode;
@@ -38,6 +41,11 @@ public class UIManager : MonoBehaviour
         actionCard = card;
         actionsNeeded = count;
         StackManager.Get().PauseExecution();
+        GameObject.Find("EndTurnButton").GetComponent<EndTurnUI>().PauseAutoEndTurn();
+
+        GameObject statusMessage = GameObject.Find(StatusMessageObjectName);
+        statusMessage.GetComponent<TextMeshProUGUI>().text = $"Choose {count} card(s)";
+        CanvasGroupManip.Enable(statusMessage.GetComponent<CanvasGroup>());
     }
     public static void cardInHandClicked(CardManager card)
     {
@@ -46,6 +54,10 @@ public class UIManager : MonoBehaviour
         {
             StackManager.Get().ResumeExecution();
             SetCurrentMode(GameMode.SelectCard);
+
+            CanvasGroupManip.Disable(GameObject.Find(StatusMessageObjectName).GetComponent<CanvasGroup>());
+
+            GameObject.Find("EndTurnButton").GetComponent<EndTurnUI>().ResumeAutoEndTurn();
         }
     }
 
