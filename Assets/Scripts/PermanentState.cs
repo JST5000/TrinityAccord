@@ -6,13 +6,15 @@ public class PermanentState : MonoBehaviour
 {
 
     //Player deck - State should hold for multiple encounters
-    public static List<CardData> playerDeck;
-    public static List<CardData> queuedCards = new List<CardData>();
-    public static Level expectedLevel;
-    public static int wins = 0;
-    public static int money = 10;
-    public static int maxHealth = 10;
-    public static int health = maxHealth - 1;
+    public static List<CardData> PlayerDeck { get; set; }
+    public static List<CardData> QueuedCards { get; set; } = new List<CardData>();
+    public static Level ExpectedLevel { get; set; }
+    
+    public static int Wins { get; set; } = 0;
+    public static int Money { get; set; } = 10;
+    public static int MaxHealth { get; set; } = 10;
+    public static int Health { get; set; } = MaxHealth - 1;
+    public static bool FightWasHarder { get; private set; } = false;
 
     private string previousTown = "";
 
@@ -31,29 +33,29 @@ public class PermanentState : MonoBehaviour
 
     public static void AddCardToPlayerDeckList(CardData card)
     {
-        queuedCards.Add(card);
+        QueuedCards.Add(card);
         ConsumeQueue();
     }
 
     private static void ConsumeQueue()
     {
-        if(playerDeck != null)
+        if(PlayerDeck != null)
         {
-            playerDeck.AddRange(queuedCards);
-            queuedCards.Clear();
+            PlayerDeck.AddRange(QueuedCards);
+            QueuedCards.Clear();
         }
     }
 
     public static void ResetStatics()
     {
-        wins = 0;
+        Wins = 0;
         PermanentState.hasDraftedClassCard = false;
         InitializeBaseDeck();
-        expectedLevel = Level.TUTORIAL;
+        ExpectedLevel = Level.TUTORIAL;
         InitializeDefaultEncounter();
-        expectedLevel = Level.ONE;
-        money = 0;
-        health = maxHealth;
+        ExpectedLevel = Level.ONE;
+        Money = 0;
+        Health = MaxHealth;
         unusedQuotes = new List<int>();
         worldMap = new WorldMap();
     }
@@ -61,12 +63,12 @@ public class PermanentState : MonoBehaviour
     void Awake()
     {
         CreateSingleton();
-        if(playerDeck == null)
+        if(PlayerDeck == null)
         {
             ResetStatics();
-            health = maxHealth;
+            Health = MaxHealth;
         }
-        playerDeck = CardDataUtil.CreateFreshCopiesOf(playerDeck); //Removes any buffs/debuffs
+        PlayerDeck = CardDataUtil.CreateFreshCopiesOf(PlayerDeck); //Removes any buffs/debuffs
     }
 
     private void CreateSingleton()
@@ -82,7 +84,7 @@ public class PermanentState : MonoBehaviour
 
     private static void InitializeBaseDeck()
     {
-        playerDeck = new List<CardData>(GetBaseDeck());
+        PlayerDeck = new List<CardData>(GetBaseDeck());
         ConsumeQueue();
     }
 
@@ -114,7 +116,7 @@ public class PermanentState : MonoBehaviour
 
     private static void InitializeDefaultEncounter()
     {
-        SetNextEncounter(GenerateEncounter.GetEncounter(expectedLevel));
+        SetNextEncounter(GenerateEncounter.GetEncounter(ExpectedLevel));
     }
 
 
@@ -143,13 +145,20 @@ public class PermanentState : MonoBehaviour
 
     public static string GetFightTitle()
     {
-        if (PermanentState.wins < FinalFight)
+        if (PermanentState.Wins < FinalFight)
         {
-            return "Level " + (1 + PermanentState.wins);
+            string levelCount = "Level " + (1 + PermanentState.Wins);
+
+            //Show the extra difficulty!
+            if (FightWasHarder)
+            {
+                levelCount += "!!!";
+            }
+            return levelCount;
         }
         else
         {
-            return "Final Boss!";
+            return "Final Boss!!!";
         }
     }
 
@@ -165,22 +174,19 @@ public class PermanentState : MonoBehaviour
         worldMap.MoveToNextTown(left);
     }
 
-    public static void ChooseNextFight()
+    public static void ChooseNextFight(bool increasedDifficulty)
     {
-        EnemyData[] selectedEncounter = GenerateEncounter.GetEncounter(PermanentState.expectedLevel);
-        PermanentState.SetNextEncounter(selectedEncounter);
-        PermanentState.expectedLevel = GenerateEncounter.GetHarder(PermanentState.expectedLevel);
-    }
+        Level toSelectFrom = ExpectedLevel;
+        if (increasedDifficulty)
+        {
+            toSelectFrom = ExpectedLevel + 1;
+        }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+        FightWasHarder = increasedDifficulty;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        EnemyData[] selectedEncounter = GenerateEncounter.GetEncounter(toSelectFrom);
+        SetNextEncounter(selectedEncounter);
+
+        ExpectedLevel = GenerateEncounter.GetHarder(ExpectedLevel);
     }
 }

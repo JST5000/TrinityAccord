@@ -25,7 +25,7 @@ public class DeckManager : MonoBehaviour
     //Initializes the player's deck
     void Start()
     {
-        Init(PermanentState.playerDeck);  
+        Init(PermanentState.PlayerDeck);  
     }
 
     public void Init(List<CardData> initDeck)

@@ -11,6 +11,6 @@ public class CardItem : ShopItem {
 
     public override void Effect()
     {
-        PermanentState.playerDeck.Add(this.card);
+        PermanentState.PlayerDeck.Add(this.card);
     }
 }

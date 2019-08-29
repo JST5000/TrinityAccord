@@ -138,7 +138,7 @@ public class EncounterManager : MonoBehaviour
 
     public void OnEncounterWin()
     {
-        PermanentState.wins++;
+        PermanentState.Wins++;
         HandManager hand = HandManager.Get();
         hand.DisableHandInteractions();
         //No more turns, so disallow ending turn
@@ -152,7 +152,7 @@ public class EncounterManager : MonoBehaviour
     private void AddIncomeAndUpdateUI()
     {
         int income;
-        if (PermanentState.wins <= 3)
+        if (PermanentState.Wins <= 3)
         {
             income = 2;
         }
@@ -160,7 +160,11 @@ public class EncounterManager : MonoBehaviour
         {
             income = 3;
         }
-        PermanentState.money += income;
+        if(PermanentState.FightWasHarder)
+        {
+            income++;
+        }
+        PermanentState.Money += income;
         IncomeStatement.text = "+" + income + " Coins!";
     }
 
@@ -204,7 +208,7 @@ public class EncounterManager : MonoBehaviour
 
         //Hand does not get turned back on, reset of scene will restore it.
 
-        if (PermanentState.wins >= 6)
+        if (PermanentState.Wins >= 6)
         {
             SceneManager.LoadScene("WinScreen");
         } else

@@ -7,20 +7,23 @@ public class TravelItem : ShopItem
 {
     protected string SceneName;
     protected bool SkipLevel;
+    protected bool IncreasedDifficulty;
 
-    public TravelItem(string optionName, int cost, string imageName, string SceneName, bool SkipLevel) : base(optionName, cost, imageName: imageName)
+    public TravelItem(string optionName, int cost, string imageName, string sceneName, bool skipLevel, bool increasedDifficulty) 
+        : base(optionName, cost, imageName: imageName)
     {
-        this.SceneName = SceneName;
-        this.SkipLevel = SkipLevel;
+        this.SceneName = sceneName;
+        this.SkipLevel = skipLevel;
+        this.IncreasedDifficulty = increasedDifficulty;
     }    
 
     override public void Effect()
     {
         if(SkipLevel)
         {
-            PermanentState.wins++;
+            PermanentState.Wins++;
         }
-        PermanentState.ChooseNextFight();
+        PermanentState.ChooseNextFight(IncreasedDifficulty);
         SceneManager.LoadScene(SceneName);
     }
 }

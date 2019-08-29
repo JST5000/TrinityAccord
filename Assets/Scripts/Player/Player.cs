@@ -31,11 +31,11 @@ public class Player : MonoBehaviour
         ResetEnergy();
         if (resetHealthBetweenEncounters)
         {
-            InitHealth(PermanentState.maxHealth, PermanentState.maxHealth);
+            InitHealth(PermanentState.MaxHealth, PermanentState.MaxHealth);
         }
         else
         {
-            InitHealth(PermanentState.maxHealth, PermanentState.health);
+            InitHealth(PermanentState.MaxHealth, PermanentState.Health);
         }
         //Start invisible
         CanvasGroupManip.Disable(statusMessage.GetComponent<CanvasGroup>());
@@ -130,14 +130,14 @@ public class Player : MonoBehaviour
     public void SetCurrentHealth(int curr)
     {
         currHealth = curr;
-        PermanentState.health = curr;
+        PermanentState.Health = curr;
         UpdateHealthUI();
     }
 
     public void SetMaxHealth(int max)
     {
         maxHealth = max;
-        PermanentState.maxHealth = max;
+        PermanentState.MaxHealth = max;
         UpdateHealthUI();
     }
 

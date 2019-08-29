@@ -41,7 +41,7 @@ public class ShopItemManager : MonoBehaviour
             {
                 SoldOut = true;
             }
-            PermanentState.money -= Data.cost;
+            PermanentState.Money -= Data.cost;
             Data.Effect();
             GetComponentInParent<ShopManager>().UpdateUI();
         }
@@ -49,7 +49,7 @@ public class ShopItemManager : MonoBehaviour
 
     private bool CanPurchase()
     {
-        return PermanentState.money >= Data.cost && !SoldOut && Data.OtherRequirementsMet();
+        return PermanentState.Money >= Data.cost && !SoldOut && Data.OtherRequirementsMet();
     }
 
     public ShopItem GetItem()

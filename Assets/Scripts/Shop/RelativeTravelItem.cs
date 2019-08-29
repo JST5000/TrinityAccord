@@ -6,13 +6,14 @@ public class RelativeTravelItem : TravelItem
 {
     private bool left;
 
-    public RelativeTravelItem(bool left, int cost, string imageName, bool skipLevel, string optionName = null) :
+    public RelativeTravelItem(bool left, int cost, string imageName, bool skipLevel, bool increasedDifficulty, string optionName = null) :
         base(
         optionName: optionName != null ? optionName : GetSceneName(left), 
         cost: cost, 
         imageName: imageName, 
-        SceneName: "", //Will be loaded right before travel 
-        SkipLevel: skipLevel)
+        sceneName: "", //Will be loaded right before travel 
+        skipLevel: skipLevel,
+        increasedDifficulty: increasedDifficulty)
     {
         this.left = left;
     }

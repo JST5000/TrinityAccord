@@ -15,7 +15,7 @@ public class TownManager : MonoBehaviour
 
     private void Start()
     {
-        healthDisplay.SetMaxHealth(PermanentState.maxHealth);
+        healthDisplay.SetMaxHealth(PermanentState.MaxHealth);
         ResetStock();
     }
 
@@ -58,8 +58,8 @@ public class TownManager : MonoBehaviour
     public void OpenSailboat()
     {
         List<ShopItem> inventory = new List<ShopItem>();
-        inventory.Add(new RelativeTravelItem(true, 1, "SailingIcon", skipLevel: true));
-        inventory.Add(new RelativeTravelItem(false, 0, "SwimmingIcon", skipLevel: false));
+        inventory.Add(new RelativeTravelItem(true, 1, "SailingIcon", skipLevel: true, increasedDifficulty: false));
+        inventory.Add(new RelativeTravelItem(false, 0, "SwimmingIcon", skipLevel: false, increasedDifficulty: false));
         Enter("Harbor", "WaterBoy", inventory, true, "Pay for safe travel?");
     }
 
@@ -68,7 +68,7 @@ public class TownManager : MonoBehaviour
         List<ShopItem> inventory = new List<ShopItem>();
         inventory.Add(new HealthItem(2, 1));
         inventory.Add(new PackItem());
-        inventory.Add(new RelativeTravelItem(false, 0, "JumpingOffCliffIcon", false, "Onward"));
+        inventory.Add(new RelativeTravelItem(false, 0, "JumpingOffCliffIcon", false, increasedDifficulty: false, "Onward"));
         Enter("Kwame's Hill", "Kwame", inventory, true, "Hahaha, welcome!");
     }
 
@@ -140,15 +140,32 @@ public class TownManager : MonoBehaviour
     {
         List<ShopItem> inventory = new List<ShopItem>();
         inventory.Add(new HealthItem(2, 1));
-        inventory.Add(new RelativeTravelItem(true, 0, "MountainPath", false));
+        inventory.Add(new RelativeTravelItem(true, 0, "MountainPath", false, increasedDifficulty: false));
         Enter("Vantage Point", "Hiker", inventory, true, "Quite a sight eh?");
     }
 
     public void LeaveTown(RelativePathName path)
     {
+        bool increasedDifficulty = IsIncreasedDifficulty(path);
         PermanentState.MoveToNextTown(path.left);
-        PermanentState.ChooseNextFight();
+        PermanentState.ChooseNextFight(increasedDifficulty);
         SceneManager.LoadScene("Encounter");
+    }
+
+    /// <summary>
+    /// Checks for a warning sign, then sees if we went down that path
+    /// </summary>
+    /// <param name="path"></param>
+    /// <returns></returns>
+    private bool IsIncreasedDifficulty(RelativePathName path)
+    {
+        if(WarningSign.IsInScene()) {
+            return WarningSign.GetDirectionOfChallengeFromScene() == path.left;
+        } else
+        {
+            //No warning, so nothing to be worried about!
+            return false;
+        }
     }
 
     public void FightBoss(string encounterList)
@@ -192,7 +209,7 @@ public class TownManager : MonoBehaviour
 
     private void Update()
     {
-        moneyCounter.text = "Coins: " + PermanentState.money;
-        healthDisplay.SetCurrHealth(PermanentState.health);
+        moneyCounter.text = "Coins: " + PermanentState.Money;
+        healthDisplay.SetCurrHealth(PermanentState.Health);
     }
 }

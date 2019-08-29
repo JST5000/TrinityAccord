@@ -14,19 +14,19 @@ public class ChooseEncounterManager : MonoBehaviour
 
     public void SelectEasy()
     {
-        selectedEncounter = GenerateEncounter.GetEncounter(GenerateEncounter.GetEasier(PermanentState.expectedLevel));
+        selectedEncounter = GenerateEncounter.GetEncounter(GenerateEncounter.GetEasier(PermanentState.ExpectedLevel));
         confirm.interactable = true;
     }
     //
     public void SelectMedium()
     {
-        selectedEncounter = GenerateEncounter.GetEncounter(PermanentState.expectedLevel);
+        selectedEncounter = GenerateEncounter.GetEncounter(PermanentState.ExpectedLevel);
         confirm.interactable = true;
     }
 
     public void SelectHard()
     {
-        selectedEncounter = GenerateEncounter.GetEncounter(GenerateEncounter.GetHarder(PermanentState.expectedLevel));
+        selectedEncounter = GenerateEncounter.GetEncounter(GenerateEncounter.GetHarder(PermanentState.ExpectedLevel));
         confirm.interactable = true;
     }
 
@@ -51,7 +51,7 @@ public class ChooseEncounterManager : MonoBehaviour
         if (selectedEncounter != null)
         {
             PermanentState.SetNextEncounter(selectedEncounter);
-            PermanentState.expectedLevel = GenerateEncounter.GetHarder(PermanentState.expectedLevel);
+            PermanentState.ExpectedLevel = GenerateEncounter.GetHarder(PermanentState.ExpectedLevel);
             selectedEncounter = null;
             //Reloads the scene, hopefully with the newly selected encounter.
             if (reloadSceneOnExit)

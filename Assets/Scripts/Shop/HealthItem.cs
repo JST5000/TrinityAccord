@@ -25,12 +25,12 @@ public class HealthItem : ShopItem
 
     override public void  Effect()
     {
-        PermanentState.health = Mathf.Min(PermanentState.health + heal, PermanentState.maxHealth);
+        PermanentState.Health = Mathf.Min(PermanentState.Health + heal, PermanentState.MaxHealth);
     }
 
     public override bool OtherRequirementsMet()
     {
-        return PermanentState.health < PermanentState.maxHealth;
+        return PermanentState.Health < PermanentState.MaxHealth;
     }
 
     // Update is called once per frame
