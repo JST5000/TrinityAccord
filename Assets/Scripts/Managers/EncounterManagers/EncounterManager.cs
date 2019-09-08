@@ -16,6 +16,8 @@ public class EncounterManager : MonoBehaviour
 
     public Transform Choose3Menu;
 
+    public Image EnemyTurnSplash;
+
     float timeUntilVictory = 0;
 
     private EnemyManager targetedEnemy = null;
@@ -81,9 +83,34 @@ public class EncounterManager : MonoBehaviour
 
     public void EndTurn()
     {
+        StartCoroutine(EndTurnWithTiming());
+    }
+
+    private IEnumerator EndTurnWithTiming()
+    {
+        HandManager.Get().DisableHandInteractions();
+        CanvasGroupManip.Enable(EnemyTurnSplash.GetComponent<CanvasGroup>());
+
+        float totalEnemyTurn = .8f;
+
+        yield return WaitForNSeconds(totalEnemyTurn / 2);
+
+        EndTurnForEachEnemy();
+
+        yield return WaitForNSeconds(totalEnemyTurn / 2);
+
+        CanvasGroupManip.Disable(EnemyTurnSplash.GetComponent<CanvasGroup>());
+        HandManager.Get().EnableHandInteraction();
+
+        SetTargetedEnemy(null);
+    }
+
+    private void EndTurnForEachEnemy()
+    {
         List<EnemyManager> validEnemies = new List<EnemyManager>();
         //Only end turn for legitimate enemies (Prevents spawns from getting a "Free" turn on spawn)
-        foreach (EnemyManager enemyMan in allEnemyManagers) {
+        foreach (EnemyManager enemyMan in allEnemyManagers)
+        {
             if (!enemyMan.IsEmpty())
             {
                 validEnemies.Add(enemyMan);
@@ -92,9 +119,7 @@ public class EncounterManager : MonoBehaviour
         foreach (EnemyManager validEnemy in validEnemies)
         {
             validEnemy.EndTurn();
-            
         }
-        SetTargetedEnemy(null);
     }
 
     void InitEnemyManagers()

@@ -58,6 +58,7 @@ public class PermanentState : MonoBehaviour
         Health = MaxHealth;
         unusedQuotes = new List<int>();
         worldMap = new WorldMap();
+        FightWasHarder = false;
     }
 
     void Awake()
