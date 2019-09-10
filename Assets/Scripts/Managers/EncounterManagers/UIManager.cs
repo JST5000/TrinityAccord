@@ -155,29 +155,33 @@ public class UIManager : MonoBehaviour
 
     public void clickCardInHand(GameObject clicked)
     {
-        if (GetCurrentMode().Equals(GameMode.SelectCard))
+        if (clicked.GetComponentInParent<HandManager>())
         {
-            SelectCard(clicked);
-        }
-        else if (currentMode.Equals(GameMode.PickTarget))
-        {
-            if (requiredInput.Equals(Target.CARD))
-            {
-              
-                CardData[] card = { clicked.GetComponent<CardManager>().GetCardData() };
-                if (!card[0].Equals(selectedCard.GetCardData()))
-                {
-                    selectedCard.GetCardData().selectedTarget = clicked;
-                    PlayCard();
-                }
-            }
-            else
+            if (GetCurrentMode().Equals(GameMode.SelectCard))
             {
                 SelectCard(clicked);
             }
-        }else if (currentMode.Equals(GameMode.PickCardInHand))
-        {
-            cardInHandClicked(clicked.GetComponent<CardManager>());
+            else if (currentMode.Equals(GameMode.PickTarget))
+            {
+                if (requiredInput.Equals(Target.CARD))
+                {
+
+                    CardData[] card = { clicked.GetComponent<CardManager>().GetCardData() };
+                    if (!card[0].Equals(selectedCard.GetCardData()))
+                    {
+                        selectedCard.GetCardData().selectedTarget = clicked;
+                        PlayCard();
+                    }
+                }
+                else
+                {
+                    SelectCard(clicked);
+                }
+            }
+            else if (currentMode.Equals(GameMode.PickCardInHand))
+            {
+                cardInHandClicked(clicked.GetComponent<CardManager>());
+            }
         }
         
         Debug.Log("Clicked a Card named: " + clicked.name);

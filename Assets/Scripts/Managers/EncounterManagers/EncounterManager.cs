@@ -7,6 +7,8 @@ using TMPro;
 
 public class EncounterManager : MonoBehaviour
 {
+    public static int QueuedIncome { get; set; } = 0;
+
     EnemyData[] originalEncounter;
     public EnemyManager[] allEnemyManagers;
     public GameObject[] enemyGameObjects;
@@ -189,6 +191,10 @@ public class EncounterManager : MonoBehaviour
         {
             income++;
         }
+
+        income += QueuedIncome;
+        QueuedIncome = 0;
+
         PermanentState.Money += income;
         IncomeStatement.text = "+" + income + " Coins!";
     }
@@ -207,9 +213,22 @@ public class EncounterManager : MonoBehaviour
         if (nextEncounter != null)
         {
             Init(nextEncounter);
+
+            SpawnRandomGoldfish();
         } else
         {
             Debug.LogError("No encounter stored in PermanentState.nextEncounter! Unable to create encounter.");
+        }
+    }
+
+    /// <summary>
+    /// Random treasure event!
+    /// </summary>
+    private void SpawnRandomGoldfish()
+    {
+        if(Random.Range(0, 8) == 0)
+        {
+            SpawnEnemy(new Goldfish());
         }
     }
 

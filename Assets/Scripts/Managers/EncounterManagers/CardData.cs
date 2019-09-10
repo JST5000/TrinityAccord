@@ -353,4 +353,9 @@ public abstract class CardData
         GameObject.Find("EndTurnButton").GetComponent<EndTurnUI>().ResumeAutoEndTurn();
         StackManager.Get().ResumeExecution();
     }
+
+    public virtual string GetBonusEffectDescription()
+    {
+        return "";
+    }
 }

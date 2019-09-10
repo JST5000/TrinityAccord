@@ -42,6 +42,17 @@ public class Juggle : CardData
         return false;
     }
 
+    public override string GetBonusEffectDescription()
+    {
+        if(HasSpellInHand())
+        {
+            return "+ Stun";
+        } else
+        {
+            return "";
+        }
+    }
+
     public override void Action(CardData[] cards)
     {
 
