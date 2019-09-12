@@ -21,6 +21,7 @@ public class CardUIUpdater : MonoBehaviour
 
     public bool blocksRaycasts = true;
 
+    public bool ShowBuffText { get; set; } = true;
 
     private Sprite prevBG;
     private bool highlighted = false;
@@ -189,11 +190,18 @@ public class CardUIUpdater : MonoBehaviour
         {
             int amount = cardHolder.GetCardData().GetBonusDamage();
 
-            sharpenedText.text = (amount == 0) 
-                ? "" 
-                : "+ " + amount;
 
-            sharpenedText.text += cardHolder.GetCardData().GetBonusEffectDescription();
+            if (ShowBuffText)
+            {
+                sharpenedText.text = (amount == 0)
+                    ? ""
+                    : "+ " + amount;
+
+                sharpenedText.text += cardHolder.GetCardData().GetBonusEffectDescription();
+            } else
+            {
+                sharpenedText.text = "";
+            }
 
             var sharpenedColor = sharpenedText.color;
             sharpenedColor.a = opacity;

@@ -69,6 +69,14 @@ public class Choose3Manager : MonoBehaviour
         CanvasGroupManip.Enable(showAndHide.GetComponent<CanvasGroup>());
     }
 
+    public void DisableCardBuffText()
+    {
+        foreach(CardManager man in options)
+        {
+            man.GetComponent<CardUIUpdater>().ShowBuffText = false;
+        }
+    }
+
     public void DoNotLoadAnotherScene()
     {
         DoNotLoadAnotherSceneFlag = true;

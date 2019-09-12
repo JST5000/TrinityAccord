@@ -29,6 +29,7 @@ public class DraftClassCard : MonoBehaviour
         Choose3Manager choose3Manager = instance.GetComponent<Choose3Manager>();
         choose3Manager.SetTitle("Select your class!");
         choose3Manager.Init(classCards);
+        choose3Manager.DisableCardBuffText();
         choose3Manager.reloadEncounterOnDraft = true;
         choose3Manager.PauseGameInteraction();
     }

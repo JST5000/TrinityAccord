@@ -21,7 +21,7 @@ public class Throw : CardData
 
     private int GetAdditionalDamage()
     {
-        return 2;
+        return 2 + GetBonusDamage();
     }
 
     public override void Action(EnemyManager[] enemys)

@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
     public void EndTurn()
     {
         ResetEnergy();
-        if (enableBlindTimer && blindDuration > 0)
+        if (blindWasSet && blindDuration > 0)
         {
             blindDuration--;
             if(blindDuration == 0)
@@ -60,15 +60,6 @@ public class Player : MonoBehaviour
             } 
         }
         
-    }
-
-    public void StartTurn()
-    {
-        if(blindWasSet)
-        {
-            enableBlindTimer = true;
-            blindWasSet = false;
-        }
     }
 
     public void ResetEnergy()

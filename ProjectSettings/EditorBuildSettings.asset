@@ -47,16 +47,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Campfire.unity
     guid: c92a8382bae1685478a15211c0afae1d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Experimental/SQLRegister.unity
     guid: c5779ca913e2da24483318fcf1ed9aba
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Experimental/SQLGame.unity
     guid: c6fe8f7b5c83f6544b71ee2320bb85b2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Experimental/SQLLogin.unity
     guid: 84f0e72303633084a894ddeab8aba6e3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Experimental/SQLMainMenu.unity
     guid: 93b3b620f00705d4089070aeedfc0dfe
   m_configObjects: {}

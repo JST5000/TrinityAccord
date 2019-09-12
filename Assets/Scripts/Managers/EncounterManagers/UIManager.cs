@@ -298,7 +298,6 @@ public class UIManager : MonoBehaviour
             Player player = GameObject.Find("Player").GetComponent<Player>();
             player.EndTurn(); //Resets energy
 
-            player.StartTurn(); //Initialize any debuffs acquired
             decks.StartTurn(); //Draws hand
         }
     }

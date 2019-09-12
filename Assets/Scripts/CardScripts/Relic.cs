@@ -11,7 +11,7 @@ public class Relic : CardData
 
     protected override UICardData CreateUICardData()
     {
-        return new UICardData("Relic", cost: 0, "Draw a card and Preserve it", UICardData.CardType.SPELL);
+        return new UICardData("Relic", cost: 0, "Draw a card and Preserve it", UICardData.CardType.SPELL, "Relic");
     }
 
     public override int GetBonusDamage()
