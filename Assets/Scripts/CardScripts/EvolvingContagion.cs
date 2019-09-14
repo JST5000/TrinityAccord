@@ -96,11 +96,11 @@ public class Virus : CardData
         BecomeDefaultVirusCard();
     }
 
-    public override void sharpen()
+    public override void Sharpen()
     {
         if (mode == ContagionCard.VILE_SWORD)
         {
-            base.sharpen();
+            base.Sharpen();
         }
     }
 

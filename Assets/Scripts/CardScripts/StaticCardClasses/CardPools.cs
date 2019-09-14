@@ -91,12 +91,12 @@ public static class CardPools
 
     public static List<CardData> GetAllDraftableAttacks()
     {
-        return GetAllDraftableCards().FindAll((CardData card) => card.getType().Equals(UICardData.CardType.ATTACK));
+        return GetAllDraftableCards().FindAll((CardData card) => card.GetTypeOfCard().Equals(UICardData.CardType.ATTACK));
     }
 
     public static List<CardData> GetAllDraftableSpells()
     {
-        return GetAllDraftableCards().FindAll((CardData card) => card.getType().Equals(UICardData.CardType.SPELL));
+        return GetAllDraftableCards().FindAll((CardData card) => card.GetTypeOfCard().Equals(UICardData.CardType.SPELL));
     }
 
 }

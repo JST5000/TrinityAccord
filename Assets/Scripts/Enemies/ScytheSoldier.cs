@@ -31,7 +31,7 @@ public class ScytheSoldier : EnemyData
                 if (deckIndex != -1)
                 {
 
-                    removedCard = deckMan.deck[deckIndex].CloneCardType();
+                    removedCard = deckMan.deck[deckIndex].CloneCard();
                     deckMan.deck.RemoveAt(deckIndex);
                 }
             }

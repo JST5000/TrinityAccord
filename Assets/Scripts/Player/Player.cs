@@ -17,7 +17,6 @@ public class Player : MonoBehaviour
 
     private int blindDuration = 0;
     private bool blindWasSet = false;
-    private bool enableBlindTimer = false;
 
     private int currEnergy;
     private int maxHealth;
@@ -56,7 +55,6 @@ public class Player : MonoBehaviour
             if(blindDuration == 0)
             {
                 CanvasGroupManip.Disable(statusMessage.GetComponent<CanvasGroup>());
-                enableBlindTimer = false;
             } 
         }
         

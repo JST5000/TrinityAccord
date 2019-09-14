@@ -32,7 +32,7 @@ public class Throw : CardData
             return;
         }
         int totalDamage = GetPrimaryDamage();
-        if (top.getType().Equals(UICardData.CardType.ATTACK))
+        if (top.GetTypeOfCard().Equals(UICardData.CardType.ATTACK))
         {
             totalDamage += GetAdditionalDamage();
         }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CardItem : ShopItem {
 
-    public CardItem(CardData card, int cost = 2) : base(card.getName(), cost, card, true)
+    public CardItem(CardData card, int cost = 2) : base(card.GetName(), cost, card, true)
     {
         this.card = CardDataUtil.CreateFreshCopiesOf(card);
     }

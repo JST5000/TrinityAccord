@@ -36,7 +36,7 @@ public class Juggle : CardData
     {
         foreach (CardManager cardManager in getHand())
         {
-            if (!cardManager.IsEmpty() && cardManager.GetCardData() != null && cardManager.GetCardData().getType().Equals(UICardData.CardType.SPELL))
+            if (!cardManager.IsEmpty() && cardManager.GetCardData() != null && cardManager.GetCardData().GetTypeOfCard().Equals(UICardData.CardType.SPELL))
                 return true;
         }
         return false;

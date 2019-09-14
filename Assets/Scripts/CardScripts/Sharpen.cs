@@ -32,7 +32,7 @@ public class Sharpen : CardData
         }
         for (int i = 0; i < validCards.Count; i++)
         {
-            hand[validCards[i]].GetCardData().sharpen();
+            hand[validCards[i]].GetCardData().Sharpen();
         }
         SoundManager.PlayCardSFX("Sharpen1");
     }

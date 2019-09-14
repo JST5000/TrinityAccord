@@ -25,7 +25,7 @@ public class DualWield : CardData
         CardManager card = DeckManager.Get().GetRandomValidCardManagerFromHand();
         if (card != null)
         {
-            card.GetCardData().setCost(1);
+            card.GetCardData().SetCost(1);
         }
 
         //Ensure clickability of cards is updated

@@ -26,7 +26,7 @@ public class Tome : CardData
         {
             CardData drawnCard = draw();
             if(drawnCard!=null)
-            if (drawnCard.getType().Equals(UICardData.CardType.SPELL))
+            if (drawnCard.GetTypeOfCard().Equals(UICardData.CardType.SPELL))
             {
                 addEnergy(1);
             }

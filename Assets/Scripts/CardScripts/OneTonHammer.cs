@@ -41,7 +41,7 @@ public class OneTonHammer : CardData
             return;
         }
         int randomIndex = UnityEngine.Random.Range(0, validCards.Count);
-        hand[validCards[randomIndex]].GetCardData().setCost(3);
+        hand[validCards[randomIndex]].GetCardData().SetCost(3);
     }
     public override void Action(CardData[] cards)
     {

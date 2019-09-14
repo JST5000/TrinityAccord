@@ -29,8 +29,8 @@ public class Clone : CardData
         CardData copy = this;
         if (cards.Length != 0)
         {
-            copy = cards[0].CloneCardType();
-            copy.setCost(cards[0].getCost());
+            copy = cards[0].CloneCard();
+            copy.SetCost(cards[0].GetCost());
         }
 
         CardManager cardInHand = getMyCardManager();

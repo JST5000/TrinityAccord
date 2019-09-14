@@ -8,12 +8,12 @@ public class RemovalItem : ShopItem
 
     override public void Effect()
     {
-        string name = new Dagger().getName();
+        string name = new Dagger().GetName();
         if (PermanentState.PlayerDeck != null)
         {
             foreach (CardData card in PermanentState.PlayerDeck)
             {
-                if (card.getName().Equals(name))
+                if (card.GetName().Equals(name))
                 {
                     PermanentState.PlayerDeck.Remove(card);
                     return;

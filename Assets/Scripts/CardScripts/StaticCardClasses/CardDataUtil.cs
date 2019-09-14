@@ -11,7 +11,7 @@ public static class CardDataUtil
         Dictionary<string, CardData> nToC = new Dictionary<string, CardData>();
         for (int i = 0; i < allCards.Length; ++i)
         {
-            nToC[allCards[i].getName()] = allCards[i];
+            nToC[allCards[i].GetName()] = allCards[i];
         }
         return nToC;
     }
@@ -23,7 +23,7 @@ public static class CardDataUtil
             nameToCard = GetNameDictionary(CreateFreshCopiesOf(CardPools.GetAllCardsIncludingDefaults()).ToArray());
         }
 
-        return nameToCard[CardName].CloneCardType();
+        return nameToCard[CardName].CloneCard();
     }
 
     //Throws KeyNotFoundException if input is invalid. 
@@ -49,7 +49,7 @@ public static class CardDataUtil
             if (CardName != null)
             {
                 CardData result = InterpretWord(CardName.Trim());
-                Debug.Log("Card Interpretted: " + result.getName());
+                Debug.Log("Card Interpretted: " + result.GetName());
                 cards.Add(result);
             }
         }
@@ -69,7 +69,7 @@ public static class CardDataUtil
 
     public static CardData CreateFreshCopiesOf(CardData card)
     {
-        return card.CloneCardType();
+        return card.CloneCard();
     }
 
     public static List<CardData> ChooseNWithoutReplacement(List<CardData> pool, int n)
@@ -87,7 +87,7 @@ public static class CardDataUtil
         for(int i = 0; i < n; ++i)
         {
             int randIndex = Random.Range(0, validOption.Count);
-            chosen.Add(pool[validOption[randIndex]].CloneCardType());
+            chosen.Add(pool[validOption[randIndex]].CloneCard());
             validOption.RemoveAt(randIndex);
         }
         return chosen;

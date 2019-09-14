@@ -205,7 +205,7 @@ public class UIManager : MonoBehaviour
             }
         } else
         {
-            Debug.Log("The card: " + cardMan.GetCardData().getName() + " was unplayable (Likely due to cost).");
+            Debug.Log("The card: " + cardMan.GetCardData().GetName() + " was unplayable (Likely due to cost).");
         }
     }
 
@@ -214,7 +214,7 @@ public class UIManager : MonoBehaviour
         //Pay Cost
         Debug.Log(selectedCard);
         Player player = GameObject.Find("Player").GetComponent<Player>();
-        player.PayEnergy(selectedCard.GetCardData().getCost());
+        player.PayEnergy(selectedCard.GetCardData().GetCost());
         
         //Remove the card from the hand 
         selectedCard.SetEmpty();
@@ -293,8 +293,6 @@ public class UIManager : MonoBehaviour
             DeckManager decks = DeckManager.Get();
             decks.EndTurn(); //Discards hand
 
-            //VERY IMPORTANT, ResetCounts must happen AFTER the EncounterManager EndTurn, otherwise the "Recently Played" set will be cleared!
-            cardStack.ResetCounts();
             Player player = GameObject.Find("Player").GetComponent<Player>();
             player.EndTurn(); //Resets energy
 

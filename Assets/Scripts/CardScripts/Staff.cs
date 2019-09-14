@@ -65,14 +65,14 @@ public class Staff : CardData
     {
         throw new System.NotImplementedException();
     }
-    public override void sharpen()
+    public override void Sharpen()
     {
         //TODO reset options when sharpen would reset
-        base.sharpen();
+        base.Sharpen();
         for (int i = 0; i < GetBonusDamage(); i++)
         {
-            options[0].sharpen();
-            options[1].sharpen();
+            options[0].Sharpen();
+            options[1].Sharpen();
         }
     }
 }

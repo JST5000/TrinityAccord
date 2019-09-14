@@ -53,7 +53,7 @@ public class CardManager : MonoBehaviour
 
     public Target GetTargets()
     {
-        return cardData.getTarget();
+        return cardData.GetTarget();
     }
 
     public void Action(EnemyManager[] enemys)

@@ -21,7 +21,6 @@ public abstract class CardData
     protected int sharpenDamage = 0;
 
     public bool fragile = false;
-    public bool duplicated = false;
 
     public bool CannotBePlayed = false;
 
@@ -53,8 +52,9 @@ public abstract class CardData
         this.uiCardData = baseline;
         this.target = target;
         UpdateUICardData();
-
     }
+
+    protected abstract UICardData CreateUICardData();
 
     public UICardData GetUICardData()
     {
@@ -71,9 +71,7 @@ public abstract class CardData
         uiCardData = updated;
     }
 
-    protected abstract UICardData CreateUICardData();
-
-    public virtual void sharpen()
+    public virtual void Sharpen()
     {
         sharpenDamage++;
         UpdateUICardData();
@@ -84,7 +82,7 @@ public abstract class CardData
         return sharpenDamage;
     }
 
-    public virtual void OnSelectedInHand()
+    public void OnSelectedInHand()
     {
         if (target.Equals(Target.CARD))
         {
@@ -92,7 +90,7 @@ public abstract class CardData
         }
     }
 
-    public void setCost(int cost)
+    public void SetCost(int cost)
     {
         uiCardData.cost = cost;
     }
@@ -102,7 +100,7 @@ public abstract class CardData
         return id;
     }
 
-    public CardData CloneCardType()
+    public CardData CloneCard()
     {
         Type type = this.GetType();
         CardData copy = (CardData)Activator.CreateInstance(type);
@@ -110,42 +108,44 @@ public abstract class CardData
         return copy;
     }
 
-    //Does basic check of mana cost/availability. Extra requirements must be implemented separately.
+    /// <summary>
+    /// Does basic check of mana cost/availability. Extra requirements must be implemented separately.
+    /// </summary>
+    /// <returns></returns>
     public bool IsPlayable()
     {
         bool playerHasEnoughEnergy = GameObject.Find("Player").GetComponent<Player>().GetEnergy() >= uiCardData.cost;
-        return playerHasEnoughEnergy && IsPlayableAdditionalRequirements();
+        return playerHasEnoughEnergy;
     }
 
-    //Default implementation. For cards that need further checks, override this function.
-    public virtual bool IsPlayableAdditionalRequirements()
-    {
-        return true;
-    }
     public virtual void OnDiscard() { }
     public virtual void OnDraw() { }
 
 
-    public string getName()
+    public string GetName()
     {
         return uiCardData.cardName;
     }
 
-    public Target getTarget()
+    public Target GetTarget()
     {
         return target;
     }
 
-    public int getCost()
+    public int GetCost()
     { 
         return uiCardData.cost;
     }
 
-    public UICardData.CardType getType()
+    public UICardData.CardType GetTypeOfCard()
     {
         return uiCardData.cardType;
     }
 
+    /// <summary>
+    /// R
+    /// </summary>
+    /// <returns></returns>
     protected EnemyManager GetRandomEnemy()
     {
         EncounterManager encounter = GameObject.Find("Board").GetComponent<EncounterManager>();

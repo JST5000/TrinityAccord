@@ -27,9 +27,9 @@ public class Wand : CardData
         {
             return;
         }
-        if (top.getType().Equals(UICardData.CardType.SPELL))
+        if (top.GetTypeOfCard().Equals(UICardData.CardType.SPELL))
         {
-            Debug.Log("Name of wanded card is: " + top.getName());
+            Debug.Log("Name of wanded card is: " + top.GetName());
             playCardSameTarget(top);
         }
         else

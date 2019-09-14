@@ -97,9 +97,6 @@ public class StackManager : MonoBehaviour
     public void Pop()
     {
         KeyValuePair<CardData, StackUsage> cardAndUsage = playedCards.Pop();
-        CardData top = cardAndUsage.Key;
-
-        top.duplicated = false;
 
         ConsumeCardEffect(cardAndUsage);
 
@@ -135,12 +132,12 @@ public class StackManager : MonoBehaviour
 
     private void PlayCard(CardData top)
     {
-        if (top.getTarget().Equals(Target.CARD))
+        if (top.GetTarget().Equals(Target.CARD))
         {
             CardData[] targetCard = { top.SelectedTarget.GetComponent<CardManager>().GetCardData() };
             top.Action(targetCard);
         }
-        else if (top.getTarget().Equals(Target.ENEMY))
+        else if (top.GetTarget().Equals(Target.ENEMY))
         {
             EnemyManager targetManager = top.SelectedTarget.GetComponent<EnemyManager>();
             if (targetManager.IsEmpty())
@@ -158,7 +155,7 @@ public class StackManager : MonoBehaviour
                 top.Action(targetEnemy);
             }
         }
-        else if (top.getTarget().Equals(Target.BOARD) || top.getTarget().Equals(Target.ALL_ENEMIES))
+        else if (top.GetTarget().Equals(Target.BOARD) || top.GetTarget().Equals(Target.ALL_ENEMIES))
         {
             EnemyManager[] allEnemies = top.SelectedTarget.GetComponentsInChildren<EnemyManager>();
             top.Action(allEnemies);
@@ -189,23 +186,23 @@ public class StackManager : MonoBehaviour
 
         CardData top = playedCards.Peek().Key;
 
-        if (top.getTarget().Equals(Target.CARD) || top.getTarget().Equals(Target.BOARD))
+        if (top.GetTarget().Equals(Target.CARD) || top.GetTarget().Equals(Target.BOARD))
         {
             EnemyManager[] empty = { };
             return empty;
         }
-        else if (top.getTarget().Equals(Target.ENEMY))
+        else if (top.GetTarget().Equals(Target.ENEMY))
         {
             EnemyManager[] targetEnemy = { top.SelectedTarget.GetComponent<EnemyManager>() };
             return targetEnemy;
         }
-        else if (top.getTarget().Equals(Target.ALL_ENEMIES))
+        else if (top.GetTarget().Equals(Target.ALL_ENEMIES))
         {
             EnemyManager[] allEnemies = top.SelectedTarget.GetComponentsInChildren<EnemyManager>();
             return allEnemies;
         }
 
-        throw new KeyNotFoundException("Tried to get card targets, but did not recognize the target recieved. " + top.getTarget());
+        throw new KeyNotFoundException("Tried to get card targets, but did not recognize the target recieved. " + top.GetTarget());
     }
 
     private void UpdateUI()

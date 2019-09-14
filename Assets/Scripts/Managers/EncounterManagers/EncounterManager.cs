@@ -105,6 +105,9 @@ public class EncounterManager : MonoBehaviour
         HandManager.Get().EnableHandInteraction();
 
         SetTargetedEnemy(null);
+
+        //Must happen after the enemy attack so scythe soldier can use the results
+        StackManager.Get().ResetCounts();
     }
 
     private void EndTurnForEachEnemy()
