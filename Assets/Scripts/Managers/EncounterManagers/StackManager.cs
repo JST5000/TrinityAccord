@@ -9,7 +9,6 @@ public class StackManager : MonoBehaviour
 
     public int cardsPlayed = 0;
     public int attacksPlayed = 0;
-    public int duplicate = 0;
     public bool inAnimation = false;
 
     public Image Overlay;
@@ -99,16 +98,7 @@ public class StackManager : MonoBehaviour
     {
         KeyValuePair<CardData, StackUsage> cardAndUsage = playedCards.Pop();
         CardData top = cardAndUsage.Key;
-        if (duplicate > 0 && !top.duplicated) //&& top.GetType().Equals(UICardData.CardType.SPELL))
-        {
-            Debug.Log("Duplicate active");
-            DeckManager deck = DeckManager.Get();
-            CardData copy = top.CloneCardType();//deck.Clone();
-            top.fragile = true;
-            top.duplicated = true;
-            Push(copy, cardAndUsage.Value);
-            duplicate--;
-        }
+
         top.duplicated = false;
 
         ConsumeCardEffect(cardAndUsage);
@@ -147,17 +137,30 @@ public class StackManager : MonoBehaviour
     {
         if (top.getTarget().Equals(Target.CARD))
         {
-            CardData[] targetCard = { top.selectedTarget.GetComponent<CardManager>().GetCardData() };
+            CardData[] targetCard = { top.SelectedTarget.GetComponent<CardManager>().GetCardData() };
             top.Action(targetCard);
         }
         else if (top.getTarget().Equals(Target.ENEMY))
         {
-            EnemyManager[] targetEnemy = { top.selectedTarget.GetComponent<EnemyManager>() };
-            top.Action(targetEnemy);
+            EnemyManager targetManager = top.SelectedTarget.GetComponent<EnemyManager>();
+            if (targetManager.IsEmpty())
+            {
+                //Could put a null enemy as target if all enemies are dead
+                top.GetRandomAliveEnemyAsTarget();
+                targetManager = top.SelectedTarget.GetComponent<EnemyManager>();
+                UpdateUI();
+            }
+
+            EnemyManager[] targetEnemy = { targetManager };
+
+            if (targetManager != null)
+            {
+                top.Action(targetEnemy);
+            }
         }
         else if (top.getTarget().Equals(Target.BOARD) || top.getTarget().Equals(Target.ALL_ENEMIES))
         {
-            EnemyManager[] allEnemies = top.selectedTarget.GetComponentsInChildren<EnemyManager>();
+            EnemyManager[] allEnemies = top.SelectedTarget.GetComponentsInChildren<EnemyManager>();
             top.Action(allEnemies);
         }
     }
@@ -193,12 +196,12 @@ public class StackManager : MonoBehaviour
         }
         else if (top.getTarget().Equals(Target.ENEMY))
         {
-            EnemyManager[] targetEnemy = { top.selectedTarget.GetComponent<EnemyManager>() };
+            EnemyManager[] targetEnemy = { top.SelectedTarget.GetComponent<EnemyManager>() };
             return targetEnemy;
         }
         else if (top.getTarget().Equals(Target.ALL_ENEMIES))
         {
-            EnemyManager[] allEnemies = top.selectedTarget.GetComponentsInChildren<EnemyManager>();
+            EnemyManager[] allEnemies = top.SelectedTarget.GetComponentsInChildren<EnemyManager>();
             return allEnemies;
         }
 
@@ -276,7 +279,6 @@ public class StackManager : MonoBehaviour
         playedCardsThisTurn.Clear();
         cardsReturnedSoFar.Clear();
         attacksPlayed = 0;
-        duplicate = 0;
     }
 
     //Returns one of the cards played this turn.

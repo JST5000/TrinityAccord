@@ -33,7 +33,7 @@ public class UpdateEnemyUI : MonoBehaviour
 
         targetVisibility = (TargetArrowCG.alpha > .1f);
 
-        HealthBar = GameObject.Find("Player Health Bar").transform;
+        HealthBar = GameObject.Find("Player Health Bar")?.transform;
     }
 
     public void PopulateUI(UIEnemyData data)

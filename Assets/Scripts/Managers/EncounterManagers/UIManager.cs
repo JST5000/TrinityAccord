@@ -135,7 +135,7 @@ public class UIManager : MonoBehaviour
         if (GetCurrentMode().Equals(GameMode.PickTarget) && requiredInput.Equals(Target.ENEMY))
         {
      
-            selectedCard.GetCardData().selectedTarget = clicked;
+            selectedCard.GetCardData().SelectedTarget = clicked;
             PlayCard();
         }
     }
@@ -169,7 +169,7 @@ public class UIManager : MonoBehaviour
                     CardData[] card = { clicked.GetComponent<CardManager>().GetCardData() };
                     if (!card[0].Equals(selectedCard.GetCardData()))
                     {
-                        selectedCard.GetCardData().selectedTarget = clicked;
+                        selectedCard.GetCardData().SelectedTarget = clicked;
                         PlayCard();
                     }
                 }
@@ -196,7 +196,7 @@ public class UIManager : MonoBehaviour
             requiredInput = selectedCard.GetTargets();
             if (requiredInput == Target.BOARD || requiredInput == Target.ALL_ENEMIES)
             {
-                selectedCard.GetCardData().selectedTarget = GameObject.Find("Board");
+                selectedCard.GetCardData().SelectedTarget = GameObject.Find("Board");
                 PlayCard();
             }
             else

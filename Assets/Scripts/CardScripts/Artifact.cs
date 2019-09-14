@@ -11,7 +11,7 @@ public class Artifact : CardData
 
     protected override UICardData CreateUICardData()
     {
-        return new UICardData("Artifact", cost: 0, "Preserve target card", UICardData.CardType.SPELL);
+        return new UICardData("Artifact", cost: 0, "Preserve target card", UICardData.CardType.SPELL, "Artifact");
     }
 
     public override int GetBonusDamage()

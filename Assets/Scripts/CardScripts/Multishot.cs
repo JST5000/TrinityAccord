@@ -6,7 +6,6 @@ public class Multishot : CardData
 {
     private int chargeDamage = 0;
     private static int growthRate = 3;
-    private static int baseDamage = 3;
 
     public Multishot()
     {

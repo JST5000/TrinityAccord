@@ -16,7 +16,7 @@ public abstract class CardData
 
     //Target are for determining which user input is required. Ex. Tell the card which enemy is targeted.
     public  Target target;
-    public GameObject selectedTarget;
+    public GameObject SelectedTarget { get; set; }
 
     protected int sharpenDamage = 0;
 
@@ -293,15 +293,15 @@ public abstract class CardData
     {
         if (card.target.Equals(Target.ENEMY))
         {
-            card.selectedTarget = this.selectedTarget;
+            card.SelectedTarget = this.SelectedTarget;
         }
         else if (card.target.Equals(Target.CARD))
         {
-            card.selectedTarget = DeckManager.Get().GetRandomValidCardManagerFromHand().gameObject;
+            card.SelectedTarget = DeckManager.Get().GetRandomValidCardManagerFromHand().gameObject;
         }
         else
         {
-            card.selectedTarget = GameObject.Find("Board");
+            card.SelectedTarget = GameObject.Find("Board");
         }
         GameObject.Find("StackHolder").GetComponent<StackManager>().Push(card, StackUsage.PLAY);
     }
@@ -310,15 +310,15 @@ public abstract class CardData
     {
         if (card.target.Equals(Target.ENEMY))
         {
-            card.selectedTarget = GameObject.Find("Board").GetComponent<EncounterManager>().GetRandomAliveEnemyManager().gameObject;
+            card.GetRandomAliveEnemyAsTarget();
         }
         else if (card.target.Equals(Target.CARD))
         {
-            card.selectedTarget = DeckManager.Get().GetRandomValidCardManagerFromHand().gameObject;
+            card.SelectedTarget = DeckManager.Get().GetRandomValidCardManagerFromHand().gameObject;
         }
         else
         {
-            card.selectedTarget = GameObject.Find("Board");
+            card.SelectedTarget = GameObject.Find("Board");
         }
         GameObject.Find("StackHolder").GetComponent<StackManager>().Push(card, usage);
     }
@@ -357,5 +357,13 @@ public abstract class CardData
     public virtual string GetBonusEffectDescription()
     {
         return "";
+    }
+
+    /// <summary>
+    /// Sets the target to null if no enemies are alive
+    /// </summary>
+    public void GetRandomAliveEnemyAsTarget()
+    {
+        SelectedTarget = GameObject.Find("Board").GetComponent<EncounterManager>().GetRandomAliveEnemyManager()?.gameObject;
     }
 }
