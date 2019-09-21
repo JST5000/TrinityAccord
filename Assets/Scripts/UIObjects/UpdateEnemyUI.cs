@@ -31,21 +31,12 @@ public class UpdateEnemyUI : MonoBehaviour
         enemyHolder = GetComponent<EnemyManager>();
         DisableEnemy();
 
-        targetVisibility = (TargetArrowCG.alpha > .1f);
 
+        targetVisibility = (TargetArrowCG.alpha > .1f);
         HealthBar = GameObject.Find("Player Health Bar")?.transform;
     }
 
-    public void PopulateUI(UIEnemyData data)
-    {
-        nameDisplay.text = data.EnemyName;
-        hpManager.SetMaxHealth(data.MaxHP);
-        hpManager.SetCurrHealth(data.CurrHP);
-        livesHolder.SetLives(data.Staggers);
-        timerDisplay.text = data.CurrTimer + "/" + data.MaxTimer;
-        effectDisplay.text = data.Effect;
-        //TODO populate the image field
-    }
+
 
     // Update is called once per frame
     void Update()
@@ -92,8 +83,9 @@ public class UpdateEnemyUI : MonoBehaviour
 
     public void UpdateUI(UIEnemyData data)
     {
-        nameDisplay.text = data.EnemyName;
 
+        nameDisplay.text = data.EnemyName;
+        timerBackground.sprite = Resources.Load<Sprite>("EnemyTimer/Timer" + data.MaxTimer+"-"+(data.MaxTimer-data.CurrTimer+1));
         hpManager.SetCurrHealth(data.CurrHP);
         hpManager.SetMaxHealth(data.MaxHP);
 
@@ -111,6 +103,7 @@ public class UpdateEnemyUI : MonoBehaviour
 
     public void SetTimerColor(UIEnemyData data)
     {
+        /*
         if(data.CurrTimer == 1)
         {
             timerBackground.color = Color.red;
@@ -121,13 +114,14 @@ public class UpdateEnemyUI : MonoBehaviour
         {
             timerBackground.color = Color.green;
         }
-
+        */
         if(data.Stunned || (data.SleepTimer > 0 && data.SleepTimer < EnemyData.MaxSleepTimer))
         {
             Color c = timerBackground.color;
             float dim = .6f;
             timerBackground.color = new Color(c.r * dim, c.g * dim, c.b * dim, c.a);
         }
+        
     }
 
     public void SetDebuffText(UIEnemyData data)
