@@ -3294,6 +3294,7 @@ GameObject:
   - component: {fileID: 1041656981}
   - component: {fileID: 1041656980}
   - component: {fileID: 1041656982}
+  - component: {fileID: 1041656983}
   m_Layer: 0
   m_Name: PermanentState
   m_TagString: permanentState
@@ -3341,6 +3342,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DraftCardMenu: {fileID: 3385944392895627964, guid: 888d9bb2de2652942ac9037279264ab5,
     type: 3}
+--- !u!114 &1041656983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041656979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 287e78bdf1e275641a1bf0e3d649f9a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1188579817 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4509666606742033052, guid: c26cab342a2eca74cb3b5d385dabfa36,
@@ -6487,7 +6500,6 @@ MonoBehaviour:
   label: {fileID: 1537162089}
   cardsPlayed: 0
   attacksPlayed: 0
-  duplicate: 0
   inAnimation: 0
   Overlay: {fileID: 1839450528}
   DestroyIcon: {fileID: 21300000, guid: 93a9c7c11b2a6344398cae7216b3b40c, type: 3}

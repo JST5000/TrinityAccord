@@ -23,6 +23,10 @@ public class Player : MonoBehaviour
     private int currHealth;
     private int bonusEnergy;
 
+    public static Player Get()
+    {
+        return GameObject.Find("Player").GetComponent<Player>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -105,6 +109,7 @@ public class Player : MonoBehaviour
         if(CanDie)
         {
             PermanentState.hasDraftedClassCard = false;
+            PermanentState.PushEncounterData();
             SceneManager.LoadScene("LoseScreen");
         }
     }
@@ -121,6 +126,11 @@ public class Player : MonoBehaviour
         currHealth = curr;
         PermanentState.Health = curr;
         UpdateHealthUI();
+    }
+
+    public int GetCurrentHealth()
+    {
+        return currHealth;
     }
 
     public void SetMaxHealth(int max)

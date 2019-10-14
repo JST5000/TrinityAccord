@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,6 +10,7 @@ public class MainMenuManger : MonoBehaviour
 
     public GameObject Help;
     public CanvasGroup Star;
+    public TextMeshProUGUI response;
 
     public void Awake()
     {
@@ -17,6 +19,10 @@ public class MainMenuManger : MonoBehaviour
         if (perm == null)
         {
             CanvasGroupManip.Disable(Star);
+        }
+        if(!DataPusher.RecordStats)
+        {
+            response.text = "Stats turned off!";
         }
     }
 
@@ -35,6 +41,12 @@ public class MainMenuManger : MonoBehaviour
     public void OpenHelp()
     {
         Instantiate(Help, GameObject.Find("Canvas").transform, false);
+    }
+
+    public void TurnOffStats()
+    {
+        DataPusher.RecordStats = false;
+        response.text = "Stats turned off!";
     }
 
     public void Quit()

@@ -174,6 +174,8 @@ public class EncounterManager : MonoBehaviour
         //No more turns, so disallow ending turn
         GameObject.Find("EndTurnButton").GetComponent<Button>().interactable = false;
 
+        PermanentState.PushEncounterData();
+
         AddIncomeAndUpdateUI();
         CanvasGroupManip.Enable(VictorySplash.GetComponent<CanvasGroup>());
         timeUntilVictory = 1.5f;

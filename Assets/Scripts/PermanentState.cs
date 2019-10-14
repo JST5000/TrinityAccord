@@ -31,10 +31,22 @@ public class PermanentState : MonoBehaviour
     
     private static EnemyData[] nextEncounter;
 
+    //TODO refactor this to pull the stored fields and transformers out of this class
+    private static DataPusher dataPusher;
+    private static string runId;
+    private static int startingHP;
+    private static int endingHP;
+    private static string encounterList;
+
     public static void AddCardToPlayerDeckList(CardData card)
     {
         QueuedCards.Add(card);
         ConsumeQueue();
+    }
+
+    public static GameObject Get()
+    {
+        return GameObject.Find("PermanentState");
     }
 
     private static void ConsumeQueue()
@@ -59,6 +71,9 @@ public class PermanentState : MonoBehaviour
         unusedQuotes = new List<int>();
         worldMap = new WorldMap();
         FightWasHarder = false;
+        runId = DataPusher.GetNewRunId();
+        //Fixes test data leaving -1 in the data
+        startingHP = Health;
     }
 
     void Awake()
@@ -142,6 +157,27 @@ public class PermanentState : MonoBehaviour
     public static void SetNextEncounter(EnemyData[] next)
     {
         nextEncounter = next;
+        
+        //Add the properly formatted encounter list
+        encounterList = "";
+        for(int i = 0; i < next.Length; ++i)
+        {
+            encounterList += next[i];
+            if(i != next.Length - 1)
+            {
+                encounterList += ", ";
+            }
+        }
+
+        startingHP = Health;
+    }
+
+    /// <summary>
+    /// Must be called immediately after a fight concludes (Win or lose)
+    /// </summary>
+    public static void PushEncounterData()
+    {
+        Get().GetComponent<DataPusher>().PushEncounterHistory(runId, encounterList, startingHP, Health, PlayerDeck);
     }
 
     public static string GetFightTitle()
