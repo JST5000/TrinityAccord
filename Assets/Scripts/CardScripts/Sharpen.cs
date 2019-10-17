@@ -6,7 +6,7 @@ public class Sharpen : CardData
 {
     public Sharpen()
     {
-        target = Target.BOARD;
+        target = Target.NONE;
     }
 
     protected override UICardData CreateUICardData()

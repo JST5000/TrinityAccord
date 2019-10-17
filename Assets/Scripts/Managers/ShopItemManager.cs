@@ -99,6 +99,9 @@ public class ShopItemManager : MonoBehaviour
     {
         if (!IsDisabled)
         {
+            //Only applies if the item is a card
+            GetComponentInChildren<CardUIUpdater>()?.DisableCard();
+            print(GetComponentInChildren<CardUIUpdater>());
             Button button = GetComponent<Button>();
             button.interactable = false;
             IsDisabled = true;
@@ -109,6 +112,10 @@ public class ShopItemManager : MonoBehaviour
     {
         if (IsDisabled)
         {
+            //Only applies if the item is a card
+            GetComponentInChildren<CardUIUpdater>()?.EnableCard();
+            print(GetComponentInChildren<CardUIUpdater>());
+
             Button button = GetComponent<Button>();
             button.interactable = true;
             IsDisabled = false;

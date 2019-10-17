@@ -6,7 +6,7 @@ public class Relic : CardData
 {
     public Relic()
     {
-        target = Target.BOARD;
+        target = Target.NONE;
     }
 
     protected override UICardData CreateUICardData()

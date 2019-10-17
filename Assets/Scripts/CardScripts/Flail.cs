@@ -7,7 +7,7 @@ public class Flail : CardData
 {
     public Flail()
     {
-        target = Target.BOARD;
+        target = Target.NONE;
     }
 
     protected override UICardData CreateUICardData()

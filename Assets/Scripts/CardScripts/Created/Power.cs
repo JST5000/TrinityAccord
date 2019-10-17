@@ -6,7 +6,7 @@ public class Power : CardData
 {
     public Power()
     {
-        target = Target.BOARD;
+        target = Target.NONE;
     }
 
     protected override UICardData CreateUICardData()

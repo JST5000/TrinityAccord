@@ -6,7 +6,7 @@ public class Greed : CardData
 {
     public Greed()
     {
-        target = Target.BOARD;
+        target = Target.NONE;
     }
 
     protected override UICardData CreateUICardData()

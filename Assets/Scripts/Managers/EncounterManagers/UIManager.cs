@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
     private static GameMode prevMode = currentMode;
 
     //Finding user input to cast card
-    static Target requiredInput = Target.NONE;
+    static Target requiredInput = Target.UNSET;
     static CardManager selectedCard = null;
     static StackManager cardStack;
     static CardData actionCard;
@@ -194,7 +194,7 @@ public class UIManager : MonoBehaviour
             SetAndHighlightSelectedCard(cardMan);
             Debug.Log("Selected Card = " + selectedCard);
             requiredInput = selectedCard.GetTargets();
-            if (requiredInput == Target.BOARD || requiredInput == Target.ALL_ENEMIES)
+            if (requiredInput == Target.NONE || requiredInput == Target.ALL_ENEMIES)
             {
                 selectedCard.GetCardData().SelectedTarget = GameObject.Find("Board");
                 PlayCard();
@@ -237,7 +237,7 @@ public class UIManager : MonoBehaviour
         HandManager.Get().UpdateAllCardsInHand();
 
         currentMode = GameMode.Animation;
-        requiredInput = Target.NONE;
+        requiredInput = Target.UNSET;
     }
 
     public void clickCardOnStack(GameObject clicked)

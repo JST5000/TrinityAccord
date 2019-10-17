@@ -6,7 +6,7 @@ public class Yawn : CardData
 {
     public Yawn()
     {
-        target = Target.BOARD;
+        target = Target.NONE;
     }
 
     protected override UICardData CreateUICardData()

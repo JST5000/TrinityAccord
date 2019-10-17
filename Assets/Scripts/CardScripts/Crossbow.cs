@@ -44,7 +44,7 @@ public class Crossbow : CardData
         isReloading = !isReloading;
         if(isReloading)
         {
-            target = Target.BOARD;
+            target = Target.NONE;
         } else
         {
             target = Target.ENEMY;

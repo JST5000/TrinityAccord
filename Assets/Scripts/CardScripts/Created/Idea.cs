@@ -6,7 +6,7 @@ public class Idea : CardData
 {
     public Idea()
     {
-        target = Target.BOARD;
+        target = Target.NONE;
     }
 
     protected override UICardData CreateUICardData()

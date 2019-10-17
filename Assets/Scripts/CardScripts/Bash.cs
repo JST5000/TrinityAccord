@@ -6,7 +6,7 @@ public class Bash : CardData
 {
     public Bash()
     {
-        target = Target.BOARD;
+        target = Target.NONE;
     }
 
     protected override UICardData CreateUICardData()

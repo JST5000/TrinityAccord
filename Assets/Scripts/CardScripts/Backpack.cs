@@ -6,7 +6,7 @@ public class Backpack : CardData
 {
     public Backpack()
     {
-        target = Target.BOARD;
+        target = Target.NONE;
     }
 
     protected override UICardData CreateUICardData()

@@ -6,7 +6,7 @@ public class Quickdraw : CardData
 {
     public Quickdraw()
     {
-        target = Target.BOARD;
+        target = Target.NONE;
     }
 
     protected override UICardData CreateUICardData()

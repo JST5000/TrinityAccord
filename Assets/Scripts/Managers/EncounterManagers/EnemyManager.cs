@@ -19,6 +19,12 @@ public class EnemyManager : MonoBehaviour
         //AOEs may hit all without checking, so this prevents nulls
         if (!isEmpty)
         {
+            //Used for Juggle mode
+            if (damage > 0 && EncounterManager.Get().AllDamageStuns)
+            {
+                Stun();
+            }
+
             bool isDead = data.DealDamage(damage);
             if (isDead)
             {

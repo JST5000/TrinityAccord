@@ -6,7 +6,7 @@ public class Berserk : CardData
 {
     public Berserk()
     {
-        target = Target.BOARD;
+        target = Target.NONE;
     }
 
     protected override UICardData CreateUICardData()

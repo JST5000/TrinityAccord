@@ -24,6 +24,8 @@ public class EncounterManager : MonoBehaviour
 
     private EnemyManager targetedEnemy = null;
 
+    public bool AllDamageStuns { get; set; } = false;
+
     public static EncounterManager Get()
     {
         return GameObject.Find("Board")?.GetComponent<EncounterManager>();
@@ -92,6 +94,7 @@ public class EncounterManager : MonoBehaviour
     {
         HandManager.Get().DisableHandInteractions();
         CanvasGroupManip.Enable(EnemyTurnSplash.GetComponent<CanvasGroup>());
+        AllDamageStuns = false;
 
         float totalEnemyTurn = .8f;
 
@@ -220,6 +223,8 @@ public class EncounterManager : MonoBehaviour
             Init(nextEncounter);
 
             SpawnRandomGoldfish();
+
+            AllDamageStuns = false;
         } else
         {
             Debug.LogError("No encounter stored in PermanentState.nextEncounter! Unable to create encounter.");

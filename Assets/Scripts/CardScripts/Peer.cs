@@ -10,7 +10,7 @@ public class Peer : CardData
     public Peer()
     {
         pauseGameplay = true;
-        target = Target.BOARD;
+        target = Target.NONE;
     }
 
     protected override UICardData CreateUICardData()

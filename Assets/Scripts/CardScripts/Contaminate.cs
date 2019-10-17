@@ -6,7 +6,7 @@ public class Contaminate : CardData
 {
     public Contaminate()
     {
-        target = Target.BOARD;
+        target = Target.NONE;
     }
 
     protected override UICardData CreateUICardData()

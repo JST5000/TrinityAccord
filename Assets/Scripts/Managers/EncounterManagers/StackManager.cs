@@ -155,7 +155,7 @@ public class StackManager : MonoBehaviour
                 top.Action(targetEnemy);
             }
         }
-        else if (top.GetTarget().Equals(Target.BOARD) || top.GetTarget().Equals(Target.ALL_ENEMIES))
+        else if (top.GetTarget().Equals(Target.NONE) || top.GetTarget().Equals(Target.ALL_ENEMIES))
         {
             EnemyManager[] allEnemies = top.SelectedTarget.GetComponentsInChildren<EnemyManager>();
             top.Action(allEnemies);
@@ -186,7 +186,7 @@ public class StackManager : MonoBehaviour
 
         CardData top = playedCards.Peek().Key;
 
-        if (top.GetTarget().Equals(Target.CARD) || top.GetTarget().Equals(Target.BOARD))
+        if (top.GetTarget().Equals(Target.CARD) || top.GetTarget().Equals(Target.NONE))
         {
             EnemyManager[] empty = { };
             return empty;

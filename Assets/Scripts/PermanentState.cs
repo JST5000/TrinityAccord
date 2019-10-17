@@ -177,7 +177,10 @@ public class PermanentState : MonoBehaviour
     /// </summary>
     public static void PushEncounterData()
     {
-        Get().GetComponent<DataPusher>().PushEncounterHistory(runId, encounterList, startingHP, Health, PlayerDeck);
+        if (!Application.isEditor)
+        {
+            Get().GetComponent<DataPusher>().PushEncounterHistory(runId, encounterList, startingHP, Health, PlayerDeck);
+        }
     }
 
     public static string GetFightTitle()

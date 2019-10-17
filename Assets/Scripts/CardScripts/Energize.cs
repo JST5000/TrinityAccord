@@ -6,7 +6,7 @@ public class Energize : CardData
 {
     public Energize()
     {
-        target = Target.BOARD;
+        target = Target.NONE;
     }
 
     protected override UICardData CreateUICardData()

@@ -41,10 +41,10 @@ public class Virus : CardData
         switch (mode)
         {
             case ContagionCard.GREED:
-                target = Target.BOARD;
+                target = Target.NONE;
                 break;
             case ContagionCard.POWER:
-                target = Target.BOARD;
+                target = Target.NONE;
                 break;
             case ContagionCard.VILE_SWORD:
                 target = Target.ENEMY;

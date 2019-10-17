@@ -4,10 +4,10 @@ using UnityEngine;
 
 public enum Target 
 {
-    BOARD,
+    NONE,
     ALL_ENEMIES,
     ENEMY,
     CARD,
     CHOOSE3,
-    NONE
+    UNSET
 }

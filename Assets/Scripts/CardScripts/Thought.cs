@@ -7,7 +7,7 @@ public class Thought : CardData
     public Thought()
     {
         fragile = true;
-        target = Target.BOARD;
+        target = Target.NONE;
     }
 
     protected override UICardData CreateUICardData()

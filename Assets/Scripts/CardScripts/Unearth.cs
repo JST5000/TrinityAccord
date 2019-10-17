@@ -6,7 +6,7 @@ public class Unearth : CardData
 {
     public Unearth()
     {
-        target = Target.BOARD;
+        target = Target.NONE;
     }
 
     protected override UICardData CreateUICardData()
