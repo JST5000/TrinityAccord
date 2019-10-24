@@ -1012,6 +1012,8 @@ GameObject:
   - component: {fileID: 3648329561333771786}
   - component: {fileID: 4754648793935962146}
   - component: {fileID: 3949247994916934000}
+  - component: {fileID: 6010246733406030595}
+  - component: {fileID: 261205905120236912}
   m_Layer: 5
   m_Name: Enemy
   m_TagString: Untagged
@@ -1206,6 +1208,66 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7047f8c236f759d4f82d0ddf5556885f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6010246733406030595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8260390675079304805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 261205905120236912}
+          m_MethodName: GenerateKeywordHoverText
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2376062537836821847}
+            m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 261205905120236912}
+          m_MethodName: DestroyHoverText
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
+--- !u!114 &261205905120236912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8260390675079304805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43b3031b4aa3fdb4c897dfbe1fa05a7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2207161615107999254
@@ -1452,12 +1514,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69c1e1ee47dda954bb7c8dd8d0143ccb, type: 3}
---- !u!224 &1316659802774179160 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6219746234040980250, guid: 69c1e1ee47dda954bb7c8dd8d0143ccb,
-    type: 3}
-  m_PrefabInstance: {fileID: 4905912178914238018}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4403132462854331442 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8723011264095076976, guid: 69c1e1ee47dda954bb7c8dd8d0143ccb,
@@ -1470,6 +1526,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4909b70667547b40ad9344811f89eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &1316659802774179160 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6219746234040980250, guid: 69c1e1ee47dda954bb7c8dd8d0143ccb,
+    type: 3}
+  m_PrefabInstance: {fileID: 4905912178914238018}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7304873675285241323
 PrefabInstance:
   m_ObjectHideFlags: 0

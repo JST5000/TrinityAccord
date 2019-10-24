@@ -72,24 +72,8 @@ public class HelpManager : MonoBehaviour
         pages.Add(new HelpPage("Progression", "After every encounter, you get to add a new card to your deck." +
             "\n\nIf you lose, your deck loses all cards you added." +
             "\n\nGood Luck!"));
-        string[] glossary =
-        {
-            InLineIcon.DAMAGE + ": X - Deal X damage to the the player." ,
-            InLineIcon.ON_STAGGER + ": X - When a life is lost, change this effect to X." ,
-            "Attack - Red cards. Usually do damage." ,
-            "Blind X - All attacks have random targets for X turns." ,
-            "Charge X - Every time this card is discarded, increase its attack by x. Resets on use.",
-            "Drowsy - Put the enemy to Sleep in 1 turn. Damage wakes them up!",
-            "Flip - Transform this into a new card or new effect.",
-            "Grow X - Every time this card is played, increase its attack by X." ,
-            "Spell - Blue cards. Usually are utility." ,
-            "Preserve - Target card is not discarded at the end of the turn.",
-            "Sleep - Stop the enemy's timer for up to 2 turns. Damage wakes them up!",
-            "Stagger - Reset the enemie's attack timer to max and Stun them." ,
-            "Stun - Stop the enemy's timer for 1 turn.", 
-            "Vulnerable - Recieves double damage."
-        };
-        pages.AddRange(GetGlossaryPages(new List<string>(glossary)));
+
+        pages.AddRange(GetGlossaryPages(new List<string>(Glossary.glossary)));
     }
 
     private List<HelpPage> GetGlossaryPages(List<string> entries)

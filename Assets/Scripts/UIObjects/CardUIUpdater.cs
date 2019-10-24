@@ -164,7 +164,11 @@ public class CardUIUpdater : MonoBehaviour
 
     private void DisplayAvailableCardArt(UICardData data)
     {
-        cardEffect.text = "";
+        cardEffect.text = data.effectText;
+        var color = cardEffect.color;
+        color.a = 0f;
+        cardEffect.color = color;
+
         CardArt.sprite = data.cardArt;
         SetCardArtOpacity(1f);
         SetSharpenedTextOpacity(1f);
@@ -175,6 +179,9 @@ public class CardUIUpdater : MonoBehaviour
         SetCardArtOpacity(0f);
         SetSharpenedTextOpacity(1f);
         cardEffect.text = data.effectText;
+        var color = cardEffect.color;
+        color.a = 1f;
+        cardEffect.color = color;
     }
 
     private void SetCardArtOpacity(float opacity)
@@ -212,6 +219,10 @@ public class CardUIUpdater : MonoBehaviour
     private void DisplayFullTextWithFadedArt(UICardData data)
     {
         cardEffect.text = data.effectText;
+        var color = cardEffect.color;
+        color.a = 1f;
+        cardEffect.color = color;
+
         float dim = .4f;
         if (data.cardArt != null)
         {

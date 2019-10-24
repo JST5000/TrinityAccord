@@ -673,6 +673,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 3342117346682321107}
+          m_MethodName: GenerateKeywordHoverText
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 8500494791436744037}
+            m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 1
@@ -682,6 +693,17 @@ MonoBehaviour:
         - m_Target: {fileID: 3464171402652516133}
           m_MethodName: SetCardArtOpacity
           m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 3342117346682321107}
+          m_MethodName: DestroyHoverText
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -948,5 +970,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea6028f5c39892a4d94c66b94f74c058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3342117346682321107 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5991781150166741968, guid: 3ed85d87458018b4fa02d1857953810e,
+    type: 3}
+  m_PrefabInstance: {fileID: 9027046750346169091}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43b3031b4aa3fdb4c897dfbe1fa05a7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8500494791436744037 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 626371744891895398, guid: 3ed85d87458018b4fa02d1857953810e,
+    type: 3}
+  m_PrefabInstance: {fileID: 9027046750346169091}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
