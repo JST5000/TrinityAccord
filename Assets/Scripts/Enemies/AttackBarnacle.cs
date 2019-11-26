@@ -14,7 +14,7 @@ public class AttackBarnacle : EnemyData
     private static readonly string Open = "Attack_Barnacle_Opened";
 
     public AttackBarnacle()
-        : base(name: "Barnacle", maxHP: 5, staggers: 3, damage: BaseDamage, timer: 2, effect: GetEffect(true), spriteName: Closed, "AttackBarnacle")
+        : base(name: "Barnacle", maxHP: 5, lives: 3, damage: BaseDamage, timer: 2, effect: GetEffect(true), spriteName: Closed, "AttackBarnacle")
     { }
 
     protected override void AttackUniqueEffect()

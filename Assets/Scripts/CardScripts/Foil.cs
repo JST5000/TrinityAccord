@@ -13,7 +13,7 @@ public class Foil : CardData
 
     protected override UICardData CreateUICardData()
     {
-        return new UICardData("Foil", cost: GetCost(), "Deal " + GetDamage() + " damage, reduce cost by 1", UICardData.CardType.ATTACK, "Foil");
+        return new UICardData("Foil", cost: GetAdjustedCost(), "Deal " + GetDamage() + " damage, reduce cost by 1", UICardData.CardType.ATTACK, "Foil");
     }
 
     private int GetDamage()
@@ -21,9 +21,9 @@ public class Foil : CardData
         return 3 + GetBonusDamage();
     }
 
-    private int GetCost()
+    private int GetAdjustedCost()
     {
-        return (int)Mathf.Max(0, expectedCost);
+        return Mathf.Max(0, expectedCost);
     }
 
     public override void Action(EnemyManager[] enemys)

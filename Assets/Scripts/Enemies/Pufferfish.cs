@@ -11,7 +11,7 @@ public class Pufferfish : EnemyData
     private static string PufferSmall = "Pufferfish_Small";
     private static string PufferExpanded = "Pufferfish_Puffed2";
 
-    public Pufferfish() : base(name: "Puffer", maxHP: 6, staggers: 2, damage: 2, timer: 2, 
+    public Pufferfish() : base(name: "Puffer", maxHP: 6, lives: 2, damage: 2, timer: 2, 
         effect: InLineIcon.DAMAGE + $": {BaseDamage}, Gain {MaxHealthIncrease} health.", spriteName: PufferSmall, "Pufferfish")
     { }
 

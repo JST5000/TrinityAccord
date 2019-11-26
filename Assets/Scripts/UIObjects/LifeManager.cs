@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LifeManager : MonoBehaviour
 {
-    public GameObject life; //AKA Stagger
+    public GameObject life; //AKA Disarm
 
     //Invalid for negative lives.
     public void SetLives(int lives)

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Juggle : CardData
 {
+    private static int maxHits = 4;
+
     public Juggle()
     {
         target = Target.NONE;
@@ -11,23 +13,32 @@ public class Juggle : CardData
 
     protected override UICardData CreateUICardData()
     {
-        return new UICardData("Juggle", cost: 1, $"All damage stuns until the end of turn.", UICardData.CardType.SPELL, cardArtFileName: "Juggle");
+        return new UICardData("Juggle", cost: 1, $"Deal " + GetDamage() + $" damage to a random enemy, repeat if the enemy is stunned after. (Max {maxHits} hits)"
+            , UICardData.CardType.ATTACK, cardArtFileName: "Juggle");
     }
 
     private int GetDamage()
     {
-        return 0;
+        return 2 + sharpenDamage;
     }
-
-    public override void Sharpen()
-    {
-    }
-
 
     public override void Action(EnemyManager[] enemys)
     {
         SoundManager.PlayCardSFX("Juggle1");
-        EncounterManager.Get().AllDamageStuns = true;
+
+        bool targetIsStunned = true;
+        int hits = 0;
+        while (hits < maxHits && targetIsStunned)
+        {
+            EnemyManager enemy = EncounterManager.Get().GetRandomAliveEnemyManager();
+            if (enemy)
+            {
+                enemy.Damage(GetDamage());
+            }
+
+            targetIsStunned = !enemy.IsAlive() || enemy.IsStunned();
+            ++hits;
+        }
     }
 
     public override void Action(CardData[] cards)

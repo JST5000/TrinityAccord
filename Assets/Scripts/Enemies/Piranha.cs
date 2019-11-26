@@ -6,7 +6,7 @@ public class Piranha : EnemyData
 {
     private static string piranhaName = "Piranha";
 
-    public Piranha() : base(name: piranhaName, maxHP: 4, staggers: 2, damage: GetPiranhaDamage(), timer: 2, effect: GetPiranhaEffect(), spriteName: "Piranha")
+    public Piranha() : base(name: piranhaName, maxHP: 4, lives: 2, damage: GetPiranhaDamage(), timer: 2, effect: GetPiranhaEffect(), spriteName: "Piranha")
     { }
 
     private static int GetPiranhaDamage()

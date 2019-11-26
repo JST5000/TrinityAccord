@@ -7,7 +7,7 @@ public class Glossary : MonoBehaviour
     public static string[] glossary { get; set; } =
         {
             InLineIcon.DAMAGE + ": X - Deal X damage to the the player." ,
-            InLineIcon.ON_STAGGER + ": X - When a life is lost, change this effect to X." ,
+            InLineIcon.ON_DISARM + ": X - When a life is lost, change this effect to X." ,
             "Attack - Red cards. Usually do damage." ,
             "Blind X - All attacks have random targets for X turns." ,
             "Charge X - Every time this card is discarded, increase its attack by x. Resets on use.",
@@ -17,7 +17,7 @@ public class Glossary : MonoBehaviour
             "Spell - Blue cards. Usually are utility." ,
             "Preserve - Target card is not discarded at the end of the turn.",
             "Sleep - Stop the enemy's timer for up to 2 turns. Damage wakes them up!",
-            "Stagger - Reset the enemie's attack timer to max and Stun them." ,
+            "Disarm - Reset the enemie's attack timer to max and Stun them." ,
             "Summon - Creates a new enemy!",
             "Stun - Stop the enemy's timer for 1 turn.",
             "Vulnerable - Recieves double damage."

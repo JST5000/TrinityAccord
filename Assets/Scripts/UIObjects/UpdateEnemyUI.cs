@@ -41,7 +41,7 @@ public class UpdateEnemyUI : MonoBehaviour
         nameDisplay.text = data.EnemyName;
         hpManager.SetMaxHealth(data.MaxHP);
         hpManager.SetCurrHealth(data.CurrHP);
-        livesHolder.SetLives(data.Staggers);
+        livesHolder.SetLives(data.Lives);
         timerDisplay.text = data.CurrTimer + "/" + data.MaxTimer;
         effectDisplay.text = data.Effect;
         //TODO populate the image field
@@ -97,7 +97,7 @@ public class UpdateEnemyUI : MonoBehaviour
         hpManager.SetCurrHealth(data.CurrHP);
         hpManager.SetMaxHealth(data.MaxHP);
 
-        livesHolder.SetLives(data.Staggers);
+        livesHolder.SetLives(data.Lives);
 
         enemyPicture.sprite = data.Picture;
 

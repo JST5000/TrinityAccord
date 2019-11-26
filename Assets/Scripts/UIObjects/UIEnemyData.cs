@@ -7,7 +7,7 @@ public class UIEnemyData
     private string enemyName;
     private int currHP;
     private int maxHP;
-    private int staggers;
+    private int lives;
     private int damage;
     private int maxTimer;
     private int currTimer;
@@ -19,7 +19,7 @@ public class UIEnemyData
     public string EnemyName { get => enemyName;}
     public int CurrHP { get => currHP;}
     public int MaxHP { get => maxHP;}
-    public int Staggers { get => staggers;}
+    public int Lives { get => lives;}
     public int Damage { get => damage;}
     public int MaxTimer { get => maxTimer;}
     public int CurrTimer { get => currTimer;}
@@ -28,12 +28,12 @@ public class UIEnemyData
     public bool Stunned { get => stunned; }
     public int SleepTimer { get => sleepTimer; }
 
-    public UIEnemyData(string name, int currHP, int maxHP, int staggers, int damage, int maxTimer, int currTimer, string effect, Sprite picture, bool stunned, int sleepTimer)
+    public UIEnemyData(string name, int currHP, int maxHP, int lives, int damage, int maxTimer, int currTimer, string effect, Sprite picture, bool stunned, int sleepTimer)
     {
         this.enemyName = name;
         this.currHP = currHP;
         this.maxHP = maxHP;
-        this.staggers = staggers;
+        this.lives = lives;
         this.damage = damage;
         this.maxTimer = maxTimer;
         this.currTimer = currTimer;

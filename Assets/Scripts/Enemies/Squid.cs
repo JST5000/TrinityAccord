@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Squid : EnemyData
 {
-    public Squid() : base(name: "Squid", maxHP: 4, staggers: 2, damage: 1, timer: 3, effect: InLineIcon.DAMAGE + ": 1, Blind the player for 1 turn!", "Squid")
+    public Squid() : base(name: "Squid", maxHP: 4, lives: 2, damage: 1, timer: 3, effect: InLineIcon.DAMAGE + ": 1, Blind the player for 1 turn!", "Squid")
     { }
 
     protected override void AttackUniqueEffect()

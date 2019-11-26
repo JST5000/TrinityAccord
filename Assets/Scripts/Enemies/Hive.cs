@@ -5,7 +5,7 @@ using UnityEngine;
 public class Hive : EnemyData
 {
     public Hive()
-        : base(name: "Hive", maxHP: 9, staggers: 1, damage: 0, timer: 2, effect: "Summon a Wasp and lose 3 hp.", spriteName: "Hive")
+        : base(name: "Hive", maxHP: 9, lives: 1, damage: 0, timer: 2, effect: "Summon a Wasp and lose 3 hp.", spriteName: "Hive")
     { }
 
     override

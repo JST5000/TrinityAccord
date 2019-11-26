@@ -5,7 +5,7 @@ using UnityEngine;
 public class Doombringer : EnemyData
 {
     public Doombringer() 
-        : base(name: "Doombringer", maxHP: 8, staggers: 2, damage: 0, timer: 3, effect: "Summon a Spirit", spriteName: GlobalVars.DEMO_ART ? "FantasyCharacters_lich" : "Doombringer")
+        : base(name: "Doombringer", maxHP: 8, lives: 2, damage: 0, timer: 3, effect: "Summon a Spirit", spriteName: GlobalVars.DEMO_ART ? "FantasyCharacters_lich" : "Doombringer")
     { }
 
     override

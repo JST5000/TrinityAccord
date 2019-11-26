@@ -7,7 +7,7 @@ public class GangLeader : EnemyData
     bool summonMode = true;
 
     public GangLeader()
-        : base(name: "Capone", maxHP: 8, staggers: 3, damage: 0, timer: 2, effect: GetEffect(true), spriteName: "Gang Leader", "Gang Leader")
+        : base(name: "Capone", maxHP: 8, lives: 3, damage: 0, timer: 2, effect: GetEffect(true), spriteName: "Gang Leader", "Gang Leader")
     { }
 
     override

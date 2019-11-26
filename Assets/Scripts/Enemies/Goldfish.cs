@@ -9,7 +9,7 @@ public class Goldfish : EnemyData
 {
     private bool GetMoneyOnDeath = true;
 
-    public Goldfish() : base(name: "Goldfish", maxHP: 7, staggers: 1, damage: 0, timer: 2, effect: "Run away! " + InLineIcon.ON_STAGGER + ": Give 3 coins!", spriteName: "Goldfish")
+    public Goldfish() : base(name: "Goldfish", maxHP: 7, lives: 1, damage: 0, timer: 2, effect: "Run away! " + InLineIcon.ON_DISARM + ": Give 3 coins!", spriteName: "Goldfish")
     { }
 
     protected override void OnLossOfLife()
@@ -32,6 +32,6 @@ public class Goldfish : EnemyData
     /// <returns></returns>
     override public bool SelfHarm()
     {
-        return DealDamage(MaxHP * Staggers);
+        return DealDamage(MaxHP * Lives);
     }
 }

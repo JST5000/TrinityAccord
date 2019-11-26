@@ -8,7 +8,7 @@ public abstract class EnemyData
     private string enemyName;
     private int maxHP;
     private int currHP;
-    private int staggers;
+    private int lives;
     private int damage;
     private int maxTimer;
     private int currTimer;
@@ -22,7 +22,7 @@ public abstract class EnemyData
     public string EnemyName { get => enemyName; set => enemyName = value; }
     public int MaxHP { get => maxHP; set => maxHP = value; }
     public int CurrHP { get => currHP; set => currHP = value; }
-    public int Staggers { get => staggers; set => SetStaggers(value); }
+    public int Lives { get => lives; set => SetLives(value); }
     public int Damage { get => damage; set => damage = value; }
     public int MaxTimer { get => maxTimer; set => maxTimer = value; }
     public virtual int CurrTimer { get => currTimer; set => currTimer = value; }
@@ -37,12 +37,12 @@ public abstract class EnemyData
 
     protected bool ImmuneToDebuffs = false;
 
-    public EnemyData(string name, int maxHP, int staggers, int damage, int timer, string effect, string spriteName, params string[] alternateNames)
+    public EnemyData(string name, int maxHP, int lives, int damage, int timer, string effect, string spriteName, params string[] alternateNames)
     {
         this.enemyName = name;
         this.maxHP = maxHP;
         this.currHP = maxHP;
-        this.staggers = staggers;
+        this.lives = lives;
         this.damage = damage;
         this.maxTimer = timer;
         currTimer = maxTimer;
@@ -64,7 +64,7 @@ public abstract class EnemyData
 
     public UIEnemyData GetUIData()
     {
-        return new UIEnemyData(enemyName, currHP: currHP, maxHP: maxHP, staggers, damage, maxTimer, currTimer, effect, picture, stunned: stunned, sleepTimer: sleepTimer);
+        return new UIEnemyData(enemyName, currHP: currHP, maxHP: maxHP, lives, damage, maxTimer, currTimer, effect, picture, stunned: stunned, sleepTimer: sleepTimer);
     }
 
     //Used by children to add triggered updates to effects and such
@@ -79,9 +79,9 @@ public abstract class EnemyData
     //Override for individual enemies if the effect needs to be triggered
     protected virtual void AttackUniqueEffect() { }
 
-    public void SetStaggers(int value)
+    public void SetLives(int value)
     {
-        if (value < staggers)
+        if (value < lives)
         {
             OnLossOfLife();
             if (value == 1)
@@ -90,7 +90,7 @@ public abstract class EnemyData
                 OnLastLife();
             }
         }
-        staggers = value;
+        lives = value;
     }
 
     public virtual int GetModifiedDamageOnEachHit(int damage)
@@ -131,12 +131,12 @@ public abstract class EnemyData
         }
         if (CurrHP == 0)
         {
-            //Must drop staggers first for onStagger effects to activate (Ex. Tiger -> Timer increase)
-            Staggers--;
+            //Must drop lives first for onDisarm effects to activate (Ex. Tiger -> Timer increase)
+            Lives--;
 
-            StaggerEnemy(staggerFromDamage: true);
+            DisarmEnemy(staggerFromDamage: true);
             CurrHP = MaxHP;
-            if (Staggers > 0)
+            if (Lives > 0)
             {
                 return DamageRecursive(currDamage);
             }
@@ -151,7 +151,7 @@ public abstract class EnemyData
         
     }
 
-    public virtual void StaggerEnemy(bool staggerFromDamage = false)
+    public virtual void DisarmEnemy(bool staggerFromDamage = false)
     {
         if (staggerFromDamage || !ImmuneToDebuffs)
         {

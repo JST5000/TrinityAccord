@@ -5,7 +5,7 @@ using UnityEngine;
 public class ScytheSoldier : EnemyData
 {
     public ScytheSoldier()
-        : base(name: "Scythe", maxHP: 6, staggers: 2, damage: 2, timer: 2, effect: InLineIcon.DAMAGE + ": 2, Destroy a random card played this turn.", spriteName: "Spirit", "Scythe Soldier")
+        : base(name: "Scythe", maxHP: 6, lives: 2, damage: 2, timer: 2, effect: InLineIcon.DAMAGE + ": 2, Destroy a random card played this turn.", spriteName: "Spirit", "Scythe Soldier")
     { }
 
     //TODO add ", Destroy a card played this turn." to the attack text when the code is working ^^^^

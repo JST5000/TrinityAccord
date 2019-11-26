@@ -10,7 +10,7 @@ public class Clam : EnemyData
     static readonly string clamOpen = clamFolder + "Clam_Open";
     static readonly string clamAttacking = clamFolder + "Clam_Attacking";
 
-    public Clam() : base(name: "Clam", maxHP: 10, staggers: 2, damage: 3, timer: 3, effect: GetClamEffect(), spriteName: clamClosed, alternateNames: "Reckless Attacker")
+    public Clam() : base(name: "Clam", maxHP: 10, lives: 2, damage: 3, timer: 3, effect: GetClamEffect(), spriteName: clamClosed, alternateNames: "Reckless Attacker")
     { }
 
     public static string GetClamEffect()
@@ -18,9 +18,9 @@ public class Clam : EnemyData
         return InLineIcon.DAMAGE + ": 3, Vulnerable right before attacking!";
     }
 
-    public override void StaggerEnemy(bool staggerFromDamage = false)
+    public override void DisarmEnemy(bool DisarmFromDamage = false)
     {
-        base.StaggerEnemy();
+        base.DisarmEnemy();
         LoadPicture(clamClosed);
     }
 

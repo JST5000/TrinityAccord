@@ -11,7 +11,7 @@ public class Shock : CardData
 
     protected override UICardData CreateUICardData()
     {
-        return new UICardData("Shock", cost: 2, "Stagger target", UICardData.CardType.SPELL);
+        return new UICardData("Shock", cost: 2, "Disarm target", UICardData.CardType.SPELL);
     }
 
     public override int GetBonusDamage()
@@ -21,7 +21,7 @@ public class Shock : CardData
 
     public override void Action(EnemyManager[] enemys)
     {
-        enemys[0].Stagger();
+        enemys[0].Disarm();
     }
     public override void Action(CardData[] cards)
     {

@@ -35,11 +35,11 @@ public class EnemyManager : MonoBehaviour
         return false;
     }
 
-    public bool Stagger()
+    public bool Disarm()
     {
         if (!isEmpty)
         {
-            data.StaggerEnemy();
+            data.DisarmEnemy();
             return true;
         }
         return false;

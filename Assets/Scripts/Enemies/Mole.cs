@@ -6,7 +6,7 @@ public class Mole : EnemyData
 {
     private bool dodge = true;
 
-    public Mole() : base(name: "Mole", maxHP: 4, staggers: 3, damage: 2, timer: 2, effect: InLineIcon.DAMAGE + ": 2, " + "Dodge the first attack per life.", spriteName: "Mole_Hidden", "G Ninja")
+    public Mole() : base(name: "Mole", maxHP: 4, lives: 3, damage: 2, timer: 2, effect: InLineIcon.DAMAGE + ": 2, " + "Dodge the first attack per life.", spriteName: "Mole_Hidden", "G Ninja")
     { }
 
     private static readonly string MoleHidden = "Mole_Hidden";
