@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 82838196}
   - component: {fileID: 82838198}
   - component: {fileID: 82838197}
+  - component: {fileID: 82838199}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -191,6 +192,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 82838195}
   m_CullTransparentMesh: 0
+--- !u!114 &82838199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82838195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 3, y: -3}
+  m_UseGraphicAlpha: 1
 --- !u!1 &100359125
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,6 +220,7 @@ GameObject:
   - component: {fileID: 100359128}
   - component: {fileID: 100359127}
   - component: {fileID: 100359130}
+  - component: {fileID: 100359131}
   m_Layer: 5
   m_Name: ArtistOnHill
   m_TagString: Untagged
@@ -333,7 +350,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe3cb71274b71b643813f9ba60a2e863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AlphaThreshold: 0.05
+  AlphaThreshold: 0.5
+--- !u!114 &100359131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100359125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 3, y: -3}
+  m_UseGraphicAlpha: 1
 --- !u!1 &448325979
 GameObject:
   m_ObjectHideFlags: 0
