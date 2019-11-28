@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class UICardData
 {
-    public enum CardType { SPELL, ATTACK };
+    public enum CardType { SPELL, ATTACK, QUEST };
 
-    public string cardName;
-    public int cost;
-    public string effectText;
-    public CardType cardType;
-    public Sprite cardArt;
-    public bool displayOnlyCardArt;
+    public string cardName { get; set; }
+    public int cost { get; set; }
+    public string effectText { get; set; }
+    public CardType cardType { get; set; }
+    public Sprite cardArt { get; set; }
+    public bool displayOnlyCardArt { get; set; }
 
     public UICardData(string cardName, int cost, string effectText, CardType type)
     {

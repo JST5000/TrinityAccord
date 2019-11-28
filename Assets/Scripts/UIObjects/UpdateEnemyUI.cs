@@ -147,6 +147,10 @@ public class UpdateEnemyUI : MonoBehaviour
         else if(data.SleepTimer == 1) {
             debuffText.text = "Waking...";
         }
+        else if(data.Vulnerable)
+        {
+            debuffText.text = "Vulnerable";
+        } 
         else
         {
             debuffText.text = "";

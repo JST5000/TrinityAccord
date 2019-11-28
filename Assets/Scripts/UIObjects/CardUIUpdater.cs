@@ -17,6 +17,7 @@ public class CardUIUpdater : MonoBehaviour
 
     public Sprite AttackBG;
     public Sprite SpellBG;
+    public Sprite QuestBG;
     public Sprite HighlightBG;
 
     public bool blocksRaycasts = true;
@@ -130,6 +131,10 @@ public class CardUIUpdater : MonoBehaviour
     public void UpdateUI(UICardData data)
     {
         costText.text = "" + data.cost;
+        if(cardEffect.text != data.effectText)
+        {
+            cardEffect.text = data.effectText;
+        }
         displayName.text = data.cardName;
         DisplayTextAndCardArtDynamically(data);
         UpdateBGColor(data.cardType);
@@ -246,6 +251,10 @@ public class CardUIUpdater : MonoBehaviour
             else if (type.Equals(UICardData.CardType.SPELL))
             {
                 background.sprite = SpellBG;
+            }
+            else if (type.Equals(UICardData.CardType.QUEST))
+            {
+                background.sprite = QuestBG;
             }
         }
     }

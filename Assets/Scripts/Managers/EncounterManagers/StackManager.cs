@@ -7,8 +7,10 @@ public class StackManager : MonoBehaviour
 {
     public Text label;
 
-    public int cardsPlayed = 0;
-    public int attacksPlayed = 0;
+    public int cardsPlayedThisTurn = 0;
+    public int AttacksPlayedThisTurn { get; set; } = 0;
+    public int AttacksPlayedThisEncounter { get; set; } = 0;
+    public int SpellsPlayedThisEncounter { get; set; } = 0;
     public bool inAnimation = false;
 
     public Image Overlay;
@@ -30,7 +32,7 @@ public class StackManager : MonoBehaviour
 
     public static StackManager Get()
     {
-        return GameObject.Find("StackHolder").GetComponent<StackManager>();
+        return GameObject.Find("StackHolder")?.GetComponent<StackManager>();
     }
 
     void Start()
@@ -259,7 +261,7 @@ public class StackManager : MonoBehaviour
 
     private void UpdateCounts(CardData card)
     {
-        cardsPlayed++;
+        cardsPlayedThisTurn++;
         //Avoids multiple uses of a card causing nulls later
         if (!playedCardsThisTurn.Contains(card))
         {
@@ -267,15 +269,23 @@ public class StackManager : MonoBehaviour
         }
         if (card.GetUICardData().cardType.Equals(UICardData.CardType.ATTACK))
         {
-            attacksPlayed++;
+            AttacksPlayedThisTurn++;
+            AttacksPlayedThisEncounter++;
+            QuestListener.UpdateAssault();
         }
+        if(card.GetUICardData().cardType.Equals(UICardData.CardType.SPELL))
+        {
+            SpellsPlayedThisEncounter++;
+            QuestListener.UpdateArcana();
+        }
+        HandManager.Get().UpdateAllCardsInHand();
     }
     public void ResetCounts()
     {
-        cardsPlayed = 0;
+        cardsPlayedThisTurn = 0;
         playedCardsThisTurn.Clear();
         cardsReturnedSoFar.Clear();
-        attacksPlayed = 0;
+        AttacksPlayedThisTurn = 0;
     }
 
     //Returns one of the cards played this turn.

@@ -73,6 +73,10 @@ public static class CardPools
         all.Add(new Artifact());
         all.Add(new Sandstorm());
         //        all.Add(new TargetCard()); Readd when fixing, or when fixed
+        all.Add(new Apprentice());
+        all.Add(new Assassin());
+        all.Add(new Assault());
+        all.Add(new Arcana());
 
         allDraftableCards = all;
     }
@@ -97,6 +101,11 @@ public static class CardPools
     public static List<CardData> GetAllDraftableSpells()
     {
         return GetAllDraftableCards().FindAll((CardData card) => card.GetTypeOfCard().Equals(UICardData.CardType.SPELL));
+    }
+
+    public static List<CardData> GetAllDraftableQuests()
+    {
+        return GetAllDraftableCards().FindAll((CardData card) => card.GetTypeOfCard().Equals(UICardData.CardType.QUEST));
     }
 
 }

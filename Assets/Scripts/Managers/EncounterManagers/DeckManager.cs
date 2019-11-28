@@ -55,6 +55,9 @@ public class DeckManager : MonoBehaviour
 
     public void EndTurn()
     {
+        //Ensures that Arcana/Mana Well only lasts 1 turn
+        CardData.FixedCostForSpells = -1;
+
         DiscardHand();
     }
 
@@ -277,5 +280,35 @@ public class DeckManager : MonoBehaviour
     {
         deckCount.text = "(" + deck.Count + ")";
         discardCount.text = "(" + discard.Count + ")";
+    }
+
+    public List<CardData> GetCardsWithName(string cardName)
+    {
+        List<CardData> cardsWithName = new List<CardData>();
+        foreach(CardData card in deck)
+        {
+            if(card.GetName().Equals(cardName))
+            {
+                cardsWithName.Add(card);
+            }
+        }
+
+        foreach (CardData card in discard)
+        {
+            if (card.GetName().Equals(cardName))
+            {
+                cardsWithName.Add(card);
+            }
+        }
+
+        foreach (CardManager cardMan in hand)
+        {
+            if (!cardMan.IsEmpty() && cardMan.GetCardData().GetName().Equals(cardName))
+            {
+                cardsWithName.Add(cardMan.GetCardData());
+            }
+        }
+
+        return cardsWithName;
     }
 }

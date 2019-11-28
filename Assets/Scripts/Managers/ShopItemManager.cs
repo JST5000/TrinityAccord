@@ -122,6 +122,7 @@ public class ShopItemManager : MonoBehaviour
         }
     }
 
+    //Was used to show "LIMITED!" in the bottom, but that was overwhelming. May be useful later.
     private string GetQuantityText()
     {
         if(SoldOut)
@@ -129,7 +130,7 @@ public class ShopItemManager : MonoBehaviour
             return "";
         } else if(Data.limited)
         {
-            return "LIMITED!";
+            return "";
         } else
         {
             return "";

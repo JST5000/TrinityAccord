@@ -87,6 +87,10 @@ public class EnemyManager : MonoBehaviour
             }
             data.SleepTimer--;
         }
+        if(data.Vulnerable)
+        {
+            data.Vulnerable = false;
+        }
         return skipTimerDecrease;
     }
 

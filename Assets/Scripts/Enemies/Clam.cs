@@ -38,10 +38,6 @@ public class Clam : EnemyData
             Vulnerable = true;
             LoadPicture(clamOpen);
         }
-        else
-        {
-            Vulnerable = false;
-        }
     }
 
     

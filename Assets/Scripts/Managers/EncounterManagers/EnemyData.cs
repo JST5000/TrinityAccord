@@ -37,6 +37,8 @@ public abstract class EnemyData
 
     protected bool ImmuneToDebuffs = false;
 
+    public bool HasBeenDisarmed { get; set; } = false;
+
     public EnemyData(string name, int maxHP, int lives, int damage, int timer, string effect, string spriteName, params string[] alternateNames)
     {
         this.enemyName = name;
@@ -64,7 +66,7 @@ public abstract class EnemyData
 
     public UIEnemyData GetUIData()
     {
-        return new UIEnemyData(enemyName, currHP: currHP, maxHP: maxHP, lives, damage, maxTimer, currTimer, effect, picture, stunned: stunned, sleepTimer: sleepTimer);
+        return new UIEnemyData(enemyName, currHP: currHP, maxHP: maxHP, lives, damage, maxTimer, currTimer, effect, picture, stunned: stunned, sleepTimer: sleepTimer, vulnerable: Vulnerable);
     }
 
     //Used by children to add triggered updates to effects and such
@@ -142,6 +144,8 @@ public abstract class EnemyData
             }
             else
             {
+                QuestListener.UpdateApprentice();
+                QuestListener.UpdateAssassin();
                 Debug.Log(EnemyName + " was killed.");
                 return true;
             }
@@ -157,6 +161,8 @@ public abstract class EnemyData
         {
             CurrTimer = MaxTimer;
             Stun(staggerFromDamage);
+            HasBeenDisarmed = true;
+            QuestListener.UpdateApprentice();
         }
     }
 

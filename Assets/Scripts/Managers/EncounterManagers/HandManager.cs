@@ -18,7 +18,7 @@ public class HandManager : MonoBehaviour
 
     public static HandManager Get()
     {
-        return GameObject.Find("Hand").GetComponent<HandManager>();
+        return GameObject.Find("Hand")?.GetComponent<HandManager>();
     }
 
     public void UpdateAllCardsInHand()
@@ -35,6 +35,8 @@ public class HandManager : MonoBehaviour
         {
             if (!man.IsEmpty())
             {
+                man.GetCardData().UpdateUICardData();
+
                 CardUIUpdater manUI = man.transform.GetComponent<CardUIUpdater>();
                 //If we are selecting cards in hand, their playability does not matter (Likely a discard effect)
                 if (!allOn && (disableHand || (!man.IsPlayable() && !(UIManager.currentMode == GameMode.PickCardInHand))))

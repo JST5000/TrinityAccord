@@ -726,6 +726,7 @@ MonoBehaviour:
   LockIconCG: {fileID: 8917067002370609374}
   AttackBG: {fileID: 21300000, guid: 95ab2882048c97f44a7be86710ce3e33, type: 3}
   SpellBG: {fileID: 21300000, guid: 5b293ce4004b0614aa4a96ec4a1b3e2f, type: 3}
+  QuestBG: {fileID: 21300000, guid: 28e3100f96f89174494d763352fc69cb, type: 3}
   HighlightBG: {fileID: 21300000, guid: 3eef0bd4c6f74444d9f5c98c78e03b3f, type: 3}
   blocksRaycasts: 1
   cardCG: {fileID: 557272752686652720}

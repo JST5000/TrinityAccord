@@ -26,6 +26,31 @@ public abstract class CardData
 
     public bool pauseGameplay = false;
 
+    /// <summary>
+    /// Could be improved by putting in a lambda condition for cards to check if they fit (Instead of one for each condition we care about).
+    /// </summary>
+    public static int FixedCostForSpells { get; set; } = -1;
+    public int PreviousCost = -1;
+
+    /// <summary>
+    /// Used for Quests to change into their completed forms. 
+    /// This could be broken out when we refactor CardTypes into subclasses
+    /// </summary>
+    public bool Transformed
+    {
+        get
+        {
+            return transformed;
+        }
+        set
+        {
+            transformed = value;
+            UpdateUICardData(false);
+        }
+    }
+
+    private bool transformed = false;
+
     public float animationTime;
     public abstract void Action(EnemyManager[] enemys);
     public abstract void Action(CardData[] cards);
@@ -61,13 +86,28 @@ public abstract class CardData
         return uiCardData;
     }
 
-    protected void UpdateUICardData(bool doNotUpdateCost = true)
+    public void UpdateUICardData(bool doNotUpdateCost = true)
     {
         UICardData updated = CreateUICardData();
         if(uiCardData != null && doNotUpdateCost)
         {
             updated.cost = uiCardData.cost;
         }
+        //Could do a general function here for what condition triggers the temporary changes
+        if(uiCardData != null && uiCardData.cardType.Equals(UICardData.CardType.SPELL))
+        {
+            if (FixedCostForSpells >= 0 && PreviousCost < 0)
+            {
+                PreviousCost = updated.cost;
+                updated.cost = FixedCostForSpells;
+            }
+
+            if(FixedCostForSpells < 0 && PreviousCost >= 0)
+            {
+                updated.cost = PreviousCost;
+                PreviousCost = -1;
+            }
+        } 
         uiCardData = updated;
     }
 
@@ -115,7 +155,8 @@ public abstract class CardData
     public bool IsPlayable()
     {
         bool playerHasEnoughEnergy = GameObject.Find("Player").GetComponent<Player>().GetEnergy() >= uiCardData.cost;
-        return playerHasEnoughEnergy;
+        bool isNotAQuest = uiCardData.cardType != UICardData.CardType.QUEST;
+        return playerHasEnoughEnergy && isNotAQuest;
     }
 
     public virtual void OnDiscard() { }
@@ -254,12 +295,12 @@ public abstract class CardData
 
     protected int getNumberOfAttacksPlayed()
     {
-        return GameObject.Find("StackHolder").GetComponent<StackManager>().attacksPlayed;
+        return GameObject.Find("StackHolder").GetComponent<StackManager>().AttacksPlayedThisTurn;
     }
 
     protected int getNumberOfCardsPlayed()
     {
-        return GameObject.Find("StackHolder").GetComponent<StackManager>().cardsPlayed;
+        return GameObject.Find("StackHolder").GetComponent<StackManager>().cardsPlayedThisTurn;
     }
 
     protected CardManager getMyCardManager()
