@@ -6,7 +6,19 @@ public class Apprentice : CardData
 {
     public Apprentice()
     {
-        target = Target.ENEMY;
+        target = Target.NONE;
+    }
+
+    public override bool Transformed
+    {
+        get => base.Transformed;
+        set
+        {
+            base.Transformed = value;
+
+            //This is where the real target is set
+            target = Target.ENEMY;
+        }
     }
 
     //TODO 
@@ -25,7 +37,7 @@ public class Apprentice : CardData
     {
         if (!Transformed)
         {
-            return new UICardData("Apprentice", cost: 0, "Quest: Disarm all enemies once. (Becomes Master)", UICardData.CardType.QUEST);
+            return new UICardData("Apprentice", cost: 0, "Draw a card.\nQuest: Disarm all enemies once. (Becomes Master)", UICardData.CardType.QUEST);
         }
         else
         {
@@ -38,6 +50,10 @@ public class Apprentice : CardData
         if (Transformed)
         {
             enemys[0].Disarm();
+        }
+        else
+        {
+            draw();
         }
     }
 

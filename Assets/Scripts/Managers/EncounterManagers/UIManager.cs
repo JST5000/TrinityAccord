@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
     private static GameMode prevMode = currentMode;
 
     //Finding user input to cast card
-    static Target requiredInput = Target.UNSET;
+    public static Target requiredInput = Target.UNSET;
     static CardManager selectedCard = null;
     static StackManager cardStack;
     static CardData actionCard;

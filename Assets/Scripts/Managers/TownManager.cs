@@ -86,9 +86,9 @@ public class TownManager : MonoBehaviour
     public void OpenNoveltyShop()
     {
         List<ShopItem> inventory = new List<ShopItem>();
-        inventory.Add(new CardItem(new Sandstorm()));
-        inventory.Add(new CardItem(new Artifact()));
-        inventory.Add(new CardItem(new Relic()));
+        inventory.Add(new CardItem(new Assault()));
+        inventory.Add(new CardItem(new Arcana()));
+        inventory.Add(new CardItem(new Assassin()));
         Enter("Novelty Shop", "Dave", inventory, false, "New wares!");
     }
 

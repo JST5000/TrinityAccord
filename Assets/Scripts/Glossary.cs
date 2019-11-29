@@ -20,7 +20,8 @@ public class Glossary : MonoBehaviour
             "Disarm - Reset the enemie's attack timer to max and Stun them." ,
             "Summon - Creates a new enemy!",
             "Stun - Stop the enemy's timer for 1 turn.",
-            "Vulnerable - Recieves double damage."
+            "Vulnerable - Recieves double damage.",
+            "Quest - Flips after the condition is met."
         };
     public static Dictionary<string, string> Keywords { get; set; } = InitializeKeywords();
 

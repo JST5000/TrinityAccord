@@ -7,6 +7,16 @@ public class Assault : CardData
     public int AttacksToTrigger = 10;
     private int draws = 3;
 
+    public override bool Transformed { get => base.Transformed;
+        set
+        {
+            base.Transformed = value;
+            
+            //This is where the real target is set
+            target = Target.NONE;
+        }
+    }
+
     public Assault()
     {
         target = Target.NONE;
@@ -20,7 +30,7 @@ public class Assault : CardData
             StackManager stackMan = StackManager.Get();
             int playedSoFar = stackMan ? stackMan.AttacksPlayedThisEncounter : 0;
             int amountToGo = AttacksToTrigger - playedSoFar;
-            return new UICardData("Assault", cost: 0, $"Quest: Play {AttacksToTrigger} Attacks\n({amountToGo} more!)\n(Becomes Follow Up)", UICardData.CardType.QUEST);
+            return new UICardData("Assault", cost: 0, $"Draw a card.\nQuest: Play {AttacksToTrigger} Attacks\n({amountToGo} more!)\n(Becomes Follow Up)", UICardData.CardType.QUEST);
         }
         else
         {
@@ -36,6 +46,10 @@ public class Assault : CardData
             {
                 draw();
             }
+        }
+        else
+        {
+            draw();
         }
     }
     public override void Action(CardData[] cards)

@@ -109,9 +109,6 @@ public class EncounterManager : MonoBehaviour
 
         SetTargetedEnemy(null);
 
-        //Ensures that Arcana/Mana Well only lasts 1 turn
-        CardData.FixedCostForSpells = -1;
-
         //Must happen after the enemy attack so scythe soldier can use the results
         StackManager.Get().ResetCounts();
     }

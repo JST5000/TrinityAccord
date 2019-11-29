@@ -36,7 +36,7 @@ public abstract class CardData
     /// Used for Quests to change into their completed forms. 
     /// This could be broken out when we refactor CardTypes into subclasses
     /// </summary>
-    public bool Transformed
+    public virtual bool Transformed
     {
         get
         {
@@ -155,8 +155,7 @@ public abstract class CardData
     public bool IsPlayable()
     {
         bool playerHasEnoughEnergy = GameObject.Find("Player").GetComponent<Player>().GetEnergy() >= uiCardData.cost;
-        bool isNotAQuest = uiCardData.cardType != UICardData.CardType.QUEST;
-        return playerHasEnoughEnergy && isNotAQuest;
+        return playerHasEnoughEnergy;
     }
 
     public virtual void OnDiscard() { }

@@ -20,7 +20,7 @@ public class Arcana : CardData
             StackManager stackMan = StackManager.Get();
             int playedSoFar = stackMan ? stackMan.SpellsPlayedThisEncounter : 0;
             int amountToGo = SpellsToCompleteQuest - playedSoFar;
-            return new UICardData("Arcana", cost: 0, $"Quest: Play {SpellsToCompleteQuest} spells.\n({amountToGo} more!)\n(Becomes Mana Well)", UICardData.CardType.QUEST);
+            return new UICardData("Arcana", cost: 0, $"Draw a card.\nQuest: Play {SpellsToCompleteQuest} spells.\n({amountToGo} more!)\n(Becomes Mana Well)", UICardData.CardType.QUEST);
         }
         else
         {
@@ -34,6 +34,10 @@ public class Arcana : CardData
         {
             //This is returned to -1 by the DeckManager at the end of each turn.
             FixedCostForSpells = CostOfSpellsThisTurn;
+        }
+        else
+        {
+            draw();
         }
     }
 

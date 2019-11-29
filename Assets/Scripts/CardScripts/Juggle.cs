@@ -8,7 +8,7 @@ public class Juggle : CardData
 
     public Juggle()
     {
-        target = Target.NONE;
+        target = Target.ALL_ENEMIES;
     }
 
     protected override UICardData CreateUICardData()
