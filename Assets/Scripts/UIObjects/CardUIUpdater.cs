@@ -264,12 +264,6 @@ public class CardUIUpdater : MonoBehaviour
         highlighted = true;
         prevBG = background.sprite;
         background.sprite = HighlightBG;
-        /*
-        var color = background.color;
-        prevBGColor = new Color(color.r, color.g, color.b, color.a);
-        color = Color.yellow;
-        background.color = color;
-        */
     }
 
     public void ResetHighlight()

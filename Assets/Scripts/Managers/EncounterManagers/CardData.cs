@@ -113,7 +113,11 @@ public abstract class CardData
 
     public virtual void Sharpen()
     {
-        sharpenDamage++;
+        //Quests don't do damage in their base form. Their later forms change the card type!
+        if (!uiCardData.cardType.Equals(UICardData.CardType.QUEST))
+        {
+            sharpenDamage++;
+        }
         UpdateUICardData();
     }
 
