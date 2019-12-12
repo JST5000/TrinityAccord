@@ -35,6 +35,8 @@ public abstract class EnemyData
     public bool Vulnerable { get; set; }
     public static int MaxSleepTimer = 3;
 
+    protected bool wideSprite = false;
+
     protected bool ImmuneToDebuffs = false;
 
     public bool HasBeenDisarmed { get; set; } = false;
@@ -66,7 +68,7 @@ public abstract class EnemyData
 
     public UIEnemyData GetUIData()
     {
-        return new UIEnemyData(enemyName, currHP: currHP, maxHP: maxHP, lives, damage, maxTimer, currTimer, effect, picture, stunned: stunned, sleepTimer: sleepTimer, vulnerable: Vulnerable);
+        return new UIEnemyData(enemyName, currHP: currHP, maxHP: maxHP, lives, damage, maxTimer, currTimer, effect, picture, stunned: stunned, sleepTimer: sleepTimer, vulnerable: Vulnerable, wideSprite: wideSprite);
     }
 
     //Used by children to add triggered updates to effects and such
@@ -208,7 +210,7 @@ public abstract class EnemyData
         this.picture = preloadedSprite;
     }
 
-    public virtual bool SelfHarm() { return false; }
+    public virtual bool SelfHarm() { return false; } //False means that they didn't kill themselves from self harm
     protected virtual void OnLossOfLife() { }
     protected virtual void OnLastLife() { }
 
@@ -242,6 +244,14 @@ public abstract class EnemyData
         yield return new WaitForSeconds(durationOfChange);
         LoadPicture(originalSpriteName, original);
         yield return null;
+    }
+    /// <summary>
+    /// Used to allow an enemy to transform on death.
+    /// </summary>
+    /// <returns>The enemy you want to transform into</returns>
+    public virtual EnemyData TransformIntoOnDeath()
+    {
+        return null;
     }
 
 

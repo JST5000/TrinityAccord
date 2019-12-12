@@ -106,7 +106,14 @@ public class EnemyManager : MonoBehaviour
     }
     private void Die()
     {
-        SetEmpty(); //Removes UI element
+        if (data.TransformIntoOnDeath() == null)
+        {
+            SetEmpty(); //Removes UI element
+        } else
+        {
+            Init(data.TransformIntoOnDeath());
+
+        }
         EncounterManager encounterMan = GetComponentInParent<EncounterManager>();
         encounterMan.OnEnemyDeath(); //Alerts the encounterManager of death
     }

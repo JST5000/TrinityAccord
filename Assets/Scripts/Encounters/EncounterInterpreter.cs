@@ -60,6 +60,9 @@ public class EncounterInterpreter
         enemies.Add(new Bull());
         enemies.Add(new Crab());
         enemies.Add(new Goldfish());
+        enemies.Add(new Owl());
+        enemies.Add(new Egg());
+        enemies.Add(new Fledgling());
         return enemies.ToArray();
     }
 

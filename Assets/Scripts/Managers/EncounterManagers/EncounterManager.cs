@@ -156,8 +156,17 @@ public class EncounterManager : MonoBehaviour
 
     public void OnEnemyDeath()
     {
-        enemyCount--;
-        if (enemyCount == 0)
+//        enemyCount--;
+        int aliveEnemies = 0;
+        foreach (EnemyManager man in allEnemyManagers)
+        {
+            if (man.IsAlive())
+            {
+                aliveEnemies++;
+            }
+        }
+
+        if (aliveEnemies == 0)
         {
             OnEncounterWin();
         }

@@ -100,6 +100,13 @@ public class UpdateEnemyUI : MonoBehaviour
         livesHolder.SetLives(data.Lives);
 
         enemyPicture.sprite = data.Picture;
+        RectTransform rt = enemyPicture.GetComponent<RectTransform>();
+        if (data.WideSprite)
+        {
+            rt.sizeDelta = new Vector2(150, 100);
+        } else {
+            rt.sizeDelta = new Vector2(100, 100);
+        }
 
         SetTimerColor(data);
         timerDisplay.text = data.CurrTimer + " / " + data.MaxTimer;
