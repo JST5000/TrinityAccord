@@ -136,25 +136,30 @@ public class StackManager : MonoBehaviour
     {
         if (top.GetTarget().Equals(Target.CARD))
         {
-            CardData[] targetCard = { top.SelectedTarget.GetComponent<CardManager>().GetCardData() };
-            top.Action(targetCard);
+            if (top.SelectedTarget != null)
+            {
+                CardData[] targetCard = { top.SelectedTarget.GetComponent<CardManager>().GetCardData() };
+                top.Action(targetCard);
+            }
         }
         else if (top.GetTarget().Equals(Target.ENEMY))
         {
-            EnemyManager targetManager = top.SelectedTarget.GetComponent<EnemyManager>();
-            if (targetManager.IsEmpty())
+            if (top.SelectedTarget != null)
             {
-                //Could put a null enemy as target if all enemies are dead
-                top.GetRandomAliveEnemyAsTarget();
-                targetManager = top.SelectedTarget.GetComponent<EnemyManager>();
-                UpdateUI();
-            }
+                EnemyManager targetManager = top.SelectedTarget.GetComponent<EnemyManager>();
+                if (targetManager.IsEmpty())
+                {
+                    //Could put a null enemy as target if all enemies are dead
+                    top.GetRandomAliveEnemyAsTarget();
+                    targetManager = top.SelectedTarget?.GetComponent<EnemyManager>();
+                    UpdateUI();
+                }
 
-            EnemyManager[] targetEnemy = { targetManager };
-
-            if (targetManager != null)
-            {
-                top.Action(targetEnemy);
+                if (targetManager != null)
+                {
+                    EnemyManager[] targetEnemy = { targetManager };
+                    top.Action(targetEnemy);
+                }
             }
         }
         else if (top.GetTarget().Equals(Target.NONE) || top.GetTarget().Equals(Target.ALL_ENEMIES))

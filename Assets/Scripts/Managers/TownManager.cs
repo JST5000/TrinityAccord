@@ -11,7 +11,7 @@ public class TownManager : MonoBehaviour
     public TextMeshProUGUI moneyCounter;
     public HealthManager healthDisplay;
 
-    public CardData[] stock = null;
+    public CardItem[] stock = null;
 
     private void Start()
     {
@@ -26,13 +26,10 @@ public class TownManager : MonoBehaviour
     
     public void OpenAttackShop()
     {
-        List<ShopItem> inventory = new List<ShopItem>();
-
         AddStock(CardDataUtil.ChooseNWithoutReplacement(CardPools.GetAllDraftableAttacks(), 3));
 
-        inventory.Add(new CardItem(stock[0]));
-        inventory.Add(new CardItem(stock[1]));
-        inventory.Add(new CardItem(stock[2]));
+        List<ShopItem> inventory = new List<ShopItem>(stock);
+
         Enter("Attack Shop", "Jenny", inventory, false, "See any you like?");
     }
 
@@ -48,8 +45,10 @@ public class TownManager : MonoBehaviour
         List<ShopItem> inventory = new List<ShopItem>();
         inventory.Add(new HealthItem(5, 2));
 
-        AddStock(CardDataUtil.ChooseNWithoutReplacement(CardPools.GetAllDraftableSpells(), 1));
-        inventory.Add(new CardItem(stock[0], 3));
+        List<int> costs = new List<int>();
+        costs.Add(3);
+        AddStock(CardDataUtil.ChooseNWithoutReplacement(CardPools.GetAllDraftableSpells(), 1), costs);
+        inventory.Add(stock[0]);
 
         inventory.Add(new RemovalItem());
         Enter("Mapper's Camp", "CampfireManOnly", inventory, true, "Left, Right. Are you lost?");
@@ -78,17 +77,20 @@ public class TownManager : MonoBehaviour
         inventory.Add(new HealthItem(3, 2));
 
         AddStock(CardDataUtil.ChooseNWithoutReplacement(CardPools.GetAllDraftableCards(), 1));
-        inventory.Add(new CardItem(stock[0], 2));
+        inventory.Add(stock[0]);
 
         Enter("Explorer's Tent", "Explorer", inventory, true, "The right is new!");
     }
 
     public void OpenNoveltyShop()
     {
-        List<ShopItem> inventory = new List<ShopItem>();
-        inventory.Add(new CardItem(new Assault()));
-        inventory.Add(new CardItem(new Arcana()));
-        inventory.Add(new CardItem(new Assassin()));
+        List<CardData> cards = new List<CardData>();
+        cards.Add(new Assault());
+        cards.Add(new Arcana());
+        cards.Add(new Assassin());
+        AddStock(cards);
+
+        List<ShopItem> inventory = new List<ShopItem>(stock);
         Enter("Novelty Shop", "Dave", inventory, false, "New wares!");
     }
 
@@ -100,9 +102,12 @@ public class TownManager : MonoBehaviour
     public void SallyShop()
     {
         List<ShopItem> inventory = new List<ShopItem>();
+        List<int> costs = new List<int>();
+        costs.Add(0);
 
-        AddStock(CardDataUtil.ChooseNWithoutReplacement(CardPools.GetAllDraftableCards(), 1));
-        inventory.Add(new CardItem(stock[0], 0));
+        AddStock(CardDataUtil.ChooseNWithoutReplacement(CardPools.GetAllDraftableCards(), 1), costs);
+        
+        inventory.Add(stock[0]);
         Enter("Sarah's World", "Sarah_Kid", inventory, false, "I found this, do you want it?");
     }
 
@@ -111,7 +116,7 @@ public class TownManager : MonoBehaviour
         List<ShopItem> inventory = GetHealthShopInventory();
 
         AddStock(CardDataUtil.ChooseNWithoutReplacement(CardPools.GetAllDraftableSpells(), 1));
-        inventory.Add(new CardItem(stock[0]));
+        inventory.Add(stock[0]);
 
         Enter("Oasis", "Rainman_Closeup", inventory, true, "Preparing for a rainy day?");
     }
@@ -178,14 +183,26 @@ public class TownManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Temporary workaround which allows one shop to hold a consistent stock for CardItems
+    /// Keeps the stock the same between opens of the shop. Only used for CardData
     /// </summary>
     /// <param name="cards"></param>
-    private void AddStock(List<CardData> cards)
+    private void AddStock(List<CardData> cards, List<int> costs = null)
     {
         if (stock == null)
         {
-            stock = cards.ToArray();
+            List<CardItem> items = new List<CardItem>();
+            for (int i = 0; i < cards.Count; ++i)
+            {
+                if (costs == null)
+                {
+                    items.Add(new CardItem(cards[i]));
+                }
+                else
+                {
+                    items.Add(new CardItem(cards[i], costs[i]));
+                }
+            }
+            stock = items.ToArray();
         }
     }
 

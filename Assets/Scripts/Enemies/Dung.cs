@@ -15,9 +15,8 @@ public class Dung : EnemyData
         EncounterManager.SpawnEnemyInDefaultManager(new Fly());
     }
 
-    protected override void OnLossOfLife()
+    public override EnemyData TransformIntoOnDeath()
     {
-        base.OnLossOfLife();
-        EncounterManager.SpawnEnemyInDefaultManager(new Fly());
+        return new Fly();
     }
 }

@@ -9,6 +9,7 @@ public abstract class ShopItem
     public string imageName;
     public Sprite picture;
     public bool limited;
+    public bool SoldOut { get; set; } = false;
 
     public CardData card;
 

@@ -34,10 +34,13 @@ public class Juggle : CardData
             if (enemy)
             {
                 enemy.Damage(GetDamage());
+                targetIsStunned = !enemy.IsAlive() || enemy.IsStunned();
+                ++hits;
+            } else
+            {
+                //Enemy given doesn't exist, so you are done hitting things
+                break;
             }
-
-            targetIsStunned = !enemy.IsAlive() || enemy.IsStunned();
-            ++hits;
         }
     }
 

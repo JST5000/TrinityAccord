@@ -74,6 +74,7 @@ public class PermanentState : MonoBehaviour
         runId = DataPusher.GetNewRunId();
         //Fixes test data leaving -1 in the data
         startingHP = Health;
+        EncounterManager.QueuedIncome = 0; //So you can't kill a Goldfish then die and cash out
     }
 
     void Awake()

@@ -12,7 +12,6 @@ public class ShopItemManager : MonoBehaviour
     public Image ItemImg;
 
     private ShopItem Data;
-    private bool SoldOut;
 
     private bool IsDisabled = false;
 
@@ -20,7 +19,6 @@ public class ShopItemManager : MonoBehaviour
     {
         Title.text = data.name;
         this.Data = data;
-        SoldOut = false;
         UpdateUI();
     }
 
@@ -39,17 +37,18 @@ public class ShopItemManager : MonoBehaviour
         if (CanPurchase()) {
             if (Data.limited)
             {
-                SoldOut = true;
+                Data.SoldOut = true;
             }
             PermanentState.Money -= Data.cost;
-            Data.Effect();
             GetComponentInParent<ShopManager>().UpdateUI();
+            UpdateUI();
+            Data.Effect();
         }
     }
 
     private bool CanPurchase()
     {
-        return PermanentState.Money >= Data.cost && !SoldOut && Data.OtherRequirementsMet();
+        return PermanentState.Money >= Data.cost && !Data.SoldOut && Data.OtherRequirementsMet();
     }
 
     public ShopItem GetItem()
@@ -83,7 +82,7 @@ public class ShopItemManager : MonoBehaviour
                 ItemImg.color = new Color(1, 1, 1, 0);
             }
 
-            if (SoldOut)
+            if (Data.SoldOut)
             {
                 Cost.text = "SOLD OUT!";
             }
@@ -125,7 +124,7 @@ public class ShopItemManager : MonoBehaviour
     //Was used to show "LIMITED!" in the bottom, but that was overwhelming. May be useful later.
     private string GetQuantityText()
     {
-        if(SoldOut)
+        if(Data.SoldOut)
         {
             return "";
         } else if(Data.limited)
