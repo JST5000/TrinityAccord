@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class UpdateEnemyUI : MonoBehaviour
 {
@@ -11,9 +12,12 @@ public class UpdateEnemyUI : MonoBehaviour
     public LifeManager livesHolder;
     public Image enemyPicture;
     public Image timerBackground;
-    public Text timerDisplay;
+    public TextMeshProUGUI timerDisplay;
     public TextMeshProUGUI effectDisplay;
+    public CanvasGroup effectCanvasGroup;
     public TextMeshProUGUI debuffText;
+
+    public TextMeshProUGUI attackQuickReferenceText;
 
     public CanvasGroup TargetArrowCG;
     private bool targetVisibility;
@@ -59,6 +63,11 @@ public class UpdateEnemyUI : MonoBehaviour
         {
             DisableEnemy();
         }
+    }
+
+    public void DisplayEffect(bool visible)
+    {
+        CanvasGroupManip.SetVisibility(visible, effectCanvasGroup, false);
     }
 
     //Checks if change is needed, then updates
@@ -108,12 +117,42 @@ public class UpdateEnemyUI : MonoBehaviour
             rt.sizeDelta = new Vector2(100, 100);
         }
 
-        SetTimerColor(data);
+        //SetTimerColor(data);
+        string timerSpriteName = "Timers/Timer" + data.MaxTimer + "-";
+        if (GetComponent<MoveToBump>().bumping)
+        {
+            timerSpriteName += data.MaxTimer + 1;
+        } else
+        {
+            timerSpriteName += (data.MaxTimer - data.CurrTimer + 1);
+        }
+        timerBackground.sprite = Resources.Load<Sprite>(timerSpriteName);
         timerDisplay.text = data.CurrTimer + " / " + data.MaxTimer;
 
         SetDebuffText(data);
 
         effectDisplay.text = data.Effect;
+        attackQuickReferenceText.text = GetAttack(data.Effect) + InLineIcon.DAMAGE;
+    }
+
+    private string GetAttack(string effect)
+    {
+        int attack = 0;
+        string precursor = InLineIcon.DAMAGE;
+        if(effect.Contains(precursor))
+        {
+            char[] delimiters = { ' ', '\n', ':', ',' };
+            string[] tokens = effect.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < tokens.Length; ++i)
+            {
+                if (tokens[i].Equals(precursor))
+                {
+                    int.TryParse(tokens[i + 1], out attack);
+                    break;
+                }
+            }
+        }
+        return ""+attack;
     }
 
     public void SetTimerColor(UIEnemyData data)

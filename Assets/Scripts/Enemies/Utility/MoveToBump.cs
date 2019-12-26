@@ -14,7 +14,7 @@ public class MoveToBump : MonoBehaviour
     float TimeSpent;
     float TotalDuration;
 
-    private bool bumping = false;
+    public bool bumping = false;
     private Vector3 PreviousVelocity;
 
     // Update is called once per frame
