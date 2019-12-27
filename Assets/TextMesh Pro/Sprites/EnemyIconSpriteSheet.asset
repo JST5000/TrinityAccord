@@ -50,8 +50,8 @@ MonoBehaviour:
     y: 384
     width: 128
     height: 128
-    xOffset: -64
-    yOffset: 64
+    xOffset: 0
+    yOffset: 128
     xAdvance: 128
     scale: 1
     name: 1f60d
@@ -64,8 +64,8 @@ MonoBehaviour:
     y: 384
     width: 128
     height: 128
-    xOffset: -64
-    yOffset: 64
+    xOffset: 0
+    yOffset: 128
     xAdvance: 128
     scale: 1
     name: 1f60e
@@ -78,8 +78,8 @@ MonoBehaviour:
     y: 256
     width: 128
     height: 128
-    xOffset: -64
-    yOffset: 64
+    xOffset: 0
+    yOffset: 128
     xAdvance: 128
     scale: 1
     name: 1f600
