@@ -87,9 +87,8 @@ public class HoverTextGenerator : MonoBehaviour
                 Destroy(hoverTextInstance);
             }
             
-            hoverTextInstance = Instantiate(Resources.Load<GameObject>("Prefabs/HoverTextBox"), GameObject.FindObjectOfType<Canvas>().transform);
+            hoverTextInstance = Instantiate(Resources.Load<GameObject>("Prefabs/HoverTextBox"), GameObject.Find("Canvas").transform);
             RectTransform hoverTextRectTransform = (RectTransform)hoverTextInstance.transform;
-
             //TODO
             Rect originatorRect = ((RectTransform)gameObject.transform).rect;
             hoverTextRectTransform.sizeDelta = originatorRect.size;
