@@ -10,6 +10,9 @@ public class EncounterInterpreter
 
     public static Dictionary<string, EnemyData> nameToEnemy;
 
+    private static Dictionary<string, int> averageDamagesCeil = null;
+
+
     public static Dictionary<string, EnemyData> GetNameDictionary(EnemyData[] allEnemies)
     {
         Dictionary<string, EnemyData> nToE = new Dictionary<string, EnemyData>();
@@ -93,9 +96,19 @@ public class EncounterInterpreter
             }
         }
     }
+
+    public static EncounterData GetEncounterFromText(string encounterList)
+    {
+        EncounterData encounter = new EncounterData();
+        encounter.Encounter = encounterList;
+
+        SetAverageDamage(ref encounter);
+
+        return encounter;
+    }
     
     //Throws KeyNotFoundException if input is invalid. 
-    public static EnemyData[] InterpretText(string input)
+    public static EnemyData[] GetEnemiesToFight(string input)
     {
         
         Debug.Log("Text being interpretted: " + input);
@@ -119,22 +132,23 @@ public class EncounterInterpreter
 
     public static List<EncounterData> ReadInEncounters()
     {
-        string csvFilePath = "EncountersGenerated";
-        TextAsset encounterData = Resources.Load<TextAsset>(csvFilePath);
+        string encounterListFilePath = "EncountersGenerated";
+        TextAsset encounterData = Resources.Load<TextAsset>(encounterListFilePath);
 
         string[] data = encounterData.text.Split(new char[] { '\n' });
 
         List<EncounterData> encounters = new List<EncounterData>();
+        Dictionary<string, int> averageDamages = GetAverageDamagesCeil();
 
         //Starts from 1 since the first row is headers which are not used in this implementation
         for (int i = 1; i < data.Length; ++i)
         {
-            string[] row = Regex.Split(data[i], "," + "(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))");// data[i].Split(new char[] { });
+            string[] row = SplitCSVRow(data[i]);
             if (row.Length <= 1) { continue; } //No data, empty newline
             EncounterData encounter = new EncounterData();
-            if (row.Length != encounter.GetType().GetProperties().Length)
+            if (row.Length != encounter.GetType().GetProperties().Length - 1)
             {
-                Debug.LogError("Some data is missing on load in " + csvFilePath + ". This likely means a new column was added that is not being interpreted!");
+                Debug.LogError("Some data is missing on load in " + encounterListFilePath + ". This likely means a new column was added that is not being interpreted!");
             }
 
             int intData = 0;
@@ -148,10 +162,61 @@ public class EncounterInterpreter
             encounter.Damage = TrimQuotes(row[2].Trim());
             encounter.Encounter = TrimQuotes(row[3].Trim());
 
+            SetAverageDamage(ref encounter);
 
             encounters.Add(encounter);
         }
         return encounters;
+    }
+
+    private static Dictionary<string, int> GetAverageDamagesCeil()
+    {
+        if (averageDamagesCeil != null)
+        {
+            return averageDamagesCeil;
+        }
+        else
+        {
+            averageDamagesCeil = new Dictionary<string, int>();
+
+            string averageDamageFilePath = "encounter_history";
+            TextAsset averageDamageData = Resources.Load<TextAsset>(averageDamageFilePath);
+            string[] data = averageDamageData.text.Split(new char[] { '\n' });
+            for (int i = 0; i < data.Length; ++i)
+            {
+                string[] row = SplitCSVRow(data[i]);
+                if (row.Length < 2) continue;
+
+                float.TryParse(TrimQuotes(row[1]), out float averageDamage);
+                averageDamagesCeil[TrimQuotes(row[0].Trim())] = Mathf.CeilToInt(averageDamage);
+            }
+        }
+
+        return averageDamagesCeil;
+    }
+
+    /// <summary>
+    /// Requires that encounter already have it's list of enemies set
+    /// </summary>
+    /// <param name="encounter"></param>
+    private static void SetAverageDamage(ref EncounterData encounter)
+    {
+        if (GetAverageDamagesCeil().TryGetValue(encounter.Encounter, out int average))
+        {
+            encounter.AverageDamageRoundedUp = average;
+        }
+        else
+        {
+            //Heuristic for fights that don't have recorded averages for damage yet
+            int count = encounter.Encounter.Split(',').Length;
+            encounter.AverageDamageRoundedUp = 2 * count;
+        }
+    }
+
+    private static string[] SplitCSVRow(string csvRow)
+    {
+        return Regex.Split(csvRow, "," + "(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))");
+
     }
 
     public static void WriteEncounterData(List<EncounterData> allData)

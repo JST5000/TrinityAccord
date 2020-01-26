@@ -95,13 +95,13 @@ public static class GenerateEncounter
         EncounterInterpreter.WriteEncounterData(allEncounters);
     }
 
-    public static EnemyData[] RerollUntilValid(List<EncounterData> pool)
+    public static EncounterData RerollUntilValid(List<EncounterData> pool)
     {
         int max = 100;
         for (int i = 0; i < max; ++i) {
             try
             {
-                EnemyData[] chosenEncounter = EncounterInterpreter.InterpretText(GetRandom(pool).Encounter);
+                EncounterData chosenEncounter = GetRandom(pool);
                 return chosenEncounter;
             } catch(KeyNotFoundException)
             {
@@ -111,7 +111,7 @@ public static class GenerateEncounter
         throw new KeyNotFoundException("Unable to find a valid encounter in " + max + " attempts.");
     }
 
-    public static EnemyData[] GetEncounter(Level level)
+    public static EncounterData GetEncounter(Level level)
     {
         if (!initialized)
         {
@@ -139,9 +139,7 @@ public static class GenerateEncounter
         }
         else if (level == Level.BOSS)
         {
-            //TODO, change as we get more "Boss" battles or move the boss battle zone. This is currently the fight I want as "Final Battle" - Jackson
-            return EncounterInterpreter.InterpretText("Gang Leader, Scythe, Scythe");
-            //return RerollUntilValid(boss);
+            return RerollUntilValid(boss);
         }
 
         throw new System.Exception("Unable to generate an encounter for this level " + level);

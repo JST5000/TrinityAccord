@@ -26,6 +26,8 @@ public class EncounterManager : MonoBehaviour
 
     public bool AllDamageStuns { get; set; } = false;
 
+    private EncounterData encounterData = null;
+
     public static EncounterManager Get()
     {
         return GameObject.Find("Board")?.GetComponent<EncounterManager>();
@@ -39,8 +41,9 @@ public class EncounterManager : MonoBehaviour
         UpdateAllEnemyUI();
     }
 
-    public void Init(EnemyData[] encounter)
+    public void Init(EncounterData encounter)
     {
+        this.encounterData = encounter;
 
         enemyGameObjects = new GameObject[5];
         enemyGameObjects[0] = (GameObject.Find("Enemy 1"));
@@ -49,7 +52,7 @@ public class EncounterManager : MonoBehaviour
         enemyGameObjects[3] = (GameObject.Find("Enemy 4"));
         enemyGameObjects[4] = (GameObject.Find("Enemy 5"));
 
-        originalEncounter = encounter;
+        originalEncounter = EncounterInterpreter.GetEnemiesToFight(encounter.Encounter);
         if (allEnemyManagers == null)
         {
             InitEnemyManagers();
@@ -189,6 +192,7 @@ public class EncounterManager : MonoBehaviour
         PermanentState.PushEncounterData();
 
         AddIncomeAndUpdateUI();
+        Player.Get().Heal(encounterData.AverageDamageRoundedUp);
         CanvasGroupManip.Enable(VictorySplash.GetComponent<CanvasGroup>());
         timeUntilVictory = 1.5f;
     }
@@ -226,7 +230,7 @@ public class EncounterManager : MonoBehaviour
 
     private void InitializeEncounter()
     {
-        EnemyData[] nextEncounter = PermanentState.GetNextEncounter();
+        EncounterData nextEncounter = PermanentState.GetNextEncounter();
         if (nextEncounter != null)
         {
             Init(nextEncounter);

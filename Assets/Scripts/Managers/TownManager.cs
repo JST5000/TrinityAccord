@@ -178,7 +178,7 @@ public class TownManager : MonoBehaviour
         //TODO add ability to choose left/right even as you set a specific fight
         //This is fine for Boss's since there is no next town, but will need to correct for other use cases
         PermanentState.MoveToNextTown(true);
-        PermanentState.SetNextEncounter(EncounterInterpreter.InterpretText(encounterList));
+        PermanentState.SetNextEncounter(EncounterInterpreter.GetEncounterFromText(encounterList));
         SceneManager.LoadScene("Encounter");
     }
 

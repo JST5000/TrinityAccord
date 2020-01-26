@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class ChooseEncounterManager : MonoBehaviour
 {
-    private EnemyData[] selectedEncounter;
+    private EncounterData selectedEncounter;
     public Button confirm;
     public Text errorMessage;
     public bool reloadSceneOnExit = true;
@@ -35,7 +35,7 @@ public class ChooseEncounterManager : MonoBehaviour
         string input = inputField.text.Substring(0, inputField.text.Length - 1);
         try
         {
-            selectedEncounter = EncounterInterpreter.InterpretText(input);
+            selectedEncounter = EncounterInterpreter.GetEncounterFromText(input);
             confirm.interactable = true;
             errorMessage.text = "";
         }

@@ -29,7 +29,7 @@ public class PermanentState : MonoBehaviour
 
     private static int FinalFight = 5;
     
-    private static EnemyData[] nextEncounter;
+    private static EncounterData nextEncounter;
 
     //TODO refactor this to pull the stored fields and transformers out of this class
     private static DataPusher dataPusher;
@@ -138,11 +138,12 @@ public class PermanentState : MonoBehaviour
 
 
     //Returns the encounter
-    public static EnemyData[] GetNextEncounter()
+    public static EncounterData GetNextEncounter()
     {
-        if(nextEncounter == null) { return null; }
-        List<EnemyData> toCopy = new List<EnemyData>(nextEncounter);
-        return Clone(toCopy).ToArray();
+        return nextEncounter;
+        //if(nextEncounter == null) { return null; }
+        //List<EnemyData> toCopy = new List<EnemyData>(nextEncounter);
+        //return Clone(toCopy).ToArray();
     }
 
     public static List<EnemyData> Clone(List<EnemyData> data)
@@ -155,12 +156,12 @@ public class PermanentState : MonoBehaviour
         return copy;
     }
 
-    public static void SetNextEncounter(EnemyData[] next)
+    public static void SetNextEncounter(EncounterData next)
     {
         nextEncounter = next;
         
-        //Add the properly formatted encounter list
-        encounterList = "";
+        //Add the properly formatted encounter list 
+        /*encounterList = "";
         for(int i = 0; i < next.Length; ++i)
         {
             encounterList += next[i];
@@ -168,7 +169,7 @@ public class PermanentState : MonoBehaviour
             {
                 encounterList += ", ";
             }
-        }
+        } */
 
         startingHP = Health;
     }
@@ -225,7 +226,7 @@ public class PermanentState : MonoBehaviour
 
         FightWasHarder = increasedDifficulty;
 
-        EnemyData[] selectedEncounter = GenerateEncounter.GetEncounter(toSelectFrom);
+        EncounterData selectedEncounter = GenerateEncounter.GetEncounter(toSelectFrom);
         SetNextEncounter(selectedEncounter);
 
         ExpectedLevel = GenerateEncounter.GetHarder(ExpectedLevel);

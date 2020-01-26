@@ -12,12 +12,14 @@ public class EncounterData
     private int difficulty;
     private string damage;
     private string encounter;
+    private int averageDamageRoundedUp;
 
     public int Level { get => level; set => level = value; }
     //Difficulty of 0 means unset
     public int Difficulty { get => difficulty; set => difficulty = value; }
     public string Damage { get => damage; set => damage = value; }
     public string Encounter { get => encounter; set => encounter = value; }
+    public int AverageDamageRoundedUp { get => averageDamageRoundedUp; set => averageDamageRoundedUp = value; }
 
     //Header for the CSV file, should correspond with the order used in WriteCSVLine()
     public static string GetCSVFieldNames()
