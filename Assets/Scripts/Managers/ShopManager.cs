@@ -6,6 +6,8 @@ using TMPro;
 
 public class ShopManager : MonoBehaviour
 {
+    public static bool HasAnItemBeenBought = false;
+
     //Has formatting component to automatically format the generated shop items
     public Transform ShopItemParent;
     public TextMeshProUGUI Title;
@@ -27,13 +29,14 @@ public class ShopManager : MonoBehaviour
             ShopItems.Add(ShopItem.CreateShopItemUI(ShopItemParent, item).GetComponent<ShopItemManager>());
         }
         this.message = message;
+        HasAnItemBeenBought = false;
         UpdateUI();
     }
 
-    public void Init(Sprite ShopKeeper, string Name, List<ShopItem> Items, bool ShowHealth)
+    public void Init(Sprite ShopKeeper, string Name, List<ShopItem> Items, bool ShowHealth, string message = "")
     {
         this.showHealth = ShowHealth;
-        Init(ShopKeeper, Name, Items);
+        Init(ShopKeeper, Name, Items, message);
     }
 
     public void Exit()

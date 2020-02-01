@@ -9,7 +9,7 @@ public class CardItem : ShopItem {
         this.card = CardDataUtil.CreateFreshCopiesOf(card);
     }
 
-    public override void Effect()
+    public override void UniqueEffect()
     {
         PermanentState.PlayerDeck.Add(this.card);
     }

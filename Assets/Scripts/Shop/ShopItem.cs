@@ -66,7 +66,13 @@ public abstract class ShopItem
     }
 
     //Ex. Health will add health to permanentState or the card shop will open a pack
-    public abstract void Effect();
+    public void Effect()
+    {
+        ShopManager.HasAnItemBeenBought = true;
+        UniqueEffect();
+    }
+
+    public abstract void UniqueEffect();
 
     public virtual bool OtherRequirementsMet()
     {

@@ -75,8 +75,14 @@ public class EncounterInterpreter
         {
             nameToEnemy = GetNameDictionary(GetAllEnemies());
         }
-       
-        return nameToEnemy[enemyName].Clone();
+
+        if (nameToEnemy.TryGetValue(enemyName, out EnemyData enemyType))
+        {
+            return enemyType.Clone();
+        } else
+        {
+            return null;
+        }
     }
 
     private static void TestInterpret()

@@ -192,7 +192,7 @@ public class EncounterManager : MonoBehaviour
         PermanentState.PushEncounterData();
 
         AddIncomeAndUpdateUI();
-        Player.Get().Heal(encounterData.AverageDamageRoundedUp);
+        Player.Get().Heal(encounterData.AverageDamageRoundedUp - 1);
         CanvasGroupManip.Enable(VictorySplash.GetComponent<CanvasGroup>());
         timeUntilVictory = 1.5f;
     }
@@ -217,7 +217,7 @@ public class EncounterManager : MonoBehaviour
         QueuedIncome = 0;
 
         PermanentState.Money += income;
-        IncomeStatement.text = "+" + income + " Coins!";
+        IncomeStatement.text = "";
     }
 
     // Start is called before the first frame update
@@ -235,7 +235,8 @@ public class EncounterManager : MonoBehaviour
         {
             Init(nextEncounter);
 
-            SpawnRandomGoldfish();
+            //TODO - Make Goldfish work with Upgrade system
+            //SpawnRandomGoldfish();
 
             AllDamageStuns = false;
         } else

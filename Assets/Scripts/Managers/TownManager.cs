@@ -214,14 +214,13 @@ public class TownManager : MonoBehaviour
 
     private void Enter(string name, string shopKeeperName, List<ShopItem> items, bool showHealth, string message = "")
     {
-        //Turn off path icons
-        CanvasGroupManip.Disable(GameObject.Find("Path")?.GetComponent<CanvasGroup>());
-
+        
+        /*Shops have been removed from the game currently.
         GameObject instance = Instantiate<GameObject>(Resources.Load<GameObject>("Prefabs/ShopUI"));
         instance.transform.SetParent(GameObject.Find("Canvas").transform, false);
         instance.transform.position = new Vector3(0, 0, 0);
         Sprite shopKeeper = Resources.Load<Sprite>("People/" + shopKeeperName);
-        instance.GetComponent<ShopManager>().Init(shopKeeper, name, items, message);
+        instance.GetComponent<ShopManager>().Init(shopKeeper, name, items, message); */
     }
 
     private void Update()

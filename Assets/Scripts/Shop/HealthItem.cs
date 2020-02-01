@@ -23,7 +23,7 @@ public class HealthItem : ShopItem
         }
     }
 
-    override public void  Effect()
+    override public void  UniqueEffect()
     {
         PermanentState.Health = Mathf.Min(PermanentState.Health + heal, PermanentState.MaxHealth);
     }

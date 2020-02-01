@@ -17,7 +17,7 @@ public class TravelItem : ShopItem
         this.IncreasedDifficulty = increasedDifficulty;
     }    
 
-    override public void Effect()
+    override public void UniqueEffect()
     {
         if(SkipLevel)
         {

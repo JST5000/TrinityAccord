@@ -23,7 +23,7 @@ public class RelativeTravelItem : TravelItem
         return PermanentState.worldMap.GetChildSceneName(left);
     }
 
-    override public void Effect()
+    override public void UniqueEffect()
     {
         //Ensures that the travel is relative to the current town
         if (SkipLevel)

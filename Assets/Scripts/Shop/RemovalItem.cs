@@ -6,7 +6,7 @@ public class RemovalItem : ShopItem
 {
     public RemovalItem(int cost = 3) : base(name: "Remove Dagger", cost, "DaggerRemoval") { }
 
-    override public void Effect()
+    override public void UniqueEffect()
     {
         string name = new Dagger().GetName();
         if (PermanentState.PlayerDeck != null)

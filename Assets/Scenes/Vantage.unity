@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 100359127}
   - component: {fileID: 100359130}
   - component: {fileID: 100359131}
+  - component: {fileID: 100359132}
   m_Layer: 5
   m_Name: Vantage
   m_TagString: Untagged
@@ -273,11 +274,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 448325984}
-        m_MethodName: OpenVantage
-        m_Mode: 1
+        m_MethodName: LeaveTown
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 100359132}
+          m_ObjectArgumentAssemblyTypeName: RelativePathName, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -350,6 +351,20 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 3, y: -3}
   m_UseGraphicAlpha: 1
+--- !u!114 &100359132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100359125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d11c3d09c0aa36449b27d1569a95d45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  left: 1
+  updateText: 0
 --- !u!1 &448325979
 GameObject:
   m_ObjectHideFlags: 0

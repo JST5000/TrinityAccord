@@ -9,7 +9,7 @@ public class PackItem : ShopItem
     {
     }
 
-    override public void  Effect()
+    override public void  UniqueEffect()
     {
         //Open a pack
         GameObject instance = GameObject.Instantiate(Resources.Load<GameObject>("Choose3Menu"), GameObject.Find("Canvas").transform, false);
