@@ -13,9 +13,9 @@ public class DraftClassCard : MonoBehaviour
     {
         lock (lockObj)
         {
-            if (!PermanentState.hasDraftedClassCard)
+            if (!PermanentState.HasDraftedClassCard)
             {
-                PermanentState.hasDraftedClassCard = true;
+                PermanentState.HasDraftedClassCard = true;
                 GameUI.SetVisibilityOfGameUI(false);
                 InstantiateChooseClass();
             }

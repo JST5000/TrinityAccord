@@ -9,7 +9,7 @@ public class PermanentState : MonoBehaviour
     public static List<CardData> PlayerDeck { get; set; }
     public static List<CardData> QueuedCards { get; set; } = new List<CardData>();
     public static Level ExpectedLevel { get; set; }
-    
+
     public static int Wins { get; set; } = 0;
     public static int Money { get; set; } = 10;
     public static int MaxHealth { get; set; } = 10;
@@ -18,7 +18,7 @@ public class PermanentState : MonoBehaviour
 
     private string previousTown = "";
 
-    public static bool hasDraftedClassCard = false;
+    public static bool HasDraftedClassCard { get; set; } = false;
 
     public static bool PauseGameInteraction = false;
 
@@ -61,7 +61,7 @@ public class PermanentState : MonoBehaviour
     public static void ResetStatics()
     {
         Wins = 0;
-        PermanentState.hasDraftedClassCard = false;
+        PermanentState.HasDraftedClassCard = false;
         InitializeBaseDeck();
         ExpectedLevel = Level.TUTORIAL;
         InitializeDefaultEncounter();

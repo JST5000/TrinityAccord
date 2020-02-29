@@ -7,7 +7,7 @@ public class WinScreenManager : MonoBehaviour
 {
     public void ReturnToMainMenu()
     {
-        PermanentState.hasDraftedClassCard = false;
+        PermanentState.HasDraftedClassCard = false;
         SceneManager.LoadScene("Main Menu");
     }
 }

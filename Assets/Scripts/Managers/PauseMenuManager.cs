@@ -43,4 +43,9 @@ public class PauseMenuManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void ToggleMusic()
+    {
+        SoundManager.BackgroundMusicOn = !SoundManager.BackgroundMusicOn;
+    }
 }

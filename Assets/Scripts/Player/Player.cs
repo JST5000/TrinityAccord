@@ -108,7 +108,7 @@ public class Player : MonoBehaviour
     {
         if(CanDie)
         {
-            PermanentState.hasDraftedClassCard = false;
+            PermanentState.HasDraftedClassCard = false;
             PermanentState.PushEncounterData();
             SceneManager.LoadScene("LoseScreen");
         }
